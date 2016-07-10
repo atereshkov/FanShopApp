@@ -1,15 +1,12 @@
-/*
 package com.github.handioq.fanshop.application;
 
 import android.app.Application;
 
 import com.github.handioq.fanshop.net.NetworkService;
 
-*/
 /**
  * Singleton
- *//*
-
+ */
 public class FanShopApp extends Application {
 
     private NetworkService networkService;
@@ -25,4 +22,3 @@ public class FanShopApp extends Application {
         return networkService;
     }
 }
-*/

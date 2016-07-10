@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.handioq.R;
+import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.net.NetworkService;
 
@@ -107,9 +108,9 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             }
         });
 
-        NetworkService networkService = new NetworkService();
+        //NetworkService networkService = new NetworkService();
 
-        loginPresenter = new LoginPresenterImpl(this, networkService); // loginview
+        loginPresenter = new LoginPresenterImpl(this, ((FanShopApp) getApplication()).getNetworkService()); // loginview
 
         //mLoginFormView = findViewById(R.id.login_form);
         //mProgressView = findViewById(R.id.login_progress);
