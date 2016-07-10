@@ -6,7 +6,6 @@ import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
 import android.content.CursorLoader;
@@ -19,10 +18,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -34,6 +33,7 @@ import java.util.List;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseActivity;
+import com.github.handioq.fanshop.net.NetworkService;
 
 import butterknife.BindView;
 
@@ -42,12 +42,14 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor>, LoginView {
 
     /**
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+    private UserLoginTask mAuthTask = null;
+    private LoginPresenter loginPresenter;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -59,7 +61,6 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
 
     // UI references.
     @BindView(R.id.email)
@@ -86,24 +87,58 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
+                //if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                    //attemptLogin();
+                    //return true;
+                //}
                 return false;
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = (Button) findViewById(R.id.sign_in);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                //attemptLogin();
+
+                String login = mEmailView.getText().toString();
+                String password = mPasswordView.getText().toString();
+                loginPresenter.loginValidate(login, password);
             }
         });
 
+        NetworkService networkService = new NetworkService();
+
+        loginPresenter = new LoginPresenterImpl(this, networkService); // loginview
+
         //mLoginFormView = findViewById(R.id.login_form);
         //mProgressView = findViewById(R.id.login_progress);
+    }
+
+/*    @OnClick(R.id.sign_in)
+    void signIn()
+    {
+        String login = mEmailView.getText().toString();
+        String password = mPasswordView.getText().toString();
+        loginPresenter.loginValidate(login, password);
+    }*/
+
+    @Override
+    public void loginSuccess(UserAuthState userAuthState) {
+        Log.e("UserAuthState", userAuthState.toString());
+    }
+
+    @Override
+    public void loginFailure(Throwable e) {
+        //Log.e("UserAuthState", e.);
+        Log.e("UserAuthState", e.toString());
+        e.printStackTrace();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        loginPresenter.onDestroy();
     }
 
     private void populateAutoComplete() {
