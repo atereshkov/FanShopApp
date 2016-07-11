@@ -1,15 +1,9 @@
-/*
 package com.github.handioq.fanshop.login;
+
+import rx.Observable;
 
 public interface LoginModel {
 
-    interface OnLoginFinishedListener {
-        void onError(Throwable e);
-
-        void onSuccess(UserAuthState userAuthState);
-    }
-
-    void login(String username, String password, OnLoginFinishedListener listener);
+    Observable<UserAuthState> getAuthState(String username, String password);
 
 }
-*/

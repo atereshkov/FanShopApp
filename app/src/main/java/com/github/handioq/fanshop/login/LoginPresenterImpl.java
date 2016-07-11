@@ -11,6 +11,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     private NetworkService networkService;
     private Subscription subscription;
     private LoginView loginView;
+    private LoginModel loginModel;
 
     public LoginPresenterImpl(LoginView loginView, NetworkService networkService) {
         this.loginView = loginView;
@@ -19,10 +20,31 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void loginValidate(String username, String password) {
-        Observable<UserAuthState> loginObservable = (Observable<UserAuthState>)
-                networkService.getPreparedObservable(networkService.getLoginService().loginRequest(username, password));
+        //Observable<UserAuthState> loginObservable = (Observable<UserAuthState>)
+        //        networkService.getPreparedObservable(networkService.getLoginService().loginRequest(username, password));
 
-        subscription = loginObservable.subscribe(new Observer<UserAuthState>() {
+        loginModel = new LoginModelImpl(networkService);
+
+        subscription = loginModel.getAuthState(username, password)
+                .subscribe(new Observer<UserAuthState>() {
+
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        loginView.loginFailure(e);
+                    }
+
+                    @Override
+                    public void onNext(UserAuthState userAuthState) {
+                        loginView.loginSuccess(userAuthState);
+                    }
+                });
+
+        /*subscription = loginObservable.subscribe(new Observer<UserAuthState>() {
 
             @Override
             public void onCompleted() {
@@ -39,7 +61,7 @@ public class LoginPresenterImpl implements LoginPresenter {
                 loginView.loginSuccess(userAuthState);
             }
 
-        });
+        });*/
     }
 
     @Override
