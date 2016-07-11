@@ -81,10 +81,9 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        //mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+
         populateAutoComplete();
 
-        //mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -108,12 +107,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             }
         });
 
-        //NetworkService networkService = new NetworkService();
-
-        loginPresenter = new LoginPresenterImpl(this, ((FanShopApp) getApplication()).getNetworkService()); // loginview
-
-        //mLoginFormView = findViewById(R.id.login_form);
-        //mProgressView = findViewById(R.id.login_progress);
+        loginPresenter = new LoginPresenterImpl(this, ((FanShopApp) getApplication()).getNetworkService());
     }
 
 /*    @OnClick(R.id.sign_in)
