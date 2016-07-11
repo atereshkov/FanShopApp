@@ -1,12 +1,12 @@
-package com.github.handioq.fanshop.login;
+package com.github.handioq.fanshop.signup;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
 import android.content.CursorLoader;
@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -36,8 +37,8 @@ import java.util.List;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
-import com.github.handioq.fanshop.net.NetworkService;
-import com.github.handioq.fanshop.signup.SignupActivity;
+import com.github.handioq.fanshop.login.UserAuthState;
+import com.github.handioq.fanshop.model.User;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -47,14 +48,14 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor>, LoginView {
+public class SignupActivity extends BaseActivity implements LoaderCallbacks<Cursor>, SignupView {
 
     /**
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
-    private UserLoginTask mAuthTask = null;
-    private LoginPresenter loginPresenter;
+
+    private SignupPresenter signupPresenter;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -66,12 +67,13 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
+    private UserLoginTask mAuthTask = null;
 
     // UI references.
-    @BindView(R.id.email)
+    @BindView(R.id.signup_email)
     AutoCompleteTextView mEmailView;
 
-    @BindView(R.id.password)
+    @BindView(R.id.signup_password)
     EditText mPasswordView;
 
     @BindView(R.id.login_progress)
@@ -80,55 +82,48 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     @BindView(R.id.login_form)
     View mLoginFormView;
 
-    @BindView(R.id.progressBar)
+    @BindView(R.id.signup_progressBar)
     ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_signup);
         // Set up the login form.
-
         populateAutoComplete();
 
+        //mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                //if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    //attemptLogin();
-                    //return true;
-                //}
+                /*if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                    attemptLogin();
+                    return true;
+                }*/
                 return false;
             }
         });
 
-        loginPresenter = new LoginPresenterImpl(this, ((FanShopApp) getApplication()).getNetworkService());
+        signupPresenter = new SignupPresenterImpl(this, ((FanShopApp) getApplication()).getNetworkService());
     }
 
-    @OnClick(R.id.sign_in)
-    void signIn()
+    @OnClick(R.id.signup_button)
+    void signUp()
     {
         String login = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-        loginPresenter.loginValidate(login, password);
-    }
-
-    @OnClick(R.id.sign_up)
-    void signUp()
-    {
-        Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-        startActivity(intent);
+        User user = new User(login, password);
+        signupPresenter.signupValidate(user);
     }
 
     @Override
-    public void loginSuccess(UserAuthState userAuthState) {
-        Log.e("UserAuthState", userAuthState.toString());
+    public void signupSuccess(User user) {
+        Log.e("User", user.toString());
     }
 
     @Override
-    public void loginFailure(Throwable e) {
-        //Log.e("UserAuthState", e.);
-        Log.e("UserAuthState", e.toString());
+    public void signupFailure(Throwable e) {
+        Log.e("User", e.toString());
         e.printStackTrace();
     }
 
@@ -140,12 +135,6 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     @Override
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        loginPresenter.onDestroy();
     }
 
     private void populateAutoComplete() {
@@ -327,7 +316,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
+                new ArrayAdapter<>(SignupActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);

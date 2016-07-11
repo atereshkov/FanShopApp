@@ -23,6 +23,10 @@ public class LoginPresenterImpl implements LoginPresenter {
         //Observable<UserAuthState> loginObservable = (Observable<UserAuthState>)
         //        networkService.getPreparedObservable(networkService.getLoginService().loginRequest(username, password));
 
+        if (loginView != null) {
+            loginView.showProgress();
+        }
+
         loginModel = new LoginModelImpl(networkService);
 
         subscription = loginModel.getAuthState(username, password)
@@ -36,32 +40,15 @@ public class LoginPresenterImpl implements LoginPresenter {
                     @Override
                     public void onError(Throwable e) {
                         loginView.loginFailure(e);
+                        loginView.hideProgress();
                     }
 
                     @Override
-                    public void onNext(UserAuthState userAuthState) {
+                    public void onNext(UserAuthState userAuthState) { // TODO: check for wrong data or
                         loginView.loginSuccess(userAuthState);
+                        loginView.hideProgress();
                     }
                 });
-
-        /*subscription = loginObservable.subscribe(new Observer<UserAuthState>() {
-
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                loginView.loginFailure(e);
-            }
-
-            @Override
-            public void onNext(UserAuthState userAuthState) {
-                loginView.loginSuccess(userAuthState);
-            }
-
-        });*/
     }
 
     @Override

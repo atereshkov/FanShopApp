@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.github.handioq.fanshop.login.LoginActivity">
+    tools:context="com.github.handioq.fanshop.signup.SignupActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/email"
+                    android:id="@+id/signup_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/signup_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -64,39 +64,28 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/sign_in"
+                android:id="@+id/signup_button"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold" />
-
-            <Button
-                style="?android:textAppearanceSmall"
-                android:id="@+id/sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_up"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/forgot_password"
-                android:id="@+id/textView3"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp" />
+                android:textStyle="bold" />
 
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/progressBar"
+                android:id="@+id/signup_progressBar"
                 android:layout_gravity="center_horizontal"
-                android:visibility="gone"
-                android:indeterminate="false" />
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/already_have_an_account"
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp" />
 
         </LinearLayout>
     </ScrollView>

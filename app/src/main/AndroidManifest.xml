@@ -32,7 +32,10 @@
         </activity>
         <activity
             android:name=".fanshop.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".fanshop.signup.SignupActivity"
+            android:label="@string/title_activity_signup" />
     </application>
 
 </manifest>
