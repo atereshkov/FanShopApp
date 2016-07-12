@@ -16,7 +16,7 @@ import rx.schedulers.Schedulers;
 
 public class NetworkService {
 
-    private AuthService authService;
+    private ApiService apiService;
 
     public NetworkService() {
 
@@ -29,11 +29,9 @@ public class NetworkService {
             }
         };
 
-
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.interceptors().add(interceptor);
         OkHttpClient okHttpClient = builder.build();
-
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(NetworkConstants.SERVER_URL)
@@ -42,14 +40,14 @@ public class NetworkService {
                 .client(okHttpClient)
                 .build();
 
-        authService = retrofit.create(AuthService.class);
+        apiService = retrofit.create(ApiService.class);
     }
 
-    public AuthService getLoginService() {
-        return authService;
+    public ApiService getApiService() {
+        return apiService;
     }
 
-    public Observable<?> getPreparedObservable(Observable<?> unPreparedObservable) {
+    public <E>Observable<E> getPreparedObservable(Observable<E> unPreparedObservable) {
         return unPreparedObservable
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());

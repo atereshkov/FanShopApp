@@ -14,7 +14,10 @@ public class FanShopApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        onAppCreated();
+    }
 
+    private void onAppCreated() {
         networkService = new NetworkService();
     }
 

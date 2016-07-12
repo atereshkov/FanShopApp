@@ -16,8 +16,7 @@ public class SignupModelImpl implements SignupModel {
 
     @Override
     public Observable<User> getSignupState(User user) {
-        return (Observable<User>)
-                networkService.getPreparedObservable(networkService.getLoginService().signupRequest(user));
+        return networkService.getPreparedObservable(networkService.getApiService().signup(user));
     }
 
 

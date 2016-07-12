@@ -14,7 +14,6 @@ public class LoginModelImpl implements LoginModel {
 
     @Override
     public Observable<UserAuthState> getAuthState(String username, String password) {
-        return (Observable<UserAuthState>)
-                networkService.getPreparedObservable(networkService.getLoginService().loginRequest(username, password));
+        return networkService.getPreparedObservable(networkService.getApiService().login(username, password));
     }
 }
