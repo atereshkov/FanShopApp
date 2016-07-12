@@ -20,8 +20,6 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void loginValidate(String username, String password) {
-        //Observable<UserAuthState> loginObservable = (Observable<UserAuthState>)
-        //        networkService.getPreparedObservable(networkService.getLoginService().loginRequest(username, password));
 
         if (loginView != null) {
             loginView.showProgress();

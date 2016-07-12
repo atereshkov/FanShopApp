@@ -11,13 +11,20 @@ import com.github.handioq.fanshop.net.NetworkService;
  */
 public class FanShopApp extends Application {
 
+    private static FanShopApp instance;
     private NetworkService networkService;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
+
         onAppCreated();
         checkBuild();
+    }
+
+    public static FanShopApp getInstance() {
+        return instance;
     }
 
     private void onAppCreated() {
