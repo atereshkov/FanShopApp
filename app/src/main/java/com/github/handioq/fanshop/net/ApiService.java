@@ -13,12 +13,8 @@ import rx.Observable;
 public interface ApiService {
 
     @GET(NetworkConstants.LOGIN_URL)
-    Observable<UserAuthState> login(@Query("username") String login, // email? login?
+    Observable<UserAuthState> login(@Query("username") String login,
                                            @Query("password") String password);
-
-    /*@POST(NetworkConstants.SIGNUP_URL)
-    Observable<UserAuthState> signupRequest(@Query("username") String login,
-                                            @Query("password") String password);*/
 
     @POST(NetworkConstants.SIGNUP_URL)
     Observable<User> signup(@Body User user);

@@ -13,6 +13,12 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            //buildConfigField "String", "DEBUG_BUILD", "I am a debug build!"
+            //buildConfigField "String", "RELEASE_BUILD", "We be release!"
+            buildConfigField "String", "SERVER_URL", "\"http://private-d4ade-fanshopapp.apiary-mock.com\""
+
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -32,6 +38,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
-    compile 'com.jakewharton:butterknife:8.1.0'
-    apt 'com.jakewharton:butterknife-compiler:8.1.0'
+    compile 'com.jakewharton:butterknife:8.2.1'
+    apt 'com.jakewharton:butterknife-compiler:8.2.1'
 }
