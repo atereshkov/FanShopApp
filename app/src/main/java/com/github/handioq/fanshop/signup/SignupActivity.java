@@ -77,8 +77,7 @@ public class SignupActivity extends BaseActivity implements SignupView {
     }
 
     @OnClick(R.id.signup_button)
-    void signUp()
-    {
+    void signUp() {
         String login = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
         User user = new User(login, password);

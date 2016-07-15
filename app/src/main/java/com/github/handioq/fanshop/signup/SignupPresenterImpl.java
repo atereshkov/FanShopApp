@@ -6,7 +6,7 @@ import com.github.handioq.fanshop.net.NetworkService;
 import rx.Observer;
 import rx.Subscription;
 
-public class SignupPresenterImpl implements SignupPresenter{
+public class SignupPresenterImpl implements SignupPresenter {
 
     private NetworkService networkService;
     private Subscription subscription;

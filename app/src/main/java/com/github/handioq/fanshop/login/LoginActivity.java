@@ -76,16 +76,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @OnClick(R.id.sign_in)
-    void signIn()
-    {
+    void signIn() {
         String login = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
         loginPresenter.loginValidate(login, password);
     }
 
     @OnClick(R.id.sign_up)
-    void signUp()
-    {
+    void signUp() {
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
         startActivity(intent);
     }
