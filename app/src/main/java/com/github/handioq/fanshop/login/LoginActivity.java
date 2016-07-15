@@ -131,6 +131,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
         loginPresenter.onDestroy();
     }
 
+    @Override
+    public void onCompleted() {
+
+    }
+
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");

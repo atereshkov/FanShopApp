@@ -32,7 +32,7 @@ public class SignupPresenterImpl implements SignupPresenter {
 
                     @Override
                     public void onCompleted() {
-
+                        signupView.onCompleted();
                     }
 
                     @Override

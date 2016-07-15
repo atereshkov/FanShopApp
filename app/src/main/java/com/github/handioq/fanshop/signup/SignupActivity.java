@@ -120,6 +120,11 @@ public class SignupActivity extends BaseActivity implements SignupView {
         progressBar.setVisibility(View.GONE);
     }
 
+    @Override
+    public void onCompleted() {
+
+    }
+
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");

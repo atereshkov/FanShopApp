@@ -8,7 +8,8 @@ public interface LoginView {
 
     void showProgress();
 
-    void hideProgress();
-    // badUsername / badPassword?
+    void hideProgress(); // badUsername / badPassword?
+
+    void onCompleted();
 
 }

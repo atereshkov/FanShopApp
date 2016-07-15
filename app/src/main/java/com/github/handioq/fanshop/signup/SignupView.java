@@ -13,4 +13,6 @@ public interface SignupView {
 
     void hideProgress();
 
+    void onCompleted();
+
 }
