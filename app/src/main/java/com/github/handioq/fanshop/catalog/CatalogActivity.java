@@ -1,4 +1,4 @@
-package com.github.handioq.fanshop;
+package com.github.handioq.fanshop.catalog;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.login.LoginActivity;
 
-public class MainActivity extends AppCompatActivity
+public class CatalogActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(CatalogActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
