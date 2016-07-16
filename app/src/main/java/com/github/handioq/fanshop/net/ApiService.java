@@ -1,8 +1,11 @@
 package com.github.handioq.fanshop.net;
 
 import com.github.handioq.fanshop.login.UserAuthState;
+import com.github.handioq.fanshop.model.Product;
 import com.github.handioq.fanshop.model.User;
 import com.github.handioq.fanshop.util.NetworkConstants;
+
+import java.util.List;
 
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -22,5 +25,8 @@ public interface ApiService {
 
     @POST(SIGNUP_URL)
     Observable<User> signup(@Body User user);
+
+    @GET(CATALOG_URL)
+    Observable<List<Product>> getProducts();
 
 }

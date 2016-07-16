@@ -62,15 +62,9 @@ public class CatalogActivity extends AppCompatActivity
         recyclerView.setAdapter(adapter);
 
         catalogPresenter = new CatalogPresenterImpl(this, ((FanShopApp) getApplication()).getNetworkService());
+        catalogPresenter.getProducts();
 
         //startLogin();
-    }
-
-    // TODO: remove..
-    @Override
-    protected void onResume() {
-        super.onResume();
-        catalogPresenter.onResume();
     }
 
     @Override
@@ -87,6 +81,11 @@ public class CatalogActivity extends AppCompatActivity
     public void setItems(List<Product> items) {
         adapter = new CatalogRecyclerAdapter(items);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onError(Throwable e) {
+        e.printStackTrace();
     }
 
     void startLogin() {

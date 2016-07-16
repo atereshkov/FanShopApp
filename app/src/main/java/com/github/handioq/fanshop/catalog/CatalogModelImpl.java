@@ -1,20 +1,38 @@
 package com.github.handioq.fanshop.catalog;
 
 
+import android.os.Handler;
+
 import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CatalogModelImpl implements CatalogModel{
+import rx.Observable;
 
-    @Override
-    public void findItems(OnFinishedListener listener) {
-        listener.onFinished(createMockList());
+public class CatalogModelImpl implements CatalogModel {
+
+    private NetworkService networkService;
+
+    public CatalogModelImpl(NetworkService networkService) {
+        this.networkService = networkService;
     }
 
-    private List<Product> createMockList() {
+    @Override
+    public Observable<List<Product>> getProducts() {
+
+        /*new Handler().postDelayed(new Runnable() {
+            @Override public void run() {
+
+            }
+        }, 2000);*/
+
+        return networkService.getPreparedObservable(networkService.getApiService().getProducts());
+    }
+
+    /*private List<Product> createMockList() {
         List<Product> products = new ArrayList<>();
 
         products.add(new Product(1, "Name 1", 20.5));
@@ -22,6 +40,6 @@ public class CatalogModelImpl implements CatalogModel{
         products.add(new Product(3, "Name 3", 10.0));
 
         return products;
-    }
+    }*/
 
 }

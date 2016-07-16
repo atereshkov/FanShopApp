@@ -13,6 +13,8 @@ public interface CatalogView {
 
     void setItems(List<Product> items);
 
+    void onError(Throwable e);
+
     //void showMessage(String message);
 
 }

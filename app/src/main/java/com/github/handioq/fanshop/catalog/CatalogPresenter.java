@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.catalog;
 
 public interface CatalogPresenter {
 
-    void onResume();
+    void getProducts();
 
     void onItemClicked(int position);
 
