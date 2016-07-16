@@ -8,15 +8,20 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.github.handioq.R;
+import com.github.handioq.fanshop.application.FanShopApp;
+import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.login.LoginActivity;
 import com.github.handioq.fanshop.model.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,6 +29,12 @@ import butterknife.OnClick;
 
 public class CatalogActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, CatalogView {
+
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private CatalogRecyclerAdapter adapter;
+
+    private CatalogPresenter catalogPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +54,23 @@ public class CatalogActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        startLogin();
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
+        catalogPresenter = new CatalogPresenterImpl(this, ((FanShopApp) getApplication()).getNetworkService());
+
+        //startLogin();
+    }
+
+    // TODO: remove..
+    @Override
+    protected void onResume() {
+        super.onResume();
+        catalogPresenter.onResume();
     }
 
     @Override
@@ -58,7 +85,8 @@ public class CatalogActivity extends AppCompatActivity
 
     @Override
     public void setItems(List<Product> items) {
-
+        adapter = new CatalogRecyclerAdapter(items);
+        recyclerView.setAdapter(adapter);
     }
 
     void startLogin() {

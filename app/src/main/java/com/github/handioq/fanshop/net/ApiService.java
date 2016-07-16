@@ -14,6 +14,7 @@ public interface ApiService {
 
     String LOGIN_URL = "/auth";
     String SIGNUP_URL = "/auth";
+    String CATALOG_URL = "/catalog";
 
     @GET(LOGIN_URL)
     Observable<UserAuthState> login(@Query("username") String login,
