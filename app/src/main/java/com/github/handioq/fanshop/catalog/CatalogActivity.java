@@ -11,27 +11,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.login.LoginActivity;
+import com.github.handioq.fanshop.model.Product;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class CatalogActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
+        implements NavigationView.OnNavigationItemSelectedListener, CatalogView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -39,10 +42,26 @@ public class CatalogActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        startLogin();
     }
 
-    @OnClick(R.id.fab)
-    void onFabClick(){
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void setItems(List<Product> items) {
+
+    }
+
+    void startLogin() {
         Intent intent = new Intent(CatalogActivity.this, LoginActivity.class);
         startActivity(intent);
     }

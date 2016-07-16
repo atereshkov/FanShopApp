@@ -28,6 +28,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -58,13 +59,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.password)
     EditText mPasswordView;
 
-    @BindView(R.id.login_progress)
-    View mProgressView;
-
     @BindView(R.id.login_form)
-    View mLoginFormView;
+    View loginForm;
 
-    @BindView(R.id.progressBar)
+    @BindView(R.id.login_progress)
     ProgressBar progressBar;
 
     @Override
@@ -118,11 +116,13 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
+        loginForm.setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
+        loginForm.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void onCompleted() {
-
+        loginForm.setVisibility(View.VISIBLE);
     }
 
     private boolean isEmailValid(String email) {

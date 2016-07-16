@@ -60,13 +60,11 @@ public class SignupActivity extends BaseActivity implements SignupView {
     EditText mPasswordView;
 
     @BindView(R.id.login_progress)
-    View mProgressView;
+    View progressBar;
 
     @BindView(R.id.login_form)
-    View mLoginFormView;
+    View loginForm;
 
-    @BindView(R.id.signup_progressBar)
-    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,16 +111,18 @@ public class SignupActivity extends BaseActivity implements SignupView {
     @Override
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
+        loginForm.setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
+        loginForm.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onCompleted() {
-
+        loginForm.setVisibility(View.VISIBLE);
     }
 
     private boolean isEmailValid(String email) {
