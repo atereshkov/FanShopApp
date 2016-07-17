@@ -14,9 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
+import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.login.LoginActivity;
 import com.github.handioq.fanshop.model.Product;
@@ -27,14 +29,24 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class CatalogActivity extends AppCompatActivity
+public class CatalogActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, CatalogView {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    private CatalogRecyclerAdapter adapter;
+    @BindView(R.id.catalogProgressBar)
+    ProgressBar progressBar;
 
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+
+    private RecyclerView.LayoutManager layoutManager;
     private CatalogPresenter catalogPresenter;
+    private CatalogRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +56,20 @@ public class CatalogActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        if (drawer != null) {
+            drawer.setDrawerListener(toggle);
+        }
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        if (navigationView != null) {
+            navigationView.setNavigationItemSelectedListener(this);
+        }
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
+        if (recyclerView != null) {
+            recyclerView.setHasFixedSize(true);
+        }
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -69,18 +83,26 @@ public class CatalogActivity extends AppCompatActivity
 
     @Override
     public void showProgress() {
-
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgress() {
-
+        progressBar.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void setItems(List<Product> items) {
-        adapter = new CatalogRecyclerAdapter(items);
+        adapter = new CatalogRecyclerAdapter(items, this);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onCompleted() {
+        progressBar.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override

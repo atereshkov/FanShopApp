@@ -28,6 +28,11 @@
                 android:src="@drawable/card_img"/>
              -->
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:id="@+id/productImage" />
+
             <TextView
                 android:id="@+id/tv_catalog_item"
                 android:layout_weight="1"

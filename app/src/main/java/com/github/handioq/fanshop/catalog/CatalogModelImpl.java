@@ -22,13 +22,6 @@ public class CatalogModelImpl implements CatalogModel {
 
     @Override
     public Observable<List<Product>> getProducts() {
-
-        /*new Handler().postDelayed(new Runnable() {
-            @Override public void run() {
-
-            }
-        }, 2000);*/
-
         return networkService.getPreparedObservable(networkService.getApiService().getProducts());
     }
 

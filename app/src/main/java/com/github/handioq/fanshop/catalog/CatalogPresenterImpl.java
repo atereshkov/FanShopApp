@@ -1,5 +1,7 @@
 package com.github.handioq.fanshop.catalog;
 
+import android.util.Log;
+
 import com.github.handioq.fanshop.model.Product;
 import com.github.handioq.fanshop.net.NetworkService;
 
@@ -34,28 +36,31 @@ public class CatalogPresenterImpl implements CatalogPresenter {
 
                     @Override
                     public void onCompleted() {
-                        //loginView.onCompleted();
+                        catalogView.onCompleted();
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         catalogView.onError(e);
+                        catalogView.hideProgress();
                     }
 
                     @Override
-                    public void onNext(List<Product> products) { // TODO: check for wrong data or
+                    public void onNext(List<Product> products) {
                         catalogView.setItems(products);
+                        catalogView.hideProgress();
+                        Log.d("CPIMPL", "Get products: " +products.size());
                     }
                 });
     }
 
     @Override
     public void onItemClicked(int position) {
-
+        // catalogView.onItemClick(position); ...
     }
 
     @Override
     public void onDestroy() {
-
+        catalogView = null;
     }
 }
