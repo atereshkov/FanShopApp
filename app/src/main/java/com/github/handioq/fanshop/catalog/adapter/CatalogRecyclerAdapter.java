@@ -1,6 +1,7 @@
 package com.github.handioq.fanshop.catalog.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,27 +17,10 @@ import com.github.handioq.fanshop.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogRecyclerAdapter.ViewHolder>{
+public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHolder>{
 
     private List<Product> items;
     private Context context;
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        @Nullable @BindView(R.id.tv_catalog_item)
-        TextView mTextView;
-
-        @Nullable @BindView(R.id.productImage)
-        ImageView productImage;
-
-        public ViewHolder(View v) {
-            super(v);
-            ButterKnife.bind(this, v);
-        }
-    }
 
     public CatalogRecyclerAdapter(List<Product> items, Context context) {
         this.items = items;
@@ -44,16 +28,23 @@ public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogRecycler
     }
 
     @Override
-    public CatalogRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CatalogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.catalog_item, parent, false);
 
-        return new ViewHolder(v);
+        return new CatalogViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        if (holder.mTextView != null) {
-            holder.mTextView.setText(items.get(position).toString());
+    public void onBindViewHolder(CatalogViewHolder holder, int position) {
+        if (holder.catalogItemName != null) {
+            holder.catalogItemName.setText(items.get(position).getName());
+        }
+
+        if (holder.catalogItemPrice != null) {
+            Resources res = context.getResources();
+
+            String itemPrice = String.format(res.getString(R.string.catalog_price), items.get(position).getPrice());
+            holder.catalogItemPrice.setText(itemPrice);
         }
 
         if (holder.productImage != null) {

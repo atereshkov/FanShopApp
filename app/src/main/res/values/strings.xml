@@ -18,13 +18,14 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     
     <!-- Strings related to signup -->
     <string name="title_activity_signup">Sign up</string>
     <string name="already_have_an_account">Already Have an Account?</string>
+
+    <!-- Strings related to catalog -->
+    <string name="catalog_price">%1$f</string>
     
     
 </resources>

@@ -27,6 +27,7 @@ public interface ApiService {
     Observable<User> signup(@Body User user);
 
     @GET(CATALOG_URL)
-    Observable<List<Product>> getProducts();
+    Observable<List<Product>> getProducts(@Query("page") String page,
+                                          @Query("limit") String limit);
 
 }

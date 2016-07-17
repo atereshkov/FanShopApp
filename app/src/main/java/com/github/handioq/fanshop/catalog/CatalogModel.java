@@ -9,11 +9,6 @@ import java.util.List;
 import rx.Observable;
 
 public interface CatalogModel {
-    /*interface OnFinishedListener {
-        void onFinished(List<Product> items);
-    }
-
-    void findItems(OnFinishedListener listener);*/
 
     Observable<List<Product>> getProducts(); // pagination..
 

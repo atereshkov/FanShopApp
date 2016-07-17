@@ -49,7 +49,7 @@ public class CatalogPresenterImpl implements CatalogPresenter {
                     public void onNext(List<Product> products) {
                         catalogView.setItems(products);
                         catalogView.hideProgress();
-                        Log.d("CPIMPL", "Get products: " +products.size());
+                        Log.e("CatalogPresenterImpl", "Get products: " + products.size());
                     }
                 });
     }

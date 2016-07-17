@@ -22,7 +22,8 @@ public class CatalogModelImpl implements CatalogModel {
 
     @Override
     public Observable<List<Product>> getProducts() {
-        return networkService.getPreparedObservable(networkService.getApiService().getProducts());
+        //return networkService.getPreparedObservable(networkService.getApiService().getProducts("2", "5")); // just test with this values TODO: rework parameters calls
+        return networkService.getPreparedObservable(networkService.getApiService().getProducts(null, null));
     }
 
     /*private List<Product> createMockList() {
