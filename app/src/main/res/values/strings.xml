@@ -25,7 +25,7 @@
     <string name="already_have_an_account">Already Have an Account?</string>
 
     <!-- Strings related to catalog -->
-    <string name="catalog_price">%1$f</string>
+    <string name="catalog_price">%1$.2f $</string>
     
     
 </resources>

@@ -35,6 +35,8 @@ public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHold
         return new CatalogViewHolder(v);
     }
 
+
+
     @Override
     public void onBindViewHolder(CatalogViewHolder holder, int position) {
         if (holder.catalogItemName != null) {
