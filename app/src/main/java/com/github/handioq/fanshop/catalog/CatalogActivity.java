@@ -12,6 +12,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.login.LoginActivity;
 import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +74,10 @@ public class CatalogActivity extends BaseActivity
             recyclerView.setHasFixedSize(true);
         }
 
-        layoutManager = new LinearLayoutManager(this); // 1 card in a row
-        //GridLayoutManager layoutManager = new GridLayoutManager(this, 2); // 2 cards in a row
+        ScreenDimensionsHelper screenDimensionsHelper = new ScreenDimensionsHelper(this);
+
+        //layoutManager = new LinearLayoutManager(this); // 1 card in a row
+        GridLayoutManager layoutManager = new GridLayoutManager(this, screenDimensionsHelper.getCardsCount()); // n cards in a row
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 

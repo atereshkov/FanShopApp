@@ -3,6 +3,7 @@ package com.github.handioq.fanshop.catalog.adapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,7 @@ public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHold
 
             String itemPrice = String.format(res.getString(R.string.catalog_price), items.get(position).getPrice());
             holder.catalogItemPrice.setText(itemPrice);
+            holder.catalogItemPrice.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
         }
 
         if (holder.productImage != null) {
