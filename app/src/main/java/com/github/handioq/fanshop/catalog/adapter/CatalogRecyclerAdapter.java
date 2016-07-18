@@ -18,7 +18,7 @@ import com.github.handioq.fanshop.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHolder>{
+public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHolder> {
 
     private List<Product> items;
     private Context context;

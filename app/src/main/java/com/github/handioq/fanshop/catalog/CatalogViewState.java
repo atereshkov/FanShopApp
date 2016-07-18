@@ -24,8 +24,7 @@ public class CatalogViewState {
     public void apply(CatalogView catalogView, boolean retained) {
         if (currentState == STATE_SHOWING_SEARCH_LIST) {
             catalogView.hideProgress();
-        }
-        else {
+        } else {
             catalogView.showProgress();
         }
     }
