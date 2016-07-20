@@ -15,6 +15,8 @@ public class ScreenDimensionsHelper {
     private Integer screenHeight;
     private float densityDpi;
 
+    private final String TAG = "ScreenDimensionsHelper";
+
     public ScreenDimensionsHelper(Context context) {
         this.context = context;
 
@@ -45,7 +47,7 @@ public class ScreenDimensionsHelper {
         int cardWidth = (int) (context.getResources().getDimension(R.dimen.card_width) / context.getResources().getDisplayMetrics().density);
         cardsCount = (int) ((screenWidth - 32) / (cardWidth * densityDpi));
 
-        Log.i("ScreenDimensionsHelper", cardsCount + " -> " + densityDpi + " " + screenWidth);
+        Log.i(TAG, cardsCount + " -> " + densityDpi + " " + screenWidth);
 
         return cardsCount;
     }

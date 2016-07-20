@@ -2,44 +2,23 @@ package com.github.handioq.fanshop.catalog;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import com.github.handioq.R;
-import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
-import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.login.LoginActivity;
-import com.github.handioq.fanshop.model.Product;
-import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class CatalogActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, CatalogView {
-
-    @BindView(R.id.catalogProgressBar)
-    ProgressBar progressBar;
-
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
@@ -47,14 +26,16 @@ public class CatalogActivity extends BaseActivity
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
-    private RecyclerView.LayoutManager layoutManager;
-    private CatalogPresenter catalogPresenter;
-    private CatalogRecyclerAdapter adapter;
+    private final String TAG = "CatalogActivity";
+
+    private CatalogFragment catalogFragment;
+    private String catalogFragmentTag = "catalogFragmentTag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
+        Log.e(TAG, "onCreate");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,50 +51,29 @@ public class CatalogActivity extends BaseActivity
             navigationView.setNavigationItemSelectedListener(this);
         }
 
-        if (recyclerView != null) {
-            recyclerView.setHasFixedSize(true);
+        if (savedInstanceState == null) {
+            // The Activity is NOT being re-created so we can instantiate a new Fragment
+            // and add it to the Activity
+            catalogFragment = new CatalogFragment();
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    // It's almost always a good idea to use .replace instead of .add so that
+                    // you never accidentally layer multiple Fragments on top of each other
+                    // unless of course that's your intention
+                    .replace(R.id.content, catalogFragment, catalogFragmentTag)
+                    .commit();
+
+            Log.e(TAG, "create new CatalogFragment");
+
+        } else {
+            // The Activity IS being re-created so we don't need to instantiate the Fragment or add it,
+            // but if we need a reference to it, we can use the tag we passed to .replace
+            catalogFragment = (CatalogFragment) getSupportFragmentManager().findFragmentByTag(catalogFragmentTag);
+            Log.e(TAG, "get fragment reference");
         }
 
-        ScreenDimensionsHelper screenDimensionsHelper = new ScreenDimensionsHelper(this);
-
-        //layoutManager = new LinearLayoutManager(this); // 1 card in a row
-        GridLayoutManager layoutManager = new GridLayoutManager(this, screenDimensionsHelper.getCardsCount()); // n cards in a row
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-
-        catalogPresenter = new CatalogPresenterImpl(this, ((FanShopApp) getApplication()).getNetworkService());
-        catalogPresenter.getProducts();
-
         //startLogin();
-    }
-
-    @Override
-    public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
-        recyclerView.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void setItems(List<Product> items) {
-        adapter = new CatalogRecyclerAdapter(items, this);
-        recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onCompleted() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onError(Throwable e) {
-        e.printStackTrace();
     }
 
     void startLogin() {
@@ -180,5 +140,11 @@ public class CatalogActivity extends BaseActivity
             drawer.closeDrawer(GravityCompat.START);
         }
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy");
     }
 }

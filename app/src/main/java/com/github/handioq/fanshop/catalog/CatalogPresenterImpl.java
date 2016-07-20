@@ -18,6 +18,8 @@ public class CatalogPresenterImpl implements CatalogPresenter {
     private Subscription subscription;
     private CatalogModel catalogModel;
 
+    private final static String TAG = "CatalogPresenterImpl";
+
     public CatalogPresenterImpl(CatalogView catalogView, NetworkService networkService) {
         this.catalogView = catalogView;
         this.networkService = networkService;
@@ -27,6 +29,7 @@ public class CatalogPresenterImpl implements CatalogPresenter {
     public void getProducts() {
         if (catalogView != null) {
             catalogView.showProgress();
+            Log.e(TAG, "showProgress() on catalogView");
         }
 
         catalogModel = new CatalogModelImpl(networkService);
@@ -37,19 +40,21 @@ public class CatalogPresenterImpl implements CatalogPresenter {
                     @Override
                     public void onCompleted() {
                         catalogView.onCompleted();
+                        Log.i(TAG, "onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         catalogView.onError(e);
                         catalogView.hideProgress();
+                        Log.e(TAG, "onError");
                     }
 
                     @Override
                     public void onNext(List<Product> products) {
                         catalogView.setItems(products);
                         catalogView.hideProgress();
-                        Log.e("CatalogPresenterImpl", "Get products: " + products.size());
+                        Log.e(TAG, "onNext, get products: " + products.size());
                     }
                 });
     }

@@ -65,7 +65,6 @@ public class SignupActivity extends BaseActivity implements SignupView {
     @BindView(R.id.login_form)
     View loginForm;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

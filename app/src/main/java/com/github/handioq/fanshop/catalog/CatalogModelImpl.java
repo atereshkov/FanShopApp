@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.catalog;
 
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.github.handioq.fanshop.model.PaginationResponse;
 import com.github.handioq.fanshop.model.Product;
@@ -24,7 +25,7 @@ public class CatalogModelImpl implements CatalogModel {
 
     @Override
     public Observable<List<Product>> getProducts() {
-        //return networkService.getPreparedObservable(networkService.getApiService().getProducts(page, count)); // just test with this values TODO: rework parameters calls
+        Log.e("CatalogModelImpl", "Starting products download");
         return networkService.getPreparedObservable(networkService.getApiService().getProducts(null, null));
     }
 
