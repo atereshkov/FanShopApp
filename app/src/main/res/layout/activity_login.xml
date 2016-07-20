@@ -73,30 +73,30 @@
                 android:textStyle="bold" />
 
             <Button
-                style="?android:textAppearanceSmall"
                 android:id="@+id/sign_up"
+                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_up"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/forgot_password"
-                android:id="@+id/textView3"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp" />
+                android:layout_margin="8dp"
+                android:text="@string/forgot_password" />
 
             <ProgressBar
+                android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/progressBar"
                 android:layout_gravity="center_horizontal"
-                android:visibility="gone"
-                android:indeterminate="false" />
+                android:indeterminate="false"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>

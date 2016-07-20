@@ -73,19 +73,19 @@
                 android:textStyle="bold" />
 
             <ProgressBar
+                android:id="@+id/signup_progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/signup_progressBar"
                 android:layout_gravity="center_horizontal"
                 android:visibility="gone" />
 
             <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/already_have_an_account"
-                android:id="@+id/textView2"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp" />
+                android:layout_margin="8dp"
+                android:text="@string/already_have_an_account" />
 
         </LinearLayout>
     </ScrollView>
