@@ -42,33 +42,20 @@ public class CatalogActivity extends BaseActivity
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        if (drawer != null) {
-            drawer.setDrawerListener(toggle);
-        }
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        if (navigationView != null) {
-            navigationView.setNavigationItemSelectedListener(this);
-        }
+        navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
-            // The Activity is NOT being re-created so we can instantiate a new Fragment
-            // and add it to the Activity
             catalogFragment = new CatalogFragment();
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    // It's almost always a good idea to use .replace instead of .add so that
-                    // you never accidentally layer multiple Fragments on top of each other
-                    // unless of course that's your intention
                     .replace(R.id.content, catalogFragment, catalogFragmentTag)
                     .commit();
 
             Log.e(TAG, "create new CatalogFragment");
-
         } else {
-            // The Activity IS being re-created so we don't need to instantiate the Fragment or add it,
-            // but if we need a reference to it, we can use the tag we passed to .replace
             catalogFragment = (CatalogFragment) getSupportFragmentManager().findFragmentByTag(catalogFragmentTag);
             Log.e(TAG, "get fragment reference");
         }
