@@ -10,10 +10,8 @@ public interface CatalogView {
 
     void hideProgress();
 
-    void setItems(List<Product> items);
+    void setProducts(List<Product> products);
 
     void onError(Throwable e);
-
-    void onCompleted();
 
 }

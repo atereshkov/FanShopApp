@@ -1,10 +1,7 @@
 package com.github.handioq.fanshop.catalog;
 
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.github.handioq.R;
-import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.model.Product;
@@ -48,7 +44,6 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_catalog, container, false);
     }
 
@@ -68,7 +63,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        catalogPresenter = new CatalogPresenterImpl(this, ((FanShopApp) getActivity().getApplication()).getNetworkService());
+        catalogPresenter = new CatalogPresenterImpl();
         catalogPresenter.getProducts();
     }
 
@@ -85,15 +80,9 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
     }
 
     @Override
-    public void setItems(List<Product> items) {
-        adapter = new CatalogRecyclerAdapter(items, getActivity());
+    public void setProducts(List<Product> products) {
+        adapter = new CatalogRecyclerAdapter(products, getActivity());
         recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onCompleted() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override

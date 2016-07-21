@@ -6,6 +6,4 @@ public interface CatalogPresenter {
 
     void onItemClicked(int position);
 
-    void onDestroy();
-
 }

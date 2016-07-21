@@ -3,26 +3,23 @@ package com.github.handioq.fanshop.catalog;
 import android.util.Log;
 
 import com.github.handioq.fanshop.model.Product;
-import com.github.handioq.fanshop.net.NetworkService;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import rx.Observer;
-import rx.Subscription;
-
-public class CatalogPresenterImpl implements CatalogPresenter {
+public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Callback {
 
     private CatalogView catalogView;
-    private NetworkService networkService;
-    private Subscription subscription;
     private CatalogModel catalogModel;
 
     private final static String TAG = "CatalogPresenterImpl";
 
-    public CatalogPresenterImpl(CatalogView catalogView, NetworkService networkService) {
+    public CatalogPresenterImpl() {
+        // TODO init catalog model
+    }
+
+    public void setCatalogView(CatalogView catalogView) {
         this.catalogView = catalogView;
-        this.networkService = networkService;
+        catalogModel.setCallback(this);
     }
 
     @Override
@@ -32,31 +29,8 @@ public class CatalogPresenterImpl implements CatalogPresenter {
             Log.e(TAG, "showProgress() on catalogView");
         }
 
-        catalogModel = new CatalogModelImpl(networkService);
-
-        subscription = catalogModel.getProducts()
-                .subscribe(new Observer<List<Product>>() {
-
-                    @Override
-                    public void onCompleted() {
-                        catalogView.onCompleted();
-                        Log.i(TAG, "onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        catalogView.onError(e);
-                        catalogView.hideProgress();
-                        Log.e(TAG, "onError");
-                    }
-
-                    @Override
-                    public void onNext(List<Product> products) {
-                        catalogView.setItems(products);
-                        catalogView.hideProgress();
-                        Log.e(TAG, "onNext, get products: " + products.size());
-                    }
-                });
+        catalogModel = new CatalogModelImpl();
+        catalogModel.getProducts(0, 20);
     }
 
     @Override
@@ -65,7 +39,16 @@ public class CatalogPresenterImpl implements CatalogPresenter {
     }
 
     @Override
-    public void onDestroy() {
-        catalogView = null;
+    public void onProductLoaded(List<Product> products) {
+        catalogView.setProducts(products);
+        catalogView.hideProgress();
+        Log.e(TAG, "onNext, get products: " + products.size());
+    }
+
+    @Override
+    public void onProductsLoadError(Exception error) {
+        catalogView.onError(error);
+        catalogView.hideProgress();
+        Log.e(TAG, "onError");
     }
 }

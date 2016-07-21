@@ -3,13 +3,19 @@ package com.github.handioq.fanshop.catalog;
 
 import com.github.handioq.fanshop.model.Product;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import rx.Observable;
 
 public interface CatalogModel {
 
-    Observable<List<Product>> getProducts(); // pagination..
+    void getProducts(int offset, int count);
+
+    void setCallback(Callback callback);
+
+    interface Callback {
+
+        void onProductLoaded(List<Product> products);
+
+        void onProductsLoadError(Exception error);
+    }
 
 }
