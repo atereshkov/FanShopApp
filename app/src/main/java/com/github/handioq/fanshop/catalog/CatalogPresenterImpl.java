@@ -3,12 +3,13 @@ package com.github.handioq.fanshop.catalog;
 import android.util.Log;
 import android.view.View;
 
+import com.github.handioq.fanshop.database.ProductRepository;
 import com.github.handioq.fanshop.model.Product;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
 
-public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Callback {
+public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Callback, ProductRepository.Callback<Product> {
 
     private CatalogView catalogView;
     private CatalogModel catalogModel;
@@ -49,7 +50,8 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
 
     @Override
     public void onProductLoaded(List<Product> products) {
-        // TODO add to database
+        // TODO add to database and check for duplicates
+
         catalogView.setProducts(products);
         catalogView.hideProgress();
         Log.e(TAG, "get products: " + products.size());
@@ -60,5 +62,20 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
         catalogView.onError(error);
         catalogView.hideProgress();
         Log.e(TAG, "onError");
+    }
+
+    @Override
+    public void onSuccess() {
+        Log.e(TAG, "onSuccess()");
+    }
+
+    @Override
+    public void onSuccess(Product product) {
+        Log.e(TAG, "onSuccess(Product)");
+    }
+
+    @Override
+    public void onSuccess(List<Product> productList) {
+        Log.e(TAG, "onSuccess(List<Product>)");
     }
 }

@@ -63,7 +63,6 @@ public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHold
         if (holder.productImage != null) {
             Glide.with(context).load(items.get(position).getImageUrl()).into(holder.productImage);
         }
-
     }
 
     @Override

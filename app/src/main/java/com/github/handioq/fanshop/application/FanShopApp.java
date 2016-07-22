@@ -6,6 +6,9 @@ import android.util.Log;
 import com.github.handioq.BuildConfig;
 import com.github.handioq.fanshop.net.NetworkService;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 /**
  * Singleton
  */
@@ -13,6 +16,7 @@ public class FanShopApp extends Application {
 
     private static FanShopApp instance;
     private NetworkService networkService;
+    private Realm realm;
 
     @Override
     public void onCreate() {
@@ -29,6 +33,10 @@ public class FanShopApp extends Application {
 
     private void onAppCreated() {
         networkService = new NetworkService();
+
+        RealmConfiguration config = new RealmConfiguration.Builder(this).build();
+        Realm.setDefaultConfiguration(config);
+        realm = Realm.getDefaultInstance();
     }
 
     private void checkBuild() {
@@ -39,5 +47,9 @@ public class FanShopApp extends Application {
 
     public NetworkService getNetworkService() {
         return networkService;
+    }
+
+    public Realm getRealm() {
+        return realm;
     }
 }

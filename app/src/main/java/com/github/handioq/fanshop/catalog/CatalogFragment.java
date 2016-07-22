@@ -105,7 +105,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
 
     @Override
     public void onItemClicked(View view, int position) {
-        Toast.makeText(getActivity(), "Not implemented " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "onItemClicked " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override

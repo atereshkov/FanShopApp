@@ -34,13 +34,5 @@ public class CatalogViewHolder extends RecyclerView.ViewHolder {
     public CatalogViewHolder(View v) {
         super(v);
         ButterKnife.bind(this, v);
-
-        /*if (buyButton != null) {
-            buyButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Toast.makeText(this, "asds", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }*/
     }
 }
