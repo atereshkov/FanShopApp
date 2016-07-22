@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
@@ -36,9 +37,19 @@ public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHold
     }
 
     @Override
-    public void onBindViewHolder(CatalogViewHolder holder, int position) {
+    public void onBindViewHolder(final CatalogViewHolder holder, int position) {
         if (holder.catalogItemName != null) {
             holder.catalogItemName.setText(items.get(position).getName());
+        }
+
+        if (holder.buyButton != null) {
+            holder.buyButton.setTag(position);
+
+            holder.buyButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Toast.makeText(context, "Click buy button on product " + holder.buyButton.getTag().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         if (holder.catalogItemPrice != null) {
@@ -52,6 +63,7 @@ public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHold
         if (holder.productImage != null) {
             Glide.with(context).load(items.get(position).getImageUrl()).into(holder.productImage);
         }
+
     }
 
     @Override

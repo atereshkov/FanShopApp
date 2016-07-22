@@ -15,7 +15,7 @@ public interface CatalogModel {
 
         void onProductLoaded(List<Product> products);
 
-        void onProductsLoadError(Exception error);
+        void onProductsLoadError(Throwable error);
     }
 
 }

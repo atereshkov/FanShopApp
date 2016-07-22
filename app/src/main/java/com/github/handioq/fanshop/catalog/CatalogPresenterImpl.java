@@ -1,8 +1,10 @@
 package com.github.handioq.fanshop.catalog;
 
 import android.util.Log;
+import android.view.View;
 
 import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
 
@@ -11,16 +13,24 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
     private CatalogView catalogView;
     private CatalogModel catalogModel;
 
+    private NetworkService networkService;
+
     private final static String TAG = "CatalogPresenterImpl";
 
-    public CatalogPresenterImpl() {
-        // TODO init catalog model
+    public CatalogPresenterImpl(CatalogView catalogView, NetworkService networkService) {
+        this.catalogView = catalogView;
+        this.networkService = networkService;
+
+        catalogModel = new CatalogModelImpl(networkService);
+        catalogModel.setCallback(this);
     }
 
+    /*
     public void setCatalogView(CatalogView catalogView) {
         this.catalogView = catalogView;
         catalogModel.setCallback(this);
     }
+    */
 
     @Override
     public void getProducts() {
@@ -29,24 +39,24 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
             Log.e(TAG, "showProgress() on catalogView");
         }
 
-        catalogModel = new CatalogModelImpl();
         catalogModel.getProducts(0, 20);
     }
 
     @Override
-    public void onItemClicked(int position) {
-        // catalogView.onItemClick(position); ...
+    public void onItemClicked(View view, int position) {
+        catalogView.onItemClicked(view, position);
     }
 
     @Override
     public void onProductLoaded(List<Product> products) {
+        // TODO add to database
         catalogView.setProducts(products);
         catalogView.hideProgress();
-        Log.e(TAG, "onNext, get products: " + products.size());
+        Log.e(TAG, "get products: " + products.size());
     }
 
     @Override
-    public void onProductsLoadError(Exception error) {
+    public void onProductsLoadError(Throwable error) {
         catalogView.onError(error);
         catalogView.hideProgress();
         Log.e(TAG, "onError");

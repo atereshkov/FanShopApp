@@ -1,5 +1,7 @@
 package com.github.handioq.fanshop.catalog;
 
+import android.view.View;
+
 import com.github.handioq.fanshop.model.Product;
 
 import java.util.List;
@@ -14,4 +16,5 @@ public interface CatalogView {
 
     void onError(Throwable e);
 
+    void onItemClicked(View view, int position);
 }

@@ -15,7 +15,7 @@ public class ScreenDimensionsHelper {
     private Integer screenHeight;
     private float densityDpi;
 
-    private final String TAG = "ScreenDimensionsHelper";
+    private final static String TAG = "ScreenDimensionsHelper";
 
     public ScreenDimensionsHelper(Context context) {
         this.context = context;
@@ -34,15 +34,8 @@ public class ScreenDimensionsHelper {
         // densityDpi = (int) (metrics.density * 160f);
     }
 
-    public Integer getCardsCount() { // change 320 to card size (do not hardcode!)
+    public Integer getCardsCount() {
         Integer cardsCount = 1;
-
-        /*int orientation = context.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            cardsCount = (int) (screenWidth / (320 * densityDpi));
-        } else {
-            cardsCount = (int) (screenWidth / (320 * densityDpi));
-        }*/
 
         int cardWidth = (int) (context.getResources().getDimension(R.dimen.card_width) / context.getResources().getDisplayMetrics().density);
         cardsCount = (int) ((screenWidth - 32) / (cardWidth * densityDpi));
