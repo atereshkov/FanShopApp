@@ -64,7 +64,7 @@ public class ProductRepository implements IProductRepository <Product> {
         RealmQuery query = realm.where(ProductDBO.class);
         RealmResults results = query.findAll();
 
-        if (callback != null)
-            callback.onSuccess(results);
+        /*if (callback != null)
+            callback.onSuccess(results);*/
     }
 }

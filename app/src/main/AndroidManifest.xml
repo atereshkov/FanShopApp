@@ -36,6 +36,9 @@
         <activity
             android:name=".fanshop.signup.SignupActivity"
             android:label="@string/title_activity_signup" />
+        <activity
+            android:name=".fanshop.cart.CartActivity"
+            android:label="@string/title_activity_cart" />
     </application>
 
 </manifest>

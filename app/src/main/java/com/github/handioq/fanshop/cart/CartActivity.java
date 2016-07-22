@@ -1,9 +1,11 @@
 package com.github.handioq.fanshop.cart;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CartActivity extends AppCompatActivity {
+import com.github.handioq.R;
+import com.github.handioq.fanshop.base.BaseActivity;
+
+public class CartActivity extends BaseActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

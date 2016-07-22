@@ -5,23 +5,23 @@ import com.google.gson.annotations.SerializedName;
 public class User {
 
     @SerializedName("login")
-    String mLogin;
+    String login;
 
     @SerializedName("password")
-    String mPassword;
+    String password;
 
     // id?
 
-    public User(String mLogin, String mPassword) {
-        this.mLogin = mLogin;
-        this.mPassword = mPassword;
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "mLogin='" + mLogin + '\'' +
-                ", mPassword='" + mPassword + '\'' +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
