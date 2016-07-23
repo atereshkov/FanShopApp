@@ -28,5 +28,12 @@
 
     <!-- Strings related to catalog -->
     <string name="catalog_price">%1$f</string>
+    <string name="title_activity_productInfo">Информация</string>
+    <string name="title_activity_cart">Корзина</string>
+    <string name="nav_title_info">Информация</string>
+    <string name="nav_catalog">Каталог</string>
+    <string name="nav_account">Личный кабинет</string>
+    <string name="nav_cart">Корзина</string>
+    <string name="not_implemented">Скоро :)</string>
 
 </resources>
