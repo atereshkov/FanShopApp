@@ -26,7 +26,7 @@ public class CartActivity extends BaseNavActivity {
                     .replace(R.id.content, new CartFragment(), CART_FRAGMENT_TAG)
                     .commit();
 
-            Log.e(TAG, "create new CatalogFragment");
+            Log.e(TAG, "create new CartFragment");
         }
     }
 

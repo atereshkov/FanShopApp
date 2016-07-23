@@ -1,5 +1,6 @@
 package com.github.handioq.fanshop.catalog;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,7 @@ import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.catalog.adapter.RecyclerItemClickListener;
 import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
 import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
 
 import java.util.List;
@@ -107,6 +109,9 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
     @Override
     public void onItemClicked(View view, int position) {
         Toast.makeText(getActivity(), "onItemClicked " + position, Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
+        startActivity(intent);
     }
 
     @Override

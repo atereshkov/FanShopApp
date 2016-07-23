@@ -48,7 +48,7 @@ public class CatalogActivity extends BaseNavActivity {
             }
         });
 
-        startLogin();
+        //startLogin();
         //startCart();
     }
 

@@ -18,7 +18,7 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:src="@android:drawable/sym_def_app_icon" />
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/auth_form">
@@ -41,6 +41,6 @@
             android:layout_marginTop="5dp"
             android:text="@string/action_sign_up" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 </LinearLayout>
