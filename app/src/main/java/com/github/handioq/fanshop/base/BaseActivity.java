@@ -17,71 +17,27 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public abstract class BaseActivity extends AppCompatActivity {
 
     private Unbinder unbinder;
 
-    @BindView(R.id.nav_view)
-    NavigationView navigationView;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    @BindView(R.id.drawer_layout)
-    DrawerLayout drawer;
-
-    ActionBarDrawerToggle mToggle;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
 
     @Override
     public void onContentChanged() {
         super.onContentChanged();
         unbinder = ButterKnife.bind(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-        }
-
-        mToggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(mToggle);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mToggle.syncState();
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-            Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
-        }
-
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    protected final NavigationView getNavigationView() {
-        return navigationView;
-    }
-
-    protected final DrawerLayout getDrawer() {
-        return drawer;
     }
 
     protected final Unbinder getUnbinder() {
@@ -92,5 +48,17 @@ public abstract class BaseActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

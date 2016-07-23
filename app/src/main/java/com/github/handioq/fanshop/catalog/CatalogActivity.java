@@ -12,13 +12,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.github.handioq.R;
-import com.github.handioq.fanshop.base.BaseActivity;
+import com.github.handioq.fanshop.base.BaseNavActivity;
 import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.login.LoginActivity;
 
 import butterknife.BindView;
 
-public class CatalogActivity extends BaseActivity {
+public class CatalogActivity extends BaseNavActivity {
 
     private static final String TAG = "CatalogActivity";
     private static final String CATALOG_FRAGMENT_TAG = "catalog";
@@ -43,11 +43,12 @@ public class CatalogActivity extends BaseActivity {
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(CatalogActivity.this, "fabOnclick", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CatalogActivity.this, "fabOnclick", Toast.LENGTH_SHORT).show();
+                startCart();
             }
         });
 
-        //startLogin();
+        startLogin();
         //startCart();
     }
 
