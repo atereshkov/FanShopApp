@@ -9,8 +9,9 @@ import android.view.ViewGroup;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.Product;
 
-public class ProductInfoFragment extends BaseFragment {
+public class ProductInfoFragment extends BaseFragment implements ProductInfoView {
 
     private final static String TAG = "ProductInfoFragment";
 
@@ -38,4 +39,18 @@ public class ProductInfoFragment extends BaseFragment {
         Log.e(TAG, "onDestroy");
     }
 
+    @Override
+    public void showProgress() {
+        
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void setProduct(Product product) {
+
+    }
 }

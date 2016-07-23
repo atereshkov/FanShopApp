@@ -51,8 +51,9 @@ public class CatalogActivity extends BaseNavActivity {
 
         //startLogin();
         //startCart();
-        Intent intent = new Intent(CatalogActivity.this, ScrollingActivity.class);
-        startActivity(intent);
+
+        //Intent intent = new Intent(CatalogActivity.this, ScrollingActivity.class);
+        //startActivity(intent);
     }
 
     void startLogin() {

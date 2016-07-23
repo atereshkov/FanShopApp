@@ -111,6 +111,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
         Toast.makeText(getActivity(), "onItemClicked " + position, Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
+        intent.putExtra("id", position);
         startActivity(intent);
     }
 

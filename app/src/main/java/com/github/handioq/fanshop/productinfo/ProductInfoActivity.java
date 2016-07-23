@@ -20,6 +20,8 @@ public class ProductInfoActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
 
+        int selectedItem = getIntent().getExtras().getInt("id");
+
         if (getSupportFragmentManager().findFragmentByTag(CART_FRAGMENT_TAG) == null) {
             getSupportFragmentManager()
                     .beginTransaction()
