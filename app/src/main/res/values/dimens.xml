@@ -10,6 +10,8 @@
     <!-- Default card sizes -->
     <dimen name="card_width">320dp</dimen>
     <dimen name="card_height">210dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 
 </resources>

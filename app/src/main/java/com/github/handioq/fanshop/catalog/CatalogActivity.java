@@ -15,6 +15,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseNavActivity;
 import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.login.LoginActivity;
+import com.github.handioq.fanshop.productinfo.ScrollingActivity;
 
 import butterknife.BindView;
 
@@ -50,6 +51,8 @@ public class CatalogActivity extends BaseNavActivity {
 
         //startLogin();
         //startCart();
+        Intent intent = new Intent(CatalogActivity.this, ScrollingActivity.class);
+        startActivity(intent);
     }
 
     void startLogin() {

@@ -39,6 +39,10 @@
             android:name=".fanshop.productinfo.ProductInfoActivity"
             android:label="@string/title_activity_productInfo"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.productinfo.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
