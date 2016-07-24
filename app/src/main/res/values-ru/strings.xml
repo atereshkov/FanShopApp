@@ -35,5 +35,6 @@
     <string name="nav_account">Личный кабинет</string>
     <string name="nav_cart">Корзина</string>
     <string name="not_implemented">Скоро :)</string>
+    <string name="nav_delivery">Доставка</string>
 
 </resources>
