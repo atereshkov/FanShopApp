@@ -1,7 +1,9 @@
 package com.github.handioq.fanshop.productinfo;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
@@ -28,7 +31,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     private final static String TAG = "ProductInfoFragment";
 
     @BindView(R.id.slider)
-    SliderLayout mDemoSlider;
+    SliderLayout imageSlider;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,28 +60,36 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
         url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");*/
 
-        List<String> urls = new ArrayList<>();
-        urls.add("http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
-        urls.add("http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-        urls.add("http://cdn3.nflximg.net/images/3093/2043093.jpg");
+        List<String> urls = new ArrayList<>(); // test
+        urls.add("https://img2.wbstatic.net/large/new/3120000/3121442-1.jpg");
+        urls.add("https://img2.wbstatic.net/large/new/3120000/3121442-2.jpg");
+        urls.add("https://img2.wbstatic.net/large/new/3120000/3121442-3.jpg");
+        urls.add("https://img2.wbstatic.net/large/new/3120000/3121442-4.jpg");
 
         for(String url : urls){
             TextSliderView textSliderView = new TextSliderView(getActivity());
 
             textSliderView
-                    .description("No description :(")
+                    .description("no description")
                     .image(url)
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .setScaleType(BaseSliderView.ScaleType.FitCenterCrop) // FitCenterCrop if large sizes in height
                     .setOnSliderClickListener(this);
 
-            mDemoSlider.addSlider(textSliderView);
+            imageSlider.addSlider(textSliderView);
         }
 
-        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Default);
-        mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        mDemoSlider.setCustomAnimation(new DescriptionAnimation());
-        mDemoSlider.setDuration(4000);
-        mDemoSlider.addOnPageChangeListener(this);
+        imageSlider.setPresetTransformer(SliderLayout.Transformer.Default);
+        imageSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        imageSlider.addOnPageChangeListener(this);
+
+        imageSlider.stopAutoCycle(); // stop auto sliding
+
+        //imageSlider.setCustomIndicator((PagerIndicator) getView().findViewById(R.id.custom_indicator));
+        imageSlider.getPagerIndicator().setDefaultIndicatorColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary), Color.WHITE); // specify the colors
+
+        /* Animation */
+        imageSlider.setCustomAnimation(new DescriptionAnimation());
+        imageSlider.setDuration(5000);
     }
 
     @Override
@@ -105,7 +116,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @Override
     public void onStop() {
         // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
-        mDemoSlider.stopAutoCycle();
+        imageSlider.stopAutoCycle();
         super.onStop();
     }
 
@@ -119,7 +130,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
     @Override
     public void onPageSelected(int position) {
-        Log.d("Slider Demo", "Page Changed: " + position);
+        //Log.d("Image Slider", "Page Changed: " + position);
     }
 
     @Override
