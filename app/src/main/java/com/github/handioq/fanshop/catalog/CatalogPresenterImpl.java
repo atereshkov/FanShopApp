@@ -3,8 +3,10 @@ package com.github.handioq.fanshop.catalog;
 import android.util.Log;
 import android.view.View;
 
+import com.github.handioq.fanshop.database.IProductRepository;
 import com.github.handioq.fanshop.database.ProductRepository;
 import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.dbo.ProductDBO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
@@ -51,6 +53,9 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
     @Override
     public void onProductLoaded(List<Product> products) {
         // TODO add to database and check for duplicates
+
+        //IProductRepository<ProductDBO> productRepository = new ProductRepository();
+        //productRepository.addProduct(, this); productDBO? product?
 
         catalogView.setProducts(products);
         catalogView.hideProgress();

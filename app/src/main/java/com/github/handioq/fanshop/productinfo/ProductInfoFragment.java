@@ -18,7 +18,10 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.database.IProductRepository;
+import com.github.handioq.fanshop.database.ProductRepository;
 import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.dbo.ProductDBO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +29,10 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class ProductInfoFragment extends BaseFragment implements ProductInfoView, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class ProductInfoFragment extends BaseFragment implements ProductInfoView,
+        BaseSliderView.OnSliderClickListener,
+        ViewPagerEx.OnPageChangeListener,
+        IProductRepository.Callback<ProductDBO> {
 
     private final static String TAG = "ProductInfoFragment";
 
@@ -90,6 +96,25 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         /* Animation */
         imageSlider.setCustomAnimation(new DescriptionAnimation());
         imageSlider.setDuration(5000);
+
+        /* Testing */
+        //IProductRepository<ProductDBO> productDBOIProductRepository = new ProductRepository();
+        //productDBOIProductRepository.getProductById(1, this);
+    }
+
+    @Override
+    public void onSuccess() {
+
+    }
+
+    @Override
+    public void onSuccess(ProductDBO product) {
+        Log.e(TAG, product.getId() + product.getName() + " ");
+    }
+
+    @Override
+    public void onSuccess(List<ProductDBO> productList) {
+
     }
 
     @Override

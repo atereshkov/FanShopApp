@@ -1,5 +1,11 @@
 package com.github.handioq.fanshop.model.dbo;
 
+import com.github.handioq.fanshop.model.Image;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -11,6 +17,7 @@ public class ProductDBO extends RealmObject {
     private String name;
     private Double price;
     private String imageUrl;
+    private RealmList<ImageDBO> images = new RealmList<>();
 
     public Integer getId() {
         return id;
@@ -42,5 +49,13 @@ public class ProductDBO extends RealmObject {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<ImageDBO> getImages() {
+        return images;
+    }
+
+    public void setImages(RealmList<ImageDBO> images) {
+        this.images = images;
     }
 }

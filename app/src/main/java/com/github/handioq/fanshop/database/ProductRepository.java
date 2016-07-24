@@ -11,10 +11,10 @@ import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
-public class ProductRepository implements IProductRepository <Product> {
+public class ProductRepository implements IProductRepository <ProductDBO> { // ??? Transfom? which object used?
 
     @Override
-    public void addProduct(Product product, Callback<Product> callback) {
+    public void addProduct(ProductDBO product, Callback<ProductDBO> callback) {
         Realm realm = FanShopApp.getInstance().getRealm();
 
         realm.beginTransaction();
@@ -32,7 +32,7 @@ public class ProductRepository implements IProductRepository <Product> {
     }
 
     @Override
-    public void deleteProductById(int id, Callback<Product> callback) {
+    public void deleteProductById(int id, Callback<ProductDBO> callback) {
         Realm realm = FanShopApp.getInstance().getRealm();
 
         realm.beginTransaction();
@@ -48,17 +48,17 @@ public class ProductRepository implements IProductRepository <Product> {
     }
 
     @Override
-    public void getProductById(int id, Callback<Product> callback) {
+    public void getProductById(int id, Callback<ProductDBO> callback) {
         Realm realm = FanShopApp.getInstance().getRealm();
 
-        /*ProductDBO result = realm.where(ProductDBO.class).equalTo(RealmTable.ID, id).findFirst();
+        ProductDBO result = realm.where(ProductDBO.class).equalTo("id", id).findFirst();
 
         if (callback != null)
-            callback.onSuccess(result);*/
+            callback.onSuccess(result);
     }
 
     @Override
-    public void getProducts(Callback<Product> callback) {
+    public void getProducts(Callback<ProductDBO> callback) {
         Realm realm = FanShopApp.getInstance().getRealm();
 
         RealmQuery query = realm.where(ProductDBO.class);

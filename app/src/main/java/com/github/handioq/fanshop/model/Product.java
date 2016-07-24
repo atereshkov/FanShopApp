@@ -2,20 +2,21 @@ package com.github.handioq.fanshop.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
 
     private Integer id;
     private String name;
     private Double price;
+
     @SerializedName("image_url")
     private String imageUrl;
 
-    public Product(Integer id, String name, Double price, String imageUrl) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.imageUrl = imageUrl;
-    }
+    @SerializedName("images")
+    private List<Image> images = new ArrayList<Image>();
+
 
     public Integer getId() {
         return id;
@@ -47,6 +48,14 @@ public class Product {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
     @Override
