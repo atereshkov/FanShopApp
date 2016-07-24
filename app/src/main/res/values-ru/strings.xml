@@ -36,5 +36,6 @@
     <string name="nav_cart">Корзина</string>
     <string name="not_implemented">Скоро :)</string>
     <string name="nav_delivery">Доставка</string>
+    <string name="nav_title_shop">Магазин</string>
 
 </resources>

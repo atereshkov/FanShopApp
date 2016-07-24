@@ -1,5 +1,6 @@
 package com.github.handioq.fanshop.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.github.handioq.R;
+import com.github.handioq.fanshop.cart.CartActivity;
+import com.github.handioq.fanshop.catalog.CatalogActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,8 +68,16 @@ public abstract class BaseNavActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_catalog) {
-            // Handle the catalog action
+
+            Intent intent = new Intent(BaseNavActivity.this, CatalogActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // or FLAG_ACTIVITY_CLEAR_TOP + FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent);
+
         } else if (id == R.id.nav_cart) {
+
+            Intent intent = new Intent(BaseNavActivity.this, CartActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // or FLAG_ACTIVITY_CLEAR_TOP + FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent);
 
         } else if (id == R.id.nav_account) {
 

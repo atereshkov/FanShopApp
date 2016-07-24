@@ -36,6 +36,7 @@
     <string name="nav_cart">Cart</string>
     <string name="nav_account">Account</string>
     <string name="nav_title_info">Information</string>
+    <string name="nav_title_shop">Shop</string>
     <string name="nav_delivery">Delivery</string>
     <!--<string name="nav_">Account</string>-->
 
