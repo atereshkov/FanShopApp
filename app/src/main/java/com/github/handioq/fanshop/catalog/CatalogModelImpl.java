@@ -14,7 +14,7 @@ import rx.Subscription;
 public class CatalogModelImpl implements CatalogModel {
 
     private NetworkService networkService;
-    private Callback callback;
+    private CatalogModel.Callback callback;
 
     private final static String TAG = "CatalogModelImpl";
 
@@ -41,7 +41,7 @@ public class CatalogModelImpl implements CatalogModel {
 
                     @Override
                     public void onNext(List<Product> products) {
-                        callback.onProductLoaded(products);
+                        callback.onProductsLoaded(products);
                     }
                 });
 

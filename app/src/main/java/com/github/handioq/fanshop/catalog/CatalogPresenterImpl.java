@@ -11,7 +11,7 @@ import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
 
-public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Callback, ProductRepository.Callback<Product> {
+public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Callback {
 
     private CatalogView catalogView;
     private CatalogModel catalogModel;
@@ -51,7 +51,7 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
     }
 
     @Override
-    public void onProductLoaded(List<Product> products) {
+    public void onProductsLoaded(List<Product> products) {
         // TODO add to database and check for duplicates
 
         //IProductRepository<ProductDBO> productRepository = new ProductRepository();
@@ -67,20 +67,5 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
         catalogView.onError(error);
         catalogView.hideProgress();
         Log.e(TAG, "onError");
-    }
-
-    @Override
-    public void onSuccess() {
-        Log.e(TAG, "onSuccess()");
-    }
-
-    @Override
-    public void onSuccess(Product product) {
-        Log.e(TAG, "onSuccess(Product)");
-    }
-
-    @Override
-    public void onSuccess(List<Product> productList) {
-        Log.e(TAG, "onSuccess(List<Product>)");
     }
 }

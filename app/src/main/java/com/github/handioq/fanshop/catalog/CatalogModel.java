@@ -13,7 +13,7 @@ public interface CatalogModel {
 
     interface Callback {
 
-        void onProductLoaded(List<Product> products);
+        void onProductsLoaded(List<Product> products);
 
         void onProductsLoadError(Throwable error);
     }

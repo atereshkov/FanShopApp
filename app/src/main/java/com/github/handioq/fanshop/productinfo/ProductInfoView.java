@@ -10,6 +10,8 @@ public interface ProductInfoView {
 
     void setProduct(Product product);
 
+    void onError(Throwable e);
+
     // TODO: complete methods
 
 }

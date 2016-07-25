@@ -13,7 +13,7 @@ import com.github.handioq.fanshop.base.BaseNavActivity;
 public class ProductInfoActivity extends BaseNavActivity {
 
     private static final String TAG = "ProductInfoActivity";
-    private static final String CART_FRAGMENT_TAG = "product_info";
+    private static final String PRODUCT_FRAGMENT_TAG = "product_info";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +22,16 @@ public class ProductInfoActivity extends BaseNavActivity {
 
         int selectedItem = getIntent().getExtras().getInt("id");
 
-        if (getSupportFragmentManager().findFragmentByTag(CART_FRAGMENT_TAG) == null) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", selectedItem);
+
+        if (getSupportFragmentManager().findFragmentByTag(PRODUCT_FRAGMENT_TAG) == null) {
+            ProductInfoFragment productInfoFragment = new ProductInfoFragment();
+            productInfoFragment.setArguments(bundle);
+
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content, new ProductInfoFragment(), CART_FRAGMENT_TAG)
+                    .replace(R.id.content, productInfoFragment, PRODUCT_FRAGMENT_TAG)
                     .commit();
 
             Log.e(TAG, "create new ProductInfoFragment");

@@ -17,9 +17,11 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.github.handioq.R;
+import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.database.IProductRepository;
 import com.github.handioq.fanshop.database.ProductRepository;
+import com.github.handioq.fanshop.model.Image;
 import com.github.handioq.fanshop.model.Product;
 import com.github.handioq.fanshop.model.dbo.ProductDBO;
 
@@ -31,10 +33,12 @@ import butterknife.BindView;
 
 public class ProductInfoFragment extends BaseFragment implements ProductInfoView,
         BaseSliderView.OnSliderClickListener,
-        ViewPagerEx.OnPageChangeListener,
-        IProductRepository.Callback<ProductDBO> {
+        ViewPagerEx.OnPageChangeListener {
 
     private final static String TAG = "ProductInfoFragment";
+
+    private int selectedItemId;
+    private ProductInfoPresenter productInfoPresenter;
 
     @BindView(R.id.slider)
     SliderLayout imageSlider;
@@ -49,35 +53,45 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        selectedItemId = this.getArguments().getInt("id");
+
         return inflater.inflate(R.layout.fragment_product_info, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.e(TAG, "onViewCreated");
 
-        initSlider();
+        productInfoPresenter = new ProductInfoPresenterImpl(this, ((FanShopApp) getActivity().getApplication()).getNetworkService());
+        productInfoPresenter.getProduct(selectedItemId);
     }
 
-    private void initSlider(){
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy");
+    }
+
+    private void initSlider(List<Image> images) {
         /* HashMap<String,String> url_maps = new HashMap<String, String>();
         url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
         url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
         url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
         url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");*/
 
-        List<String> urls = new ArrayList<>(); // test
+        /*List<String> urls = new ArrayList<>(); // test
         urls.add("https://img2.wbstatic.net/large/new/3120000/3121442-1.jpg");
         urls.add("https://img2.wbstatic.net/large/new/3120000/3121442-2.jpg");
         urls.add("https://img2.wbstatic.net/large/new/3120000/3121442-3.jpg");
-        urls.add("https://img2.wbstatic.net/large/new/3120000/3121442-4.jpg");
+        urls.add("https://img2.wbstatic.net/large/new/3120000/3121442-4.jpg");*/
 
-        for(String url : urls){
+        for (Image url : images) {
             TextSliderView textSliderView = new TextSliderView(getActivity());
 
             textSliderView
                     .description("no description")
-                    .image(url)
+                    .image(url.getImage())
                     .setScaleType(BaseSliderView.ScaleType.FitCenterCrop) // FitCenterCrop if large sizes in height
                     .setOnSliderClickListener(this);
 
@@ -96,36 +110,11 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         /* Animation */
         imageSlider.setCustomAnimation(new DescriptionAnimation());
         imageSlider.setDuration(5000);
-
-        /* Testing */
-        //IProductRepository<ProductDBO> productDBOIProductRepository = new ProductRepository();
-        //productDBOIProductRepository.getProductById(1, this);
-    }
-
-    @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
-    public void onSuccess(ProductDBO product) {
-        Log.e(TAG, product.getId() + product.getName() + " ");
-    }
-
-    @Override
-    public void onSuccess(List<ProductDBO> productList) {
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e(TAG, "onDestroy");
     }
 
     @Override
     public void showProgress() {
-        
+
     }
 
     @Override
@@ -135,8 +124,17 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
     @Override
     public void setProduct(Product product) {
+        Log.e(TAG, "PRODUCT  ---> " + product.getId() + product.getName());
 
+        initSlider(product.getImages());
     }
+
+    @Override
+    public void onError(Throwable e) {
+        e.printStackTrace();
+    }
+
+    /* Slider start */
 
     @Override
     public void onStop() {
@@ -151,7 +149,8 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     }
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
 
     @Override
     public void onPageSelected(int position) {
@@ -159,5 +158,6 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     }
 
     @Override
-    public void onPageScrollStateChanged(int state) {}
+    public void onPageScrollStateChanged(int state) {
+    }
 }

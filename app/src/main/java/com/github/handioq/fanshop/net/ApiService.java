@@ -10,6 +10,7 @@ import java.util.List;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -30,4 +31,6 @@ public interface ApiService {
     Observable<List<Product>> getProducts(@Query("page") int page,
                                           @Query("limit") int limit);
 
+    @GET(CATALOG_URL + "/{id}")
+    Observable<Product> getProduct(@Path("id") int id);
 }
