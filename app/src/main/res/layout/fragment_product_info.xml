@@ -23,35 +23,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.daimajia.slider.library.SliderLayout
-                android:id="@+id/slider"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="10dp"
-                custom:auto_cycle="true"
-                custom:indicator_visibility="visible"
-                custom:pager_animation="Accordion"
-                custom:pager_animation_span="1100" />
 
-            <!--
-                        <com.daimajia.slider.library.Indicators.PagerIndicator
-                            android:id="@+id/custom_indicator"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            custom:selected_color="@color/colorPrimary"
-                            custom:unselected_color="#55333333"
-                            custom:shape="rect"
-                            custom:selected_padding_left="2dp"
-                            custom:selected_padding_right="2dp"
-                            custom:unselected_padding_left="2dp"
-                            custom:unselected_padding_right="2dp"
-                            custom:selected_width="16dp"
-                            custom:selected_height="3dp"
-                            custom:unselected_width="16dp"
-                            custom:unselected_height="3dp"
-                            android:layout_gravity="center_horizontal" />
-            -->
 
             <TextView
                 android:id="@+id/textView"

@@ -17,7 +17,7 @@ public class ProductInfoActivity extends BaseNavActivity {
     private static final String TAG = "ProductInfoActivity";
     private static final String PRODUCT_FRAGMENT_TAG = "product_info";
 
-    public static Intent makeIntent(Context context, long id){
+    public static Intent makeIntent(Context context, int id){
         Intent intent = new Intent(context, ProductInfoActivity.class);
         intent.putExtra("id", id);
         return intent;

@@ -1,5 +1,6 @@
 package com.github.handioq.fanshop.catalog.adapter;
 
+import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,7 +48,11 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 if (mProduct != null) {
-                    //TODO Handle click on item
+                    Context context = itemView.getContext();
+                    Toast.makeText(context,
+                            "onItemClick " + buyButtonView.getTag().toString(), Toast.LENGTH_SHORT).show();
+
+                    context.startActivity(ProductInfoActivity.makeIntent(context, (int) buyButtonView.getTag()));
                 }
             }
         });
