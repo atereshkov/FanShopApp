@@ -1,69 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    android:id="@+id/card_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical" > <!-- !!!! -->
+    android:layout_gravity="center"
+    android:minWidth="@dimen/card_width"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="4dp"
+    card_view:contentPadding="10dp"
+    >
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_width="@dimen/card_width"
-        android:layout_height="@dimen/card_height"
-        android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardElevation="5dp"
-        card_view:contentPadding="10dp">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/productImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:minHeight="150dp"
+            />
 
-            <ImageView
-                android:id="@+id/productImage"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_weight="1" />
+        <ImageButton
+            android:id="@+id/buy_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/productImage"
+            android:src="@drawable/ic_add_shopping_cart_black_24dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/catalog_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productImage"
+            android:layout_toLeftOf="@id/buy_button"
+            android:textStyle="bold"
+            />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_toLeftOf="@+id/buy_button"
-                    android:layout_toStartOf="@+id/buy_button" >
+        <TextView
+            android:id="@+id/catalog_item_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/catalog_item_name"
+            android:layout_toLeftOf="@id/buy_button"
+            />
 
-                    <TextView
-                        android:id="@+id/catalog_item_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/catalog_item_price"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_add_shopping_cart_black_24dp"
-                    android:id="@+id/buy_button" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
+    </RelativeLayout>
 
 
-    </android.support.v7.widget.CardView>
-
-</LinearLayout>
+</android.support.v7.widget.CardView>

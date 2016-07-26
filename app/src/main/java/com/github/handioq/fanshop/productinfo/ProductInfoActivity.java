@@ -1,5 +1,7 @@
 package com.github.handioq.fanshop.productinfo;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +16,12 @@ public class ProductInfoActivity extends BaseNavActivity {
 
     private static final String TAG = "ProductInfoActivity";
     private static final String PRODUCT_FRAGMENT_TAG = "product_info";
+
+    public static Intent makeIntent(Context context, long id){
+        Intent intent = new Intent(context, ProductInfoActivity.class);
+        intent.putExtra("id", id);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

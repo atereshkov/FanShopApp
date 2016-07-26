@@ -1,18 +1,13 @@
 package com.github.handioq.fanshop.catalog;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -20,7 +15,6 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
-import com.github.handioq.fanshop.catalog.adapter.RecyclerItemClickListener;
 import com.github.handioq.fanshop.model.Product;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
 import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
@@ -72,18 +66,6 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                catalogPresenter.onItemClicked(view, position);
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-                // ... not implemented now
-            }
-        }));
-
         catalogPresenter = new CatalogPresenterImpl(this, ((FanShopApp) getActivity().getApplication()).getNetworkService());
         catalogPresenter.getProducts();
     }
@@ -102,17 +84,14 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
 
     @Override
     public void setProducts(List<Product> products) {
-        adapter = new CatalogRecyclerAdapter(products, getActivity());
+        adapter = new CatalogRecyclerAdapter(products);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onItemClicked(View view, int position) {
         Toast.makeText(getActivity(), "onItemClicked " + position, Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
-        intent.putExtra("id", position);
-        startActivity(intent);
+        startActivity(ProductInfoActivity.makeIntent(getContext(), position));
     }
 
     @Override

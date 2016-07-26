@@ -1,11 +1,7 @@
 package com.github.handioq.fanshop.database;
 
 import com.github.handioq.fanshop.application.FanShopApp;
-import com.github.handioq.fanshop.model.Product;
 import com.github.handioq.fanshop.model.dbo.ProductDBO;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
@@ -51,7 +47,9 @@ public class ProductRepository implements IProductRepository <ProductDBO> { // ?
     public void getProductById(int id, Callback<ProductDBO> callback) {
         Realm realm = FanShopApp.getInstance().getRealm();
 
-        ProductDBO result = realm.where(ProductDBO.class).equalTo("id", id).findFirst();
+        ProductDBO result = realm.where(ProductDBO.class)
+                .equalTo("id", id)
+                .findFirst();
 
         if (callback != null)
             callback.onSuccess(result);

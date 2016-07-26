@@ -1,38 +1,74 @@
 package com.github.handioq.fanshop.catalog.adapter;
 
-import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.github.handioq.R;
+import com.github.handioq.fanshop.model.Product;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CatalogViewHolder extends RecyclerView.ViewHolder {
+class CatalogViewHolder extends RecyclerView.ViewHolder {
 
-    @Nullable
     @BindView(R.id.catalog_item_name)
-    TextView catalogItemName;
+    TextView catalogItemNameView;
 
-    @Nullable
     @BindView(R.id.catalog_item_price)
-    TextView catalogItemPrice;
+    TextView catalogItemPriceView;
 
-    @Nullable
     @BindView(R.id.productImage)
     ImageView productImage;
 
-    @Nullable
     @BindView(R.id.buy_button)
-    ImageButton buyButton;
+    ImageButton buyButtonView;
 
-    public CatalogViewHolder(View v) {
+    private Product mProduct;
+
+    static CatalogViewHolder inflate(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.catalog_item, parent, false);
+        return new CatalogViewHolder(view);
+    }
+
+    private CatalogViewHolder(View v) {
         super(v);
         ButterKnife.bind(this, v);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mProduct != null) {
+                    //TODO Handle click on item
+                }
+            }
+        });
+    }
+
+    public void bind(Product item) {
+        mProduct = item;
+        catalogItemNameView.setText(item.getName());
+
+        buyButtonView.setTag(getAdapterPosition());
+        buyButtonView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(itemView.getContext(),
+                        "Click buy button on product " + buyButtonView.getTag().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        catalogItemPriceView.setText(itemView.getContext().getString(R.string.catalog_price, item.getPrice()));
+        catalogItemPriceView.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.colorAccent));
+
+        Glide.with(itemView.getContext())
+                .load(item.getImageUrl())
+                .into(productImage);
     }
 }
