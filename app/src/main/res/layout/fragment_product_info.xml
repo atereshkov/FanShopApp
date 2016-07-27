@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <android.support.v4.view.ViewPager
@@ -31,17 +31,16 @@
             <RelativeLayout
                 android:id="@+id/viewPagerIndicator"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="match_parent"
+                android:minHeight="30dp"
                 android:gravity="center">
 
                 <LinearLayout
                     android:id="@+id/viewPagerCountDots"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:orientation="horizontal" />
+                    android:orientation="horizontal"
+                    android:gravity="center" />
 
             </RelativeLayout>
 
