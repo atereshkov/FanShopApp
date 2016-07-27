@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <android.support.v4.view.ViewPager
@@ -50,6 +50,34 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/not_implemented" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                app:tabTextColor="@color/colorGray"
+                app:tabSelectedTextColor="@color/colorPrimaryTextWhite"
+                />
+
+            <!--<com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager
+                android:id="@+id/view_pager_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />-->
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager_container"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/button9"
+                android:layout_gravity="center_horizontal" />
+
 
         </LinearLayout>
 

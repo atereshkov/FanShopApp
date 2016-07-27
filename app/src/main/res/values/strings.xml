@@ -46,5 +46,7 @@
     <!-- Strings related to product info -->
     <string name="title_activity_productInfo">Information</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="pager_title_description">Description</string>
+    <string name="pager_title_reviews">Reviews</string>
 
 </resources>

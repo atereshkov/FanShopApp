@@ -1,7 +1,10 @@
 package com.github.handioq.fanshop.productinfo;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -16,9 +19,12 @@ import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.Image;
 import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
+import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
 import com.github.handioq.fanshop.productinfo.slider.ImageSliderAdapter;
 
 import java.util.List;
+import java.util.Vector;
 
 import butterknife.BindView;
 
@@ -37,6 +43,14 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
     private int dotsCount;
     private ImageView[] dots;
+
+    @BindView(R.id.view_pager_container)
+    ViewPager descriptionPager;
+
+    @BindView(R.id.tab_layout)
+    TabLayout tabLayout;
+
+    private InfoAdapter infoAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +71,62 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.e(TAG, "onViewCreated");
+
+        Context context = getActivity();
+
+        List<Fragment> fragments = new Vector<Fragment>();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", selectedItemId);
+
+        Fragment descrFragment = Fragment.instantiate(context, DescriptionInfoFragment.class.getName());
+        descrFragment.setArguments(bundle);
+
+        fragments.add(descrFragment);
+        fragments.add(Fragment.instantiate(context, ReviewsInfoFragment.class.getName()));
+        infoAdapter = new InfoAdapter(getActivity().getSupportFragmentManager(), fragments, context);
+
+        descriptionPager.setAdapter(infoAdapter);
+
+        descriptionPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //descriptionPager.reMeasureCurrentPage(descriptionPager.getCurrentItem());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        tabLayout.setupWithViewPager(descriptionPager);
+
+        //tabLayout.addTab(tabLayout.newTab().setText("Description")); // TODO change hardcoded strings
+        //tabLayout.addTab(tabLayout.newTab().setText("Reviews"));
+        //tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                descriptionPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         productInfoPresenter = new ProductInfoPresenterImpl(this, ((FanShopApp) getActivity().getApplication()).getNetworkService());
         productInfoPresenter.getProduct(selectedItemId);
