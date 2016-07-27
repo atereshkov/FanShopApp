@@ -61,15 +61,15 @@
                 app:tabSelectedTextColor="@color/colorPrimaryTextWhite"
                 />
 
-            <!--<com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager
+            <com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager
                 android:id="@+id/view_pager_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />-->
+                android:layout_height="wrap_content" />
 
-            <android.support.v4.view.ViewPager
+            <!--<android.support.v4.view.ViewPager
                 android:id="@+id/view_pager_container"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp" />-->
 
             <Button
                 android:layout_width="wrap_content"

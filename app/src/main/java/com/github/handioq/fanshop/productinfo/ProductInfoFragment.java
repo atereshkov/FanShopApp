@@ -45,7 +45,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     private ImageView[] dots;
 
     @BindView(R.id.view_pager_container)
-    ViewPager descriptionPager;
+    WrapContentViewPager descriptionPager;
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
