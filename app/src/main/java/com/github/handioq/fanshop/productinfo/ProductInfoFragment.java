@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
@@ -49,6 +51,9 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
+
+    @BindView(R.id.info_item_price)
+    TextView infoItemPriceView;
 
     private InfoAdapter infoAdapter;
 
@@ -87,46 +92,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         infoAdapter = new InfoAdapter(getActivity().getSupportFragmentManager(), fragments, context);
 
         descriptionPager.setAdapter(infoAdapter);
-
-        descriptionPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                //descriptionPager.reMeasureCurrentPage(descriptionPager.getCurrentItem());
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
         tabLayout.setupWithViewPager(descriptionPager);
-
-        //tabLayout.addTab(tabLayout.newTab().setText("Description")); // TODO change hardcoded strings
-        //tabLayout.addTab(tabLayout.newTab().setText("Reviews"));
-        //tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                descriptionPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
         productInfoPresenter = new ProductInfoPresenterImpl(this, ((FanShopApp) getActivity().getApplication()).getNetworkService());
         productInfoPresenter.getProduct(selectedItemId);
@@ -197,6 +163,9 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         Log.e(TAG, "PRODUCT  ---> " + product.getId() + product.getName());
 
         initSlider(product.getImages());
+
+        infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, product.getPrice()));
+        infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
     }
 
     @Override

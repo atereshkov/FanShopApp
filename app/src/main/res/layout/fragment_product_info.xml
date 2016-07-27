@@ -44,12 +44,33 @@
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/textView"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/not_implemented" />
+                android:orientation="horizontal"
+                >
+
+                <ImageButton
+                    android:id="@+id/fav_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_favorite_border_black_24dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    />
+
+                <TextView
+                    android:id="@+id/info_item_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/catalog_item_name"
+                    android:layout_toLeftOf="@+id/fav_button"
+                    android:layout_toStartOf="@+id/fav_button"
+                    android:layout_centerVertical="true" />
+
+            </RelativeLayout>
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tab_layout"
