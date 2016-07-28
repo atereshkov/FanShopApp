@@ -84,13 +84,16 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         Bundle bundle = new Bundle();
         bundle.putInt("id", selectedItemId);
 
-        Fragment descrFragment = Fragment.instantiate(context, DescriptionInfoFragment.class.getName());
-        descrFragment.setArguments(bundle);
+        Fragment descriptionFragment = Fragment.instantiate(context, DescriptionInfoFragment.class.getName());
+        descriptionFragment.setArguments(bundle);
 
-        fragments.add(descrFragment);
-        fragments.add(Fragment.instantiate(context, ReviewsInfoFragment.class.getName()));
+        Fragment reviewsFragment = Fragment.instantiate(context, ReviewsInfoFragment.class.getName());
+        reviewsFragment.setArguments(bundle);
+
+        fragments.add(descriptionFragment);
+        fragments.add(reviewsFragment);
+
         infoAdapter = new InfoAdapter(getActivity().getSupportFragmentManager(), fragments, context);
-
         descriptionPager.setAdapter(infoAdapter);
         tabLayout.setupWithViewPager(descriptionPager);
 
