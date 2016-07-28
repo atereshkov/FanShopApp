@@ -9,13 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.ProductDTO;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
 import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
 
@@ -83,8 +82,8 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
     }
 
     @Override
-    public void setProducts(List<Product> products) {
-        adapter = new CatalogRecyclerAdapter(products);
+    public void setProducts(List<ProductDTO> productDTOs) {
+        adapter = new CatalogRecyclerAdapter(productDTOs);
         recyclerView.setAdapter(adapter);
     }
 

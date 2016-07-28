@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Image {
+public class ImageDTO {
 
     @SerializedName("image")
     private String image;

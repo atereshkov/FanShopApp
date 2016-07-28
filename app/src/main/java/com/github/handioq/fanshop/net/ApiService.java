@@ -1,9 +1,8 @@
 package com.github.handioq.fanshop.net;
 
 import com.github.handioq.fanshop.login.UserAuthState;
-import com.github.handioq.fanshop.model.Product;
-import com.github.handioq.fanshop.model.User;
-import com.github.handioq.fanshop.util.NetworkConstants;
+import com.github.handioq.fanshop.model.ProductDTO;
+import com.github.handioq.fanshop.model.UserDTO;
 
 import java.util.List;
 
@@ -25,12 +24,12 @@ public interface ApiService {
                                     @Query("password") String password);
 
     @POST(SIGNUP_URL)
-    Observable<User> signup(@Body User user);
+    Observable<UserDTO> signup(@Body UserDTO userDTO);
 
     @GET(CATALOG_URL)
-    Observable<List<Product>> getProducts(@Query("page") int page,
-                                          @Query("limit") int limit);
+    Observable<List<ProductDTO>> getProducts(@Query("page") int page,
+                                             @Query("limit") int limit);
 
     @GET(CATALOG_URL + "/{id}")
-    Observable<Product> getProduct(@Path("id") int id);
+    Observable<ProductDTO> getProduct(@Path("id") int id);
 }

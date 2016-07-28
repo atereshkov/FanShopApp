@@ -43,7 +43,7 @@
     <!-- Strings related to shopping cart -->
     <string name="title_activity_cart">Shopping cart</string>
 
-    <!-- Strings related to product info -->
+    <!-- Strings related to productDTO info -->
     <string name="title_activity_productInfo">Information</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="pager_title_description">Description</string>

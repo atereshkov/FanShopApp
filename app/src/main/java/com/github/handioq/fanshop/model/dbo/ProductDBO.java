@@ -1,8 +1,5 @@
 package com.github.handioq.fanshop.model.dbo;
 
-import com.github.handioq.fanshop.model.Image;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmList;

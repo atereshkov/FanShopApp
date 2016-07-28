@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Product {
+public class ProductDTO {
 
     private Integer id;
     private String name;
@@ -15,8 +15,8 @@ public class Product {
     @SerializedName("image_url")
     private String imageUrl;
 
-    @SerializedName("images")
-    private List<Image> images = new ArrayList<Image>();
+    @SerializedName("imageDTOs")
+    private List<ImageDTO> imageDTOs = new ArrayList<ImageDTO>();
 
 
     public Integer getId() {
@@ -51,12 +51,12 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public List<Image> getImages() {
-        return images;
+    public List<ImageDTO> getImageDTOs() {
+        return imageDTOs;
     }
 
-    public void setImages(List<Image> images) {
-        this.images = images;
+    public void setImageDTOs(List<ImageDTO> imageDTOs) {
+        this.imageDTOs = imageDTOs;
     }
 
     public String getDescription() {
@@ -69,7 +69,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +

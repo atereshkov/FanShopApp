@@ -1,8 +1,6 @@
 package com.github.handioq.fanshop.productinfo;
 
-import com.github.handioq.fanshop.model.Product;
-
-import java.util.List;
+import com.github.handioq.fanshop.model.ProductDTO;
 
 public interface ProductInfoModel {
 
@@ -12,7 +10,7 @@ public interface ProductInfoModel {
 
     interface Callback {
 
-        void onProductLoaded(Product product);
+        void onProductLoaded(ProductDTO productDTO);
 
         void onProductLoadError(Throwable error);
     }

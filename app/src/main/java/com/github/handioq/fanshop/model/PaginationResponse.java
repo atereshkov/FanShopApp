@@ -6,12 +6,12 @@ public class PaginationResponse {
 
     private Integer current;
     private Integer next;
-    private List<Product> products;
+    private List<ProductDTO> productDTOs;
 
-    public PaginationResponse(Integer current, Integer next, List<Product> products) {
+    public PaginationResponse(Integer current, Integer next, List<ProductDTO> productDTOs) {
         this.current = current;
         this.next = next;
-        this.products = products;
+        this.productDTOs = productDTOs;
     }
 
     public Integer getCurrent() {
@@ -22,8 +22,8 @@ public class PaginationResponse {
         return next;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<ProductDTO> getProductDTOs() {
+        return productDTOs;
     }
 
     public void setCurrent(Integer current) {
@@ -34,7 +34,7 @@ public class PaginationResponse {
         this.next = next;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProductDTOs(List<ProductDTO> productDTOs) {
+        this.productDTOs = productDTOs;
     }
 }

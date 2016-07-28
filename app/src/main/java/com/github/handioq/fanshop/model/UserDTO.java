@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class UserDTO {
 
     @SerializedName("login")
     String login;
@@ -12,14 +12,14 @@ public class User {
 
     // id?
 
-    public User(String login, String password) {
+    public UserDTO(String login, String password) {
         this.login = login;
         this.password = password;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserDTO{" +
                 "login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 '}';

@@ -9,8 +9,7 @@ import android.widget.EditText;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
-import com.github.handioq.fanshop.base.BaseNavActivity;
-import com.github.handioq.fanshop.model.User;
+import com.github.handioq.fanshop.model.UserDTO;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -47,18 +46,18 @@ public class SignupActivity extends BaseActivity implements SignupView {
     void signUp() {
         String login = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-        User user = new User(login, password);
-        signupPresenter.signupValidate(user);
+        UserDTO userDTO = new UserDTO(login, password);
+        signupPresenter.signupValidate(userDTO);
     }
 
     @Override
-    public void signupSuccess(User user) {
-        Log.e("User", user.toString());
+    public void signupSuccess(UserDTO userDTO) {
+        Log.e("UserDTO", userDTO.toString());
     }
 
     @Override
     public void signupFailure(Throwable e) {
-        Log.e("User", e.toString());
+        Log.e("UserDTO", e.toString());
         /*
         mEmailView.setError(null);
         mPasswordView.setError(null);

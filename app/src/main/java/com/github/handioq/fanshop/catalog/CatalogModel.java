@@ -1,7 +1,7 @@
 package com.github.handioq.fanshop.catalog;
 
 
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.ProductDTO;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface CatalogModel {
 
     interface Callback {
 
-        void onProductsLoaded(List<Product> products);
+        void onProductsLoaded(List<ProductDTO> productDTOs);
 
         void onProductsLoadError(Throwable error);
     }

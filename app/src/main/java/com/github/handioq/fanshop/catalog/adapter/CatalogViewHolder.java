@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.ProductDTO;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
 
 import butterknife.BindView;
@@ -33,7 +33,7 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.buy_button)
     ImageButton buyButtonView;
 
-    private Product mProduct;
+    private ProductDTO mProductDTO;
 
     static CatalogViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.catalog_item, parent, false);
@@ -47,7 +47,7 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mProduct != null) {
+                if (mProductDTO != null) {
                     Context context = itemView.getContext();
                     Toast.makeText(context,
                             "onItemClick " + buyButtonView.getTag().toString(), Toast.LENGTH_SHORT).show();
@@ -58,8 +58,8 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void bind(Product item) {
-        mProduct = item;
+    public void bind(ProductDTO item) {
+        mProductDTO = item;
         catalogItemNameView.setText(item.getName());
 
         buyButtonView.setTag(getAdapterPosition());

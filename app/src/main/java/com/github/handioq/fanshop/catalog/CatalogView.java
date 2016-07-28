@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.catalog;
 
 import android.view.View;
 
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.ProductDTO;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface CatalogView {
 
     void hideProgress();
 
-    void setProducts(List<Product> products);
+    void setProducts(List<ProductDTO> productDTOs);
 
     void onError(Throwable e);
 

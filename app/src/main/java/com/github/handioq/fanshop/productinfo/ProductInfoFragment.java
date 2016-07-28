@@ -21,8 +21,8 @@ import android.widget.TextView;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
-import com.github.handioq.fanshop.model.Image;
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.ImageDTO;
+import com.github.handioq.fanshop.model.ProductDTO;
 import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
 import com.github.handioq.fanshop.productinfo.slider.ImageSliderAdapter;
@@ -116,12 +116,12 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         Log.e(TAG, "onDestroy");
     }
 
-    private void initSlider(List<Image> images) {
+    private void initSlider(List<ImageDTO> imageDTOs) {
 
-        imageSlider.setAdapter(new ImageSliderAdapter(getActivity(), images));
+        imageSlider.setAdapter(new ImageSliderAdapter(getActivity(), imageDTOs));
         imageSlider.addOnPageChangeListener(this);
 
-        dotsCount = images.size();
+        dotsCount = imageDTOs.size();
         dots = new ImageView[dotsCount];
 
         for (int i = 0; i < dotsCount; i++) {
@@ -173,16 +173,16 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     }
 
     @Override
-    public void setProduct(Product product) {
-        Log.e(TAG, "PRODUCT  ---> " + product.getId() + product.getName());
+    public void setProduct(ProductDTO productDTO) {
+        Log.e(TAG, "PRODUCT  ---> " + productDTO.getId() + productDTO.getName());
 
-        getActivity().setTitle(product.getName());
-        initSlider(product.getImages());
+        getActivity().setTitle(productDTO.getName());
+        initSlider(productDTO.getImageDTOs());
 
-        infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, product.getPrice()));
+        infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, productDTO.getPrice()));
         infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
 
-        descriptionView.setText(product.getDescription());
+        descriptionView.setText(productDTO.getDescription());
     }
 
     @Override
