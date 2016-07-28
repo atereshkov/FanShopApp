@@ -1,7 +1,7 @@
 package com.github.handioq.fanshop.catalog;
 
 
-import com.github.handioq.fanshop.model.ProductDTO;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 
 import java.util.List;
 

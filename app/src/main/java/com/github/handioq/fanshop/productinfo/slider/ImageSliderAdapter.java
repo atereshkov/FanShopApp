@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
-import com.github.handioq.fanshop.model.ImageDTO;
+import com.github.handioq.fanshop.model.dto.ImageDTO;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.github.handioq.fanshop.model;
+package com.github.handioq.fanshop.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 

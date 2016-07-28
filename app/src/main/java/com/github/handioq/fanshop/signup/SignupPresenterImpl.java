@@ -1,6 +1,6 @@
 package com.github.handioq.fanshop.signup;
 
-import com.github.handioq.fanshop.model.UserDTO;
+import com.github.handioq.fanshop.model.dto.UserDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import rx.Observer;

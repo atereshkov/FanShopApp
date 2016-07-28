@@ -1,4 +1,4 @@
-package com.github.handioq.fanshop.model;
+package com.github.handioq.fanshop.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -15,9 +15,11 @@ public class ProductDTO {
     @SerializedName("image_url")
     private String imageUrl;
 
-    @SerializedName("imageDTOs")
+    @SerializedName("images")
     private List<ImageDTO> imageDTOs = new ArrayList<ImageDTO>();
 
+    @SerializedName("reviews")
+    private List<ReviewDTO> reviews = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -65,6 +67,14 @@ public class ProductDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<ReviewDTO> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<ReviewDTO> reviews) {
+        this.reviews = reviews;
     }
 
     @Override

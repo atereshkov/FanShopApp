@@ -9,7 +9,7 @@ import android.widget.EditText;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
-import com.github.handioq.fanshop.model.UserDTO;
+import com.github.handioq.fanshop.model.dto.UserDTO;
 
 import butterknife.BindView;
 import butterknife.OnClick;

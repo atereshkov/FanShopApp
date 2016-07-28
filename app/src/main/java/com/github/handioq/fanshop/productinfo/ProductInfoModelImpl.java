@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.productinfo;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.ProductDTO;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import rx.Observer;

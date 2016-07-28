@@ -1,8 +1,8 @@
 package com.github.handioq.fanshop.net;
 
 import com.github.handioq.fanshop.login.UserAuthState;
-import com.github.handioq.fanshop.model.ProductDTO;
-import com.github.handioq.fanshop.model.UserDTO;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dto.UserDTO;
 
 import java.util.List;
 

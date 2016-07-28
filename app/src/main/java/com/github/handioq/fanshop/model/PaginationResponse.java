@@ -1,5 +1,7 @@
 package com.github.handioq.fanshop.model;
 
+import com.github.handioq.fanshop.model.dto.ProductDTO;
+
 import java.util.List;
 
 public class PaginationResponse {

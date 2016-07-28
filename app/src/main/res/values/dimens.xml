@@ -19,4 +19,8 @@
     <dimen name="text_subheading">16sp</dimen>
     <dimen name="text_title">20sp</dimen>
 
+    <!-- Default review card size -->
+    <dimen name="card_review_height">100dp</dimen>
+    <dimen name="card_review_width">320dp</dimen>
+
 </resources>

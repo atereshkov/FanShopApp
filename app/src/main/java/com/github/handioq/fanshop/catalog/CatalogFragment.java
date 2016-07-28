@@ -14,7 +14,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
-import com.github.handioq.fanshop.model.ProductDTO;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
 import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
 
@@ -54,14 +54,11 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
         super.onViewCreated(view, savedInstanceState);
         Log.e(TAG, "onViewCreated");
 
-        if (recyclerView != null) {
-            recyclerView.setHasFixedSize(true);
-        }
-
         ScreenDimensionsHelper screenDimensionsHelper = new ScreenDimensionsHelper(getActivity());
 
         //layoutManager = new LinearLayoutManager(this); // 1 card in a row
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), screenDimensionsHelper.getCardsCount()); // n cards in a row
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 

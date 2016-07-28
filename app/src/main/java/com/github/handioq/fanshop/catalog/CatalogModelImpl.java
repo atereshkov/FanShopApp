@@ -3,7 +3,7 @@ package com.github.handioq.fanshop.catalog;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.ProductDTO;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;

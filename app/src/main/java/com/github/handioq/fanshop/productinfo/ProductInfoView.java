@@ -1,6 +1,6 @@
 package com.github.handioq.fanshop.productinfo;
 
-import com.github.handioq.fanshop.model.ProductDTO;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 
 public interface ProductInfoView {
 
