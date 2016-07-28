@@ -63,6 +63,9 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @BindView(R.id.scrollView)
     ScrollView scrollView;
 
+    @BindView(R.id.info_description)
+    TextView descriptionView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,12 +176,13 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     public void setProduct(Product product) {
         Log.e(TAG, "PRODUCT  ---> " + product.getId() + product.getName());
 
+        getActivity().setTitle(product.getName());
         initSlider(product.getImages());
 
         infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, product.getPrice()));
         infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
 
-        getActivity().setTitle(product.getName());
+        //descriptionView.setText(product.getDescription());
     }
 
     @Override
