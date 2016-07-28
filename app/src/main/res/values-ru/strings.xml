@@ -37,5 +37,7 @@
     <string name="not_implemented">Скоро :)</string>
     <string name="nav_delivery">Доставка</string>
     <string name="nav_title_shop">Магазин</string>
+    <string name="pager_title_description">Описание</string>
+    <string name="pager_title_reviews">Отзывы</string>
 
 </resources>
