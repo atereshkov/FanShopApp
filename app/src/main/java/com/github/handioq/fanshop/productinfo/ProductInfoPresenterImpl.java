@@ -23,7 +23,7 @@ public class ProductInfoPresenterImpl implements ProductInfoPresenter, ProductIn
     }
 
     @Override
-    public void getProduct(int id) { // TODO change presenter parameters
+    public void getProduct(int id) {
         if (productInfoView != null) {
             productInfoView.showProgress();
             Log.e(TAG, "showProgress() on productInfoView");
@@ -44,5 +44,6 @@ public class ProductInfoPresenterImpl implements ProductInfoPresenter, ProductIn
         productInfoView.onError(error);
         productInfoView.hideProgress();
         Log.e(TAG, "onError");
+        error.printStackTrace();
     }
 }

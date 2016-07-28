@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.github.handioq.R;
@@ -36,15 +38,15 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
     private int selectedItemId;
     private ProductInfoPresenter productInfoPresenter;
+    private InfoAdapter infoAdapter;
+    private int dotsCount;
+    private ImageView[] dots;
 
     @BindView(R.id.imagePager)
     ViewPager imageSlider;
 
     @BindView(R.id.viewPagerCountDots)
     LinearLayout viewPagerCountDots;
-
-    private int dotsCount;
-    private ImageView[] dots;
 
     @BindView(R.id.view_pager_container)
     WrapContentViewPager descriptionPager;
@@ -55,7 +57,11 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @BindView(R.id.info_item_price)
     TextView infoItemPriceView;
 
-    private InfoAdapter infoAdapter;
+    @BindView(R.id.progressBarInfo)
+    ProgressBar progressBarView;
+
+    @BindView(R.id.scrollView)
+    ScrollView scrollView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -153,12 +159,14 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
     @Override
     public void showProgress() {
-
+        progressBarView.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgress() {
-
+        progressBarView.setVisibility(View.GONE);
+        scrollView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -169,6 +177,8 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
         infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, product.getPrice()));
         infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
+
+        getActivity().setTitle(product.getName());
     }
 
     @Override
