@@ -39,42 +39,42 @@
                     android:id="@+id/viewPagerCountDots"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:orientation="horizontal" />
 
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/info_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/info_description"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/text_caption" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/fav_button"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_favorite_border_black_24dp"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:minWidth="0dp"
                     android:minHeight="0dp"
-                    />
+                    android:minWidth="0dp"
+                    android:src="@drawable/ic_favorite_border_black_24dp" />
 
                 <TextView
                     android:id="@+id/info_item_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/catalog_item_name"
+                    android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/fav_button"
                     android:layout_toStartOf="@+id/fav_button"
-                    android:layout_centerVertical="true" />
+                    android:textSize="@dimen/text_subheading" />
 
             </RelativeLayout>
 
@@ -84,9 +84,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:minHeight="?attr/actionBarSize"
-                app:tabTextColor="@color/colorGray"
                 app:tabSelectedTextColor="@color/colorPrimaryTextWhite"
-                />
+                app:tabTextColor="@color/colorGray" />
 
             <com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager
                 android:id="@+id/view_pager_container"
@@ -103,10 +102,10 @@
     </ScrollView>
 
     <ProgressBar
+        android:id="@+id/progressBarInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBarInfo"
-        android:indeterminate="false"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:indeterminate="false" />
 
 </RelativeLayout>

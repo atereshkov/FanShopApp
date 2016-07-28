@@ -182,7 +182,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, product.getPrice()));
         infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
 
-        //descriptionView.setText(product.getDescription());
+        descriptionView.setText(product.getDescription());
     }
 
     @Override

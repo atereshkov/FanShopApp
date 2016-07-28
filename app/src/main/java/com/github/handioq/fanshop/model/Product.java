@@ -10,6 +10,7 @@ public class Product {
     private Integer id;
     private String name;
     private Double price;
+    private String description;
 
     @SerializedName("image_url")
     private String imageUrl;
@@ -56,6 +57,14 @@ public class Product {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
