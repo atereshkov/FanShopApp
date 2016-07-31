@@ -60,7 +60,7 @@ public class ReviewsInfoFragment extends BaseFragment {
 
     private void initRecyclerView(List<ReviewDTO> reviews)
     {
-        Log.e(TAG, "initRecyclerView()");
+        Log.i(TAG, "initRecyclerView()");
 
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);

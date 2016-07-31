@@ -35,6 +35,6 @@ public class CartFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "onDestroy");
+        Log.i(TAG, "onDestroy");
     }
 }

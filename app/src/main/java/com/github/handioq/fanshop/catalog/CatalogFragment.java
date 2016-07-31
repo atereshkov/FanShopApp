@@ -52,7 +52,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.e(TAG, "onViewCreated");
+        Log.i(TAG, "onViewCreated");
 
         ScreenDimensionsHelper screenDimensionsHelper = new ScreenDimensionsHelper(getActivity());
 
@@ -98,6 +98,6 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "onDestroy");
+        Log.i(TAG, "onDestroy");
     }
 }

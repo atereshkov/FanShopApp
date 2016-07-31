@@ -48,7 +48,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     private int dotsCount;
     private ImageView[] dots;
 
-    @BindView(R.id.imagePager)
+    @BindView(R.id.image_pager)
     ViewPager imageSlider;
 
     @BindView(R.id.viewPagerCountDots)
@@ -63,10 +63,10 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @BindView(R.id.info_item_price)
     TextView infoItemPriceView;
 
-    @BindView(R.id.progressBarInfo)
+    @BindView(R.id.progressbar_info)
     ProgressBar progressBarView;
 
-    @BindView(R.id.scrollView)
+    @BindView(R.id.scroll_view)
     ScrollView scrollView;
 
     @BindView(R.id.info_description)
@@ -90,7 +90,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.e(TAG, "onViewCreated");
+        Log.i(TAG, "onViewCreated");
 
         Context context = getActivity();
 
@@ -99,10 +99,10 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         Bundle bundle = new Bundle();
         bundle.putInt("id", selectedItemId);
 
-        Fragment descriptionFragment = Fragment.instantiate(context, DescriptionInfoFragment.class.getName());
+        Fragment descriptionFragment = new DescriptionInfoFragment();
         descriptionFragment.setArguments(bundle);
 
-        Fragment reviewsFragment = Fragment.instantiate(context, ReviewsInfoFragment.class.getName());
+        Fragment reviewsFragment = new ReviewsInfoFragment();
         reviewsFragment.setArguments(bundle);
 
         fragments.add(descriptionFragment);
@@ -119,7 +119,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "onDestroy");
+        Log.i(TAG, "onDestroy");
     }
 
     private void initSlider(List<ImageDTO> imageDTOs) {
@@ -180,7 +180,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
     @Override
     public void setProduct(ProductDTO productDTO) {
-        Log.e(TAG, "PRODUCT  ---> " + productDTO.getId() + productDTO.getName());
+        Log.i(TAG, "PRODUCT  ---> " + productDTO.getId() + productDTO.getName());
 
         getActivity().setTitle(productDTO.getName());
         initSlider(productDTO.getImageDTOs());

@@ -52,12 +52,12 @@ public class SignupActivity extends BaseActivity implements SignupView {
 
     @Override
     public void signupSuccess(UserDTO userDTO) {
-        Log.e("UserDTO", userDTO.toString());
+        Log.i("UserDTO", userDTO.toString());
     }
 
     @Override
     public void signupFailure(Throwable e) {
-        Log.e("UserDTO", e.toString());
+        Log.i("UserDTO", e.toString());
         /*
         mEmailView.setError(null);
         mPasswordView.setError(null);

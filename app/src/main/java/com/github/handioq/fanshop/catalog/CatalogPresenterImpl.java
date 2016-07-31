@@ -36,7 +36,7 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
     public void getProducts() {
         if (catalogView != null) {
             catalogView.showProgress();
-            Log.e(TAG, "showProgress() on catalogView");
+            Log.i(TAG, "showProgress() on catalogView");
         }
 
         catalogModel.getProducts(0, 20);
@@ -56,13 +56,13 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
 
         catalogView.setProducts(productDTOs);
         catalogView.hideProgress();
-        Log.e(TAG, "get productDTOs: " + productDTOs.size());
+        Log.i(TAG, "get productDTOs: " + productDTOs.size());
     }
 
     @Override
     public void onProductsLoadError(Throwable error) {
         catalogView.onError(error);
         catalogView.hideProgress();
-        Log.e(TAG, "onError");
+        Log.i(TAG, "onError");
     }
 }

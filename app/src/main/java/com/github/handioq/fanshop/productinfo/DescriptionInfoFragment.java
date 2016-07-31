@@ -23,7 +23,7 @@ public class DescriptionInfoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e(TAG, "onCreateView");
+        Log.i(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.fragment_info_description, container, false);
 
         readBundle(getArguments());

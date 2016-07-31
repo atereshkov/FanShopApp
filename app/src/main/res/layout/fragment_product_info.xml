@@ -14,7 +14,7 @@
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/scrollView"
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="false">
@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
             <android.support.v4.view.ViewPager
-                android:id="@+id/imagePager"
+                android:id="@+id/image_pager"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 
@@ -97,7 +97,7 @@
     </ScrollView>
 
     <ProgressBar
-        android:id="@+id/progressBarInfo"
+        android:id="@+id/progressbar_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

@@ -44,19 +44,19 @@ public class CatalogModelImpl implements CatalogModel {
                     }
                 });
 
-        Log.e(TAG, "getProductDTOs()");
+        Log.i(TAG, "getProductDTOs()");
     }
 
     @Override
     public void setCallback(final Callback callback) {
         this.callback = callback;
 
-        Log.e(TAG, "setCallback");
+        Log.i(TAG, "setCallback");
     }
 
 //    @Override
 //    public Observable<List<ProductDTO>> getProductDTOs() {
-//        Log.e("CatalogModelImpl", "Starting products download");
+//        Log.i("CatalogModelImpl", "Starting products download");
 //        return networkService.getPreparedObservable(networkService.getApiService().getProductDTOs(null, null));
 //    }
 

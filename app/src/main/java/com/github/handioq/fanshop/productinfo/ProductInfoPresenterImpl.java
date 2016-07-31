@@ -26,7 +26,7 @@ public class ProductInfoPresenterImpl implements ProductInfoPresenter, ProductIn
     public void getProduct(int id) {
         if (productInfoView != null) {
             productInfoView.showProgress();
-            Log.e(TAG, "showProgress() on productInfoView");
+            Log.i(TAG, "showProgress() on productInfoView");
         }
 
         productInfoModel.getProduct(id);
@@ -36,14 +36,14 @@ public class ProductInfoPresenterImpl implements ProductInfoPresenter, ProductIn
     public void onProductLoaded(ProductDTO productDTO) {
         productInfoView.setProduct(productDTO);
         productInfoView.hideProgress();
-        Log.e(TAG, "get productDTO: " + productDTO.getName() + " " + productDTO.getId());
+        Log.i(TAG, "get productDTO: " + productDTO.getName() + " " + productDTO.getId());
     }
 
     @Override
     public void onProductLoadError(Throwable error) {
         productInfoView.onError(error);
         productInfoView.hideProgress();
-        Log.e(TAG, "onError");
+        Log.i(TAG, "onError");
         error.printStackTrace();
     }
 }

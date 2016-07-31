@@ -7,9 +7,9 @@ import java.util.List;
 
 public class ProductDTO {
 
-    private Integer id;
+    private int id;
     private String name;
-    private Double price;
+    private double price;
     private String description;
 
     @SerializedName("image_url")
@@ -21,7 +21,7 @@ public class ProductDTO {
     @SerializedName("reviews")
     private List<ReviewDTO> reviews = new ArrayList<>();
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -29,11 +29,11 @@ public class ProductDTO {
         return name;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,7 +41,7 @@ public class ProductDTO {
         this.name = name;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

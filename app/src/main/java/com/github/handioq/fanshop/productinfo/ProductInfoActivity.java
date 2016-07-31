@@ -42,7 +42,7 @@ public class ProductInfoActivity extends BaseNavActivity {
                     .replace(R.id.content, productInfoFragment, PRODUCT_FRAGMENT_TAG)
                     .commit();
 
-            Log.e(TAG, "create new ProductInfoFragment");
+            Log.i(TAG, "create new ProductInfoFragment");
         }
     }
 

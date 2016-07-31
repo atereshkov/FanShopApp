@@ -5,9 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!-- Include following permission if you want to cache imageDTOs on SD card -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:name=".fanshop.application.FanShopApp"
         android:allowBackup="true"
@@ -39,10 +36,6 @@
             android:name=".fanshop.productinfo.ProductInfoActivity"
             android:label="@string/title_activity_productInfo"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".fanshop.productinfo.ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

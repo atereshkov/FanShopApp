@@ -41,7 +41,7 @@ public class ProductInfoModelImpl implements ProductInfoModel {
                     }
                 });
 
-        Log.e(TAG, "getProduct()");
+        Log.i(TAG, "getProduct()");
     }
 
     @Override
