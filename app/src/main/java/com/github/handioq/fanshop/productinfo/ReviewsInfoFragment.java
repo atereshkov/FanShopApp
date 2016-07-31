@@ -30,6 +30,8 @@ public class ReviewsInfoFragment extends BaseFragment {
 
     private int selectedItem;
 
+    private final static String TAG = "ReviewsInfoFragment";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -58,7 +60,7 @@ public class ReviewsInfoFragment extends BaseFragment {
 
     private void initRecyclerView(List<ReviewDTO> reviews)
     {
-        Log.e("ReviewsInfoFragment", "initRecyclerView()");
+        Log.e(TAG, "initRecyclerView()");
 
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);

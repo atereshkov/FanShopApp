@@ -13,6 +13,8 @@ public class DescriptionInfoFragment extends Fragment {
 
     private int selectedItem;
 
+    private final static String TAG = "DescriptionFragment";
+
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
             selectedItem = bundle.getInt("id");
@@ -21,7 +23,7 @@ public class DescriptionInfoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e("DescriptionFragment", "onCreateView");
+        Log.e(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.fragment_info_description, container, false);
 
         readBundle(getArguments());
