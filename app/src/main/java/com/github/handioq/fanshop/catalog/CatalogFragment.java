@@ -39,9 +39,6 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
 
     private final String TAG = "CatalogFragment";
 
-    @Inject
-    NetworkService networkService;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
