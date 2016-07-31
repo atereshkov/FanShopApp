@@ -1,7 +1,6 @@
 package com.github.handioq.fanshop.signup;
 
-import com.github.handioq.fanshop.login.UserAuthState;
-import com.github.handioq.fanshop.model.User;
+import com.github.handioq.fanshop.model.dto.UserDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import rx.Observable;
@@ -15,8 +14,8 @@ public class SignupModelImpl implements SignupModel {
     }
 
     @Override
-    public Observable<User> getSignupState(User user) {
-        return networkService.getPreparedObservable(networkService.getApiService().signup(user));
+    public Observable<UserDTO> getSignupState(UserDTO userDTO) {
+        return networkService.getPreparedObservable(networkService.getApiService().signup(userDTO));
     }
 
 

@@ -10,19 +10,19 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
-import com.github.handioq.fanshop.model.Image;
+import com.github.handioq.fanshop.model.dto.ImageDTO;
 
 import java.util.List;
 
 public class ImageSliderAdapter extends PagerAdapter {
 
-    private List<Image> images;
+    private List<ImageDTO> imageDTOs;
     private LayoutInflater inflater;
     private Context context;
 
-    public ImageSliderAdapter(Context context, List<Image> images) {
+    public ImageSliderAdapter(Context context, List<ImageDTO> imageDTOs) {
         this.context = context;
-        this.images = images;
+        this.imageDTOs = imageDTOs;
         inflater = LayoutInflater.from(context);
     }
 
@@ -33,7 +33,7 @@ public class ImageSliderAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return images.size();
+        return imageDTOs.size();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ImageSliderAdapter extends PagerAdapter {
                 .findViewById(R.id.image_display);
 
         Glide.with(view.getContext())
-                .load(images.get(position).getImage())
+                .load(imageDTOs.get(position).getImage())
                 .into(imageView);
 
         view.addView(imageLayout, 0);

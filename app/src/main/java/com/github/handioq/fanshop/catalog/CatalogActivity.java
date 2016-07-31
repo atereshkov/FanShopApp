@@ -15,7 +15,6 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseNavActivity;
 import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.login.LoginActivity;
-import com.github.handioq.fanshop.productinfo.ScrollingActivity;
 
 import butterknife.BindView;
 
@@ -31,7 +30,7 @@ public class CatalogActivity extends BaseNavActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
-        Log.e(TAG, "onCreate");
+        Log.i(TAG, "onCreate");
 
         if (getSupportFragmentManager().findFragmentByTag(CATALOG_FRAGMENT_TAG) == null) {
             getSupportFragmentManager()
@@ -39,7 +38,7 @@ public class CatalogActivity extends BaseNavActivity {
                     .replace(R.id.content, new CatalogFragment(), CATALOG_FRAGMENT_TAG)
                     .commit();
 
-            Log.e(TAG, "create new CatalogFragment");
+            Log.i(TAG, "create new CatalogFragment");
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +102,6 @@ public class CatalogActivity extends BaseNavActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "onDestroy");
+        Log.i(TAG, "onDestroy");
     }
 }

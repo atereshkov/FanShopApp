@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.productinfo;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 public class ProductInfoPresenterImpl implements ProductInfoPresenter, ProductInfoModel.Callback {
@@ -23,26 +23,27 @@ public class ProductInfoPresenterImpl implements ProductInfoPresenter, ProductIn
     }
 
     @Override
-    public void getProduct(int id) { // TODO change presenter parameters
+    public void getProduct(int id) {
         if (productInfoView != null) {
             productInfoView.showProgress();
-            Log.e(TAG, "showProgress() on productInfoView");
+            Log.i(TAG, "showProgress() on productInfoView");
         }
 
         productInfoModel.getProduct(id);
     }
 
     @Override
-    public void onProductLoaded(Product product) {
-        productInfoView.setProduct(product);
+    public void onProductLoaded(ProductDTO productDTO) {
+        productInfoView.setProduct(productDTO);
         productInfoView.hideProgress();
-        Log.e(TAG, "get product: " + product.getName() + " " + product.getId());
+        Log.i(TAG, "get productDTO: " + productDTO.getName() + " " + productDTO.getId());
     }
 
     @Override
     public void onProductLoadError(Throwable error) {
         productInfoView.onError(error);
         productInfoView.hideProgress();
-        Log.e(TAG, "onError");
+        Log.i(TAG, "onError");
+        error.printStackTrace();
     }
 }

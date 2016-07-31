@@ -3,15 +3,15 @@ package com.github.handioq.fanshop.catalog.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 
 import java.util.List;
 
 public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHolder> {
 
-    private final List<Product> items;
+    private final List<ProductDTO> items;
 
-    public CatalogRecyclerAdapter(List<Product> items) {
+    public CatalogRecyclerAdapter(List<ProductDTO> items) {
         this.items = items;
     }
 

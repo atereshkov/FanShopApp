@@ -1,6 +1,6 @@
 package com.github.handioq.fanshop.signup;
 
-import com.github.handioq.fanshop.model.User;
+import com.github.handioq.fanshop.model.dto.UserDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import rx.Observer;
@@ -19,7 +19,7 @@ public class SignupPresenterImpl implements SignupPresenter {
     }
 
     @Override
-    public void signupValidate(User user) {
+    public void signupValidate(UserDTO userDTO) {
 
         if (signupView != null) {
             signupView.showProgress();
@@ -27,8 +27,8 @@ public class SignupPresenterImpl implements SignupPresenter {
 
         signupModel = new SignupModelImpl(networkService);
 
-        subscription = signupModel.getSignupState(user)
-                .subscribe(new Observer<User>() {
+        subscription = signupModel.getSignupState(userDTO)
+                .subscribe(new Observer<UserDTO>() {
 
                     @Override
                     public void onCompleted() {
@@ -42,8 +42,8 @@ public class SignupPresenterImpl implements SignupPresenter {
                     }
 
                     @Override
-                    public void onNext(User user) { // TODO: check for wrong data or
-                        signupView.signupSuccess(user);
+                    public void onNext(UserDTO userDTO) { // TODO: check for wrong data or
+                        signupView.signupSuccess(userDTO);
                         signupView.hideProgress();
                     }
                 });

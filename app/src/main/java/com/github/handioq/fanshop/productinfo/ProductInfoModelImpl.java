@@ -2,11 +2,8 @@ package com.github.handioq.fanshop.productinfo;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.catalog.CatalogModel;
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
-
-import java.util.List;
 
 import rx.Observer;
 
@@ -26,8 +23,8 @@ public class ProductInfoModelImpl implements ProductInfoModel {
 
         networkService.getApiService()
                 .getProduct(id)
-                .compose(NetworkService.<Product>tranform())
-                .subscribe(new Observer<Product>() {
+                .compose(NetworkService.<ProductDTO>tranformToPrepared())
+                .subscribe(new Observer<ProductDTO>() {
                     @Override
                     public void onCompleted() {
 
@@ -39,12 +36,12 @@ public class ProductInfoModelImpl implements ProductInfoModel {
                     }
 
                     @Override
-                    public void onNext(Product product) {
-                        callback.onProductLoaded(product);
+                    public void onNext(ProductDTO productDTO) {
+                        callback.onProductLoaded(productDTO);
                     }
                 });
 
-        Log.e(TAG, "getProduct()");
+        Log.i(TAG, "getProduct()");
     }
 
     @Override

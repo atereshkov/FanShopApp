@@ -61,13 +61,13 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void loginSuccess(UserAuthState userAuthState) {
-        Log.e("UserAuthState", userAuthState.toString());
+        Log.i("UserAuthState", userAuthState.toString());
     }
 
     @Override
     public void loginFailure(Throwable e) {
-        //Log.e("UserAuthState", e.);
-        Log.e("UserAuthState", e.toString());
+        //Log.i("UserAuthState", e.);
+        Log.i("UserAuthState", e.toString());
         /*
         mEmailView.setError(null);
         mPasswordView.setError(null);

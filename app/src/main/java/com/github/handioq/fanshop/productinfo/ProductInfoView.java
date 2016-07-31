@@ -1,6 +1,6 @@
 package com.github.handioq.fanshop.productinfo;
 
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 
 public interface ProductInfoView {
 
@@ -8,7 +8,7 @@ public interface ProductInfoView {
 
     void hideProgress();
 
-    void setProduct(Product product);
+    void setProduct(ProductDTO productDTO);
 
     void onError(Throwable e);
 

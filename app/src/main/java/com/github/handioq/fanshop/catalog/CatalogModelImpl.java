@@ -3,13 +3,12 @@ package com.github.handioq.fanshop.catalog;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
 
 import rx.Observer;
-import rx.Subscription;
 
 public class CatalogModelImpl implements CatalogModel {
 
@@ -27,8 +26,8 @@ public class CatalogModelImpl implements CatalogModel {
 
         networkService.getApiService()
                 .getProducts(offset, count)
-                .compose(NetworkService.<List<Product>>tranform())
-                .subscribe(new Observer<List<Product>>() {
+                .compose(NetworkService.<List<ProductDTO>>tranformToPrepared())
+                .subscribe(new Observer<List<ProductDTO>>() {
                     @Override
                     public void onCompleted() {
 
@@ -40,25 +39,25 @@ public class CatalogModelImpl implements CatalogModel {
                     }
 
                     @Override
-                    public void onNext(List<Product> products) {
-                        callback.onProductsLoaded(products);
+                    public void onNext(List<ProductDTO> productDTOs) {
+                        callback.onProductsLoaded(productDTOs);
                     }
                 });
 
-        Log.e(TAG, "getProducts()");
+        Log.i(TAG, "getProductDTOs()");
     }
 
     @Override
     public void setCallback(final Callback callback) {
         this.callback = callback;
 
-        Log.e(TAG, "setCallback");
+        Log.i(TAG, "setCallback");
     }
 
 //    @Override
-//    public Observable<List<Product>> getProducts() {
-//        Log.e("CatalogModelImpl", "Starting products download");
-//        return networkService.getPreparedObservable(networkService.getApiService().getProducts(null, null));
+//    public Observable<List<ProductDTO>> getProductDTOs() {
+//        Log.i("CatalogModelImpl", "Starting products download");
+//        return networkService.getPreparedObservable(networkService.getApiService().getProductDTOs(null, null));
 //    }
 
 }

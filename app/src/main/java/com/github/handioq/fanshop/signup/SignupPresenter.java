@@ -1,10 +1,10 @@
 package com.github.handioq.fanshop.signup;
 
-import com.github.handioq.fanshop.model.User;
+import com.github.handioq.fanshop.model.dto.UserDTO;
 
 public interface SignupPresenter {
 
-    void signupValidate(User user); // what else? whatever...
+    void signupValidate(UserDTO userDTO); // what else? whatever...
 
     void onDestroy();
 

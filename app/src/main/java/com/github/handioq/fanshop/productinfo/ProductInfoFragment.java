@@ -8,20 +8,28 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
-import com.github.handioq.fanshop.model.Image;
-import com.github.handioq.fanshop.model.Product;
+import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
+import com.github.handioq.fanshop.model.dto.ImageDTO;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dto.ReviewDTO;
 import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
+import com.github.handioq.fanshop.productinfo.adapter.ReviewAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
 import com.github.handioq.fanshop.productinfo.slider.ImageSliderAdapter;
 
@@ -36,15 +44,15 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
     private int selectedItemId;
     private ProductInfoPresenter productInfoPresenter;
-
-    @BindView(R.id.imagePager)
-    ViewPager imageSlider;
-
-    @BindView(R.id.viewPagerCountDots)
-    LinearLayout viewPagerCountDots;
-
+    private InfoAdapter infoAdapter;
     private int dotsCount;
     private ImageView[] dots;
+
+    @BindView(R.id.image_pager)
+    ViewPager imageSlider;
+
+    @BindView(R.id.view_pager_count_dots)
+    LinearLayout viewPagerCountDots;
 
     @BindView(R.id.view_pager_container)
     WrapContentViewPager descriptionPager;
@@ -55,7 +63,14 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @BindView(R.id.info_item_price)
     TextView infoItemPriceView;
 
-    private InfoAdapter infoAdapter;
+    @BindView(R.id.progressbar_info)
+    ProgressBar progressBarView;
+
+    @BindView(R.id.scroll_view)
+    ScrollView scrollView;
+
+    @BindView(R.id.info_description)
+    TextView descriptionView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,7 +90,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.e(TAG, "onViewCreated");
+        Log.i(TAG, "onViewCreated");
 
         Context context = getActivity();
 
@@ -84,13 +99,16 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         Bundle bundle = new Bundle();
         bundle.putInt("id", selectedItemId);
 
-        Fragment descrFragment = Fragment.instantiate(context, DescriptionInfoFragment.class.getName());
-        descrFragment.setArguments(bundle);
+        Fragment descriptionFragment = new DescriptionInfoFragment();
+        descriptionFragment.setArguments(bundle);
 
-        fragments.add(descrFragment);
-        fragments.add(Fragment.instantiate(context, ReviewsInfoFragment.class.getName()));
+        Fragment reviewsFragment = new ReviewsInfoFragment();
+        reviewsFragment.setArguments(bundle);
+
+        fragments.add(descriptionFragment);
+        fragments.add(reviewsFragment);
+
         infoAdapter = new InfoAdapter(getActivity().getSupportFragmentManager(), fragments, context);
-
         descriptionPager.setAdapter(infoAdapter);
         tabLayout.setupWithViewPager(descriptionPager);
 
@@ -101,15 +119,15 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "onDestroy");
+        Log.i(TAG, "onDestroy");
     }
 
-    private void initSlider(List<Image> images) {
+    private void initSlider(List<ImageDTO> imageDTOs) {
 
-        imageSlider.setAdapter(new ImageSliderAdapter(getActivity(), images));
+        imageSlider.setAdapter(new ImageSliderAdapter(getActivity(), imageDTOs));
         imageSlider.addOnPageChangeListener(this);
 
-        dotsCount = images.size();
+        dotsCount = imageDTOs.size();
         dots = new ImageView[dotsCount];
 
         for (int i = 0; i < dotsCount; i++) {
@@ -150,22 +168,27 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
     @Override
     public void showProgress() {
-
+        progressBarView.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgress() {
-
+        progressBarView.setVisibility(View.GONE);
+        scrollView.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void setProduct(Product product) {
-        Log.e(TAG, "PRODUCT  ---> " + product.getId() + product.getName());
+    public void setProduct(ProductDTO productDTO) {
+        Log.i(TAG, "PRODUCT  ---> " + productDTO.getId() + productDTO.getName());
 
-        initSlider(product.getImages());
+        getActivity().setTitle(productDTO.getName());
+        initSlider(productDTO.getImageDTOs());
 
-        infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, product.getPrice()));
+        infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, productDTO.getPrice()));
         infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
+
+        descriptionView.setText(productDTO.getDescription());
     }
 
     @Override
