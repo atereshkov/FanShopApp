@@ -30,13 +30,13 @@
                 android:layout_height="200dp" />
 
             <RelativeLayout
-                android:id="@+id/viewPagerIndicator"
+                android:id="@+id/view_pager_indicator"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center">
 
                 <LinearLayout
-                    android:id="@+id/viewPagerCountDots"
+                    android:id="@+id/view_pager_count_dots"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"

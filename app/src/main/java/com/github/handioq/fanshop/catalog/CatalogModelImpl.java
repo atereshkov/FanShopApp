@@ -26,7 +26,7 @@ public class CatalogModelImpl implements CatalogModel {
 
         networkService.getApiService()
                 .getProducts(offset, count)
-                .compose(NetworkService.<List<ProductDTO>>tranform())
+                .compose(NetworkService.<List<ProductDTO>>tranformToPrepared())
                 .subscribe(new Observer<List<ProductDTO>>() {
                     @Override
                     public void onCompleted() {

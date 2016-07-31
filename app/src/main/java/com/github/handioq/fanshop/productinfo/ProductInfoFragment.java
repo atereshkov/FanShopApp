@@ -51,7 +51,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @BindView(R.id.image_pager)
     ViewPager imageSlider;
 
-    @BindView(R.id.viewPagerCountDots)
+    @BindView(R.id.view_pager_count_dots)
     LinearLayout viewPagerCountDots;
 
     @BindView(R.id.view_pager_container)
