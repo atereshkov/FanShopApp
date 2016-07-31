@@ -1,25 +1,33 @@
 package com.github.handioq.fanshop.catalog;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
+import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Callback {
 
     private CatalogView catalogView;
     private CatalogModel catalogModel;
+    private Context context;
 
-    private NetworkService networkService;
+    @Inject
+    NetworkService networkService;
 
     private final static String TAG = "CatalogPresenterImpl";
 
-    public CatalogPresenterImpl(CatalogView catalogView, NetworkService networkService) {
+    public CatalogPresenterImpl(CatalogView catalogView, Context context) {
+        ((FanShopApp) context.getApplicationContext()).getNetComponent().inject(this);
+
         this.catalogView = catalogView;
-        this.networkService = networkService;
+        this.context = context;
 
         catalogModel = new CatalogModelImpl(networkService);
         catalogModel.setCallback(this);

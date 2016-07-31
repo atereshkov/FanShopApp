@@ -1,7 +1,11 @@
 package com.github.handioq.fanshop.database;
 
+import android.content.Context;
+
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.model.dbo.ProductDBO;
+
+import javax.inject.Inject;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
@@ -9,9 +13,20 @@ import io.realm.RealmResults;
 
 public class ProductRepository implements IProductRepository <ProductDBO> { // ??? Transfom? which object used?
 
+    private Context context;
+
+    @Inject
+    Realm realm;
+
+    public ProductRepository(Context context) {
+        this.context = context;
+
+        ((FanShopApp) context.getApplicationContext()).getDatabaseComponent().inject(this);
+    }
+
     @Override
     public void addProduct(ProductDBO product, Callback<ProductDBO> callback) {
-        Realm realm = FanShopApp.getInstance().getRealm();
+        //Realm realm = FanShopApp.getInstance().getRealm();
 
         realm.beginTransaction();
 
@@ -29,7 +44,7 @@ public class ProductRepository implements IProductRepository <ProductDBO> { // ?
 
     @Override
     public void deleteProductById(int id, Callback<ProductDBO> callback) {
-        Realm realm = FanShopApp.getInstance().getRealm();
+        //Realm realm = FanShopApp.getInstance().getRealm();
 
         realm.beginTransaction();
 
@@ -45,7 +60,7 @@ public class ProductRepository implements IProductRepository <ProductDBO> { // ?
 
     @Override
     public void getProductById(int id, Callback<ProductDBO> callback) {
-        Realm realm = FanShopApp.getInstance().getRealm();
+        //Realm realm = FanShopApp.getInstance().getRealm();
 
         ProductDBO result = realm.where(ProductDBO.class)
                 .equalTo("id", id)
@@ -57,7 +72,7 @@ public class ProductRepository implements IProductRepository <ProductDBO> { // ?
 
     @Override
     public void getProducts(Callback<ProductDBO> callback) {
-        Realm realm = FanShopApp.getInstance().getRealm();
+        //Realm realm = FanShopApp.getInstance().getRealm();
 
         RealmQuery query = realm.where(ProductDBO.class);
         RealmResults results = query.findAll();

@@ -13,7 +13,10 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.base.BaseNavActivity;
+import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.signup.SignupActivity;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,12 +41,17 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.login_progress)
     ProgressBar progressBar;
 
+    @Inject
+    NetworkService networkService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginPresenter = new LoginPresenterImpl(this, ((FanShopApp) getApplication()).getNetworkService());
+        ((FanShopApp) getApplication()).getNetComponent().inject(this);
+
+        loginPresenter = new LoginPresenterImpl(this, networkService);
     }
 
     @OnClick(R.id.sign_in)

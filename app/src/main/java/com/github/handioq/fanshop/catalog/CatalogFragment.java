@@ -15,10 +15,13 @@ import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
 import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -36,6 +39,9 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
 
     private final String TAG = "CatalogFragment";
 
+    @Inject
+    NetworkService networkService;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +58,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         Log.i(TAG, "onViewCreated");
 
         ScreenDimensionsHelper screenDimensionsHelper = new ScreenDimensionsHelper(getActivity());
@@ -62,7 +69,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        catalogPresenter = new CatalogPresenterImpl(this, ((FanShopApp) getActivity().getApplication()).getNetworkService());
+        catalogPresenter = new CatalogPresenterImpl(this, getActivity());
         catalogPresenter.getProducts();
     }
 

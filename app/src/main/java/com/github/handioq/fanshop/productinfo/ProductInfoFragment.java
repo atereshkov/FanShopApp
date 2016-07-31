@@ -28,6 +28,7 @@ import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.model.dto.ImageDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
+import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.ReviewAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
@@ -35,6 +36,8 @@ import com.github.handioq.fanshop.productinfo.slider.ImageSliderAdapter;
 
 import java.util.List;
 import java.util.Vector;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -72,11 +75,16 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @BindView(R.id.info_description)
     TextView descriptionView;
 
+    @Inject
+    NetworkService networkService;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // retain this fragment
         setRetainInstance(true);
+
+        ((FanShopApp) getActivity().getApplication()).getNetComponent().inject(this);
     }
 
     @Nullable
@@ -112,7 +120,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         descriptionPager.setAdapter(infoAdapter);
         tabLayout.setupWithViewPager(descriptionPager);
 
-        productInfoPresenter = new ProductInfoPresenterImpl(this, ((FanShopApp) getActivity().getApplication()).getNetworkService());
+        productInfoPresenter = new ProductInfoPresenterImpl(this, networkService);
         productInfoPresenter.getProduct(selectedItemId);
     }
 

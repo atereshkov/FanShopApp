@@ -10,6 +10,9 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.net.NetworkService;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -34,12 +37,17 @@ public class SignupActivity extends BaseActivity implements SignupView {
     @BindView(R.id.login_form)
     View loginForm;
 
+    @Inject
+    NetworkService networkService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        signupPresenter = new SignupPresenterImpl(this, ((FanShopApp) getApplication()).getNetworkService());
+        ((FanShopApp) getApplication()).getNetComponent().inject(this);
+
+        signupPresenter = new SignupPresenterImpl(this, networkService);
     }
 
     @OnClick(R.id.signup_button)
