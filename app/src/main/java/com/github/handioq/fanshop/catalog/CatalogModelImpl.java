@@ -7,6 +7,7 @@ import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -28,6 +29,7 @@ public class CatalogModelImpl implements CatalogModel {
 
         networkService.getApiService()
                 .getProducts(offset, count)
+                .delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<List<ProductDTO>>transformToPrepared())
                 .subscribe(new Observer<List<ProductDTO>>() {
                     @Override
