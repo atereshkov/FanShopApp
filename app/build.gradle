@@ -48,8 +48,5 @@ dependencies {
     apt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
     apt "com.google.dagger:dagger-compiler:$daggerVersion"
     provided 'javax.annotation:jsr250-api:1.0'
-
     testCompile 'junit:junit:4.12'
-
-    compile files('libs/RxLoader.jar')
 }

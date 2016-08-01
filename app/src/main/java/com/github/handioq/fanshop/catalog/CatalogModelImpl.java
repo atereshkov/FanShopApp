@@ -9,6 +9,8 @@ import com.github.handioq.fanshop.net.NetworkService;
 import java.util.List;
 
 import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class CatalogModelImpl implements CatalogModel {
 
@@ -30,7 +32,7 @@ public class CatalogModelImpl implements CatalogModel {
                 .subscribe(new Observer<List<ProductDTO>>() {
                     @Override
                     public void onCompleted() {
-
+                        callback.onCompleted();
                     }
 
                     @Override

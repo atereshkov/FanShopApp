@@ -16,6 +16,8 @@ public interface CatalogModel {
         void onProductsLoaded(List<ProductDTO> productDTOs);
 
         void onProductsLoadError(Throwable error);
+
+        void onCompleted();
     }
 
 }

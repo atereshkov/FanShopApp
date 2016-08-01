@@ -50,6 +50,11 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
     }
 
     @Override
+    public void onCompleted() {
+        catalogView.hideProgress();
+    }
+
+    @Override
     public void onProductsLoaded(List<ProductDTO> productDTOs) {
         // TODO add to database and check for duplicates
 
