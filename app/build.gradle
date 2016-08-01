@@ -29,7 +29,7 @@ android {
 
 def supportV4Version = '24.1.1'
 def retrofitVersion = '2.1.0'
-def daggerVersion = '2.5'
+def daggerVersion = '2.6'
 def butterknifeVersion = '8.2.1'
 
 dependencies {
