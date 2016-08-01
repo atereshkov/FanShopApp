@@ -30,7 +30,7 @@ public class FanShopApp extends Application {
 
         databaseComponent = DaggerDatabaseComponent.builder()
                 .appModule(new AppModule(this))
-                .databaseModule(new DatabaseModule())
+                .databaseModule(new DatabaseModule(this))
                 .build();
     }
 

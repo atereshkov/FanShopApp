@@ -37,6 +37,9 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
     private CatalogPresenter catalogPresenter;
     private CatalogRecyclerAdapter adapter;
 
+    @Inject
+    NetworkService networkService;
+
     private final String TAG = "CatalogFragment";
 
     @Override
@@ -58,6 +61,8 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
 
         Log.i(TAG, "onViewCreated");
 
+        ((FanShopApp) getActivity().getApplication()).getNetComponent().inject(this);
+
         ScreenDimensionsHelper screenDimensionsHelper = new ScreenDimensionsHelper(getActivity());
 
         //layoutManager = new LinearLayoutManager(this); // 1 card in a row
@@ -66,7 +71,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        catalogPresenter = new CatalogPresenterImpl(this, getActivity());
+        catalogPresenter = new CatalogPresenterImpl(this, networkService);
         catalogPresenter.getProducts();
     }
 

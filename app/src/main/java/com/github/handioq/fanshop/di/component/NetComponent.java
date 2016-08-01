@@ -16,7 +16,7 @@ import dagger.Component;
 @Component(modules = {AppModule.class, NetModule.class})
 public interface NetComponent {
 
-    void inject(CatalogPresenterImpl catalogPresenter);
+    void inject(CatalogFragment catalog);
 
     void inject(LoginActivity loginActivity);
 

@@ -16,18 +16,12 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
 
     private CatalogView catalogView;
     private CatalogModel catalogModel;
-    private Context context;
-
-    @Inject
-    NetworkService networkService;
+    private NetworkService networkService;
 
     private final static String TAG = "CatalogPresenterImpl";
 
-    public CatalogPresenterImpl(CatalogView catalogView, Context context) {
-        ((FanShopApp) context.getApplicationContext()).getNetComponent().inject(this);
-
+    public CatalogPresenterImpl(CatalogView catalogView, NetworkService networkService) {
         this.catalogView = catalogView;
-        this.context = context;
 
         catalogModel = new CatalogModelImpl(networkService);
         catalogModel.setCallback(this);

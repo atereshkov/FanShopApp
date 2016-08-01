@@ -12,13 +12,24 @@ import io.realm.RealmConfiguration;
 @Module
 public class DatabaseModule {
 
+    private final Context context;
+
+    public DatabaseModule(Context context) {
+        this.context = context;
+    }
+
     @Provides
     @Singleton
     Realm providesRealm() { // TODO: provide context
-        //RealmConfiguration config = new RealmConfiguration.Builder(context).build();
-        //Realm.setDefaultConfiguration(config);
+        RealmConfiguration config = new RealmConfiguration.Builder(context).build();
+        Realm.setDefaultConfiguration(config);
 
         return Realm.getDefaultInstance();
+    }
+
+    @Provides
+    public Context context() {
+        return context;
     }
 
 }
