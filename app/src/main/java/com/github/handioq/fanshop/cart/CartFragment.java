@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 
-public class CartFragment extends BaseFragment {
+import java.util.List;
+
+public class CartFragment extends BaseFragment implements CartView {
 
     private final static String TAG = "CartFragment";
 
@@ -36,5 +39,30 @@ public class CartFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy");
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void setProducts(List<ProductDTO> productDTOs) {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public void onItemClicked(View view, int position) {
+
     }
 }
