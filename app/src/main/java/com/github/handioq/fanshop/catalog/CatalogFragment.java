@@ -20,6 +20,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
+import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
@@ -32,7 +33,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CatalogFragment extends BaseFragment implements CatalogView {
+public class CatalogFragment extends BaseFragment implements CatalogView, PaginationListener {
 
     @BindView(R.id.catalogProgressBar)
     ProgressBar progressBar;
@@ -44,11 +45,8 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
     private CatalogPresenter catalogPresenter;
     private CatalogRecyclerAdapter adapter;
 
-    boolean loading = true;
-    private int previousTotal = 0;
-    private static final int PAGINATION_LIMIT = 5;
-
     private Menu optionsMenu;
+    private boolean loading = false;
 
     @Inject
     NetworkService networkService;
@@ -89,37 +87,23 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new PaginationOnScrollListener(this, layoutManager));
+    }
+
+    @Override
+    public void onPaginationLoad(boolean state, int totalItemCount, int limit) {
+        loading = state;
+
+        setRefreshActionButtonState(true);
+
+        catalogPresenter.getProducts(totalItemCount, limit);
+
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
-                int visibleItemCount = recyclerView.getChildCount();
-                int totalItemCount = layoutManager.getItemCount();
-                int firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
-
-                if (loading) {
-                    if (totalItemCount > previousTotal) {
-                        loading = false;
-                        previousTotal = totalItemCount;
-                    }
-                }
-
-                if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem)) {
-                    Log.i(TAG, "end onScroll");
-                    setRefreshActionButtonState(true);
-
-                    catalogPresenter.getProducts(totalItemCount, PAGINATION_LIMIT);
-                    loading = true;
-
-                    new Handler().postDelayed(new Runnable(){
-                        @Override
-                        public void run() {
-                            setRefreshActionButtonState(false);
-                        }
-                    }, 1000);
-                }
+            public void run() {
+                setRefreshActionButtonState(false);
             }
-        });
+        }, 1000);
     }
 
     @Override
@@ -159,8 +143,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView {
 
     @Override
     public void showProgress() {
-        if (loading)
-        {
+        if (loading) {
             progressBar.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }
