@@ -4,7 +4,7 @@ import android.view.View;
 
 public interface CatalogPresenter {
 
-    void getProducts();
+    void getProducts(int offset, int limit);
 
     void onItemClicked(View view, int position);
 

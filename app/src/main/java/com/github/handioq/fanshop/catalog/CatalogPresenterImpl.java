@@ -27,21 +27,14 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
         catalogModel.setCallback(this);
     }
 
-    /*
-    public void setCatalogView(CatalogView catalogView) {
-        this.catalogView = catalogView;
-        catalogModel.setCallback(this);
-    }
-    */
-
     @Override
-    public void getProducts() {
+    public void getProducts(int offset, int limit) {
         if (catalogView != null) {
             catalogView.showProgress();
             Log.i(TAG, "showProgress() on catalogView");
         }
 
-        catalogModel.getProducts(0, 20);
+        catalogModel.getProducts(offset, limit);
     }
 
     @Override
@@ -56,6 +49,7 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
 
     @Override
     public void onProductsLoaded(List<ProductDTO> productDTOs) {
+        Log.i(TAG, "get productDTOs: " + productDTOs.size());
         // TODO add to database and check for duplicates
 
         //IProductRepository<ProductDBO> productRepository = new ProductRepository();
@@ -63,7 +57,6 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
 
         catalogView.setProducts(productDTOs);
         catalogView.hideProgress();
-        Log.i(TAG, "get productDTOs: " + productDTOs.size());
     }
 
     @Override

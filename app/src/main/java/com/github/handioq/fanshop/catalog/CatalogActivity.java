@@ -7,9 +7,9 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseNavActivity;
@@ -25,6 +25,8 @@ public class CatalogActivity extends BaseNavActivity {
 
     @BindView(R.id.fab_catalog)
     FloatingActionButton fab;
+
+    private Menu optionsMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +82,13 @@ public class CatalogActivity extends BaseNavActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        //getMenuInflater().inflate(R.menu.catalog, menu);
+
+        this.optionsMenu = menu;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.catalog, menu);
+        return super.onCreateOptionsMenu(menu);
+        //return true;
     }
 
     @Override
@@ -97,6 +104,20 @@ public class CatalogActivity extends BaseNavActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setRefreshActionButtonState(final boolean refreshing) {
+        if (optionsMenu != null) {
+            final MenuItem refreshItem = optionsMenu
+                    .findItem(R.id.refresh);
+            if (refreshItem != null) {
+                if (refreshing) {
+                    refreshItem.setActionView(R.layout.actionbar_indeterminate_progress);
+                } else {
+                    refreshItem.setActionView(null);
+                }
+            }
+        }
     }
 
     @Override

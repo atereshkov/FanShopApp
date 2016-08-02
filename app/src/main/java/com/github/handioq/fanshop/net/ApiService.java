@@ -27,7 +27,7 @@ public interface ApiService {
     Observable<UserDTO> signup(@Body UserDTO userDTO);
 
     @GET(CATALOG_URL)
-    Observable<List<ProductDTO>> getProducts(@Query("page") int page,
+    Observable<List<ProductDTO>> getProducts(@Query("offset") int page,
                                              @Query("limit") int limit);
 
     @GET(CATALOG_URL + "/{id}")
