@@ -10,7 +10,7 @@ import dagger.Provides;
 @Module
 public class AppModule {
 
-    Application mApplication;
+    final Application mApplication;
 
     public AppModule(Application application) {
         mApplication = application;

@@ -17,6 +17,6 @@ public interface DatabaseComponent {
 
     void inject(ProductRepository productRepository);
 
-    Context context();
+    Context applicationContext();
 
 }

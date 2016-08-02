@@ -24,7 +24,7 @@ public class NetworkService {
     private final static Scheduler NETWORK_SINGLE
             = Schedulers.from(Executors.newFixedThreadPool(3));
 
-    public static <E> Observable.Transformer<E, E> transformToPrepared() {
+    public static <E> Observable.Transformer<E, E> applyScheduler() {
         return new Observable.Transformer<E, E>() {
             @Override
             public Observable<E> call(Observable<E> observable) {

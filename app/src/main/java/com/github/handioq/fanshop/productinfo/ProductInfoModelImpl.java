@@ -23,7 +23,7 @@ public class ProductInfoModelImpl implements ProductInfoModel {
 
         networkService.getApiService()
                 .getProduct(id)
-                .compose(NetworkService.<ProductDTO>transformToPrepared())
+                .compose(NetworkService.<ProductDTO>applyScheduler())
                 .subscribe(new Observer<ProductDTO>() {
                     @Override
                     public void onCompleted() {

@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class CatalogModelImpl implements CatalogModel {
 
@@ -30,7 +28,7 @@ public class CatalogModelImpl implements CatalogModel {
         networkService.getApiService()
                 .getProducts(offset, count)
                 .delay(3, TimeUnit.SECONDS)
-                .compose(NetworkService.<List<ProductDTO>>transformToPrepared())
+                .compose(NetworkService.<List<ProductDTO>>applyScheduler())
                 .subscribe(new Observer<List<ProductDTO>>() {
                     @Override
                     public void onCompleted() {
