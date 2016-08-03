@@ -4,6 +4,17 @@ import rx.Observable;
 
 public interface LoginModel {
 
-    Observable<UserAuthState> getAuthState(String username, String password);
+    void getAuthState(String username, String password);
+
+    void setCallback(Callback callback);
+
+    interface Callback {
+
+        void onSuccess(UserAuthState userAuthState);
+
+        void onError(Throwable error);
+
+        void onCompleted();
+    }
 
 }

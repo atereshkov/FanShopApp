@@ -6,4 +6,6 @@ public interface LoginPresenter {
 
     void onDestroy();
 
+    void setView(LoginView loginView);
+
 }

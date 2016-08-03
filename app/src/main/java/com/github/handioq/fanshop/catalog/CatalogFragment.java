@@ -42,14 +42,13 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
     RecyclerView recyclerView;
 
     private LinearLayoutManager layoutManager;
-    private CatalogPresenter catalogPresenter;
     private CatalogRecyclerAdapter adapter;
 
     private Menu optionsMenu;
     private boolean loading = false;
 
     @Inject
-    NetworkService networkService;
+    CatalogPresenterImpl catalogPresenter;
 
     private final String TAG = "CatalogFragment";
 
@@ -73,11 +72,11 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
 
         Log.i(TAG, "onViewCreated");
 
-        ((FanShopApp) getActivity().getApplication()).getNetComponent().inject(this);
+        ((FanShopApp) getActivity().getApplication()).getCatalogComponent().inject(this);
 
         adapter = new CatalogRecyclerAdapter(new ArrayList<ProductDTO>());
 
-        catalogPresenter = new CatalogPresenterImpl(this, networkService);
+        catalogPresenter.setView(this);
         catalogPresenter.getProducts(0, 5);
 
         layoutManager = new LinearLayoutManager(getContext()); // 1 card in a row

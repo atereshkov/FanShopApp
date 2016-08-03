@@ -1,21 +1,28 @@
 package com.github.handioq.fanshop.login;
 
+import android.util.Log;
+
 import com.github.handioq.fanshop.net.NetworkService;
+
+import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
 
-public class LoginPresenterImpl implements LoginPresenter {
+public class LoginPresenterImpl implements LoginPresenter, LoginModel.Callback {
 
     private NetworkService networkService;
-    private Subscription subscription;
     private LoginView loginView;
     private LoginModel loginModel;
 
-    public LoginPresenterImpl(LoginView loginView, NetworkService networkService) {
-        this.loginView = loginView;
-        this.networkService = networkService;
+    private final static String TAG = "LoginPresenterImpl";
+
+    @Inject
+    public LoginPresenterImpl(NetworkService networkService) {
+
+        loginModel = new LoginModelImpl(networkService);
+        loginModel.setCallback(this);
     }
 
     @Override
@@ -25,34 +32,33 @@ public class LoginPresenterImpl implements LoginPresenter {
             loginView.showProgress();
         }
 
-        loginModel = new LoginModelImpl(networkService);
+        loginModel.getAuthState(username, password);
+    }
 
-        subscription = loginModel.getAuthState(username, password)
-                .subscribe(new Observer<UserAuthState>() {
+    @Override
+    public void onSuccess(UserAuthState userAuthState) {
+        loginView.loginSuccess(userAuthState);
+        loginView.hideProgress();
+    }
 
-                    @Override
-                    public void onCompleted() {
-                        loginView.onCompleted();
-                    }
+    @Override
+    public void onError(Throwable error) {
+        loginView.loginFailure(error);
+        loginView.hideProgress();
+    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        loginView.loginFailure(e);
-                        loginView.hideProgress();
-                    }
+    @Override
+    public void onCompleted() {
+        loginView.onCompleted();
+    }
 
-                    @Override
-                    public void onNext(UserAuthState userAuthState) { // TODO: check for wrong data or
-                        loginView.loginSuccess(userAuthState);
-                        loginView.hideProgress();
-                    }
-                });
+    @Override
+    public void setView(LoginView loginView) {
+        this.loginView = loginView;
     }
 
     @Override
     public void onDestroy() {
-        if (subscription != null && !subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
-        }
+        Log.i(TAG, "onDestroy()");
     }
 }

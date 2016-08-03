@@ -3,19 +3,22 @@ package com.github.handioq.fanshop.signup;
 import com.github.handioq.fanshop.model.dto.UserDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
+import javax.inject.Inject;
+
 import rx.Observer;
 import rx.Subscription;
 
-public class SignupPresenterImpl implements SignupPresenter {
+public class SignupPresenterImpl implements SignupPresenter, SignupModel.Callback {
 
     private NetworkService networkService;
-    private Subscription subscription;
     private SignupView signupView;
     private SignupModel signupModel;
 
-    public SignupPresenterImpl(SignupView signupView, NetworkService networkService) {
-        this.signupView = signupView;
-        this.networkService = networkService;
+    @Inject
+    public SignupPresenterImpl(NetworkService networkService) {
+
+        signupModel = new SignupModelImpl(networkService);
+        signupModel.setCallback(this);
     }
 
     @Override
@@ -25,35 +28,33 @@ public class SignupPresenterImpl implements SignupPresenter {
             signupView.showProgress();
         }
 
-        signupModel = new SignupModelImpl(networkService);
+        signupModel.getSignupState(userDTO);
+    }
 
-        subscription = signupModel.getSignupState(userDTO)
-                .subscribe(new Observer<UserDTO>() {
+    @Override
+    public void onSuccess(UserDTO userDTO) {
+        signupView.signupSuccess(userDTO);
+        signupView.hideProgress();
+    }
 
-                    @Override
-                    public void onCompleted() {
-                        signupView.onCompleted();
-                    }
+    @Override
+    public void onError(Throwable error) {
+        signupView.signupFailure(error);
+        signupView.hideProgress();
+    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        signupView.signupFailure(e);
-                        signupView.hideProgress();
-                    }
+    @Override
+    public void onCompleted() {
+        signupView.onCompleted();
+    }
 
-                    @Override
-                    public void onNext(UserDTO userDTO) { // TODO: check for wrong data or
-                        signupView.signupSuccess(userDTO);
-                        signupView.hideProgress();
-                    }
-                });
-
+    @Override
+    public void setView(SignupView signupView) {
+        this.signupView = signupView;
     }
 
     @Override
     public void onDestroy() {
-        if (subscription != null && !subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
-        }
+
     }
 }

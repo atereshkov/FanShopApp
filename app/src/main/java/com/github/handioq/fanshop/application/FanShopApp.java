@@ -4,33 +4,58 @@ import android.app.Application;
 import android.util.Log;
 
 import com.github.handioq.BuildConfig;
+import com.github.handioq.fanshop.di.component.CatalogComponent;
+import com.github.handioq.fanshop.di.component.DaggerCatalogComponent;
 import com.github.handioq.fanshop.di.component.DaggerDatabaseComponent;
+import com.github.handioq.fanshop.di.component.DaggerLoginComponent;
 import com.github.handioq.fanshop.di.component.DaggerNetComponent;
+import com.github.handioq.fanshop.di.component.DaggerSignupComponent;
 import com.github.handioq.fanshop.di.component.DatabaseComponent;
+import com.github.handioq.fanshop.di.component.LoginComponent;
 import com.github.handioq.fanshop.di.component.NetComponent;
+import com.github.handioq.fanshop.di.component.SignupComponent;
 import com.github.handioq.fanshop.di.module.AppModule;
+import com.github.handioq.fanshop.di.module.CatalogModule;
 import com.github.handioq.fanshop.di.module.DatabaseModule;
+import com.github.handioq.fanshop.di.module.LoginModule;
 import com.github.handioq.fanshop.di.module.NetModule;
+import com.github.handioq.fanshop.di.module.SignupModule;
 
 public class FanShopApp extends Application {
 
     private NetComponent netComponent;
     private DatabaseComponent databaseComponent;
+    private CatalogComponent catalogComponent;
+    private LoginComponent loginComponent;
+    private SignupComponent signupComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        // Dagger%COMPONENT_NAME%
         netComponent = DaggerNetComponent.builder()
-                // list of modules that are part of this component need to be created here too
-                .appModule(new AppModule(this)) // This also corresponds to the name of your module: %component_name%Module
+                .appModule(new AppModule(this))
                 .netModule(new NetModule())
                 .build();
 
         databaseComponent = DaggerDatabaseComponent.builder()
                 .appModule(new AppModule(this))
                 .databaseModule(new DatabaseModule(this))
+                .build();
+
+        catalogComponent = DaggerCatalogComponent.builder()
+                .netComponent(netComponent)
+                .catalogModule(new CatalogModule())
+                .build();
+
+        loginComponent = DaggerLoginComponent.builder()
+                .netComponent(netComponent)
+                .loginModule(new LoginModule())
+                .build();
+
+        signupComponent = DaggerSignupComponent.builder()
+                .netComponent(netComponent)
+                .signupModule(new SignupModule())
                 .build();
     }
 
@@ -40,6 +65,22 @@ public class FanShopApp extends Application {
 
     public DatabaseComponent getDatabaseComponent() {
         return databaseComponent;
+    }
+
+    public CatalogComponent getCatalogComponent() {
+        return catalogComponent;
+    }
+
+    public LoginComponent getLoginComponent() {
+        return loginComponent;
+    }
+
+    public SignupComponent getSignupComponent() {
+        return signupComponent;
+    }
+
+    public void setLoginComponent(LoginComponent loginComponent) {
+        this.loginComponent = loginComponent;
     }
 
     /*private static FanShopApp instance;

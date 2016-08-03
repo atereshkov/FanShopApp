@@ -22,9 +22,6 @@ import butterknife.OnClick;
  */
 public class SignupActivity extends BaseActivity implements SignupView {
 
-    private SignupPresenter signupPresenter;
-
-    // UI references.
     @BindView(R.id.signup_email)
     AutoCompleteTextView mEmailView;
 
@@ -38,16 +35,16 @@ public class SignupActivity extends BaseActivity implements SignupView {
     View loginForm;
 
     @Inject
-    NetworkService networkService;
+    SignupPresenterImpl signupPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        ((FanShopApp) getApplication()).getNetComponent().inject(this);
+        ((FanShopApp) getApplication()).getSignupComponent().inject(this);
 
-        signupPresenter = new SignupPresenterImpl(this, networkService);
+        signupPresenter.setView(this);
     }
 
     @OnClick(R.id.signup_button)
