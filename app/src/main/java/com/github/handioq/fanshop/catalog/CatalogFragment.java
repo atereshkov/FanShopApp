@@ -95,15 +95,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
         loading = state;
 
         setRefreshActionButtonState(true);
-
         catalogPresenter.getProducts(totalItemCount, limit);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setRefreshActionButtonState(false);
-            }
-        }, 1000);
     }
 
     @Override
@@ -147,12 +139,14 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
             progressBar.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }
+        setRefreshActionButtonState(true);
     }
 
     @Override
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
+        setRefreshActionButtonState(false);
     }
 
     @Override
