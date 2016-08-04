@@ -28,7 +28,7 @@ public class ProductInfoActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
 
-        int selectedItem = getIntent().getExtras().getInt("id");
+        int selectedItem = getIntent().getExtras().getInt("id"); // TODO get item
 
         Bundle bundle = new Bundle();
         bundle.putInt("id", selectedItem);

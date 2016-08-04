@@ -134,7 +134,8 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
 
     @Override
     public boolean onQueryTextChange(String query) {
-        return false;
+        Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
+        return true;
     }
 
     public void setRefreshActionButtonState(final boolean refreshing) {
