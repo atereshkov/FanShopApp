@@ -39,5 +39,6 @@
     <string name="nav_title_shop">Магазин</string>
     <string name="pager_title_description">Описание</string>
     <string name="pager_title_reviews">Отзывы</string>
+    <string name="action_search">Поиск</string>
 
 </resources>

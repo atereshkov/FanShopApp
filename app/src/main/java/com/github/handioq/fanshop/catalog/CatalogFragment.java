@@ -3,9 +3,11 @@ package com.github.handioq.fanshop.catalog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,6 +26,7 @@ import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
+import com.github.handioq.fanshop.util.NetworkConstants;
 import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
 
 import java.util.ArrayList;
@@ -33,7 +36,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CatalogFragment extends BaseFragment implements CatalogView, PaginationListener {
+public class CatalogFragment extends BaseFragment implements CatalogView, PaginationListener, SearchView.OnQueryTextListener {
 
     @BindView(R.id.catalogProgressBar)
     ProgressBar progressBar;
@@ -45,7 +48,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
     private CatalogRecyclerAdapter adapter;
 
     private Menu optionsMenu;
-    private boolean loading = false;
+    private boolean loading = true;
 
     @Inject
     CatalogPresenterImpl catalogPresenter;
@@ -77,7 +80,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
         adapter = new CatalogRecyclerAdapter(new ArrayList<ProductDTO>());
 
         catalogPresenter.setView(this);
-        catalogPresenter.getProducts(0, 5);
+        catalogPresenter.getProducts(0, NetworkConstants.PRODUCTS_LOAD_COUNT);
 
         layoutManager = new LinearLayoutManager(getContext()); // 1 card in a row
         //ScreenDimensionsHelper screenDimensionsHelper = new ScreenDimensionsHelper(getActivity());
@@ -100,6 +103,11 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         optionsMenu = menu;
+
+        final MenuItem item = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(this);
+
         super.onCreateOptionsMenu(menu, menuInflater);
     }
 
@@ -117,6 +125,16 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+        return false;
     }
 
     public void setRefreshActionButtonState(final boolean refreshing) {

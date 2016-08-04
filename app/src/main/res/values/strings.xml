@@ -30,6 +30,7 @@
 
     <!-- Strings related to catalog -->
     <string name="catalog_price">%1$.2f $</string>
+    <string name="action_search">Search</string>
 
     <!-- Strings related to nav drawer list -->
     <string name="nav_catalog">Catalog</string>
@@ -45,7 +46,6 @@
 
     <!-- Strings related to productDTO info -->
     <string name="title_activity_productInfo">Information</string>
-    <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="pager_title_description">Description</string>
     <string name="pager_title_reviews">Reviews</string>
 

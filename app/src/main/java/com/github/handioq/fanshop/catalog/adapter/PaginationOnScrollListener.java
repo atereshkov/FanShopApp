@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.github.handioq.fanshop.catalog.PaginationListener;
+import com.github.handioq.fanshop.util.NetworkConstants;
 
 public class PaginationOnScrollListener extends RecyclerView.OnScrollListener {
 
@@ -18,7 +19,6 @@ public class PaginationOnScrollListener extends RecyclerView.OnScrollListener {
 
     boolean loading = true;
     private int previousTotal = 0;
-    private static final int PAGINATION_LIMIT = 5;
 
     public PaginationOnScrollListener(PaginationListener paginationListener, LinearLayoutManager layoutManager) {
         this.paginationListener = paginationListener;
@@ -43,7 +43,7 @@ public class PaginationOnScrollListener extends RecyclerView.OnScrollListener {
         if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem)) {
             Log.i(TAG, "end onScroll");
 
-            paginationListener.onPaginationLoad(loading, totalItemCount, PAGINATION_LIMIT);
+            paginationListener.onPaginationLoad(loading, totalItemCount, NetworkConstants.PRODUCTS_LOAD_COUNT);
 
             loading = true;
         }

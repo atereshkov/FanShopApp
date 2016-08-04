@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHolder> {
 
-    private final List<ProductDTO> items;
+    private List<ProductDTO> items;
 
     public CatalogRecyclerAdapter(List<ProductDTO> items) {
         this.items = items;
@@ -36,4 +36,12 @@ public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHold
         notifyDataSetChanged();
     }
 
+    public void setItems(List<ProductDTO> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
+
+    public List<ProductDTO> getItems() {
+        return items;
+    }
 }

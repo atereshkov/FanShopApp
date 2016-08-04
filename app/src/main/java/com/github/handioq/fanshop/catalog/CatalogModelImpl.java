@@ -27,7 +27,7 @@ public class CatalogModelImpl implements CatalogModel {
 
         networkService.getApiService()
                 .getProducts(offset, count)
-                //.delay(3, TimeUnit.SECONDS)
+                .delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<List<ProductDTO>>applyScheduler())
                 .subscribe(new Observer<List<ProductDTO>>() {
                     @Override
