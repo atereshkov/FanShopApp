@@ -5,6 +5,8 @@ import android.util.Log;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
+import javax.inject.Inject;
+
 public class ProductInfoPresenterImpl implements ProductInfoPresenter, ProductInfoModel.Callback {
 
     private ProductInfoView productInfoView;
@@ -14,12 +16,16 @@ public class ProductInfoPresenterImpl implements ProductInfoPresenter, ProductIn
 
     private final static String TAG = "ProductInfoPresenterImp";
 
-    public ProductInfoPresenterImpl(ProductInfoView productInfoView, NetworkService networkService) {
-        this.productInfoView = productInfoView;
-        this.networkService = networkService;
+    @Inject
+    public ProductInfoPresenterImpl(NetworkService networkService) {
 
         productInfoModel = new ProductInfoModelImpl(networkService);
         productInfoModel.setCallback(this);
+    }
+
+    @Override
+    public void setView(ProductInfoView productInfoView) {
+        this.productInfoView = productInfoView;
     }
 
     @Override

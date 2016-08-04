@@ -20,11 +20,15 @@ public class CatalogPresenterImpl implements CatalogPresenter, CatalogModel.Call
 
     private final static String TAG = "CatalogPresenterImpl";
 
-    public CatalogPresenterImpl(CatalogView catalogView, NetworkService networkService) {
-        this.catalogView = catalogView;
-
+    @Inject
+    public CatalogPresenterImpl(NetworkService networkService) {
         catalogModel = new CatalogModelImpl(networkService);
         catalogModel.setCallback(this);
+    }
+
+    @Override
+    public void setView(CatalogView catalogView) {
+        this.catalogView = catalogView;
     }
 
     @Override

@@ -26,9 +26,6 @@ import butterknife.OnClick;
  */
 public class LoginActivity extends BaseActivity implements LoginView {
 
-    private LoginPresenter loginPresenter;
-
-    // UI references.
     @BindView(R.id.email)
     AutoCompleteTextView mEmailView;
 
@@ -42,16 +39,16 @@ public class LoginActivity extends BaseActivity implements LoginView {
     ProgressBar progressBar;
 
     @Inject
-    NetworkService networkService;
+    LoginPresenterImpl loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ((FanShopApp) getApplication()).getNetComponent().inject(this);
+        ((FanShopApp) getApplication()).getLoginComponent().inject(this);
 
-        loginPresenter = new LoginPresenterImpl(this, networkService);
+        loginPresenter.setView(this);
     }
 
     @OnClick(R.id.sign_in)

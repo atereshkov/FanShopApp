@@ -8,4 +8,6 @@ public interface CatalogPresenter {
 
     void onItemClicked(View view, int position);
 
+    void setView(CatalogView catalogView);
+
 }

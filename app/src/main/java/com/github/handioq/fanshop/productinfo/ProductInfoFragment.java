@@ -46,7 +46,6 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     private final static String TAG = "ProductInfoFragment";
 
     private int selectedItemId;
-    private ProductInfoPresenter productInfoPresenter;
     private InfoAdapter infoAdapter;
     private int dotsCount;
     private ImageView[] dots;
@@ -76,7 +75,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     TextView descriptionView;
 
     @Inject
-    NetworkService networkService;
+    ProductInfoPresenterImpl productInfoPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +83,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         // retain this fragment
         setRetainInstance(true);
 
-        ((FanShopApp) getActivity().getApplication()).getNetComponent().inject(this);
+        ((FanShopApp) getActivity().getApplication()).getProductInfoComponent().inject(this);
     }
 
     @Nullable
@@ -120,7 +119,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         descriptionPager.setAdapter(infoAdapter);
         tabLayout.setupWithViewPager(descriptionPager);
 
-        productInfoPresenter = new ProductInfoPresenterImpl(this, networkService);
+        productInfoPresenter.setView(this);
         productInfoPresenter.getProduct(selectedItemId);
     }
 

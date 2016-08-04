@@ -6,6 +6,17 @@ import rx.Observable;
 
 public interface SignupModel {
 
-    Observable<UserDTO> getSignupState(UserDTO userDTO);
+    void getSignupState(UserDTO userDTO);
+
+    void setCallback(Callback callback);
+
+    interface Callback {
+
+        void onSuccess(UserDTO userDTO);
+
+        void onError(Throwable error);
+
+        void onCompleted();
+    }
 
 }

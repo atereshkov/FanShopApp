@@ -8,4 +8,6 @@ public interface SignupPresenter {
 
     void onDestroy();
 
+    void setView(SignupView signupView);
+
 }
