@@ -4,4 +4,6 @@ public interface ProductInfoPresenter {
 
     void getProduct(int id); // TODO: parameters? index? whatever..
 
+    void setView(ProductInfoView productInfoView);
+
 }

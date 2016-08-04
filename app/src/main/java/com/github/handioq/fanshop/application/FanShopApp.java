@@ -9,16 +9,19 @@ import com.github.handioq.fanshop.di.component.DaggerCatalogComponent;
 import com.github.handioq.fanshop.di.component.DaggerDatabaseComponent;
 import com.github.handioq.fanshop.di.component.DaggerLoginComponent;
 import com.github.handioq.fanshop.di.component.DaggerNetComponent;
+import com.github.handioq.fanshop.di.component.DaggerProductInfoComponent;
 import com.github.handioq.fanshop.di.component.DaggerSignupComponent;
 import com.github.handioq.fanshop.di.component.DatabaseComponent;
 import com.github.handioq.fanshop.di.component.LoginComponent;
 import com.github.handioq.fanshop.di.component.NetComponent;
+import com.github.handioq.fanshop.di.component.ProductInfoComponent;
 import com.github.handioq.fanshop.di.component.SignupComponent;
 import com.github.handioq.fanshop.di.module.AppModule;
 import com.github.handioq.fanshop.di.module.CatalogModule;
 import com.github.handioq.fanshop.di.module.DatabaseModule;
 import com.github.handioq.fanshop.di.module.LoginModule;
 import com.github.handioq.fanshop.di.module.NetModule;
+import com.github.handioq.fanshop.di.module.ProductInfoModule;
 import com.github.handioq.fanshop.di.module.SignupModule;
 
 public class FanShopApp extends Application {
@@ -28,6 +31,7 @@ public class FanShopApp extends Application {
     private CatalogComponent catalogComponent;
     private LoginComponent loginComponent;
     private SignupComponent signupComponent;
+    private ProductInfoComponent productInfoComponent;
 
     @Override
     public void onCreate() {
@@ -57,6 +61,11 @@ public class FanShopApp extends Application {
                 .netComponent(netComponent)
                 .signupModule(new SignupModule())
                 .build();
+
+        productInfoComponent = DaggerProductInfoComponent.builder()
+                .netComponent(netComponent)
+                .productInfoModule(new ProductInfoModule())
+                .build();
     }
 
     public NetComponent getNetComponent() {
@@ -77,6 +86,10 @@ public class FanShopApp extends Application {
 
     public SignupComponent getSignupComponent() {
         return signupComponent;
+    }
+
+    public ProductInfoComponent getProductInfoComponent() {
+        return productInfoComponent;
     }
 
     public void setLoginComponent(LoginComponent loginComponent) {
