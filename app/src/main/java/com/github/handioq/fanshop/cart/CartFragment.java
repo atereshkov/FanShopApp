@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
@@ -33,6 +34,9 @@ public class CartFragment extends BaseFragment implements CartView {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+
+    @BindView(R.id.cart_items_count)
+    TextView cartItemsCount;
 
     private LinearLayoutManager layoutManager;
     private CartRecyclerAdapter adapter;
@@ -82,12 +86,14 @@ public class CartFragment extends BaseFragment implements CartView {
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
+        cartItemsCount.setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
+        cartItemsCount.setVisibility(View.VISIBLE);
     }
 
     @Override

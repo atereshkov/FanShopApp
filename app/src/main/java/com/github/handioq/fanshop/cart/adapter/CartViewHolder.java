@@ -32,7 +32,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.product_image)
     ImageView productImage;
 
-    private ProductDTO mProductDTO;
+    private ProductDTO productDTO;
 
     static CartViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item, parent, false);
@@ -46,9 +46,9 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mProductDTO != null) {
+                if (productDTO != null) {
                     Context context = itemView.getContext();
-                    //Toast.makeText(context, "onItemClick " + buyButtonView.getTag().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "onItemClick " + productDTO, Toast.LENGTH_SHORT).show();
 
                     //context.startActivity(ProductInfoActivity.makeIntent(context, (int) buyButtonView.getTag()));
                 }
@@ -57,14 +57,14 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(ProductDTO item) {
-        mProductDTO = item;
+        productDTO = item;
 
         cartItemNameView.setText(item.getName());
 
         removeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(itemView.getContext(),
-                        "Click remove button on product " + mProductDTO, Toast.LENGTH_SHORT).show();
+                        "Click remove button on product " + productDTO, Toast.LENGTH_SHORT).show();
             }
         });
 

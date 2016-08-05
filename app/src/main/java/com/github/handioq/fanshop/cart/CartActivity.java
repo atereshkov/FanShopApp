@@ -1,19 +1,27 @@
 package com.github.handioq.fanshop.cart;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseNavActivity;
+
+import butterknife.BindView;
 
 public class CartActivity extends BaseNavActivity {
 
     private static final String TAG = "CartActivity";
     private static final String CART_FRAGMENT_TAG = "cart";
+
+    @BindView(R.id.fab_cart)
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,12 @@ public class CartActivity extends BaseNavActivity {
 
             Log.i(TAG, "create new CartFragment");
         }
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(CartActivity.this, "Not implemented", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

@@ -33,7 +33,7 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.buy_button)
     ImageButton buyButtonView;
 
-    private ProductDTO mProductDTO;
+    private ProductDTO productDTO;
 
     static CatalogViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.catalog_item, parent, false);
@@ -47,27 +47,27 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mProductDTO != null) {
+                if (productDTO != null) {
                     Context context = itemView.getContext();
                     Toast.makeText(context,
-                            "onItemClick " + mProductDTO.getId(), Toast.LENGTH_SHORT).show();
+                            "onItemClick " + productDTO.getId(), Toast.LENGTH_SHORT).show();
 
                     //context.startActivity(ProductInfoActivity.makeIntent(context, (int) buyButtonView.getTag()));
-                    context.startActivity(ProductInfoActivity.makeIntent(context, mProductDTO.getId()));
+                    context.startActivity(ProductInfoActivity.makeIntent(context, productDTO.getId()));
                 }
             }
         });
     }
 
     public void bind(ProductDTO item) {
-        mProductDTO = item;
+        productDTO = item;
         catalogItemNameView.setText(item.getName());
 
         buyButtonView.setTag(getAdapterPosition());
         buyButtonView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(itemView.getContext(),
-                        "Click buy button on product " + mProductDTO, Toast.LENGTH_SHORT).show();
+                        "Click buy button on product " + productDTO, Toast.LENGTH_SHORT).show();
             }
         });
 
