@@ -27,7 +27,7 @@
     <string name="title_activity_signup">Регистрация</string>
 
     <!-- Strings related to catalog -->
-    <string name="catalog_price">%1$f</string>
+    <string name="catalog_price">%1$.2f $</string>
     <string name="title_activity_productInfo">Информация</string>
     <string name="title_activity_cart">Корзина</string>
     <string name="nav_title_info">Информация</string>
@@ -40,5 +40,7 @@
     <string name="pager_title_description">Описание</string>
     <string name="pager_title_reviews">Отзывы</string>
     <string name="action_search">Поиск</string>
+    <string name="cart_items_count">В вашей корзине %1$s товаров</string>
+    <string name="cart_pay_amount">%1$.2f $</string>
 
 </resources>
