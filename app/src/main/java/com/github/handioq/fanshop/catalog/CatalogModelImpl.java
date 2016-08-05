@@ -56,10 +56,4 @@ public class CatalogModelImpl implements CatalogModel {
         Log.i(TAG, "setCallback");
     }
 
-//    @Override
-//    public Observable<List<ProductDTO>> getProductDTOs() {
-//        Log.i("CatalogModelImpl", "Starting products download");
-//        return networkService.getPreparedObservable(networkService.getApiService().getProductDTOs(null, null));
-//    }
-
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CartRecyclerAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
-    private final List<ProductDTO> items;
+    private List<ProductDTO> items;
 
     public CartRecyclerAdapter(List<ProductDTO> items) {
         this.items = items;
@@ -28,6 +28,11 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartViewHolder> {
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public void setItems(List<ProductDTO> newItems) {
+        this.items = newItems;
+        notifyDataSetChanged();
     }
 
 }

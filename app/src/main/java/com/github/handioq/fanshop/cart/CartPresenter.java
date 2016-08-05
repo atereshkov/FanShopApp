@@ -4,8 +4,10 @@ import android.view.View;
 
 public interface CartPresenter {
 
-    void getProducts();
+    void getCartItems(int userId);
 
     void onItemClicked(View view, int position);
+
+    void setView(CartView cartView);
 
 }

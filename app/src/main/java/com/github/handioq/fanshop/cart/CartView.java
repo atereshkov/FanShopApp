@@ -12,7 +12,7 @@ public interface CartView {
 
     void hideProgress();
 
-    void setProducts(List<ProductDTO> productDTOs);
+    void setCartItems(List<ProductDTO> productDTOs);
 
     void onError(Throwable e);
 

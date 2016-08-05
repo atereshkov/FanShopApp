@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CartModel {
 
-    void getProducts(int offset, int count);
+    void gerCartItems(int userid);
 
     void setCallback(Callback callback);
 
