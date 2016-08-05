@@ -9,8 +9,7 @@
         android:id="@+id/image_display"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:contentDescription="test"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true" /> <!--android:contentDescription="test"-->
 
 </RelativeLayout>

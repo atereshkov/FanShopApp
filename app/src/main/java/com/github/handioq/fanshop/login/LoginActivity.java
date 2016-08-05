@@ -30,7 +30,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     AutoCompleteTextView mEmailView;
 
     @BindView(R.id.password)
-    EditText mPasswordView;
+    EditText passwordView;
 
     @BindView(R.id.login_form)
     View loginForm;
@@ -39,14 +39,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
     ProgressBar progressBar;
 
     @Inject
-    LoginPresenterImpl loginPresenter;
+    LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ((FanShopApp) getApplication()).getLoginComponent().inject(this);
+        ((FanShopApp) getApplicationContext()).getLoginComponent().inject(this);
 
         loginPresenter.setView(this);
     }
@@ -54,7 +54,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.sign_in)
     void signIn() {
         String login = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String password = passwordView.getText().toString();
         loginPresenter.loginValidate(login, password);
     }
 

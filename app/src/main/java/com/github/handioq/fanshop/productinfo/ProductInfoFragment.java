@@ -75,7 +75,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     TextView descriptionView;
 
     @Inject
-    ProductInfoPresenterImpl productInfoPresenter;
+    ProductInfoPresenter productInfoPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         // retain this fragment
         setRetainInstance(true);
 
-        ((FanShopApp) getActivity().getApplication()).getProductInfoComponent().inject(this);
+        ((FanShopApp) getContext().getApplicationContext()).getProductInfoComponent().inject(this);
     }
 
     @Nullable

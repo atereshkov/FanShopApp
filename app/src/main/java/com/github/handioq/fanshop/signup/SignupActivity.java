@@ -23,10 +23,10 @@ import butterknife.OnClick;
 public class SignupActivity extends BaseActivity implements SignupView {
 
     @BindView(R.id.signup_email)
-    AutoCompleteTextView mEmailView;
+    AutoCompleteTextView emailView;
 
     @BindView(R.id.signup_password)
-    EditText mPasswordView;
+    EditText passwordView;
 
     @BindView(R.id.login_progress)
     View progressBar;
@@ -35,22 +35,22 @@ public class SignupActivity extends BaseActivity implements SignupView {
     View loginForm;
 
     @Inject
-    SignupPresenterImpl signupPresenter;
+    SignupPresenter signupPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        ((FanShopApp) getApplication()).getSignupComponent().inject(this);
+        ((FanShopApp) getApplicationContext()).getSignupComponent().inject(this);
 
         signupPresenter.setView(this);
     }
 
     @OnClick(R.id.signup_button)
     void signUp() {
-        String login = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String login = emailView.getText().toString();
+        String password = passwordView.getText().toString();
         UserDTO userDTO = new UserDTO(login, password);
         signupPresenter.signupValidate(userDTO);
     }

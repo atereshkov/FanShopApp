@@ -1,10 +1,8 @@
 package com.github.handioq.fanshop.catalog;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -24,10 +22,8 @@ import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
 import com.github.handioq.fanshop.util.NetworkConstants;
-import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +34,7 @@ import butterknife.BindView;
 
 public class CatalogFragment extends BaseFragment implements CatalogView, PaginationListener, SearchView.OnQueryTextListener {
 
-    @BindView(R.id.catalogProgressBar)
+    @BindView(R.id.catalog_progress_bar)
     ProgressBar progressBar;
 
     @BindView(R.id.recycler_view)
@@ -51,7 +47,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
     private boolean loading = true;
 
     @Inject
-    CatalogPresenterImpl catalogPresenter;
+    CatalogPresenter catalogPresenter;
 
     private final String TAG = "CatalogFragment";
 
@@ -75,7 +71,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
 
         Log.i(TAG, "onViewCreated");
 
-        ((FanShopApp) getActivity().getApplication()).getCatalogComponent().inject(this);
+        ((FanShopApp) getContext().getApplicationContext()).getCatalogComponent().inject(this);
 
         adapter = new CatalogRecyclerAdapter(new ArrayList<ProductDTO>());
 

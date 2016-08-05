@@ -73,14 +73,14 @@
                 android:textStyle="bold" />
 
             <ProgressBar
-                android:id="@+id/signup_progressBar"
+                android:id="@+id/signup_progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/have_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

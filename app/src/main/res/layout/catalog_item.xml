@@ -9,7 +9,7 @@
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="true"
-    card_view:contentPadding="10dp" >
+    card_view:contentPadding="10dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/productImage"
+            android:id="@+id/product_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="150dp" />
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/productImage"
+            android:layout_below="@id/product_image"
             android:minHeight="0dp"
             android:minWidth="0dp"
             android:src="@drawable/ic_add_shopping_cart_black_24dp" />
@@ -37,7 +37,7 @@
             android:id="@+id/catalog_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/productImage"
+            android:layout_below="@id/product_image"
             android:layout_toLeftOf="@id/buy_button"
             android:textStyle="bold" />
 

@@ -27,7 +27,7 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.catalog_item_price)
     TextView catalogItemPriceView;
 
-    @BindView(R.id.productImage)
+    @BindView(R.id.product_image)
     ImageView productImage;
 
     @BindView(R.id.buy_button)

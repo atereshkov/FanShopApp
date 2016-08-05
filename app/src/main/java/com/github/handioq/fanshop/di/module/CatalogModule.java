@@ -19,7 +19,7 @@ public class CatalogModule {
 
     @Provides
     @UserScope
-    public CatalogPresenterImpl providesCatalogPresenter(NetworkService networkService) {
+    public CatalogPresenter providesCatalogPresenter(NetworkService networkService) {
         return new CatalogPresenterImpl(networkService);
     }
 }
