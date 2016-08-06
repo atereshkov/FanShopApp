@@ -171,7 +171,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
     @Override
     public void onItemClicked(View view, int position) {
         //Toast.makeText(getActivity(), "onItemClicked " + position, Toast.LENGTH_SHORT).show();
-        startActivity(ProductInfoActivity.makeIntent(getContext(), position));
+        //startActivity(ProductInfoActivity.makeIntent(getContext(), position));
     }
 
     @Override
