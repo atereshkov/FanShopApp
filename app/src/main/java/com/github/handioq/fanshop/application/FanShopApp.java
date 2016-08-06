@@ -42,7 +42,7 @@ public class FanShopApp extends Application {
 
         netComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
-                .netModule(new NetModule())
+                //.netModule(new NetModule())
                 .build();
 
         databaseComponent = DaggerDatabaseComponent.builder()
@@ -52,27 +52,23 @@ public class FanShopApp extends Application {
 
         catalogComponent = DaggerCatalogComponent.builder()
                 .netComponent(netComponent)
-                .catalogModule(new CatalogModule())
+                //.catalogModule(new CatalogModule())
                 .build();
 
         loginComponent = DaggerLoginComponent.builder()
                 .netComponent(netComponent)
-                .loginModule(new LoginModule())
                 .build();
 
         signupComponent = DaggerSignupComponent.builder()
                 .netComponent(netComponent)
-                .signupModule(new SignupModule())
                 .build();
 
         productInfoComponent = DaggerProductInfoComponent.builder()
                 .netComponent(netComponent)
-                .productInfoModule(new ProductInfoModule())
                 .build();
 
         cartComponent = DaggerCartComponent.builder()
                 .netComponent(netComponent)
-                .cartModule(new CartModule())
                 .build();
 
         //netComponent = com.codepath.dagger.components.DaggerNetComponent.create();
