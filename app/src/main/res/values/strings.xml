@@ -29,7 +29,7 @@
     <string name="already_have_an_account">Already Have an Account?</string>
 
     <!-- Strings related to catalog -->
-    <string name="catalog_price">%1$.2f $</string>
+    <string name="catalog_price">$%1$.2f</string>
     <string name="action_search">Search</string>
 
     <!-- Strings related to nav drawer list -->
@@ -44,7 +44,7 @@
     <!-- Strings related to shopping cart -->
     <string name="title_activity_cart">Shopping cart</string>
     <string name="cart_items_count">You have %1$s items in your shopping cart</string>
-    <string name="cart_pay_amount">%1$.2f $</string>
+    <string name="cart_pay_amount">$%1$.2f</string>
 
     <!-- Strings related to productDTO info -->
     <string name="title_activity_productInfo">Information</string>

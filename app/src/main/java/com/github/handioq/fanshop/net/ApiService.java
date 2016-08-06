@@ -37,4 +37,8 @@ public interface ApiService {
     @GET(USER_URL + "/{id}/cart")
     Observable<List<ProductDTO>> getCart(@Path("id") int id);
 
+    @POST(USER_URL + "/{id}/cart")
+    Observable<Response> addProductToCart(@Path("id") int userId,
+                                          @Body ProductDTO productDTO);
+
 }

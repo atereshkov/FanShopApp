@@ -68,6 +68,8 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 Toast.makeText(itemView.getContext(),
                         "Click buy button on product " + productDTO, Toast.LENGTH_SHORT).show();
+
+                // request?
             }
         });
 
