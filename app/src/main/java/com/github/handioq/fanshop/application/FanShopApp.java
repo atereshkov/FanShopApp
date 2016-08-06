@@ -52,7 +52,6 @@ public class FanShopApp extends Application {
 
         catalogComponent = DaggerCatalogComponent.builder()
                 .netComponent(netComponent)
-                //.catalogModule(new CatalogModule())
                 .build();
 
         loginComponent = DaggerLoginComponent.builder()

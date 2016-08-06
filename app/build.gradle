@@ -45,6 +45,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$supportV4Version"
     compile "com.jakewharton:butterknife:$butterknifeVersion"
     compile "com.google.dagger:dagger:$daggerVersion"
+    compile 'org.greenrobot:eventbus:3.0.0'
     apt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
     apt "com.google.dagger:dagger-compiler:$daggerVersion"
     provided 'javax.annotation:jsr250-api:1.0'

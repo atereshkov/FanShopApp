@@ -17,4 +17,6 @@ public interface CatalogView {
     void onError(Throwable e);
 
     void onItemClicked(View view, int position);
+
+    void onAddToCartClicked(ProductDTO productDTO);
 }

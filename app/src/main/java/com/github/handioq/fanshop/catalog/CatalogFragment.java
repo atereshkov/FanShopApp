@@ -22,8 +22,11 @@ import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.net.Response;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
 import com.github.handioq.fanshop.util.NetworkConstants;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CatalogFragment extends BaseFragment implements CatalogView, PaginationListener, SearchView.OnQueryTextListener {
+public class CatalogFragment extends BaseFragment implements CatalogView, PaginationListener,
+        SearchView.OnQueryTextListener, AddToCartView {
 
     @BindView(R.id.catalog_progress_bar)
     ProgressBar progressBar;
@@ -48,6 +52,9 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
 
     @Inject
     CatalogPresenter catalogPresenter;
+
+    @Inject
+    AddToCartPresenter addToCartPresenter;
 
     private final String TAG = "CatalogFragment";
 
@@ -75,6 +82,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
 
         adapter = new CatalogRecyclerAdapter(new ArrayList<ProductDTO>());
 
+        addToCartPresenter.setView(this);
         catalogPresenter.setView(this);
         catalogPresenter.getProducts(0, NetworkConstants.PRODUCTS_LOAD_COUNT);
 
@@ -86,6 +94,12 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
         recyclerView.setAdapter(adapter);
 
         recyclerView.addOnScrollListener(new PaginationOnScrollListener(this, layoutManager));
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().postSticky(new ViewEvent(this));
     }
 
     @Override
@@ -117,6 +131,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
         }
 
         if (id == R.id.action_settings) {
+            Toast.makeText(getContext(), "not impl", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -176,6 +191,21 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
 
     @Override
     public void onError(Throwable e) {
+        e.printStackTrace();
+    }
+
+    @Override
+    public void onAddToCartClicked(ProductDTO productDTO) {
+        addToCartPresenter.addProductToCart(500, productDTO); // TODO change mock id for real
+    }
+
+    @Override
+    public void onProductAddSuccess(Response response) {
+        Toast.makeText(getContext(), response.getMessage() + " - " + response.getCode(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProductAddError(Throwable e) {
         e.printStackTrace();
     }
 

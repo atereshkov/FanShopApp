@@ -2,6 +2,8 @@ package com.github.handioq.fanshop.di.module;
 
 import android.view.View;
 
+import com.github.handioq.fanshop.catalog.AddToCartPresenter;
+import com.github.handioq.fanshop.catalog.AddToCartPresenterImpl;
 import com.github.handioq.fanshop.catalog.CatalogPresenter;
 import com.github.handioq.fanshop.catalog.CatalogPresenterImpl;
 import com.github.handioq.fanshop.catalog.CatalogView;
@@ -21,5 +23,11 @@ public class CatalogModule {
     @UserScope
     public CatalogPresenter providesCatalogPresenter(NetworkService networkService) {
         return new CatalogPresenterImpl(networkService);
+    }
+
+    @Provides
+    @UserScope
+    public AddToCartPresenter providesAddToCartPresenter(NetworkService networkService) {
+        return new AddToCartPresenterImpl(networkService);
     }
 }
