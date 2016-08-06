@@ -1,5 +1,7 @@
 package com.github.handioq.fanshop.di.module;
 
+import com.github.handioq.fanshop.catalog.AddToCartPresenter;
+import com.github.handioq.fanshop.catalog.AddToCartPresenterImpl;
 import com.github.handioq.fanshop.di.scope.UserScope;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.productinfo.ProductInfoPresenter;
@@ -15,5 +17,11 @@ public class ProductInfoModule {
     @UserScope
     public ProductInfoPresenter providesCatalogPresenter(NetworkService networkService) {
         return new ProductInfoPresenterImpl(networkService);
+    }
+
+    @Provides
+    @UserScope
+    public AddToCartPresenter providesAddToCartPresenter(NetworkService networkService) {
+        return new AddToCartPresenterImpl(networkService);
     }
 }

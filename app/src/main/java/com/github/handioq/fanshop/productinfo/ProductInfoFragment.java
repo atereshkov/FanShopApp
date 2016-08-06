@@ -3,6 +3,7 @@ package com.github.handioq.fanshop.productinfo;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -20,15 +21,19 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.catalog.AddToCartPresenter;
+import com.github.handioq.fanshop.catalog.AddToCartView;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.model.dto.ImageDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.net.Response;
 import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.ReviewAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
@@ -41,7 +46,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class ProductInfoFragment extends BaseFragment implements ProductInfoView, ViewPager.OnPageChangeListener {
+public class ProductInfoFragment extends BaseFragment implements ProductInfoView, ViewPager.OnPageChangeListener,
+        AddToCartView {
 
     private final static String TAG = "ProductInfoFragment";
 
@@ -49,6 +55,8 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     private InfoAdapter infoAdapter;
     private int dotsCount;
     private ImageView[] dots;
+
+    private ProductDTO selectedProduct;
 
     @BindView(R.id.image_pager)
     ViewPager imageSlider;
@@ -74,8 +82,14 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     @BindView(R.id.info_description)
     TextView descriptionView;
 
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
     @Inject
     ProductInfoPresenter productInfoPresenter;
+
+    @Inject
+    AddToCartPresenter addToCartPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -119,8 +133,16 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
         descriptionPager.setAdapter(infoAdapter);
         tabLayout.setupWithViewPager(descriptionPager);
 
+        addToCartPresenter.setView(this);
+
         productInfoPresenter.setView(this);
         productInfoPresenter.getProduct(selectedItemId);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                addToCartPresenter.addProductToCart(5100, selectedProduct);
+            }
+        });
     }
 
     @Override
@@ -189,6 +211,8 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     public void setProduct(ProductDTO productDTO) {
         Log.i(TAG, "PRODUCT  ---> " + productDTO.getId() + productDTO.getName());
 
+        selectedProduct = productDTO;
+
         getActivity().setTitle(productDTO.getName());
         initSlider(productDTO.getImageDTOs());
 
@@ -200,6 +224,16 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
 
     @Override
     public void onError(Throwable e) {
+        e.printStackTrace();
+    }
+
+    @Override
+    public void onProductAddSuccess(Response response) {
+        Toast.makeText(getContext(), response.getMessage() + " - " + response.getCode(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProductAddError(Throwable e) {
         e.printStackTrace();
     }
 }
