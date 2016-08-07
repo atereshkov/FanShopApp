@@ -36,6 +36,10 @@
             android:name=".fanshop.productinfo.ProductInfoActivity"
             android:label="@string/title_activity_productInfo"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.account.AccountActivity"
+            android:label="@string/title_activity_account"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

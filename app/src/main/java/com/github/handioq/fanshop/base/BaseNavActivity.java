@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.github.handioq.R;
+import com.github.handioq.fanshop.account.AccountActivity;
 import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.catalog.CatalogActivity;
 
@@ -80,6 +81,9 @@ public abstract class BaseNavActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_account) {
+            Intent intent = new Intent(BaseNavActivity.this, AccountActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // or FLAG_ACTIVITY_CLEAR_TOP + FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent);
 
         } else if (id == R.id.nav_delivery) {
             Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
