@@ -17,7 +17,7 @@ android {
         debug {
             //buildConfigField "String", "DEBUG_BUILD", "I am a debug build!"
             //buildConfigField "String", "RELEASE_BUILD", "We be release!"
-            buildConfigField "String", "SERVER_URL", "\"http://private-d4ade-fanshopapp.apiary-mock.com\""
+            buildConfigField "String", "SERVER_URL", "\"http://private-517bbf-shop31.apiary-mock.com\""
 
         }
         release {

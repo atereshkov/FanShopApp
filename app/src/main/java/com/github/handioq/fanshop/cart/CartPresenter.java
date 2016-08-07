@@ -1,13 +1,61 @@
 package com.github.handioq.fanshop.cart;
 
-import android.view.View;
+import android.util.Log;
 
-public interface CartPresenter {
+import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.net.NetworkService;
 
-    void getCartItems(int userId);
+import java.util.List;
 
-    void onItemClicked(View view, int position);
+import javax.inject.Inject;
 
-    void setView(CartView cartView);
+public class CartPresenter implements CartMvp.Presenter, CartMvp.Model.Callback {
 
+    private CartMvp.View cartView;
+    private CartMvp.Model cartModel;
+    private NetworkService networkService;
+
+    private final static String TAG = "CartPresenter";
+
+    @Inject
+    public CartPresenter(NetworkService networkService) {
+        cartModel = new CartModel(networkService);
+        cartModel.setCallback(this);
+    }
+
+    @Override
+    public void setView(CartMvp.View cartView) {
+        this.cartView = cartView;
+    }
+
+    @Override
+    public void onProductsLoaded(List<ProductDTO> productDTOs) {
+        cartView.setCartItems(productDTOs);
+    }
+
+    @Override
+    public void onProductsLoadError(Throwable error) {
+        cartView.onError(error);
+    }
+
+    @Override
+    public void onCompleted() {
+        cartView.hideProgress();
+    }
+
+    @Override
+    public void getCartItems(int userId) {
+        if (cartView != null) {
+            cartView.showProgress();
+            Log.i(TAG, "showProgress() on cartView");
+        }
+
+        cartModel.gerCartItems(userId);
+    }
+
+    /*
+    @Override
+    public void onItemClicked(View view, int position) {
+        cartView.onItemClicked(view, position);
+    }*/
 }

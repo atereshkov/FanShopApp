@@ -9,9 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,16 +23,11 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
-import com.github.handioq.fanshop.catalog.AddToCartPresenter;
-import com.github.handioq.fanshop.catalog.AddToCartView;
-import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
+import com.github.handioq.fanshop.catalog.AddToCartMvp;
 import com.github.handioq.fanshop.model.dto.ImageDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.model.dto.ReviewDTO;
-import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.Response;
 import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
-import com.github.handioq.fanshop.productinfo.adapter.ReviewAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
 import com.github.handioq.fanshop.productinfo.slider.ImageSliderAdapter;
 
@@ -46,8 +38,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class ProductInfoFragment extends BaseFragment implements ProductInfoView, ViewPager.OnPageChangeListener,
-        AddToCartView {
+public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.ProductInfoView, ViewPager.OnPageChangeListener,
+        AddToCartMvp.AddToCartView {
 
     private final static String TAG = "ProductInfoFragment";
 
@@ -86,10 +78,10 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     FloatingActionButton fab;
 
     @Inject
-    ProductInfoPresenter productInfoPresenter;
+    ProductInfoMvp.Presenter productInfoPresenter;
 
     @Inject
-    AddToCartPresenter addToCartPresenter;
+    AddToCartMvp.Presenter addToCartPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

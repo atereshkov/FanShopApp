@@ -10,7 +10,6 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.model.dto.UserDTO;
-import com.github.handioq.fanshop.net.NetworkService;
 
 import javax.inject.Inject;
 
@@ -20,7 +19,7 @@ import butterknife.OnClick;
 /**
  * A login screen that offers login via email/password.
  */
-public class SignupActivity extends BaseActivity implements SignupView {
+public class SignupActivity extends BaseActivity implements SignupMvp.SignupView {
 
     @BindView(R.id.signup_email)
     AutoCompleteTextView emailView;
@@ -35,7 +34,7 @@ public class SignupActivity extends BaseActivity implements SignupView {
     View loginForm;
 
     @Inject
-    SignupPresenter signupPresenter;
+    SignupMvp.Presenter signupPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

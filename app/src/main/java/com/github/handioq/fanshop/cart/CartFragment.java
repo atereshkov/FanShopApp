@@ -10,14 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.cart.adapter.CartRecyclerAdapter;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.util.NetworkConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +24,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CartFragment extends BaseFragment implements CartView {
+public class CartFragment extends BaseFragment implements CartMvp.View {
 
     private final static String TAG = "CartFragment";
 
@@ -43,7 +41,7 @@ public class CartFragment extends BaseFragment implements CartView {
     private CartRecyclerAdapter adapter;
 
     @Inject
-    CartPresenter cartPresenter;
+    CartMvp.Presenter cartPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,8 +106,9 @@ public class CartFragment extends BaseFragment implements CartView {
         e.printStackTrace();
     }
 
+    /*
     @Override
     public void onItemClicked(View view, int position) {
 
-    }
+    }*/
 }

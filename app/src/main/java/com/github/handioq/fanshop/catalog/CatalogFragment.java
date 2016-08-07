@@ -37,8 +37,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CatalogFragment extends BaseFragment implements CatalogView, PaginationListener,
-        SearchView.OnQueryTextListener, AddToCartView {
+public class CatalogFragment extends BaseFragment implements CatalogMvp.CatalogView, PaginationListener,
+        SearchView.OnQueryTextListener, AddToCartMvp.AddToCartView {
 
     @BindView(R.id.catalog_progress_bar)
     ProgressBar progressBar;
@@ -53,10 +53,10 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
     private boolean paginationLoading = true;
 
     @Inject
-    CatalogPresenter catalogPresenter;
+    CatalogMvp.Presenter catalogPresenter;
 
     @Inject
-    AddToCartPresenter addToCartPresenter;
+    AddToCartMvp.Presenter addToCartPresenter;
 
     private final String TAG = "CatalogFragment";
 
@@ -194,11 +194,12 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
         adapter.addItems(productDTOs);
     }
 
+    /*
     @Override
     public void onItemClicked(View view, int position) {
         //Toast.makeText(getActivity(), "onItemClicked " + position, Toast.LENGTH_SHORT).show();
         //startActivity(ProductInfoActivity.makeIntent(getContext(), position));
-    }
+    }*/
 
     @Override
     public void onError(Throwable e) {

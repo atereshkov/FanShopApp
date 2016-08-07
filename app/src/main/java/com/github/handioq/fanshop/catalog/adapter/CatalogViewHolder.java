@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
-import com.github.handioq.fanshop.catalog.CatalogView;
+import com.github.handioq.fanshop.catalog.CatalogMvp;
 import com.github.handioq.fanshop.catalog.ViewEvent;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
@@ -39,7 +39,7 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
     ImageButton buyButtonView;
 
     private ProductDTO productDTO;
-    private CatalogView catalogView;
+    private CatalogMvp.CatalogView catalogView;
 
     static CatalogViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.catalog_item, parent, false);

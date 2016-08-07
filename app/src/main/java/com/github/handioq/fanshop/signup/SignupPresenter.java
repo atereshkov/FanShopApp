@@ -1,13 +1,57 @@
 package com.github.handioq.fanshop.signup;
 
 import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.net.NetworkService;
 
-public interface SignupPresenter {
+import javax.inject.Inject;
 
-    void signupValidate(UserDTO userDTO); // what else? whatever...
+public class SignupPresenter implements SignupMvp.Presenter, SignupModel.Callback {
 
-    void onDestroy();
+    private NetworkService networkService;
+    private SignupMvp.SignupView signupView;
+    private SignupModel signupModel;
 
-    void setView(SignupView signupView);
+    @Inject
+    public SignupPresenter(NetworkService networkService) {
 
+        signupModel = new SignupModel(networkService);
+        signupModel.setCallback(this);
+    }
+
+    @Override
+    public void signupValidate(UserDTO userDTO) {
+
+        if (signupView != null) {
+            signupView.showProgress();
+        }
+
+        signupModel.getSignupState(userDTO);
+    }
+
+    @Override
+    public void onSuccess(UserDTO userDTO) {
+        signupView.signupSuccess(userDTO);
+        signupView.hideProgress();
+    }
+
+    @Override
+    public void onError(Throwable error) {
+        signupView.signupFailure(error);
+        signupView.hideProgress();
+    }
+
+    @Override
+    public void onCompleted() {
+        signupView.onCompleted();
+    }
+
+    @Override
+    public void setView(SignupMvp.SignupView signupView) {
+        this.signupView = signupView;
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
 }
