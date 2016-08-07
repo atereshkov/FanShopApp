@@ -199,12 +199,14 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoView
     public void showProgress() {
         progressBarView.setVisibility(View.VISIBLE);
         scrollView.setVisibility(View.GONE);
+        fab.setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgress() {
         progressBarView.setVisibility(View.GONE);
         scrollView.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.VISIBLE);
     }
 
     @Override

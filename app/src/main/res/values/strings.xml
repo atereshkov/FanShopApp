@@ -43,7 +43,11 @@
 
     <!-- Strings related to shopping cart -->
     <string name="title_activity_cart">Shopping cart</string>
-    <string name="cart_items_count">You have %1$s items in your shopping cart</string>
+    <plurals name="cart_items_count">
+        <item quantity="one">You have %d item in your shopping cart</item>
+        <item quantity="few">You have %d items in your shopping cart</item>
+        <item quantity="other">You have %d items in your shopping cart</item>
+    </plurals>
     <string name="cart_pay_amount">$%1$.2f</string>
 
     <!-- Strings related to productDTO info -->

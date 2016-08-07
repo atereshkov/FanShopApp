@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
@@ -99,6 +100,7 @@ public class CartFragment extends BaseFragment implements CartView {
     @Override
     public void setCartItems(List<ProductDTO> productDTOs) {
         adapter.setItems(productDTOs);
+        cartItemsCount.setText(getResources().getQuantityString(R.plurals.cart_items_count, adapter.getItemCount(), adapter.getItemCount()));
     }
 
     @Override
