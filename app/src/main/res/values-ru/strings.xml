@@ -40,7 +40,12 @@
     <string name="pager_title_description">Описание</string>
     <string name="pager_title_reviews">Отзывы</string>
     <string name="action_search">Поиск</string>
-    <string name="cart_items_count">В вашей корзине %1$s товаров</string>
     <string name="cart_pay_amount">%1$.2f $</string>
+
+    <plurals name="cart_items_count">
+        <item quantity="one">В Вашей корзине %d товар</item>
+        <item quantity="many">В Вашей корзине %d товаров</item>
+        <item quantity="few">В Вашей корзине %d товара</item>
+    </plurals>
 
 </resources>
