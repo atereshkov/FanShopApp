@@ -1,8 +1,9 @@
 package com.github.handioq.fanshop.catalog;
 
+import android.content.Intent;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -19,11 +20,15 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
+import com.github.handioq.fanshop.net.Response;
+import com.github.handioq.fanshop.util.BadgeDrawable;
 import com.github.handioq.fanshop.util.NetworkConstants;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +37,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CatalogFragment extends BaseFragment implements CatalogView, PaginationListener, SearchView.OnQueryTextListener {
+public class CatalogFragment extends BaseFragment implements CatalogMvp.CatalogView, PaginationListener,
+        SearchView.OnQueryTextListener, AddToCartMvp.AddToCartView {
 
     @BindView(R.id.catalog_progress_bar)
     ProgressBar progressBar;
@@ -44,17 +50,20 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
     private CatalogRecyclerAdapter adapter;
 
     private Menu optionsMenu;
-    private boolean loading = true;
+    private boolean paginationLoading = true;
 
     @Inject
-    CatalogPresenter catalogPresenter;
+    CatalogMvp.Presenter catalogPresenter;
+
+    @Inject
+    AddToCartMvp.Presenter addToCartPresenter;
 
     private final String TAG = "CatalogFragment";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // retain this fragment
+
         setRetainInstance(true);
         setHasOptionsMenu(true);
     }
@@ -75,6 +84,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
 
         adapter = new CatalogRecyclerAdapter(new ArrayList<ProductDTO>());
 
+        addToCartPresenter.setView(this);
         catalogPresenter.setView(this);
         catalogPresenter.getProducts(0, NetworkConstants.PRODUCTS_LOAD_COUNT);
 
@@ -89,8 +99,14 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().postSticky(new ViewEvent(this));
+    }
+
+    @Override
     public void onPaginationLoad(boolean state, int totalItemCount, int limit) {
-        loading = state;
+        paginationLoading = state;
 
         setRefreshActionButtonState(true);
         catalogPresenter.getProducts(totalItemCount, limit);
@@ -100,9 +116,13 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         optionsMenu = menu;
 
-        final MenuItem item = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        searchView.setOnQueryTextListener(this);
+        //final MenuItem item = menu.findItem(R.id.action_search);
+        //final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        //searchView.setOnQueryTextListener(this);
+
+        MenuItem itemCart = menu.findItem(R.id.cart);
+        LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+        BadgeDrawable.setCartBadgeCount(getContext(), icon, "3"); // test
 
         super.onCreateOptionsMenu(menu, menuInflater);
     }
@@ -111,12 +131,18 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        if (id == R.id.cart) {
+            Intent intent = new Intent(getContext(), CartActivity.class);
+            startActivity(intent);
+        }
+
         if (id == R.id.refresh) {
             Toast.makeText(getContext(), "not impl", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         if (id == R.id.action_settings) {
+            Toast.makeText(getContext(), "not impl", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -149,7 +175,7 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
 
     @Override
     public void showProgress() {
-        if (loading) {
+        if (paginationLoading) {
             progressBar.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }
@@ -168,14 +194,30 @@ public class CatalogFragment extends BaseFragment implements CatalogView, Pagina
         adapter.addItems(productDTOs);
     }
 
+    /*
     @Override
     public void onItemClicked(View view, int position) {
         //Toast.makeText(getActivity(), "onItemClicked " + position, Toast.LENGTH_SHORT).show();
-        startActivity(ProductInfoActivity.makeIntent(getContext(), position));
-    }
+        //startActivity(ProductInfoActivity.makeIntent(getContext(), position));
+    }*/
 
     @Override
     public void onError(Throwable e) {
+        e.printStackTrace();
+    }
+
+    @Override
+    public void onAddToCartClicked(ProductDTO productDTO) {
+        addToCartPresenter.addProductToCart(500, productDTO); // TODO change mock id for real
+    }
+
+    @Override
+    public void onProductAddSuccess(Response response) {
+        Toast.makeText(getContext(), response.getMessage() + " - " + response.getCode(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProductAddError(Throwable e) {
         e.printStackTrace();
     }
 

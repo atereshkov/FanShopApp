@@ -23,4 +23,8 @@
     <dimen name="card_review_height">100dp</dimen>
     <dimen name="card_review_width">320dp</dimen>
 
+    <!-- Default cart image size -->
+    <dimen name="cart_image_height">90dp</dimen>
+    <dimen name="cart_image_weight">90dp</dimen>
+
 </resources>

@@ -1,18 +1,51 @@
 package com.github.handioq.fanshop.productinfo;
 
+import android.util.Log;
+
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.net.NetworkService;
 
-public interface ProductInfoModel {
+import rx.Observer;
 
-    void getProduct(int id);
+public class ProductInfoModel implements ProductInfoMvp.Model {
 
-    void setCallback(Callback callback);
+    private NetworkService networkService;
+    private ProductInfoModel.Callback callback;
 
-    interface Callback {
+    private final static String TAG = "ProductInfoModel";
 
-        void onProductLoaded(ProductDTO productDTO);
-
-        void onProductLoadError(Throwable error);
+    public ProductInfoModel(NetworkService networkService) {
+        this.networkService = networkService;
     }
 
+    @Override
+    public void getProduct(int id) {
+
+        networkService.getApiService()
+                .getProduct(id)
+                .compose(NetworkService.<ProductDTO>applyScheduler())
+                .subscribe(new Observer<ProductDTO>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onProductLoadError(e);
+                    }
+
+                    @Override
+                    public void onNext(ProductDTO productDTO) {
+                        callback.onProductLoaded(productDTO);
+                    }
+                });
+
+        Log.i(TAG, "getProduct()");
+    }
+
+    @Override
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
 }

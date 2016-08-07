@@ -2,8 +2,8 @@ package com.github.handioq.fanshop.di.module;
 
 import com.github.handioq.fanshop.di.scope.UserScope;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.signup.SignupMvp;
 import com.github.handioq.fanshop.signup.SignupPresenter;
-import com.github.handioq.fanshop.signup.SignupPresenterImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,7 +13,7 @@ public class SignupModule {
 
     @Provides
     @UserScope
-    public SignupPresenter providesSignupPresenter(NetworkService networkService) {
-        return new SignupPresenterImpl(networkService);
+    public SignupMvp.Presenter providesSignupPresenter(NetworkService networkService) {
+        return new SignupPresenter(networkService);
     }
 }

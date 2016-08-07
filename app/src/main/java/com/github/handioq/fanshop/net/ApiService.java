@@ -18,6 +18,7 @@ public interface ApiService {
     String LOGIN_URL = "/auth";
     String SIGNUP_URL = "/auth";
     String CATALOG_URL = "/catalog";
+    String USER_URL = "/user";
 
     @GET(LOGIN_URL)
     Observable<UserAuthState> login(@Query("username") String login,
@@ -32,4 +33,12 @@ public interface ApiService {
 
     @GET(CATALOG_URL + "/{id}")
     Observable<ProductDTO> getProduct(@Path("id") int id);
+
+    @GET(USER_URL + "/{id}/cart")
+    Observable<List<ProductDTO>> getCart(@Path("id") int id);
+
+    @POST(USER_URL + "/{id}/cart")
+    Observable<Response> addProductToCart(@Path("id") int userId,
+                                          @Body ProductDTO productDTO);
+
 }

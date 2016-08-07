@@ -1,7 +1,6 @@
 package com.github.handioq.fanshop.login;
 
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.widget.ProgressBar;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
-import com.github.handioq.fanshop.base.BaseNavActivity;
-import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.signup.SignupActivity;
 
 import javax.inject.Inject;
@@ -24,7 +21,7 @@ import butterknife.OnClick;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends BaseActivity implements LoginView {
+public class LoginActivity extends BaseActivity implements LoginMvp.LoginView {
 
     @BindView(R.id.email)
     AutoCompleteTextView mEmailView;
@@ -39,7 +36,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     ProgressBar progressBar;
 
     @Inject
-    LoginPresenter loginPresenter;
+    LoginMvp.Presenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

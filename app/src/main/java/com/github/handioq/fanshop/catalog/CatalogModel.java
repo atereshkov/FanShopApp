@@ -1,23 +1,59 @@
 package com.github.handioq.fanshop.catalog;
 
 
+import android.util.Log;
+
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public interface CatalogModel {
+import rx.Observer;
 
-    void getProducts(int offset, int count);
+public class CatalogModel implements CatalogMvp.Model {
 
-    void setCallback(Callback callback);
+    private NetworkService networkService;
+    private CatalogMvp.Model.Callback callback;
 
-    interface Callback {
+    private final static String TAG = "CatalogModel";
 
-        void onProductsLoaded(List<ProductDTO> productDTOs);
+    public CatalogModel(NetworkService networkService) {
+        this.networkService = networkService;
+    }
 
-        void onProductsLoadError(Throwable error);
+    @Override
+    public void getProducts(int offset, int count) {
 
-        void onCompleted();
+        networkService.getApiService()
+                .getProducts(offset, count)
+                //.delay(3, TimeUnit.SECONDS)
+                .compose(NetworkService.<List<ProductDTO>>applyScheduler())
+                .subscribe(new Observer<List<ProductDTO>>() {
+                    @Override
+                    public void onCompleted() {
+                        callback.onCompleted();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onProductsLoadError(e);
+                    }
+
+                    @Override
+                    public void onNext(List<ProductDTO> productDTOs) {
+                        callback.onProductsLoaded(productDTOs);
+                    }
+                });
+
+        Log.i(TAG, "getProductDTOs()");
+    }
+
+    @Override
+    public void setCallback(final Callback callback) {
+        this.callback = callback;
+
+        Log.i(TAG, "setCallback");
     }
 
 }

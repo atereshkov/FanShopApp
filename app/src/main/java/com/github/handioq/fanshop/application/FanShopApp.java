@@ -3,7 +3,9 @@ package com.github.handioq.fanshop.application;
 import android.app.Application;
 
 import com.github.handioq.BuildConfig;
+import com.github.handioq.fanshop.di.component.CartComponent;
 import com.github.handioq.fanshop.di.component.CatalogComponent;
+import com.github.handioq.fanshop.di.component.DaggerCartComponent;
 import com.github.handioq.fanshop.di.component.DaggerCatalogComponent;
 import com.github.handioq.fanshop.di.component.DaggerDatabaseComponent;
 import com.github.handioq.fanshop.di.component.DaggerLoginComponent;
@@ -16,6 +18,7 @@ import com.github.handioq.fanshop.di.component.NetComponent;
 import com.github.handioq.fanshop.di.component.ProductInfoComponent;
 import com.github.handioq.fanshop.di.component.SignupComponent;
 import com.github.handioq.fanshop.di.module.AppModule;
+import com.github.handioq.fanshop.di.module.CartModule;
 import com.github.handioq.fanshop.di.module.CatalogModule;
 import com.github.handioq.fanshop.di.module.DatabaseModule;
 import com.github.handioq.fanshop.di.module.LoginModule;
@@ -31,6 +34,7 @@ public class FanShopApp extends Application {
     private LoginComponent loginComponent;
     private SignupComponent signupComponent;
     private ProductInfoComponent productInfoComponent;
+    private CartComponent cartComponent;
 
     @Override
     public void onCreate() {
@@ -38,7 +42,7 @@ public class FanShopApp extends Application {
 
         netComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
-                .netModule(new NetModule())
+                //.netModule(new NetModule())
                 .build();
 
         databaseComponent = DaggerDatabaseComponent.builder()
@@ -48,23 +52,25 @@ public class FanShopApp extends Application {
 
         catalogComponent = DaggerCatalogComponent.builder()
                 .netComponent(netComponent)
-                .catalogModule(new CatalogModule())
                 .build();
 
         loginComponent = DaggerLoginComponent.builder()
                 .netComponent(netComponent)
-                .loginModule(new LoginModule())
                 .build();
 
         signupComponent = DaggerSignupComponent.builder()
                 .netComponent(netComponent)
-                .signupModule(new SignupModule())
                 .build();
 
         productInfoComponent = DaggerProductInfoComponent.builder()
                 .netComponent(netComponent)
-                .productInfoModule(new ProductInfoModule())
                 .build();
+
+        cartComponent = DaggerCartComponent.builder()
+                .netComponent(netComponent)
+                .build();
+
+        //netComponent = com.codepath.dagger.components.DaggerNetComponent.create();
     }
 
     public NetComponent getNetComponent() {
@@ -89,5 +95,9 @@ public class FanShopApp extends Application {
 
     public ProductInfoComponent getProductInfoComponent() {
         return productInfoComponent;
+    }
+
+    public CartComponent getCartComponent() {
+        return cartComponent;
     }
 }

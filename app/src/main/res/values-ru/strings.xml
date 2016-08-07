@@ -19,7 +19,7 @@
     <string name="action_sign_in_short">Войти</string>
     <string name="error_invalid_email">Email неверен</string>
     <string name="error_invalid_password">Пароль слишком короткий</string>
-    <string name="error_incorrect_password">Пароль неверен.</string>
+    <string name="error_incorrect_password">Пароль неверен</string>
     <string name="error_field_required">Обязательное поле</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="already_have_an_account">Уже зарегистрированы?</string>
@@ -27,7 +27,7 @@
     <string name="title_activity_signup">Регистрация</string>
 
     <!-- Strings related to catalog -->
-    <string name="catalog_price">%1$f</string>
+    <string name="catalog_price">%1$.2f $</string>
     <string name="title_activity_productInfo">Информация</string>
     <string name="title_activity_cart">Корзина</string>
     <string name="nav_title_info">Информация</string>
@@ -40,5 +40,12 @@
     <string name="pager_title_description">Описание</string>
     <string name="pager_title_reviews">Отзывы</string>
     <string name="action_search">Поиск</string>
+    <string name="cart_pay_amount">%1$.2f $</string>
+
+    <plurals name="cart_items_count">
+        <item quantity="one">В Вашей корзине %d товар</item>
+        <item quantity="many">В Вашей корзине %d товаров</item>
+        <item quantity="few">В Вашей корзине %d товара</item>
+    </plurals>
 
 </resources>

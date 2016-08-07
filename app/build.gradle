@@ -17,7 +17,7 @@ android {
         debug {
             //buildConfigField "String", "DEBUG_BUILD", "I am a debug build!"
             //buildConfigField "String", "RELEASE_BUILD", "We be release!"
-            buildConfigField "String", "SERVER_URL", "\"http://private-d4ade-fanshopapp.apiary-mock.com\""
+            buildConfigField "String", "SERVER_URL", "\"http://private-517bbf-shop31.apiary-mock.com\""
 
         }
         release {
@@ -45,6 +45,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$supportV4Version"
     compile "com.jakewharton:butterknife:$butterknifeVersion"
     compile "com.google.dagger:dagger:$daggerVersion"
+    compile 'org.greenrobot:eventbus:3.0.0'
     apt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
     apt "com.google.dagger:dagger-compiler:$daggerVersion"
     provided 'javax.annotation:jsr250-api:1.0'

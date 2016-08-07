@@ -2,8 +2,6 @@ package com.github.handioq.fanshop.di.module;
 
 import android.content.Context;
 
-import com.github.handioq.fanshop.catalog.CatalogView;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
