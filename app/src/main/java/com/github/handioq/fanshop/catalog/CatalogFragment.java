@@ -88,6 +88,10 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         catalogPresenter.setView(this);
         catalogPresenter.getProducts(0, NetworkConstants.PRODUCTS_LOAD_COUNT);
 
+        initRecycler();
+    }
+
+    private void initRecycler() {
         layoutManager = new LinearLayoutManager(getContext()); // 1 card in a row
         //ScreenDimensionsHelper screenDimensionsHelper = new ScreenDimensionsHelper(getActivity());
         //final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), screenDimensionsHelper.getCardsCount()); // n cards in a row

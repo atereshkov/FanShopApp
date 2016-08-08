@@ -44,7 +44,7 @@ public class CartModel implements CartMvp.Model {
                     }
                 });
 
-        Log.i(TAG, "getProductDTOs()");
+        Log.i(TAG, "getCartItems()");
     }
 
     @Override

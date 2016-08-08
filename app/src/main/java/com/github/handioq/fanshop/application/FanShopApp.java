@@ -3,8 +3,10 @@ package com.github.handioq.fanshop.application;
 import android.app.Application;
 
 import com.github.handioq.BuildConfig;
+import com.github.handioq.fanshop.di.component.AccountComponent;
 import com.github.handioq.fanshop.di.component.CartComponent;
 import com.github.handioq.fanshop.di.component.CatalogComponent;
+import com.github.handioq.fanshop.di.component.DaggerAccountComponent;
 import com.github.handioq.fanshop.di.component.DaggerCartComponent;
 import com.github.handioq.fanshop.di.component.DaggerCatalogComponent;
 import com.github.handioq.fanshop.di.component.DaggerDatabaseComponent;
@@ -35,6 +37,7 @@ public class FanShopApp extends Application {
     private SignupComponent signupComponent;
     private ProductInfoComponent productInfoComponent;
     private CartComponent cartComponent;
+    private AccountComponent accountComponent;
 
     @Override
     public void onCreate() {
@@ -70,6 +73,10 @@ public class FanShopApp extends Application {
                 .netComponent(netComponent)
                 .build();
 
+        accountComponent = DaggerAccountComponent.builder()
+                .netComponent(netComponent)
+                .build();
+
         //netComponent = com.codepath.dagger.components.DaggerNetComponent.create();
     }
 
@@ -99,5 +106,9 @@ public class FanShopApp extends Application {
 
     public CartComponent getCartComponent() {
         return cartComponent;
+    }
+
+    public AccountComponent getAccountComponent() {
+        return accountComponent;
     }
 }
