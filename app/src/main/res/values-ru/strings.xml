@@ -43,9 +43,12 @@
     <string name="cart_pay_amount">%1$.2f $</string>
 
     <plurals name="cart_items_count">
+        <item quantity="zero">В Вашей корзине нет товаров</item>
         <item quantity="one">В Вашей корзине %d товар</item>
-        <item quantity="many">В Вашей корзине %d товаров</item>
+        <item quantity="two">В Вашей корзине %d товара</item>
         <item quantity="few">В Вашей корзине %d товара</item>
+        <item quantity="many">В Вашей корзине %d товаров</item>
+        <item quantity="other">В Вашей корзине %d товаров</item>
     </plurals>
 
 </resources>

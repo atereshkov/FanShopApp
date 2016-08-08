@@ -1,11 +1,12 @@
 package com.github.handioq.fanshop.catalog;
 
+import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.Response;
 
 public interface AddToCartMvp {
 
-    interface Model {
+    interface Model extends Mvp.Model {
 
         void addProductToCart(int userId, ProductDTO productDTO);
 
@@ -21,7 +22,7 @@ public interface AddToCartMvp {
         }
     }
 
-    interface AddToCartView {
+    interface View extends Mvp.View {
 
         void onProductAddSuccess(Response response);
 
@@ -29,11 +30,9 @@ public interface AddToCartMvp {
 
     }
 
-    interface Presenter {
+    interface Presenter extends Mvp.Presenter <AddToCartMvp.View> {
 
         void addProductToCart(int userId, ProductDTO productDTO);
-
-        void setView(AddToCartView addToCartView);
 
     }
 

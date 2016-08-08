@@ -1,14 +1,13 @@
 package com.github.handioq.fanshop.cart;
 
-import android.view.View;
-
+import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 
 import java.util.List;
 
 public interface CartMvp {
 
-    interface Model {
+    interface Model extends Mvp.Model {
 
         void gerCartItems(int userid);
 
@@ -24,13 +23,13 @@ public interface CartMvp {
         }
     }
 
-    interface View {
+    interface View extends Mvp.View {
 
         void showProgress();
 
         void hideProgress();
 
-        void setCartItems(List<ProductDTO> productDTOs);
+        void setCartItems(List<ProductDTO> products);
 
         void onError(Throwable e);
 
@@ -38,13 +37,9 @@ public interface CartMvp {
 
     }
 
-    interface Presenter {
+    interface Presenter extends Mvp.Presenter<CartMvp.View> {
 
         void getCartItems(int userId);
-
-        //void onItemClicked(View view, int position);
-
-        void setView(CartMvp.View cartView);
 
     }
 }

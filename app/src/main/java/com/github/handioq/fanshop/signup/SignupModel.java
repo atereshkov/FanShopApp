@@ -5,6 +5,7 @@ import com.github.handioq.fanshop.net.NetworkService;
 
 import rx.Observable;
 import rx.Observer;
+import rx.Subscriber;
 
 public class SignupModel implements SignupMvp.Model {
 
@@ -21,7 +22,7 @@ public class SignupModel implements SignupMvp.Model {
         networkService.getApiService()
                 .signup(userDTO)
                 .compose(NetworkService.<UserDTO>applyScheduler())
-                .subscribe(new Observer<UserDTO>() {
+                .subscribe(new Subscriber<UserDTO>() {
 
                     @Override
                     public void onCompleted() {

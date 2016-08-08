@@ -38,8 +38,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.ProductInfoView, ViewPager.OnPageChangeListener,
-        AddToCartMvp.AddToCartView {
+public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.View, ViewPager.OnPageChangeListener,
+        AddToCartMvp.View {
 
     private final static String TAG = "ProductInfoFragment";
 
@@ -223,7 +223,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
     @Override
     public void onProductAddSuccess(Response response) {
-        Toast.makeText(getContext(), response.getMessage() + " - " + response.getCode(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

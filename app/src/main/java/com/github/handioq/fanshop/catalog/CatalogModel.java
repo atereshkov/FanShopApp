@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observer;
+import rx.Subscriber;
 
 public class CatalogModel implements CatalogMvp.Model {
 
@@ -29,7 +30,7 @@ public class CatalogModel implements CatalogMvp.Model {
                 .getProducts(offset, count)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<List<ProductDTO>>applyScheduler())
-                .subscribe(new Observer<List<ProductDTO>>() {
+                .subscribe(new Subscriber<List<ProductDTO>>() {
                     @Override
                     public void onCompleted() {
                         callback.onCompleted();

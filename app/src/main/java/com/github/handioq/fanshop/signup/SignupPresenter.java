@@ -8,7 +8,7 @@ import javax.inject.Inject;
 public class SignupPresenter implements SignupMvp.Presenter, SignupModel.Callback {
 
     private NetworkService networkService;
-    private SignupMvp.SignupView signupView;
+    private SignupMvp.View signupView;
     private SignupModel signupModel;
 
     @Inject
@@ -46,12 +46,8 @@ public class SignupPresenter implements SignupMvp.Presenter, SignupModel.Callbac
     }
 
     @Override
-    public void setView(SignupMvp.SignupView signupView) {
+    public void setView(SignupMvp.View signupView) {
         this.signupView = signupView;
     }
 
-    @Override
-    public void onDestroy() {
-
-    }
 }

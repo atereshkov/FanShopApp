@@ -21,7 +21,7 @@ import butterknife.OnClick;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends BaseActivity implements LoginMvp.LoginView {
+public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
     @BindView(R.id.email)
     AutoCompleteTextView mEmailView;
@@ -103,7 +103,6 @@ public class LoginActivity extends BaseActivity implements LoginMvp.LoginView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        loginPresenter.onDestroy();
     }
 
     @Override

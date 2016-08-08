@@ -8,6 +8,7 @@ import com.github.handioq.fanshop.net.NetworkService;
 import java.util.List;
 
 import rx.Observer;
+import rx.Subscriber;
 
 public class CartModel implements CartMvp.Model {
 
@@ -26,7 +27,7 @@ public class CartModel implements CartMvp.Model {
         networkService.getApiService()
                 .getCart(userId)
                 .compose(NetworkService.<List<ProductDTO>>applyScheduler())
-                .subscribe(new Observer<List<ProductDTO>>() {
+                .subscribe(new Subscriber<List<ProductDTO>>() {
                     @Override
                     public void onCompleted() {
                         callback.onCompleted();

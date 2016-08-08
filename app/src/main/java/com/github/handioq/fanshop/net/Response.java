@@ -5,32 +5,32 @@ import com.google.gson.annotations.SerializedName;
 public class Response {
 
     @SerializedName("status_code")
-    int code;
+    int statusCode;
 
     @SerializedName("status_message")
-    String message;
+    String statusMessage;
 
-    public int getCode() {
-        return code;
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    public String getMessage() {
-        return message;
+    public String getStatusMessage() {
+        return statusMessage;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
     }
 
     @Override
     public String toString() {
         return "Response{" +
-                "code=" + code +
-                ", message='" + message + '\'' +
+                "statusCode=" + statusCode +
+                ", statusMessage='" + statusMessage + '\'' +
                 '}';
     }
 }

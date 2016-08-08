@@ -1,10 +1,11 @@
 package com.github.handioq.fanshop.productinfo;
 
+import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 
 public interface ProductInfoMvp {
 
-    interface Model {
+    interface Model extends Mvp.Model {
 
         void getProduct(int id);
 
@@ -18,7 +19,7 @@ public interface ProductInfoMvp {
         }
     }
 
-    interface ProductInfoView {
+    interface View extends Mvp.View {
 
         void showProgress();
 
@@ -32,11 +33,9 @@ public interface ProductInfoMvp {
 
     }
 
-    interface Presenter {
+    interface Presenter extends Mvp.Presenter<ProductInfoMvp.View> {
 
         void getProduct(int id); // parameters? index? whatever..
-
-        void setView(ProductInfoView productInfoView);
 
     }
 }

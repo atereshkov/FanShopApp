@@ -1,14 +1,13 @@
 package com.github.handioq.fanshop.catalog;
 
-import android.view.View;
-
+import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 
 import java.util.List;
 
 public interface CatalogMvp {
 
-    interface Model {
+    interface Model extends Mvp.Model {
 
         void getProducts(int offset, int count);
 
@@ -24,7 +23,7 @@ public interface CatalogMvp {
         }
     }
 
-    interface CatalogView {
+    interface View extends Mvp.View {
 
         void showProgress();
 
@@ -32,20 +31,17 @@ public interface CatalogMvp {
 
         void setProducts(List<ProductDTO> productDTOs);
 
-        void onError(Throwable e);
+        void showError(Throwable e); // change to showError(int errorCode);
 
         //void onItemClicked(View view, int position);
 
         void onAddToCartClicked(ProductDTO productDTO);
     }
 
-    interface Presenter {
+    interface Presenter extends Mvp.Presenter<CatalogMvp.View> {
 
         void getProducts(int offset, int limit);
 
         //void onItemClicked(View view, int position);
-
-        void setView(CatalogView catalogView);
-
     }
 }

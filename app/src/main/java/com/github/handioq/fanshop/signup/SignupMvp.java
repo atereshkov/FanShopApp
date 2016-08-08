@@ -1,10 +1,11 @@
 package com.github.handioq.fanshop.signup;
 
+import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.UserDTO;
 
 public interface SignupMvp {
 
-    interface Model {
+    interface Model extends Mvp.Model {
 
         void getSignupState(UserDTO userDTO);
 
@@ -20,7 +21,7 @@ public interface SignupMvp {
         }
     }
 
-    interface SignupView {
+    interface View extends Mvp.View {
 
         void signupSuccess(UserDTO userDTO);
 
@@ -34,14 +35,9 @@ public interface SignupMvp {
 
     }
 
-    interface Presenter {
+    interface Presenter extends Mvp.Presenter<SignupMvp.View> {
 
         void signupValidate(UserDTO userDTO); // what else? whatever...
 
-        void onDestroy();
-
-        void setView(SignupView signupView);
-
     }
-
 }

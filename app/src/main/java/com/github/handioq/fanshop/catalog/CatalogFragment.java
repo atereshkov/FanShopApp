@@ -37,8 +37,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CatalogFragment extends BaseFragment implements CatalogMvp.CatalogView, PaginationListener,
-        SearchView.OnQueryTextListener, AddToCartMvp.AddToCartView {
+public class CatalogFragment extends BaseFragment implements CatalogMvp.View, PaginationListener,
+        SearchView.OnQueryTextListener, AddToCartMvp.View {
 
     @BindView(R.id.catalog_progress_bar)
     ProgressBar progressBar;
@@ -134,14 +134,11 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.CatalogV
         if (id == R.id.cart) {
             Intent intent = new Intent(getContext(), CartActivity.class);
             startActivity(intent);
-        }
-
-        if (id == R.id.refresh) {
+            return true;
+        } else if (id == R.id.refresh) {
             Toast.makeText(getContext(), "not impl", Toast.LENGTH_SHORT).show();
             return true;
-        }
-
-        if (id == R.id.action_settings) {
+        } else if (id == R.id.action_settings) {
             Toast.makeText(getContext(), "not impl", Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -202,23 +199,26 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.CatalogV
     }*/
 
     @Override
-    public void onError(Throwable e) {
+    public void showError(Throwable e) {
         e.printStackTrace();
     }
 
     @Override
     public void onAddToCartClicked(ProductDTO productDTO) {
         addToCartPresenter.addProductToCart(500, productDTO); // TODO change mock id for real
+        Log.i(TAG, "onAddToCartClicked");
     }
 
     @Override
     public void onProductAddSuccess(Response response) {
-        Toast.makeText(getContext(), response.getMessage() + " - " + response.getCode(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "onProductAddSuccess");
     }
 
     @Override
     public void onProductAddError(Throwable e) {
         e.printStackTrace();
+        Log.e(TAG, "onProductAddError");
     }
 
     @Override

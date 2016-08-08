@@ -19,7 +19,7 @@ import butterknife.OnClick;
 /**
  * A login screen that offers login via email/password.
  */
-public class SignupActivity extends BaseActivity implements SignupMvp.SignupView {
+public class SignupActivity extends BaseActivity implements SignupMvp.View {
 
     @BindView(R.id.signup_email)
     AutoCompleteTextView emailView;

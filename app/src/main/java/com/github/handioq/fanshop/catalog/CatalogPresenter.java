@@ -11,7 +11,7 @@ import javax.inject.Inject;
 
 public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.Callback {
 
-    private CatalogMvp.CatalogView catalogView;
+    private CatalogMvp.View catalogView;
     private CatalogMvp.Model catalogModel;
     private NetworkService networkService;
 
@@ -24,7 +24,7 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
     }
 
     @Override
-    public void setView(CatalogMvp.CatalogView catalogView) {
+    public void setView(CatalogMvp.View catalogView) {
         this.catalogView = catalogView;
     }
 
@@ -63,7 +63,7 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
 
     @Override
     public void onProductsLoadError(Throwable error) {
-        catalogView.onError(error);
+        catalogView.showError(error);
         catalogView.hideProgress();
         Log.i(TAG, "onError");
     }

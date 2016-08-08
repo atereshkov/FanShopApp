@@ -9,7 +9,7 @@ import javax.inject.Inject;
 public class LoginPresenter implements LoginMvp.Presenter, LoginMvp.Model.Callback {
 
     private NetworkService networkService;
-    private LoginMvp.LoginView loginView;
+    private LoginMvp.View loginView;
     private LoginModel loginModel;
 
     private final static String TAG = "LoginPresenter";
@@ -49,12 +49,8 @@ public class LoginPresenter implements LoginMvp.Presenter, LoginMvp.Model.Callba
     }
 
     @Override
-    public void setView(LoginMvp.LoginView loginView) {
+    public void setView(LoginMvp.View loginView) {
         this.loginView = loginView;
     }
 
-    @Override
-    public void onDestroy() {
-        Log.i(TAG, "onDestroy()");
-    }
 }

@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 public class ProductInfoPresenter implements ProductInfoMvp.Presenter, ProductInfoModel.Callback {
 
-    private ProductInfoMvp.ProductInfoView productInfoView;
+    private ProductInfoMvp.View productInfoView;
     private ProductInfoModel productInfoModel;
 
     private NetworkService networkService;
@@ -24,7 +24,7 @@ public class ProductInfoPresenter implements ProductInfoMvp.Presenter, ProductIn
     }
 
     @Override
-    public void setView(ProductInfoMvp.ProductInfoView productInfoView) {
+    public void setView(ProductInfoMvp.View productInfoView) {
         this.productInfoView = productInfoView;
     }
 

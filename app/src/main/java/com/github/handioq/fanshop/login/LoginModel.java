@@ -4,6 +4,7 @@ import com.github.handioq.fanshop.net.NetworkService;
 
 import rx.Observable;
 import rx.Observer;
+import rx.Subscriber;
 
 public class LoginModel implements LoginMvp.Model {
 
@@ -20,7 +21,7 @@ public class LoginModel implements LoginMvp.Model {
         networkService.getApiService()
                 .login(username, password)
                 .compose(NetworkService.<UserAuthState>applyScheduler())
-                .subscribe(new Observer<UserAuthState>() {
+                .subscribe(new Subscriber<UserAuthState>() {
                     @Override
                     public void onCompleted() {
                         callback.onCompleted();

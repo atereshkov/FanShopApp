@@ -5,6 +5,7 @@ import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.Response;
 
 import rx.Observer;
+import rx.Subscriber;
 
 public class AddToCartModel implements AddToCartMvp.Model {
 
@@ -21,7 +22,7 @@ public class AddToCartModel implements AddToCartMvp.Model {
                 .addProductToCart(userId, productDTO)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<Response>applyScheduler())
-                .subscribe(new Observer<Response>() {
+                .subscribe(new Subscriber<Response>() {
                     @Override
                     public void onCompleted() {
                         callback.onCompleted();

@@ -39,7 +39,7 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
     ImageButton buyButtonView;
 
     private ProductDTO productDTO;
-    private CatalogMvp.CatalogView catalogView;
+    private CatalogMvp.View catalogView;
 
     static CatalogViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.catalog_item, parent, false);

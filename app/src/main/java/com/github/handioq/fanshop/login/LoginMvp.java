@@ -1,8 +1,10 @@
 package com.github.handioq.fanshop.login;
 
+import com.github.handioq.fanshop.base.Mvp;
+
 public interface LoginMvp {
 
-    interface Model {
+    interface Model extends Mvp.Model {
 
         void getAuthState(String username, String password);
 
@@ -18,7 +20,7 @@ public interface LoginMvp {
         }
     }
 
-    interface LoginView {
+    interface View extends Mvp.View {
 
         void loginSuccess(UserAuthState userAuthState);
 
@@ -32,13 +34,9 @@ public interface LoginMvp {
 
     }
 
-    interface Presenter {
+    interface Presenter extends Mvp.Presenter<LoginMvp.View> {
 
         void loginValidate(String username, String password);
-
-        void onDestroy();
-
-        void setView(LoginView loginView);
 
     }
 }

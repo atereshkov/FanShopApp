@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 public class AddToCartPresenter implements AddToCartMvp.Presenter, AddToCartMvp.Model.Callback {
 
-    private AddToCartMvp.AddToCartView addToCartView;
+    private AddToCartMvp.View addToCartView;
     private AddToCartModel addToCartModel;
     private NetworkService networkService;
 
@@ -26,7 +26,7 @@ public class AddToCartPresenter implements AddToCartMvp.Presenter, AddToCartMvp.
     }
 
     @Override
-    public void setView(AddToCartMvp.AddToCartView addToCartView) {
+    public void setView(AddToCartMvp.View addToCartView) {
         this.addToCartView = addToCartView;
     }
 

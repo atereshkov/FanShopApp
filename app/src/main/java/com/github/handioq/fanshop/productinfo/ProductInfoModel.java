@@ -6,6 +6,7 @@ import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import rx.Observer;
+import rx.Subscriber;
 
 public class ProductInfoModel implements ProductInfoMvp.Model {
 
@@ -24,7 +25,7 @@ public class ProductInfoModel implements ProductInfoMvp.Model {
         networkService.getApiService()
                 .getProduct(id)
                 .compose(NetworkService.<ProductDTO>applyScheduler())
-                .subscribe(new Observer<ProductDTO>() {
+                .subscribe(new Subscriber<ProductDTO>() {
                     @Override
                     public void onCompleted() {
 
