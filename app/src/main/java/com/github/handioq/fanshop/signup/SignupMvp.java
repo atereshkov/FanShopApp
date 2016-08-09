@@ -1,19 +1,20 @@
 package com.github.handioq.fanshop.signup;
 
 import com.github.handioq.fanshop.base.Mvp;
-import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.model.dto.AuthDTO;
+import com.github.handioq.fanshop.net.Response;
 
 public interface SignupMvp {
 
     interface Model extends Mvp.Model {
 
-        void getSignupState(UserDTO userDTO);
+        void getSignupState(AuthDTO authDTO);
 
         void setCallback(Callback callback);
 
         interface Callback {
 
-            void onSuccess(UserDTO userDTO);
+            void onSuccess(Response response);
 
             void onError(Throwable error);
 
@@ -23,7 +24,7 @@ public interface SignupMvp {
 
     interface View extends Mvp.View {
 
-        void signupSuccess(UserDTO userDTO);
+        void signupSuccess(Response response);
 
         void signupFailure(Throwable e);
 
@@ -37,7 +38,7 @@ public interface SignupMvp {
 
     interface Presenter extends Mvp.Presenter<SignupMvp.View> {
 
-        void signupValidate(UserDTO userDTO); // what else? whatever...
+        void signupValidate(AuthDTO authDTO); // what else? whatever...
 
     }
 }

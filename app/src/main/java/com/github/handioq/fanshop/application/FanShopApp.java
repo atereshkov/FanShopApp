@@ -2,9 +2,11 @@ package com.github.handioq.fanshop.application;
 
 import android.app.Application;
 
-import com.github.handioq.BuildConfig;
+import com.github.handioq.application.MyEventBusIndex;
+import com.github.handioq.fanshop.di.component.AccountComponent;
 import com.github.handioq.fanshop.di.component.CartComponent;
 import com.github.handioq.fanshop.di.component.CatalogComponent;
+import com.github.handioq.fanshop.di.component.DaggerAccountComponent;
 import com.github.handioq.fanshop.di.component.DaggerCartComponent;
 import com.github.handioq.fanshop.di.component.DaggerCatalogComponent;
 import com.github.handioq.fanshop.di.component.DaggerDatabaseComponent;
@@ -18,13 +20,9 @@ import com.github.handioq.fanshop.di.component.NetComponent;
 import com.github.handioq.fanshop.di.component.ProductInfoComponent;
 import com.github.handioq.fanshop.di.component.SignupComponent;
 import com.github.handioq.fanshop.di.module.AppModule;
-import com.github.handioq.fanshop.di.module.CartModule;
-import com.github.handioq.fanshop.di.module.CatalogModule;
 import com.github.handioq.fanshop.di.module.DatabaseModule;
-import com.github.handioq.fanshop.di.module.LoginModule;
-import com.github.handioq.fanshop.di.module.NetModule;
-import com.github.handioq.fanshop.di.module.ProductInfoModule;
-import com.github.handioq.fanshop.di.module.SignupModule;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class FanShopApp extends Application {
 
@@ -35,6 +33,7 @@ public class FanShopApp extends Application {
     private SignupComponent signupComponent;
     private ProductInfoComponent productInfoComponent;
     private CartComponent cartComponent;
+    private AccountComponent accountComponent;
 
     @Override
     public void onCreate() {
@@ -70,7 +69,15 @@ public class FanShopApp extends Application {
                 .netComponent(netComponent)
                 .build();
 
+        accountComponent = DaggerAccountComponent.builder()
+                .netComponent(netComponent)
+                .build();
+
         //netComponent = com.codepath.dagger.components.DaggerNetComponent.create();
+
+        EventBus.builder()
+                .addIndex(new MyEventBusIndex())
+                .installDefaultEventBus();
     }
 
     public NetComponent getNetComponent() {
@@ -99,5 +106,9 @@ public class FanShopApp extends Application {
 
     public CartComponent getCartComponent() {
         return cartComponent;
+    }
+
+    public AccountComponent getAccountComponent() {
+        return accountComponent;
     }
 }

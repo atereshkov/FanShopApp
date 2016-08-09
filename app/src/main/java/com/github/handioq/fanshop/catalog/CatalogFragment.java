@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -29,6 +30,7 @@ import com.github.handioq.fanshop.util.BadgeDrawable;
 import com.github.handioq.fanshop.util.NetworkConstants;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +90,10 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         catalogPresenter.setView(this);
         catalogPresenter.getProducts(0, NetworkConstants.PRODUCTS_LOAD_COUNT);
 
+        initRecycler();
+    }
+
+    private void initRecycler() {
         layoutManager = new LinearLayoutManager(getContext()); // 1 card in a row
         //ScreenDimensionsHelper screenDimensionsHelper = new ScreenDimensionsHelper(getActivity());
         //final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), screenDimensionsHelper.getCardsCount()); // n cards in a row
@@ -99,9 +105,23 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().postSticky(new ViewEvent(this));
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onAddToCartEvent(AddToCartClickEvent event) {
+        //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
+
+        addToCartPresenter.addProductToCart(500, event.product); // TODO change mock id for real
+        Log.i(TAG, "onAddToCartEvent");
     }
 
     @Override
@@ -116,9 +136,25 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         optionsMenu = menu;
 
-        //final MenuItem item = menu.findItem(R.id.action_search);
-        //final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        //searchView.setOnQueryTextListener(this);
+        final MenuItem itemSearch = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(itemSearch);
+        searchView.setOnQueryTextListener(this);
+
+        MenuItemCompat.setOnActionExpandListener(itemSearch,
+                new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+                        Toast.makeText(getContext(), "on collapsed", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+                        Toast.makeText(getContext(), "on expanded", Toast.LENGTH_SHORT).show();
+                        // TODO return to previous products before search
+                        return true;
+                    }
+                });
 
         MenuItem itemCart = menu.findItem(R.id.cart);
         LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
@@ -154,6 +190,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     @Override
     public boolean onQueryTextChange(String query) {
         Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
+        // TODO make search request
         return true;
     }
 
@@ -191,22 +228,9 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         adapter.addItems(productDTOs);
     }
 
-    /*
-    @Override
-    public void onItemClicked(View view, int position) {
-        //Toast.makeText(getActivity(), "onItemClicked " + position, Toast.LENGTH_SHORT).show();
-        //startActivity(ProductInfoActivity.makeIntent(getContext(), position));
-    }*/
-
     @Override
     public void showError(Throwable e) {
         e.printStackTrace();
-    }
-
-    @Override
-    public void onAddToCartClicked(ProductDTO productDTO) {
-        addToCartPresenter.addProductToCart(500, productDTO); // TODO change mock id for real
-        Log.i(TAG, "onAddToCartClicked");
     }
 
     @Override
