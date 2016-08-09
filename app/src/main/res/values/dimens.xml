@@ -13,6 +13,11 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
+    <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_content_padding">10dp</dimen>
+    <dimen name="card_content_padding_small">4dp</dimen>
+
     <!-- Default text sizes -->
     <dimen name="text_caption">12sp</dimen>
     <dimen name="text_body">14sp</dimen>
@@ -26,5 +31,8 @@
     <!-- Default cart image size -->
     <dimen name="cart_image_height">90dp</dimen>
     <dimen name="cart_image_weight">90dp</dimen>
+
+    <!-- Default recyclerView paddings -->
+    <dimen name="recycler_view_top">8dp</dimen>
 
 </resources>
