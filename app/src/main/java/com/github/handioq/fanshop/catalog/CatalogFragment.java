@@ -29,6 +29,7 @@ import com.github.handioq.fanshop.util.BadgeDrawable;
 import com.github.handioq.fanshop.util.NetworkConstants;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,9 +104,23 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().postSticky(new ViewEvent(this));
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onAddToCartEvent(AddToCartClickEvent event) {
+        //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
+
+        addToCartPresenter.addProductToCart(500, event.product); // TODO change mock id for real
+        Log.i(TAG, "onAddToCartEvent");
     }
 
     @Override
@@ -205,12 +220,6 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     @Override
     public void showError(Throwable e) {
         e.printStackTrace();
-    }
-
-    @Override
-    public void onAddToCartClicked(ProductDTO productDTO) {
-        addToCartPresenter.addProductToCart(500, productDTO); // TODO change mock id for real
-        Log.i(TAG, "onAddToCartClicked");
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.application;
 
 import android.app.Application;
 
-import com.github.handioq.BuildConfig;
+import com.github.handioq.application.MyEventBusIndex;
 import com.github.handioq.fanshop.di.component.AccountComponent;
 import com.github.handioq.fanshop.di.component.CartComponent;
 import com.github.handioq.fanshop.di.component.CatalogComponent;
@@ -20,13 +20,9 @@ import com.github.handioq.fanshop.di.component.NetComponent;
 import com.github.handioq.fanshop.di.component.ProductInfoComponent;
 import com.github.handioq.fanshop.di.component.SignupComponent;
 import com.github.handioq.fanshop.di.module.AppModule;
-import com.github.handioq.fanshop.di.module.CartModule;
-import com.github.handioq.fanshop.di.module.CatalogModule;
 import com.github.handioq.fanshop.di.module.DatabaseModule;
-import com.github.handioq.fanshop.di.module.LoginModule;
-import com.github.handioq.fanshop.di.module.NetModule;
-import com.github.handioq.fanshop.di.module.ProductInfoModule;
-import com.github.handioq.fanshop.di.module.SignupModule;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class FanShopApp extends Application {
 
@@ -78,6 +74,10 @@ public class FanShopApp extends Application {
                 .build();
 
         //netComponent = com.codepath.dagger.components.DaggerNetComponent.create();
+
+        EventBus.builder()
+                .addIndex(new MyEventBusIndex())
+                .installDefaultEventBus();
     }
 
     public NetComponent getNetComponent() {

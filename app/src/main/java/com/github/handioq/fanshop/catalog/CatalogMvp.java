@@ -35,7 +35,7 @@ public interface CatalogMvp {
 
         //void onItemClicked(View view, int position);
 
-        void onAddToCartClicked(ProductDTO productDTO);
+        //void onAddToCartClicked(ProductDTO productDTO);
     }
 
     interface Presenter extends Mvp.Presenter<CatalogMvp.View> {
