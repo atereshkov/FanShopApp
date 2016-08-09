@@ -27,7 +27,7 @@ public interface ApiService {
                                     @Query("password") String password);
 
     @POST(SIGNUP_URL)
-    Observable<AuthDTO> signup(@Body AuthDTO authDTO);
+    Observable<Response> signup(@Body AuthDTO authDTO);
 
     @GET(CATALOG_URL)
     Observable<List<ProductDTO>> getProducts(@Query("offset") int page,

@@ -13,7 +13,7 @@ public class UserPresenter implements UserMvp.Presenter, UserMvp.Model.Callback{
     private UserMvp.Model userModel;
     private NetworkService networkService;
 
-    private final static String TAG = "OrderPresenter";
+    private final static String TAG = "UserPresenter";
 
     @Inject
     public UserPresenter(NetworkService networkService) {

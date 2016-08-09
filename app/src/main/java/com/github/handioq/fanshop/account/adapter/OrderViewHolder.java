@@ -39,7 +39,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
     public void bind(OrderDTO order) {
         orderDTO = order;
 
-        orderIdView.setText("Order: " + order.getId());
+        orderIdView.setText(itemView.getContext().getString(R.string.order_id, order.getId()));
         orderStatusView.setText(order.getStatus());
     }
 }

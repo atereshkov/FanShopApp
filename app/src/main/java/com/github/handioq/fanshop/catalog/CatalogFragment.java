@@ -151,6 +151,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
                     @Override
                     public boolean onMenuItemActionExpand(MenuItem item) {
                         Toast.makeText(getContext(), "on expanded", Toast.LENGTH_SHORT).show();
+                        // TODO return to previous products before search
                         return true;
                     }
                 });
@@ -189,6 +190,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     @Override
     public boolean onQueryTextChange(String query) {
         Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
+        // TODO make search request
         return true;
     }
 

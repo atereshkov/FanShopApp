@@ -10,6 +10,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.model.dto.AuthDTO;
+import com.github.handioq.fanshop.net.Response;
 
 import javax.inject.Inject;
 
@@ -55,8 +56,8 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
     }
 
     @Override
-    public void signupSuccess(AuthDTO authDTO) {
-        Log.i("AuthDTO", authDTO.toString());
+    public void signupSuccess(Response response) {
+        Log.i("AuthDTO", response.toString());
     }
 
     @Override

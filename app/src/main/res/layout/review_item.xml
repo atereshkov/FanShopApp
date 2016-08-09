@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:numStars="5" />
 
-        <!-- TODO CHANGE TO STARS OR DELETE? -->
         <ImageButton
             android:id="@+id/buy_button"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -32,7 +31,7 @@
             android:layout_alignParentRight="true"
             android:minHeight="0dp"
             android:minWidth="0dp"
-            android:src="@drawable/ic_add_shopping_cart_black_24dp" />
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
         <TextView
             android:id="@+id/review_message"

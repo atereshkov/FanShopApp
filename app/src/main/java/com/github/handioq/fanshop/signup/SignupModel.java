@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.signup;
 
 import com.github.handioq.fanshop.model.dto.AuthDTO;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.net.Response;
 
 import rx.Subscriber;
 
@@ -19,8 +20,8 @@ public class SignupModel implements SignupMvp.Model {
 
         networkService.getApiService()
                 .signup(authDTO)
-                .compose(NetworkService.<AuthDTO>applyScheduler())
-                .subscribe(new Subscriber<AuthDTO>() {
+                .compose(NetworkService.<Response>applyScheduler())
+                .subscribe(new Subscriber<Response>() {
 
                     @Override
                     public void onCompleted() {
@@ -33,8 +34,8 @@ public class SignupModel implements SignupMvp.Model {
                     }
 
                     @Override
-                    public void onNext(AuthDTO authDTO) { // TODO: check for wrong data or
-                       callback.onSuccess(authDTO);
+                    public void onNext(Response response) { // TODO: check for wrong data or
+                       callback.onSuccess(response);
                     }
                 });
 
