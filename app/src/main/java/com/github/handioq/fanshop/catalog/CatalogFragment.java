@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -135,9 +136,24 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         optionsMenu = menu;
 
-        //final MenuItem item = menu.findItem(R.id.action_search);
-        //final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        //searchView.setOnQueryTextListener(this);
+        final MenuItem itemSearch = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(itemSearch);
+        searchView.setOnQueryTextListener(this);
+
+        MenuItemCompat.setOnActionExpandListener(itemSearch,
+                new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+                        Toast.makeText(getContext(), "on collapsed", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+                        Toast.makeText(getContext(), "on expanded", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
 
         MenuItem itemCart = menu.findItem(R.id.cart);
         LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
@@ -209,13 +225,6 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     public void setProducts(List<ProductDTO> productDTOs) {
         adapter.addItems(productDTOs);
     }
-
-    /*
-    @Override
-    public void onItemClicked(View view, int position) {
-        //Toast.makeText(getActivity(), "onItemClicked " + position, Toast.LENGTH_SHORT).show();
-        //startActivity(ProductInfoActivity.makeIntent(getContext(), position));
-    }*/
 
     @Override
     public void showError(Throwable e) {

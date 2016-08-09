@@ -1,6 +1,7 @@
 package com.github.handioq.fanshop.net;
 
 import com.github.handioq.fanshop.login.UserAuthState;
+import com.github.handioq.fanshop.model.dto.AuthDTO;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dto.UserDTO;
@@ -26,7 +27,7 @@ public interface ApiService {
                                     @Query("password") String password);
 
     @POST(SIGNUP_URL)
-    Observable<UserDTO> signup(@Body UserDTO userDTO);
+    Observable<AuthDTO> signup(@Body AuthDTO authDTO);
 
     @GET(CATALOG_URL)
     Observable<List<ProductDTO>> getProducts(@Query("offset") int page,
@@ -34,6 +35,9 @@ public interface ApiService {
 
     @GET(CATALOG_URL + "/{id}")
     Observable<ProductDTO> getProduct(@Path("id") int id);
+
+    @GET(USER_URL + "/{id}")
+    Observable<UserDTO> getUser(@Path("id") int userId);
 
     @GET(USER_URL + "/{id}/cart")
     Observable<List<ProductDTO>> getCart(@Path("id") int userId);

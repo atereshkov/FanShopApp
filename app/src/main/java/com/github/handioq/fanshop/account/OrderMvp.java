@@ -5,7 +5,7 @@ import com.github.handioq.fanshop.model.dto.OrderDTO;
 
 import java.util.List;
 
-public interface AccountMvp {
+public interface OrderMvp {
 
     interface Model extends Mvp.Model {
 
@@ -15,7 +15,7 @@ public interface AccountMvp {
 
         interface Callback {
 
-            void onOrdersLoaded(List<OrderDTO> orderDTOs);
+            void onOrdersLoaded(List<OrderDTO> orders);
 
             void onOrdersLoadError(Throwable error);
 
@@ -37,10 +37,9 @@ public interface AccountMvp {
 
     }
 
-    interface Presenter extends Mvp.Presenter<AccountMvp.View> {
+    interface Presenter extends Mvp.Presenter<OrderMvp.View> {
 
         void getOrders(int userId);
 
     }
-
 }

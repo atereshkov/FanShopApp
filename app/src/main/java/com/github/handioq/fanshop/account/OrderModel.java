@@ -9,14 +9,14 @@ import java.util.List;
 
 import rx.Subscriber;
 
-public class AccountModel implements AccountMvp.Model {
+public class OrderModel implements OrderMvp.Model {
 
     private NetworkService networkService;
-    private AccountMvp.Model.Callback callback;
+    private OrderMvp.Model.Callback callback;
 
-    private final static String TAG = "AccountModel";
+    private final static String TAG = "OrderModel";
 
-    public AccountModel(NetworkService networkService) {
+    public OrderModel(NetworkService networkService) {
         this.networkService = networkService;
     }
 

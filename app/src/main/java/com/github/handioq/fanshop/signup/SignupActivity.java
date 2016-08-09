@@ -9,7 +9,7 @@ import android.widget.EditText;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
-import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.model.dto.AuthDTO;
 
 import javax.inject.Inject;
 
@@ -50,18 +50,18 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
     void signUp() {
         String login = emailView.getText().toString();
         String password = passwordView.getText().toString();
-        UserDTO userDTO = new UserDTO(login, password);
-        signupPresenter.signupValidate(userDTO);
+        AuthDTO authDTO = new AuthDTO(login, password);
+        signupPresenter.signupValidate(authDTO);
     }
 
     @Override
-    public void signupSuccess(UserDTO userDTO) {
-        Log.i("UserDTO", userDTO.toString());
+    public void signupSuccess(AuthDTO authDTO) {
+        Log.i("AuthDTO", authDTO.toString());
     }
 
     @Override
     public void signupFailure(Throwable e) {
-        Log.i("UserDTO", e.toString());
+        Log.i("AuthDTO", e.toString());
         /*
         mEmailView.setError(null);
         mPasswordView.setError(null);

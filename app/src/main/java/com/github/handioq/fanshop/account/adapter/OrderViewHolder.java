@@ -13,7 +13,7 @@ import com.github.handioq.fanshop.model.dto.OrderDTO;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AccountViewHolder extends RecyclerView.ViewHolder {
+public class OrderViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.details_button)
     ImageButton detailsButton;
@@ -26,12 +26,12 @@ public class AccountViewHolder extends RecyclerView.ViewHolder {
 
     private OrderDTO orderDTO;
 
-    static AccountViewHolder inflate(ViewGroup parent) {
+    static OrderViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item, parent, false);
-        return new AccountViewHolder(view);
+        return new OrderViewHolder(view);
     }
 
-    private AccountViewHolder(View v) {
+    private OrderViewHolder(View v) {
         super(v);
         ButterKnife.bind(this, v);
     }

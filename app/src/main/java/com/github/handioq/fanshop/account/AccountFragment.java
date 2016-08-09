@@ -11,12 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.github.handioq.R;
-import com.github.handioq.fanshop.account.adapter.AccountRecyclerAdapter;
+import com.github.handioq.fanshop.account.adapter.OrderRecyclerAdapter;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
-import com.github.handioq.fanshop.cart.CartMvp;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
-import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dto.UserDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +24,12 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class AccountFragment extends BaseFragment implements AccountMvp.View {
+public class AccountFragment extends BaseFragment implements OrderMvp.View, UserMvp.View {
 
     private final static String TAG = "AccountFragment";
 
     private LinearLayoutManager layoutManager;
-    private AccountRecyclerAdapter adapter;
+    private OrderRecyclerAdapter adapter;
 
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
@@ -39,7 +38,10 @@ public class AccountFragment extends BaseFragment implements AccountMvp.View {
     RecyclerView recyclerView;
 
     @Inject
-    AccountMvp.Presenter accountPresenter;
+    OrderMvp.Presenter accountPresenter;
+
+    @Inject
+    UserMvp.Presenter userPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,10 @@ public class AccountFragment extends BaseFragment implements AccountMvp.View {
 
         ((FanShopApp) getContext().getApplicationContext()).getAccountComponent().inject(this);
 
-        adapter = new AccountRecyclerAdapter(new ArrayList<OrderDTO>());
+        adapter = new OrderRecyclerAdapter(new ArrayList<OrderDTO>());
+
+        userPresenter.setView(this);
+        userPresenter.getUser(15);
 
         accountPresenter.setView(this);
         accountPresenter.getOrders(575); // TODO CHANGE TO REAL ID
@@ -71,12 +76,6 @@ public class AccountFragment extends BaseFragment implements AccountMvp.View {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG, "onDestroy");
     }
 
     @Override
@@ -100,5 +99,16 @@ public class AccountFragment extends BaseFragment implements AccountMvp.View {
     public void onError(Throwable e) {
         e.printStackTrace();
         Log.i(TAG, "onError");
+    }
+
+    @Override
+    public void setUser(UserDTO user) {
+        Log.i(TAG, user.toString());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy");
     }
 }

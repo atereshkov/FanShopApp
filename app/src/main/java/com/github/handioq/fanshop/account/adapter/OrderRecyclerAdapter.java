@@ -7,21 +7,21 @@ import com.github.handioq.fanshop.model.dto.OrderDTO;
 
 import java.util.List;
 
-public class AccountRecyclerAdapter extends RecyclerView.Adapter<AccountViewHolder> {
+public class OrderRecyclerAdapter extends RecyclerView.Adapter<OrderViewHolder> {
 
     private List<OrderDTO> orders;
 
-    public AccountRecyclerAdapter(List<OrderDTO> orders) {
+    public OrderRecyclerAdapter(List<OrderDTO> orders) {
         this.orders = orders;
     }
 
     @Override
-    public AccountViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return AccountViewHolder.inflate(parent);
+    public OrderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return OrderViewHolder.inflate(parent);
     }
 
     @Override
-    public void onBindViewHolder(final AccountViewHolder holder, int position) {
+    public void onBindViewHolder(final OrderViewHolder holder, int position) {
         holder.bind(orders.get(position));
     }
 

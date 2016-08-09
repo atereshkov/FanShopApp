@@ -4,24 +4,45 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserDTO {
 
-    @SerializedName("login")
-    String login;
+    @SerializedName("id")
+    private int id;
 
-    @SerializedName("password")
-    String password;
+    @SerializedName("name")
+    private String name;
 
-    // id?
+    @SerializedName("amount_spent")
+    private double amountSpent;
 
-    public UserDTO(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getAmountSpent() {
+        return amountSpent;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAmountSpent(double amountSpent) {
+        this.amountSpent = amountSpent;
     }
 
     @Override
     public String toString() {
         return "UserDTO{" +
-                "login='" + login + '\'' +
-                ", password='" + password + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", amountSpent=" + amountSpent +
                 '}';
     }
 }

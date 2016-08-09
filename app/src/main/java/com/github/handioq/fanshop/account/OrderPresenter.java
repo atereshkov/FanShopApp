@@ -9,17 +9,17 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class AccountPresenter implements AccountMvp.Presenter, AccountMvp.Model.Callback {
+public class OrderPresenter implements OrderMvp.Presenter, OrderMvp.Model.Callback {
 
-    private AccountMvp.View accountView;
-    private AccountMvp.Model accountModel;
+    private OrderMvp.View accountView;
+    private OrderMvp.Model accountModel;
     private NetworkService networkService;
 
-    private final static String TAG = "AccountPresenter";
+    private final static String TAG = "OrderPresenter";
 
     @Inject
-    public AccountPresenter(NetworkService networkService) {
-        accountModel = new AccountModel(networkService);
+    public OrderPresenter(NetworkService networkService) {
+        accountModel = new OrderModel(networkService);
         accountModel.setCallback(this);
     }
 
@@ -27,14 +27,14 @@ public class AccountPresenter implements AccountMvp.Presenter, AccountMvp.Model.
     public void getOrders(int userId) {
         if (accountView != null) {
             accountView.showProgress();
-            Log.i(TAG, "showProgress() on accountView");
+            Log.i(TAG, "showProgress() on orderView");
         }
 
         accountModel.gerOrders(userId);
     }
 
     @Override
-    public void setView(AccountMvp.View view) {
+    public void setView(OrderMvp.View view) {
         this.accountView = view;
     }
 
