@@ -18,7 +18,7 @@ public interface AddToCartMvp {
 
             void onProductAddError(Throwable error);
 
-            void onCompleted();
+            void onAddToCartCompleted();
         }
     }
 

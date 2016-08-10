@@ -33,6 +33,9 @@ public interface ApiService {
     Observable<List<ProductDTO>> getProducts(@Query("offset") int page,
                                              @Query("limit") int limit);
 
+    @GET(CATALOG_URL + "/search")
+    Observable<List<ProductDTO>> search(@Query("query") String query);
+
     @GET(CATALOG_URL + "/{id}")
     Observable<ProductDTO> getProduct(@Path("id") int id);
 

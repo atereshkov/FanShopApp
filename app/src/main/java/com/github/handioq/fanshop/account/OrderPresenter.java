@@ -27,7 +27,7 @@ public class OrderPresenter implements OrderMvp.Presenter, OrderMvp.Model.Callba
     public void getOrders(int userId) {
         if (accountView != null) {
             accountView.showProgress();
-            Log.i(TAG, "showProgress() on orderView");
+            Log.i(TAG, "showLoadProductsProgress() on orderView");
         }
 
         accountModel.gerOrders(userId);

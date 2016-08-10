@@ -208,7 +208,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     }
 
     @Override
-    public void showProgress() {
+    public void showLoadProductsProgress() {
         if (paginationLoading) {
             progressBar.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
@@ -217,7 +217,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     }
 
     @Override
-    public void hideProgress() {
+    public void hideLoadProductsProgress() {
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
         setRefreshActionButtonState(false);
@@ -229,7 +229,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     }
 
     @Override
-    public void showError(Throwable e) {
+    public void showLoadProductsError(Throwable e) {
         e.printStackTrace();
     }
 

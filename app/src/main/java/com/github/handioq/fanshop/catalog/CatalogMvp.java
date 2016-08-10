@@ -19,29 +19,25 @@ public interface CatalogMvp {
 
             void onProductsLoadError(Throwable error);
 
-            void onCompleted();
+            void onLoadProductsCompleted();
         }
     }
 
     interface View extends Mvp.View {
 
-        void showProgress();
+        void showLoadProductsProgress();
 
-        void hideProgress();
+        void hideLoadProductsProgress();
 
         void setProducts(List<ProductDTO> productDTOs);
 
-        void showError(Throwable e); // change to showError(int errorCode);
+        void showLoadProductsError(Throwable e); // change to showLoadProductsError(int errorCode);
 
-        //void onItemClicked(View view, int position);
-
-        //void onAddToCartClicked(ProductDTO productDTO);
     }
 
     interface Presenter extends Mvp.Presenter<CatalogMvp.View> {
 
         void getProducts(int offset, int limit);
 
-        //void onItemClicked(View view, int position);
     }
 }

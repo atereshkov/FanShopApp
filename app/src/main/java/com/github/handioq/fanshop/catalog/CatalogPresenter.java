@@ -31,8 +31,8 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
     @Override
     public void getProducts(int offset, int limit) {
         if (catalogView != null) {
-            catalogView.showProgress();
-            Log.i(TAG, "showProgress() on catalogView");
+            catalogView.showLoadProductsProgress();
+            Log.i(TAG, "showLoadProductsProgress() on catalogView");
         }
 
         catalogModel.getProducts(offset, limit);
@@ -45,8 +45,8 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
     }*/
 
     @Override
-    public void onCompleted() {
-        catalogView.hideProgress();
+    public void onLoadProductsCompleted() {
+        catalogView.hideLoadProductsProgress();
     }
 
     @Override
@@ -58,13 +58,13 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
         //productRepository.addProduct(, this); productDBO? product?
 
         catalogView.setProducts(productDTOs);
-        catalogView.hideProgress();
+        catalogView.hideLoadProductsProgress();
     }
 
     @Override
     public void onProductsLoadError(Throwable error) {
-        catalogView.showError(error);
-        catalogView.hideProgress();
+        catalogView.showLoadProductsError(error);
+        catalogView.hideLoadProductsProgress();
         Log.i(TAG, "onError");
     }
 }
