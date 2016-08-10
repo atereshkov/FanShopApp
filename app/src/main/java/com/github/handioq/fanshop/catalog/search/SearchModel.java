@@ -13,7 +13,7 @@ public class SearchModel implements SearchMvp.Model {
 
     private static final String TAG = "SearchModel";
 
-    private NetworkService networkService;
+    private final NetworkService networkService;
     private SearchModel.Callback callback;
 
     public SearchModel(NetworkService networkService) {

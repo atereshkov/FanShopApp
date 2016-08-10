@@ -118,7 +118,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     public void onAddToCartEvent(AddToCartClickEvent event) {
         //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
 
-        addToCartPresenter.addProductToCart(500, event.product); // TODO change mock id for real
+        addToCartPresenter.addProductToCart(500, event.getProduct()); // TODO change mock id for real
         Log.i(TAG, "onAddToCartEvent");
     }
 
@@ -133,26 +133,6 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         optionsMenu = menu;
-
-        /*final MenuItem itemSearch = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(itemSearch);
-        searchView.setOnQueryTextListener(this);
-
-        MenuItemCompat.setOnActionExpandListener(itemSearch,
-                new MenuItemCompat.OnActionExpandListener() {
-                    @Override
-                    public boolean onMenuItemActionCollapse(MenuItem item) {
-                        Toast.makeText(getContext(), "on collapsed", Toast.LENGTH_SHORT).show();
-                        // TODO return to previous products before search
-                        return true;
-                    }
-
-                    @Override
-                    public boolean onMenuItemActionExpand(MenuItem item) {
-                        Toast.makeText(getContext(), "on expanded", Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                });*/
 
         MenuItem itemCart = menu.findItem(R.id.cart);
         LayerDrawable icon = (LayerDrawable) itemCart.getIcon();

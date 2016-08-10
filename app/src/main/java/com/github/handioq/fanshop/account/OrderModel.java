@@ -11,7 +11,7 @@ import rx.Subscriber;
 
 public class OrderModel implements OrderMvp.Model {
 
-    private NetworkService networkService;
+    private final NetworkService networkService;
     private OrderMvp.Model.Callback callback;
 
     private final static String TAG = "OrderModel";

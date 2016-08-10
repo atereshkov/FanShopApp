@@ -19,11 +19,16 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.catalog.AddToCartClickEvent;
+import com.github.handioq.fanshop.catalog.AddToCartMvp;
 import com.github.handioq.fanshop.catalog.PaginationListener;
 import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.catalog.search.adapter.SearchRecyclerAdapter;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.util.NetworkConstants;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +56,9 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
 
     @Inject
     SearchMvp.Presenter searchPresenter;
+
+    @Inject
+    AddToCartMvp.Presenter addToCartPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -125,6 +133,26 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         } else {
             itemSearch.collapseActionView();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onAddToCartEvent(AddToCartClickEvent event) {
+        //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
+
+        addToCartPresenter.addProductToCart(500, event.getProduct()); // TODO change mock id for real
+        Log.i(TAG, "onAddToCartEvent " + event.getProduct());
     }
 
     @Override

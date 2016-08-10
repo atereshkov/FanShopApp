@@ -10,7 +10,7 @@ import rx.Subscriber;
 
 public class ProductInfoModel implements ProductInfoMvp.Model {
 
-    private NetworkService networkService;
+    private final NetworkService networkService;
     private ProductInfoModel.Callback callback;
 
     private final static String TAG = "ProductInfoModel";

@@ -12,7 +12,7 @@ import rx.Subscriber;
 
 public class CartModel implements CartMvp.Model {
 
-    private NetworkService networkService;
+    private final NetworkService networkService;
     private CartMvp.Model.Callback callback;
 
     private final static String TAG = "CartModel";

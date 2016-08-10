@@ -9,7 +9,7 @@ import rx.Subscriber;
 
 public class UserModel implements UserMvp.Model {
 
-    private NetworkService networkService;
+    private final NetworkService networkService;
     private UserMvp.Model.Callback callback;
 
     private final static String TAG = "UserModel";

@@ -12,7 +12,7 @@ import rx.Subscriber;
 
 public class CatalogModel implements CatalogMvp.Model {
 
-    private NetworkService networkService;
+    private final NetworkService networkService;
     private CatalogMvp.Model.Callback callback;
 
     private final static String TAG = "CatalogModel";

@@ -8,7 +8,7 @@ import rx.Subscriber;
 
 public class AddToCartModel implements AddToCartMvp.Model {
 
-    private NetworkService networkService;
+    private final NetworkService networkService;
     private AddToCartModel.Callback callback;
 
     public AddToCartModel(NetworkService networkService) {
