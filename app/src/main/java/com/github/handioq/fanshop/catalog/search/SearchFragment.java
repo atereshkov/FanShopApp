@@ -89,7 +89,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        recyclerView.addOnScrollListener(new PaginationOnScrollListener(this, layoutManager)); // TODO implement pagination for search
+        recyclerView.addOnScrollListener(new PaginationOnScrollListener(this, layoutManager));  // FIXME: 10-Aug-16
     }
 
     @Override
@@ -119,8 +119,8 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         super.onCreateOptionsMenu(menu, menuInflater);
     }
 
-    private void expandSearchView(MenuItem itemSearch, boolean state) {
-        if (state) {
+    private void expandSearchView(MenuItem itemSearch, boolean expand) {
+        if (expand) {
             itemSearch.expandActionView();
         } else {
             itemSearch.collapseActionView();
@@ -146,6 +146,10 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         if (!query.isEmpty()) {
             Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
             adapter.clearItems();
+
+            recyclerView.clearOnScrollListeners(); // fix pagination previous count
+            recyclerView.addOnScrollListener(new PaginationOnScrollListener(this, layoutManager));
+
             searchPresenter.search(query, 0, NetworkConstants.PRODUCTS_LOAD_COUNT);
         } else {
             adapter.clearItems();
