@@ -21,9 +21,9 @@ public class SearchModel implements SearchMvp.Model {
     }
 
     @Override
-    public void search(String query) {
+    public void search(String query, int offset, int limit) {
         networkService.getApiService()
-                .search(query)
+                .search(query, offset, limit)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<List<ProductDTO>>applyScheduler())
                 .subscribe(new Subscriber<List<ProductDTO>>() {

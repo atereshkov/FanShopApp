@@ -50,5 +50,9 @@
         <item quantity="many">В Вашей корзине %d товаров</item>
         <item quantity="other">В Вашей корзине %d товаров</item>
     </plurals>
+    <string name="action_refresh">Обновить</string>
+    <string name="order_id">%1d</string>
+    <string name="title_activity_account">Личный кабинет</string>
+    <string name="title_activity_search">Поиск</string>
 
 </resources>

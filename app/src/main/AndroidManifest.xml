@@ -39,6 +39,10 @@
         <activity
             android:name=".fanshop.account.AccountActivity"
             android:label="@string/title_activity_account"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.catalog.search.SearchActivity"
+            android:label="@string/title_activity_search"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,6 +22,7 @@ import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
+import com.github.handioq.fanshop.catalog.search.SearchActivity;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.Response;
 import com.github.handioq.fanshop.util.BadgeDrawable;
@@ -39,8 +38,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CatalogFragment extends BaseFragment implements CatalogMvp.View, PaginationListener,
-        SearchView.OnQueryTextListener, AddToCartMvp.View {
+public class CatalogFragment extends BaseFragment implements CatalogMvp.View, PaginationListener, AddToCartMvp.View {
 
     @BindView(R.id.catalog_progress_bar)
     ProgressBar progressBar;
@@ -52,7 +50,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     private CatalogRecyclerAdapter adapter;
 
     private Menu optionsMenu;
-    private boolean paginationLoading = true;
+    private boolean firstPaginationLoad = true;
 
     @Inject
     CatalogMvp.Presenter catalogPresenter;
@@ -126,7 +124,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     @Override
     public void onPaginationLoad(boolean state, int totalItemCount, int limit) {
-        paginationLoading = state;
+        firstPaginationLoad = state;
 
         setRefreshActionButtonState(true);
         catalogPresenter.getProducts(totalItemCount, limit);
@@ -136,7 +134,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         optionsMenu = menu;
 
-        final MenuItem itemSearch = menu.findItem(R.id.action_search);
+        /*final MenuItem itemSearch = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(itemSearch);
         searchView.setOnQueryTextListener(this);
 
@@ -145,16 +143,16 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
                         Toast.makeText(getContext(), "on collapsed", Toast.LENGTH_SHORT).show();
+                        // TODO return to previous products before search
                         return true;
                     }
 
                     @Override
                     public boolean onMenuItemActionExpand(MenuItem item) {
                         Toast.makeText(getContext(), "on expanded", Toast.LENGTH_SHORT).show();
-                        // TODO return to previous products before search
                         return true;
                     }
-                });
+                });*/
 
         MenuItem itemCart = menu.findItem(R.id.cart);
         LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
@@ -167,7 +165,11 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.cart) {
+        if (id == R.id.action_search) {
+            Intent intent = new Intent(getContext(), SearchActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.cart) {
             Intent intent = new Intent(getContext(), CartActivity.class);
             startActivity(intent);
             return true;
@@ -180,18 +182,6 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String query) {
-        Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
-        // TODO make search request
-        return true;
     }
 
     public void setRefreshActionButtonState(final boolean refreshing) {
@@ -209,7 +199,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     @Override
     public void showLoadProductsProgress() {
-        if (paginationLoading) {
+        if (firstPaginationLoad) {
             progressBar.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }

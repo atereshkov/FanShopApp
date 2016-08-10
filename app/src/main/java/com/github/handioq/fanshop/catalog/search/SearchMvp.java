@@ -9,7 +9,7 @@ public interface SearchMvp {
 
     interface Model extends Mvp.Model {
 
-        void search(String query);
+        void search(String query, int offset, int limit);
 
         void setCallback(Callback callback);
 
@@ -37,7 +37,7 @@ public interface SearchMvp {
 
     interface Presenter extends Mvp.Presenter <SearchMvp.View> {
 
-        void search(String query);
+        void search(String query, int offset, int limit);
 
     }
 }

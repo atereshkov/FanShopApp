@@ -24,13 +24,13 @@ public class SearchPresenter implements SearchMvp.Presenter, SearchMvp.Model.Cal
     }
 
     @Override
-    public void search(String query) {
+    public void search(String query, int offset, int limit) {
         if (searchView != null) {
             searchView.showSearchProgress();
             Log.i(TAG, "showLoadProductsProgress() on catalogView");
         }
 
-        searchModel.search(query);
+        searchModel.search(query, offset, limit);
     }
 
     @Override
