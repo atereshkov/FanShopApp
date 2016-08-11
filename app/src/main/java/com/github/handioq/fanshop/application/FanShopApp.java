@@ -6,9 +6,11 @@ import com.github.handioq.application.MyEventBusIndex;
 import com.github.handioq.fanshop.di.component.AccountComponent;
 import com.github.handioq.fanshop.di.component.CartComponent;
 import com.github.handioq.fanshop.di.component.CatalogComponent;
+import com.github.handioq.fanshop.di.component.CategoriesComponent;
 import com.github.handioq.fanshop.di.component.DaggerAccountComponent;
 import com.github.handioq.fanshop.di.component.DaggerCartComponent;
 import com.github.handioq.fanshop.di.component.DaggerCatalogComponent;
+import com.github.handioq.fanshop.di.component.DaggerCategoriesComponent;
 import com.github.handioq.fanshop.di.component.DaggerDatabaseComponent;
 import com.github.handioq.fanshop.di.component.DaggerLoginComponent;
 import com.github.handioq.fanshop.di.component.DaggerNetComponent;
@@ -34,6 +36,7 @@ public class FanShopApp extends Application {
     private ProductInfoComponent productInfoComponent;
     private CartComponent cartComponent;
     private AccountComponent accountComponent;
+    private CategoriesComponent categoriesComponent;
 
     @Override
     public void onCreate() {
@@ -70,6 +73,10 @@ public class FanShopApp extends Application {
                 .build();
 
         accountComponent = DaggerAccountComponent.builder()
+                .netComponent(netComponent)
+                .build();
+
+        categoriesComponent = DaggerCategoriesComponent.builder()
                 .netComponent(netComponent)
                 .build();
 
@@ -110,5 +117,9 @@ public class FanShopApp extends Application {
 
     public AccountComponent getAccountComponent() {
         return accountComponent;
+    }
+
+    public CategoriesComponent getCategoriesComponent() {
+        return categoriesComponent;
     }
 }

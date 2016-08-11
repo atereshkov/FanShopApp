@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.net;
 
 import com.github.handioq.fanshop.login.UserAuthState;
 import com.github.handioq.fanshop.model.dto.AuthDTO;
+import com.github.handioq.fanshop.model.dto.CategoryDTO;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dto.UserDTO;
@@ -57,5 +58,8 @@ public interface ApiService {
     @POST(USER_URL + "/{id}/orders")
     Observable<Response> createOrder(@Path("id") int userId,
                                           @Body OrderDTO orderDTO);
+
+    @GET(CATALOG_URL + "/categories")
+    Observable<List<CategoryDTO>> getCategories();
 
 }

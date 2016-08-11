@@ -40,6 +40,7 @@
     <string name="nav_title_info">Information</string>
     <string name="nav_title_shop">Shop</string>
     <string name="nav_delivery">Delivery</string>
+    <string name="nav_categories">Categories</string>
     <!--<string name="nav_">Account</string>-->
 
     <!-- Strings related to shopping cart -->
@@ -59,5 +60,6 @@
 
     <string name="order_id">%1d</string>
     <string name="title_activity_search">Search</string>
+    <string name="title_activity_categories">CategoriesActivity</string>
 
 </resources>

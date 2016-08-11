@@ -45,6 +45,17 @@ public class ScreenDimensionsHelper {
         return cardsCount;
     }
 
+    public Integer getCategoriesCount() {
+        Integer cardsCount = 1;
+
+        int cardWidth = (int) (context.getResources().getDimension(R.dimen.card_width_category) / context.getResources().getDisplayMetrics().density);
+        cardsCount = (int) ((screenWidth - 32) / (cardWidth * densityDpi));
+
+        Log.i(TAG, cardsCount + " -> " + densityDpi + " " + screenWidth);
+
+        return cardsCount;
+    }
+
     public Integer getScreenWidth() {
         return screenWidth;
     }

@@ -16,6 +16,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.account.AccountActivity;
 import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.catalog.CatalogActivity;
+import com.github.handioq.fanshop.categories.CategoriesActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,21 +69,27 @@ public abstract class BaseNavActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_catalog) {
+        if (id == R.id.nav_categories) {
+
+            Intent intent = new Intent(BaseNavActivity.this, CategoriesActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_catalog) {
 
             Intent intent = new Intent(BaseNavActivity.this, CatalogActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // or FLAG_ACTIVITY_CLEAR_TOP + FLAG_ACTIVITY_NEW_TASK
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 
         } else if (id == R.id.nav_cart) {
 
             Intent intent = new Intent(BaseNavActivity.this, CartActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // or FLAG_ACTIVITY_CLEAR_TOP + FLAG_ACTIVITY_NEW_TASK
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 
         } else if (id == R.id.nav_account) {
             Intent intent = new Intent(BaseNavActivity.this, AccountActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // or FLAG_ACTIVITY_CLEAR_TOP + FLAG_ACTIVITY_NEW_TASK
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 
         } else if (id == R.id.nav_delivery) {

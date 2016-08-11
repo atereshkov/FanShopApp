@@ -6,6 +6,10 @@
     <item android:title="@string/nav_title_shop">
         <menu>
             <item
+                android:id="@+id/nav_categories"
+                android:icon="@drawable/ic_view_module_black_24dp"
+                android:title="@string/nav_categories" />
+            <item
                 android:id="@+id/nav_catalog"
                 android:icon="@drawable/ic_shopping_black_24dp"
                 android:title="@string/nav_catalog" />
