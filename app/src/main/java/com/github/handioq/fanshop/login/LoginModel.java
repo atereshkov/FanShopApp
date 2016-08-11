@@ -8,7 +8,7 @@ import rx.Subscriber;
 
 public class LoginModel implements LoginMvp.Model {
 
-    private NetworkService networkService;
+    private final NetworkService networkService;
     private LoginModel.Callback callback;
 
     public LoginModel(NetworkService networkService) {

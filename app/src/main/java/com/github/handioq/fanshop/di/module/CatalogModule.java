@@ -4,6 +4,8 @@ import com.github.handioq.fanshop.catalog.AddToCartMvp;
 import com.github.handioq.fanshop.catalog.AddToCartPresenter;
 import com.github.handioq.fanshop.catalog.CatalogMvp;
 import com.github.handioq.fanshop.catalog.CatalogPresenter;
+import com.github.handioq.fanshop.catalog.search.SearchMvp;
+import com.github.handioq.fanshop.catalog.search.SearchPresenter;
 import com.github.handioq.fanshop.di.scope.UserScope;
 import com.github.handioq.fanshop.net.NetworkService;
 
@@ -23,5 +25,11 @@ public class CatalogModule {
     @UserScope
     public AddToCartMvp.Presenter providesAddToCartPresenter(NetworkService networkService) {
         return new AddToCartPresenter(networkService);
+    }
+
+    @Provides
+    @UserScope
+    public SearchMvp.Presenter providesSearchPresenter(NetworkService networkService) {
+        return new SearchPresenter(networkService);
     }
 }

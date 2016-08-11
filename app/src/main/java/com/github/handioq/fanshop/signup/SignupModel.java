@@ -8,7 +8,7 @@ import rx.Subscriber;
 
 public class SignupModel implements SignupMvp.Model {
 
-    private NetworkService networkService;
+    private final NetworkService networkService;
     private SignupModel.Callback callback;
 
     public SignupModel(NetworkService networkService) {

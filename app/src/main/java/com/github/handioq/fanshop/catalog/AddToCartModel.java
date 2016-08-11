@@ -4,12 +4,11 @@ import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.Response;
 
-import rx.Observer;
 import rx.Subscriber;
 
 public class AddToCartModel implements AddToCartMvp.Model {
 
-    private NetworkService networkService;
+    private final NetworkService networkService;
     private AddToCartModel.Callback callback;
 
     public AddToCartModel(NetworkService networkService) {
@@ -25,7 +24,7 @@ public class AddToCartModel implements AddToCartMvp.Model {
                 .subscribe(new Subscriber<Response>() {
                     @Override
                     public void onCompleted() {
-                        callback.onCompleted();
+                        callback.onAddToCartCompleted();
                     }
 
                     @Override

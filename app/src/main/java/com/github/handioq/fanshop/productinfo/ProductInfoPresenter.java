@@ -32,7 +32,7 @@ public class ProductInfoPresenter implements ProductInfoMvp.Presenter, ProductIn
     public void getProduct(int id) {
         if (productInfoView != null) {
             productInfoView.showProgress();
-            Log.i(TAG, "showProgress() on productInfoView");
+            Log.i(TAG, "showLoadProductsProgress() on productInfoView");
         }
 
         productInfoModel.getProduct(id);

@@ -30,8 +30,13 @@ public interface ApiService {
     Observable<Response> signup(@Body AuthDTO authDTO);
 
     @GET(CATALOG_URL)
-    Observable<List<ProductDTO>> getProducts(@Query("offset") int page,
+    Observable<List<ProductDTO>> getProducts(@Query("offset") int offset,
                                              @Query("limit") int limit);
+
+    @GET(CATALOG_URL + "/search")
+    Observable<List<ProductDTO>> search(@Query("query") String query,
+                                        @Query("offset") int offset,
+                                        @Query("limit") int limit);
 
     @GET(CATALOG_URL + "/{id}")
     Observable<ProductDTO> getProduct(@Path("id") int id);

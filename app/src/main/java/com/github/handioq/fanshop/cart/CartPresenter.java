@@ -47,7 +47,7 @@ public class CartPresenter implements CartMvp.Presenter, CartMvp.Model.Callback 
     public void getCartItems(int userId) {
         if (cartView != null) {
             cartView.showProgress();
-            Log.i(TAG, "showProgress() on cartView");
+            Log.i(TAG, "showLoadProductsProgress() on cartView");
         }
 
         cartModel.gerCartItems(userId);

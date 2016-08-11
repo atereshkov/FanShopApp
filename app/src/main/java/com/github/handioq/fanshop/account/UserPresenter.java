@@ -25,7 +25,7 @@ public class UserPresenter implements UserMvp.Presenter, UserMvp.Model.Callback{
     public void getUser(int userId) {
         if (userView != null) {
             userView.showProgress();
-            Log.i(TAG, "showProgress() on userView");
+            Log.i(TAG, "showLoadProductsProgress() on userView");
         }
 
         userModel.gerUser(userId);

@@ -41,7 +41,7 @@ public class AddToCartPresenter implements AddToCartMvp.Presenter, AddToCartMvp.
     }
 
     @Override
-    public void onCompleted() {
-        //addToCartView.onCompleted();
+    public void onAddToCartCompleted() {
+        //addToCartView.onAddToCartCompleted();
     }
 }

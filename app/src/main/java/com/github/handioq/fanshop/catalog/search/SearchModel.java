@@ -1,5 +1,4 @@
-package com.github.handioq.fanshop.catalog;
-
+package com.github.handioq.fanshop.catalog.search;
 
 import android.util.Log;
 
@@ -10,49 +9,47 @@ import java.util.List;
 
 import rx.Subscriber;
 
-public class CatalogModel implements CatalogMvp.Model {
+public class SearchModel implements SearchMvp.Model {
+
+    private static final String TAG = "SearchModel";
 
     private final NetworkService networkService;
-    private CatalogMvp.Model.Callback callback;
+    private SearchModel.Callback callback;
 
-    private final static String TAG = "CatalogModel";
-
-    public CatalogModel(NetworkService networkService) {
+    public SearchModel(NetworkService networkService) {
         this.networkService = networkService;
     }
 
     @Override
-    public void getProducts(int offset, int count) {
-
+    public void search(String query, int offset, int limit) {
         networkService.getApiService()
-                .getProducts(offset, count)
+                .search(query, offset, limit)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<List<ProductDTO>>applyScheduler())
                 .subscribe(new Subscriber<List<ProductDTO>>() {
                     @Override
                     public void onCompleted() {
-                        callback.onLoadProductsCompleted();
+                        callback.onSearchCompleted();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onProductsLoadError(e);
+                        callback.onSearchError(e);
                     }
 
                     @Override
-                    public void onNext(List<ProductDTO> productDTOs) {
-                        callback.onProductsLoaded(productDTOs);
+                    public void onNext(List<ProductDTO> products) {
+                        callback.onSearchSuccess(products);
                     }
                 });
 
-        Log.i(TAG, "getProductDTOs()");
+        Log.i(TAG, "search() " + query);
     }
 
     @Override
-    public void setCallback(final Callback callback) {
+    public void setCallback(Callback callback) {
         this.callback = callback;
 
-        Log.i(TAG, "setCallback");
+        Log.i(TAG, "setCallback()");
     }
-
 }

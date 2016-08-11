@@ -1,8 +1,5 @@
 package com.github.handioq.fanshop.catalog.adapter;
 
-
-import android.os.Handler;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
