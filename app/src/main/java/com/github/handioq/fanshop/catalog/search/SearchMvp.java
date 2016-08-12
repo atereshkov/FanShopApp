@@ -35,7 +35,7 @@ public interface SearchMvp {
 
     }
 
-    interface Presenter extends Mvp.Presenter <SearchMvp.View> {
+    interface Presenter extends Mvp.Presenter<SearchMvp.View> {
 
         void search(String query, int offset, int limit);
 

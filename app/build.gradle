@@ -46,6 +46,7 @@ dependencies {
     compile "com.jakewharton:butterknife:$butterknifeVersion"
     compile "com.google.dagger:dagger:$daggerVersion"
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.jakewharton.timber:timber:4.1.2'
 
     apt 'org.greenrobot:eventbus-annotation-processor:3.0.1'
     apt "com.jakewharton:butterknife-compiler:$butterknifeVersion"

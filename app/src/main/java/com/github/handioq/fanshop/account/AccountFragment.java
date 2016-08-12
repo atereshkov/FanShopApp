@@ -97,8 +97,7 @@ public class AccountFragment extends BaseFragment implements OrderMvp.View, User
 
     @Override
     public void onError(Throwable e) {
-        e.printStackTrace();
-        Log.i(TAG, "onError");
+        Log.i(TAG, e.toString());
     }
 
     @Override

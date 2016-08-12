@@ -2,11 +2,11 @@ package com.github.handioq.fanshop.di.component;
 
 import com.github.handioq.fanshop.cart.CartFragment;
 import com.github.handioq.fanshop.di.module.CartModule;
-import com.github.handioq.fanshop.di.scope.UserScope;
+import com.github.handioq.fanshop.di.scope.PresenterScope;
 
 import dagger.Component;
 
-@UserScope
+@PresenterScope
 @Component(dependencies = NetComponent.class, modules = CartModule.class)
 public interface CartComponent {
 

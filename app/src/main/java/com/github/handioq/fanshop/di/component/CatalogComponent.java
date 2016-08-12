@@ -3,11 +3,11 @@ package com.github.handioq.fanshop.di.component;
 import com.github.handioq.fanshop.catalog.CatalogFragment;
 import com.github.handioq.fanshop.catalog.search.SearchFragment;
 import com.github.handioq.fanshop.di.module.CatalogModule;
-import com.github.handioq.fanshop.di.scope.UserScope;
+import com.github.handioq.fanshop.di.scope.PresenterScope;
 
 import dagger.Component;
 
-@UserScope
+@PresenterScope
 @Component(dependencies = NetComponent.class, modules = CatalogModule.class)
 public interface CatalogComponent {
 

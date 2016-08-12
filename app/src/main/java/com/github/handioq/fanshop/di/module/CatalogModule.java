@@ -6,7 +6,7 @@ import com.github.handioq.fanshop.catalog.CatalogMvp;
 import com.github.handioq.fanshop.catalog.CatalogPresenter;
 import com.github.handioq.fanshop.catalog.search.SearchMvp;
 import com.github.handioq.fanshop.catalog.search.SearchPresenter;
-import com.github.handioq.fanshop.di.scope.UserScope;
+import com.github.handioq.fanshop.di.scope.PresenterScope;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import dagger.Module;
@@ -16,19 +16,19 @@ import dagger.Provides;
 public class CatalogModule {
 
     @Provides
-    @UserScope
+    @PresenterScope
     public CatalogMvp.Presenter providesCatalogPresenter(NetworkService networkService) {
         return new CatalogPresenter(networkService);
     }
 
     @Provides
-    @UserScope
+    @PresenterScope
     public AddToCartMvp.Presenter providesAddToCartPresenter(NetworkService networkService) {
         return new AddToCartPresenter(networkService);
     }
 
     @Provides
-    @UserScope
+    @PresenterScope
     public SearchMvp.Presenter providesSearchPresenter(NetworkService networkService) {
         return new SearchPresenter(networkService);
     }

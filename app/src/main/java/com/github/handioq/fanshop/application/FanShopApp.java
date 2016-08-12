@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.application;
 
 import android.app.Application;
 
+import com.github.handioq.BuildConfig;
 import com.github.handioq.application.MyEventBusIndex;
 import com.github.handioq.fanshop.di.component.AccountComponent;
 import com.github.handioq.fanshop.di.component.CartComponent;
@@ -25,6 +26,8 @@ import com.github.handioq.fanshop.di.module.AppModule;
 import com.github.handioq.fanshop.di.module.DatabaseModule;
 
 import org.greenrobot.eventbus.EventBus;
+
+import timber.log.Timber;
 
 public class FanShopApp extends Application {
 
@@ -80,11 +83,13 @@ public class FanShopApp extends Application {
                 .netComponent(netComponent)
                 .build();
 
-        //netComponent = com.codepath.dagger.components.DaggerNetComponent.create();
-
         EventBus.builder()
                 .addIndex(new MyEventBusIndex())
                 .installDefaultEventBus();
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
     }
 
     public NetComponent getNetComponent() {

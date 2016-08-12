@@ -36,6 +36,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
 public class SearchFragment extends BaseFragment implements SearchMvp.View, SearchView.OnQueryTextListener,
         PaginationListener {
@@ -77,15 +78,12 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         Log.i(TAG, "onViewCreated");
 
         ((FanShopApp) getContext().getApplicationContext()).getCatalogComponent().inject(this);
 
         searchPresenter.setView(this);
-
         adapter = new SearchRecyclerAdapter(new ArrayList<ProductDTO>());
-
         initRecycler();
     }
 
@@ -152,7 +150,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
 
         addToCartPresenter.addProductToCart(500, event.getProduct()); // TODO change mock id for real
-        Log.i(TAG, "onAddToCartEvent " + event.getProduct());
+        Timber.i("onAddToCartEvent(), product id: %d", event.getProduct().getId());
     }
 
     @Override
@@ -171,7 +169,9 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
     public boolean onQueryTextChange(String query) {
         this.searchQuery = query;
 
-        if (!query.isEmpty()) {
+        if (query.isEmpty()) {
+            adapter.clearItems();
+        } else {
             Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
             adapter.clearItems();
 
@@ -179,8 +179,6 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
             recyclerView.addOnScrollListener(new PaginationOnScrollListener(this, layoutManager));
 
             searchPresenter.search(query, 0, NetworkConstants.PRODUCTS_LOAD_COUNT);
-        } else {
-            adapter.clearItems();
         }
 
         return true;
@@ -188,7 +186,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
 
     @Override
     public void onPaginationLoad(boolean state, int totalItemCount, int limit) {
-        Log.i(TAG, "onPaginationLoad: " + state + " " + totalItemCount + " " + limit);
+        Timber.i("onPaginationLoad() - state: %b, totalItemCount: %d, limit: %d", state, totalItemCount, limit);
 
         firstPaginationLoad = state;
         searchPresenter.search(searchQuery, totalItemCount, limit);
@@ -196,18 +194,18 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
 
     @Override
     public void onSearchSuccess(List<ProductDTO> products) {
-        Log.i(TAG, "onSearchSuccess() - " + products.size() + " " + firstPaginationLoad);
+        Timber.i("onSearchSuccess() - products.size: %d, firstPaginationLoad: %b", products.size(), firstPaginationLoad);
 
-        if (!firstPaginationLoad) {
-            adapter.addItems(products); // add items (pagination load)
-        } else {
+        if (firstPaginationLoad) {
             adapter.setItems(products); // new search
+        } else {
+            adapter.addItems(products); // add items (pagination load)
         }
     }
 
     @Override
     public void onSearchError(Throwable e) {
-        e.printStackTrace();
+        Log.e(TAG, e.toString());
     }
 
     @Override
@@ -223,5 +221,4 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
-
 }

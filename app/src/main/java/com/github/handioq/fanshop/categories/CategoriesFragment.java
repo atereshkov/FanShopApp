@@ -102,6 +102,5 @@ public class CategoriesFragment extends BaseFragment implements CategoriesMvp.Vi
     @Override
     public void showLoadCategoriesError(Throwable e) {
         Log.e(TAG, e.toString());
-        e.printStackTrace();
     }
 }

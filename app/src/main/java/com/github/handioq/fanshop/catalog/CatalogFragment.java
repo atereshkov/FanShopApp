@@ -211,8 +211,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     @Override
     public void onProductAddError(Throwable e) {
-        e.printStackTrace();
-        Log.e(TAG, "onProductAddError");
+        Log.e(TAG, e.toString());
     }
 
     @Override

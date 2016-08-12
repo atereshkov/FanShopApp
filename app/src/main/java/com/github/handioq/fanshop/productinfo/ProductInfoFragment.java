@@ -203,8 +203,6 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
     @Override
     public void setProduct(ProductDTO productDTO) {
-        Log.i(TAG, "PRODUCT  ---> " + productDTO.getId() + productDTO.getName());
-
         selectedProduct = productDTO;
 
         getActivity().setTitle(productDTO.getName());
