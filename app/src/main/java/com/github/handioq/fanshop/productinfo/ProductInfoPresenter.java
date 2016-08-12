@@ -7,6 +7,8 @@ import com.github.handioq.fanshop.net.NetworkService;
 
 import javax.inject.Inject;
 
+import timber.log.Timber;
+
 public class ProductInfoPresenter implements ProductInfoMvp.Presenter, ProductInfoModel.Callback {
 
     private ProductInfoMvp.View productInfoView;
@@ -42,14 +44,14 @@ public class ProductInfoPresenter implements ProductInfoMvp.Presenter, ProductIn
     public void onProductLoaded(ProductDTO productDTO) {
         productInfoView.setProduct(productDTO);
         productInfoView.hideProgress();
-        Log.i(TAG, "get productDTO: " + productDTO.getName() + " " + productDTO.getId());
+        Timber.i("onProductLoaded: %s, id: %d", productDTO.getName(), productDTO.getId());
     }
 
     @Override
     public void onProductLoadError(Throwable error) {
+        Log.e(TAG, "onError");
         productInfoView.onError(error);
         productInfoView.hideProgress();
-        Log.i(TAG, "onError");
         error.printStackTrace();
     }
 }

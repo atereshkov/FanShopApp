@@ -57,9 +57,12 @@ public interface ApiService {
 
     @POST(USER_URL + "/{id}/orders")
     Observable<Response> createOrder(@Path("id") int userId,
-                                          @Body OrderDTO orderDTO);
+                                     @Body OrderDTO orderDTO);
 
     @GET(CATALOG_URL + "/categories")
     Observable<List<CategoryDTO>> getCategories();
+
+    @GET(CATALOG_URL + "/categories/{id}")
+    Observable<CategoryDTO> getCategory(@Path("id") int catId);
 
 }

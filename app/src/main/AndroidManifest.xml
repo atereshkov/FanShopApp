@@ -47,6 +47,10 @@
         <activity
             android:name=".fanshop.categories.CategoriesActivity"
             android:label="@string/title_activity_categories"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.categories.subcategory.SubcategoryActivity"
+            android:label="@string/title_activity_subcategory"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

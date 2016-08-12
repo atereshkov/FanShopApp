@@ -47,7 +47,7 @@ public class CategoriesPresenter implements CategoriesMvp.Presenter, CategoriesM
     public void onCategoriesLoadError(Throwable error) {
         categoriesView.hideLoadCategoriesProgress();
         categoriesView.showLoadCategoriesError(error);
-        Log.i(TAG, "onError");
+        Log.e(TAG, "onError");
     }
 
     @Override

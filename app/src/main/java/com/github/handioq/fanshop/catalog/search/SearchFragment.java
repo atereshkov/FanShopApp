@@ -154,13 +154,6 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
     }

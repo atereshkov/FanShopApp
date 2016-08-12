@@ -1,8 +1,7 @@
-package com.github.handioq.fanshop.categories;
+package com.github.handioq.fanshop.categories.subcategory;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,44 +13,47 @@ import android.widget.ProgressBar;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
-import com.github.handioq.fanshop.categories.adapter.CategoriesRecyclerAdapter;
+import com.github.handioq.fanshop.categories.subcategory.adapter.SubcategoryRecyclerAdapter;
 import com.github.handioq.fanshop.model.dto.CategoryDTO;
-import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
+import com.github.handioq.fanshop.model.dto.SubcategoryDTO;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CategoriesFragment extends BaseFragment implements CategoriesMvp.View {
+public class SubcategoryFragment extends BaseFragment implements SubcategoryMvp.View {
 
-    private final String TAG = "CatalogFragment";
+    private final String TAG = "SubcategoryFragment";
 
-    @BindView(R.id.categories_progress_bar)
+    @BindView(R.id.subcategory_progress_bar)
     ProgressBar progressBar;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    private CategoriesRecyclerAdapter adapter;
+    LinearLayoutManager layoutManager;
+    private SubcategoryRecyclerAdapter adapter;
+
+    private int selectedCategoryId;
 
     @Inject
-    CategoriesMvp.Presenter categoriesPresenter;
+    SubcategoryMvp.Presenter subcategoriesPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setRetainInstance(true);
-        setHasOptionsMenu(true);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_categories, container, false);
+        selectedCategoryId = this.getArguments().getInt("id");
+
+        return inflater.inflate(R.layout.fragment_subcategory, container, false);
     }
 
     @Override
@@ -61,43 +63,40 @@ public class CategoriesFragment extends BaseFragment implements CategoriesMvp.Vi
 
         ((FanShopApp) getContext().getApplicationContext()).getCategoriesComponent().inject(this);
 
-        adapter = new CategoriesRecyclerAdapter(new ArrayList<CategoryDTO>());
+        adapter = new SubcategoryRecyclerAdapter(new ArrayList<SubcategoryDTO>());
 
-        categoriesPresenter.setView(this);
-        categoriesPresenter.getCategories();
+        subcategoriesPresenter.setView(this);
+        subcategoriesPresenter.getCategory(selectedCategoryId);
 
         initRecycler();
     }
 
     private void initRecycler() {
-        //layoutManager = new LinearLayoutManager(getContext()); // 1 card in a row
-        ScreenDimensionsHelper screenDimensionsHelper = new ScreenDimensionsHelper(getActivity());
-        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), screenDimensionsHelper.getCategoriesCount());
-
+        layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
-    public void showLoadCategoriesProgress() {
+    public void showLoadCategoryProgress() {
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
     }
 
     @Override
-    public void hideLoadCategoriesProgress() {
+    public void hideLoadCategoryProgress() {
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void setCategories(List<CategoryDTO> categories) {
-        adapter.setCategories(categories);
+    public void setCategory(CategoryDTO category) {
+        adapter.setSubcategories(category.getSubcategories());
     }
 
     @Override
-    public void showLoadCategoriesError(Throwable e) {
+    public void showLoadCategoryError(Throwable e) {
         Log.e(TAG, e.toString());
     }
 }

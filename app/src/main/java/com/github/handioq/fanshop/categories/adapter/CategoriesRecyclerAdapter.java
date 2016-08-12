@@ -30,11 +30,6 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesVi
         return categories.size();
     }
 
-    public void addCategories(List<CategoryDTO> newcategories) {
-        categories.addAll(newcategories);
-        notifyDataSetChanged();
-    }
-
     public void setCategories(List<CategoryDTO> categories) {
         this.categories = categories;
         notifyDataSetChanged();

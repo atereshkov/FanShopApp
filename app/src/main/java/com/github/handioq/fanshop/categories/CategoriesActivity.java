@@ -16,8 +16,8 @@ public class CategoriesActivity extends BaseNavActivity {
     private static final String TAG = "CategoriesActivity";
     private static final String CATEGORIES_FRAGMENT_TAG = "categories";
 
-    @BindView(R.id.fab_categories)
-    FloatingActionButton fab;
+/*    @BindView(R.id.fab_categories)
+    FloatingActionButton fab;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +33,14 @@ public class CategoriesActivity extends BaseNavActivity {
             Log.i(TAG, "create new CategoriesFragment");
         }
 
-        fab.setOnClickListener(new View.OnClickListener() {
+/*        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Not implemented", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
     }
-
-
 
     @Override
     protected void onDestroy() {

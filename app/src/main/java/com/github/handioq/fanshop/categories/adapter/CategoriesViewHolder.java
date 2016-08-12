@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.handioq.R;
+import com.github.handioq.fanshop.categories.subcategory.SubcategoryActivity;
 import com.github.handioq.fanshop.model.dto.CategoryDTO;
 
 import butterknife.BindView;
@@ -34,10 +35,7 @@ public class CategoriesViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (categoryDTO != null) {
                     Context context = itemView.getContext();
-                    //Toast.makeText(context, "onItemClick " + productDTO.getId(), Toast.LENGTH_SHORT).show();
-
-                    //context.startActivity(ProductInfoActivity.makeIntent(context, (int) buyButtonView.getTag()));
-                    //context.startActivity(ProductInfoActivity.makeIntent(context, productDTO.getId()));
+                    context.startActivity(SubcategoryActivity.makeIntent(context, categoryDTO.getId()));
                 }
             }
         });

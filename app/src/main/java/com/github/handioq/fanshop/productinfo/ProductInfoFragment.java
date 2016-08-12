@@ -105,10 +105,6 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated");
 
-        Context context = getActivity();
-
-        List<Fragment> fragments = new Vector<Fragment>();
-
         Bundle bundle = new Bundle();
         bundle.putInt("id", selectedItemId);
 
@@ -118,10 +114,11 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         Fragment reviewsFragment = new ReviewsInfoFragment();
         reviewsFragment.setArguments(bundle);
 
+        List<Fragment> fragments = new Vector<Fragment>();
         fragments.add(descriptionFragment);
         fragments.add(reviewsFragment);
 
-        infoAdapter = new InfoAdapter(getActivity().getSupportFragmentManager(), fragments, context);
+        infoAdapter = new InfoAdapter(getActivity().getSupportFragmentManager(), fragments, getActivity());
         descriptionPager.setAdapter(infoAdapter);
         tabLayout.setupWithViewPager(descriptionPager);
 
@@ -226,6 +223,6 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
     @Override
     public void onProductAddError(Throwable e) {
-        e.printStackTrace();
+        Log.e(TAG, e.toString());
     }
 }
