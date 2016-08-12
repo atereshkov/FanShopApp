@@ -13,6 +13,9 @@ public class CategoryDTO {
     @SerializedName("name")
     private String name;
 
+    @SerializedName("image_url")
+    private String imageUrl;
+
     @SerializedName("subcategories")
     private List<SubcategoryDTO> subcategories = new ArrayList<>();
 
@@ -38,5 +41,13 @@ public class CategoryDTO {
 
     public void setSubcategories(List<SubcategoryDTO> subcategories) {
         this.subcategories = subcategories;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

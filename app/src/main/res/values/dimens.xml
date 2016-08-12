@@ -34,6 +34,7 @@
     <dimen name="cart_image_weight">90dp</dimen>
     <dimen name="category_image_height">60dp</dimen>
     <dimen name="category_image_weight">60dp</dimen>
+    <dimen name="subcategory_name_margin">8dp</dimen>
 
     <!-- Default recyclerView paddings -->
     <dimen name="recycler_view_top">8dp</dimen>
