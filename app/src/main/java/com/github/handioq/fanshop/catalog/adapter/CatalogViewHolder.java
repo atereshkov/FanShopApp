@@ -54,8 +54,7 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (productDTO != null) {
                     Context context = itemView.getContext();
-                    Toast.makeText(context,
-                            "onItemClick " + productDTO.getId(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "onItemClick " + productDTO.getId(), Toast.LENGTH_SHORT).show();
 
                     //context.startActivity(ProductInfoActivity.makeIntent(context, (int) buyButtonView.getTag()));
                     context.startActivity(ProductInfoActivity.makeIntent(context, productDTO.getId()));

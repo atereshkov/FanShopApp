@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.handioq.R;
@@ -44,7 +46,6 @@ public abstract class BaseNavActivity extends AppCompatActivity
         super.onContentChanged();
         unbinder = ButterKnife.bind(this);
 
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -55,6 +56,11 @@ public abstract class BaseNavActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(mToggle);
         navigationView.setNavigationItemSelectedListener(this);
+
+        /*View header = navigationView.getHeaderView(0);
+        Button loginButton = (Button) header.findViewById(R.id.login_button);
+
+        loginButton.setText("Login");*/
     }
 
     @Override

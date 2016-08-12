@@ -51,9 +51,6 @@ public class CatalogActivity extends BaseNavActivity {
         });
         //startLogin();
         //startCart();
-
-        //Intent intent = new Intent(CatalogActivity.this, ScrollingActivity.class);
-        //startActivity(intent);
     }
 
     void startLogin() {
@@ -103,20 +100,6 @@ public class CatalogActivity extends BaseNavActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void setRefreshActionButtonState(final boolean refreshing) {
-        if (optionsMenu != null) {
-            final MenuItem refreshItem = optionsMenu
-                    .findItem(R.id.refresh);
-            if (refreshItem != null) {
-                if (refreshing) {
-                    refreshItem.setActionView(R.layout.actionbar_indeterminate_progress);
-                } else {
-                    refreshItem.setActionView(null);
-                }
-            }
-        }
     }
 
     @Override
