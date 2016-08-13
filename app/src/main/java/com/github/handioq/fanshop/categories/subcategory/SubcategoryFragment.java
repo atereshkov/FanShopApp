@@ -93,6 +93,7 @@ public class SubcategoryFragment extends BaseFragment implements SubcategoryMvp.
     @Override
     public void setCategory(CategoryDTO category) {
         adapter.setSubcategories(category.getSubcategories());
+        getActivity().setTitle(category.getName());
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
@@ -40,7 +41,7 @@ public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (subcategory != null) {
                     Context context = itemView.getContext();
-                    //Toast.makeText(context, "onItemClick " + productDTO.getId(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show();
 
                     //context.startActivity(ProductInfoActivity.makeIntent(context, (int) buyButtonView.getTag()));
                     //context.startActivity(SubcategoryActivity.makeIntent(context, 1)); // todo change

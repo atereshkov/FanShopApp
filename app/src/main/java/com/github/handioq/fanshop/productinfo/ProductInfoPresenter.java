@@ -20,7 +20,6 @@ public class ProductInfoPresenter implements ProductInfoMvp.Presenter, ProductIn
 
     @Inject
     public ProductInfoPresenter(NetworkService networkService) {
-
         productInfoModel = new ProductInfoModel(networkService);
         productInfoModel.setCallback(this);
     }
@@ -49,9 +48,8 @@ public class ProductInfoPresenter implements ProductInfoMvp.Presenter, ProductIn
 
     @Override
     public void onProductLoadError(Throwable error) {
-        Log.e(TAG, "onError");
+        Log.e(TAG, error.toString());
         productInfoView.onError(error);
         productInfoView.hideProgress();
-        error.printStackTrace();
     }
 }

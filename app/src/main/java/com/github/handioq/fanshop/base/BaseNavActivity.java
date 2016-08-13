@@ -57,10 +57,10 @@ public abstract class BaseNavActivity extends AppCompatActivity
         drawer.addDrawerListener(mToggle);
         navigationView.setNavigationItemSelectedListener(this);
 
-        /*View header = navigationView.getHeaderView(0);
+        View header = navigationView.getHeaderView(0);
         Button loginButton = (Button) header.findViewById(R.id.login_button);
 
-        loginButton.setText("Login");*/
+        loginButton.setText(getResources().getString(R.string.action_sign_in)); // change
     }
 
     @Override

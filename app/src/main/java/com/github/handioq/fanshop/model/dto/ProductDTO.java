@@ -16,7 +16,7 @@ public class ProductDTO {
     private String imageUrl;
 
     @SerializedName("images")
-    private List<ImageDTO> imageDTOs = new ArrayList<ImageDTO>();
+    private List<ImageDTO> images = new ArrayList<ImageDTO>();
 
     @SerializedName("reviews")
     private List<ReviewDTO> reviews = new ArrayList<>();
@@ -53,12 +53,12 @@ public class ProductDTO {
         this.imageUrl = imageUrl;
     }
 
-    public List<ImageDTO> getImageDTOs() {
-        return imageDTOs;
+    public List<ImageDTO> getImages() {
+        return images;
     }
 
-    public void setImageDTOs(List<ImageDTO> imageDTOs) {
-        this.imageDTOs = imageDTOs;
+    public void setImages(List<ImageDTO> images) {
+        this.images = images;
     }
 
     public String getDescription() {

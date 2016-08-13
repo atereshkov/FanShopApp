@@ -29,13 +29,11 @@ public interface ProductInfoMvp {
 
         void onError(Throwable e);
 
-        // TODO: complete methods
-
     }
 
     interface Presenter extends Mvp.Presenter<ProductInfoMvp.View> {
 
-        void getProduct(int id); // parameters? index? whatever..
+        void getProduct(int id);
 
     }
 }

@@ -3,7 +3,7 @@ package com.github.handioq.fanshop.application;
 import android.app.Application;
 
 import com.github.handioq.BuildConfig;
-import com.github.handioq.application.MyEventBusIndex;
+import com.github.handioq.application.ApplicationBusIndex;
 import com.github.handioq.fanshop.di.component.AccountComponent;
 import com.github.handioq.fanshop.di.component.CartComponent;
 import com.github.handioq.fanshop.di.component.CatalogComponent;
@@ -84,7 +84,7 @@ public class FanShopApp extends Application {
                 .build();
 
         EventBus.builder()
-                .addIndex(new MyEventBusIndex())
+                .addIndex(new ApplicationBusIndex())
                 .installDefaultEventBus();
 
         if (BuildConfig.DEBUG) {

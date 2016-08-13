@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,9 +49,9 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (productDTO != null) {
                     Context context = itemView.getContext();
-                    Toast.makeText(context, "onItemClick " + productDTO, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "onItemClick " + productDTO, Toast.LENGTH_SHORT).show();
 
-                    //context.startActivity(ProductInfoActivity.makeIntent(context, (int) buyButtonView.getTag()));
+                    context.startActivity(ProductInfoActivity.makeIntent(context, productDTO.getId()));
                 }
             }
         });

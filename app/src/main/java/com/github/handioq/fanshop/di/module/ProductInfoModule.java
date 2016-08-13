@@ -6,6 +6,8 @@ import com.github.handioq.fanshop.di.scope.PresenterScope;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.productinfo.ProductInfoMvp;
 import com.github.handioq.fanshop.productinfo.ProductInfoPresenter;
+import com.github.handioq.fanshop.productinfo.ReviewsInfoMvp;
+import com.github.handioq.fanshop.productinfo.ReviewsInfoPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,5 +25,11 @@ public class ProductInfoModule {
     @PresenterScope
     public AddToCartMvp.Presenter providesAddToCartPresenter(NetworkService networkService) {
         return new AddToCartPresenter(networkService);
+    }
+
+    @Provides
+    @PresenterScope
+    public ReviewsInfoMvp.Presenter providesReviewsInfoPresenter(NetworkService networkService) {
+        return new ReviewsInfoPresenter(networkService);
     }
 }

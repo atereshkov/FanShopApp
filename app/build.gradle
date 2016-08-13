@@ -58,6 +58,6 @@ dependencies {
 
 apt {
     arguments {
-        eventBusIndex "com.github.handioq.application.MyEventBusIndex"
+        eventBusIndex "com.github.handioq.application.ApplicationBusIndex"
     }
 }

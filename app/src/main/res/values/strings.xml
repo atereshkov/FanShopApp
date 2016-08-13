@@ -60,7 +60,7 @@
 
     <string name="order_id">%1d</string>
     <string name="title_activity_search">Search</string>
-    <string name="title_activity_categories">CategoriesActivity</string>
-    <string name="title_activity_subcategory">SubcategoryActivity</string>
+    <string name="title_activity_categories">Categories</string>
+    <string name="title_activity_subcategory">Subcategory</string>
 
 </resources>

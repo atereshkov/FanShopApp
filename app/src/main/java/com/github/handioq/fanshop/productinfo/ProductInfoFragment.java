@@ -1,6 +1,5 @@
 package com.github.handioq.fanshop.productinfo;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -203,7 +202,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         selectedProduct = productDTO;
 
         getActivity().setTitle(productDTO.getName());
-        initSlider(productDTO.getImageDTOs());
+        initSlider(productDTO.getImages());
 
         infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, productDTO.getPrice()));
         infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
