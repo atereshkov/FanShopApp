@@ -133,12 +133,6 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG, "onDestroy");
-    }
-
     private void initSlider(List<ImageDTO> imageDTOs) {
 
         imageSlider.setAdapter(new ImageSliderAdapter(getActivity(), imageDTOs));
@@ -223,5 +217,11 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     @Override
     public void onProductAddError(Throwable e) {
         Log.e(TAG, e.toString());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy");
     }
 }

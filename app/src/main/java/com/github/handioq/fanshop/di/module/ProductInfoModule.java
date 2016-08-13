@@ -23,13 +23,14 @@ public class ProductInfoModule {
 
     @Provides
     @PresenterScope
-    public AddToCartMvp.Presenter providesAddToCartPresenter(NetworkService networkService) {
-        return new AddToCartPresenter(networkService);
+    public ReviewsInfoMvp.Presenter providesReviewsInfoPresenter(NetworkService networkService) {
+        return new ReviewsInfoPresenter(networkService);
     }
 
     @Provides
     @PresenterScope
-    public ReviewsInfoMvp.Presenter providesReviewsInfoPresenter(NetworkService networkService) {
-        return new ReviewsInfoPresenter(networkService);
+    public AddToCartMvp.Presenter providesAddToCartPresenter(NetworkService networkService) {
+        return new AddToCartPresenter(networkService);
     }
+
 }

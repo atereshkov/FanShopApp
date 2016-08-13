@@ -10,12 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.cart.adapter.CartRecyclerAdapter;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +28,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CartFragment extends BaseFragment implements CartMvp.View {
+public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFromCartMvp.View {
 
     private final static String TAG = "CartFragment";
 
@@ -43,10 +47,13 @@ public class CartFragment extends BaseFragment implements CartMvp.View {
     @Inject
     CartMvp.Presenter cartPresenter;
 
+    @Inject
+    RemoveFromCartMvp.Presenter removeFromCartPresenter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // retain this fragment
+
         setRetainInstance(true);
     }
 
@@ -66,6 +73,7 @@ public class CartFragment extends BaseFragment implements CartMvp.View {
 
         adapter = new CartRecyclerAdapter(new ArrayList<ProductDTO>());
 
+        removeFromCartPresenter.setView(this);
         cartPresenter.setView(this);
         cartPresenter.getCartItems(575); // TODO CHANGE TO REAL ID
 
@@ -76,9 +84,21 @@ public class CartFragment extends BaseFragment implements CartMvp.View {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG, "onDestroy");
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onRemoveFromCartEvent(RemoveFromCartEvent event) {
+        removeFromCartPresenter.removeProductFromCart(500, event.getProductId());
+        Log.i(TAG, "onRemoveFromCartEvent");
     }
 
     @Override
@@ -103,12 +123,22 @@ public class CartFragment extends BaseFragment implements CartMvp.View {
 
     @Override
     public void onError(Throwable e) {
-        e.printStackTrace();
+        Log.e(TAG, e.toString());
     }
 
-    /*
     @Override
-    public void onItemClicked(View view, int position) {
+    public void onProductRemoveSuccess() {
+        Toast.makeText(getContext(), "Product was removed from user's cart", Toast.LENGTH_SHORT).show();
+    }
 
-    }*/
+    @Override
+    public void onProductRemoveError(Throwable e) {
+        Log.e(TAG, e.toString());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy");
+    }
 }

@@ -11,6 +11,7 @@ import com.github.handioq.fanshop.model.dto.UserDTO;
 import java.util.List;
 
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -55,6 +56,10 @@ public interface ApiService {
     @POST(USER_URL + "/{id}/cart")
     Observable<Response> addProductToCart(@Path("id") int userId,
                                           @Body ProductDTO productDTO);
+
+    @DELETE(USER_URL + "/{id}/cart/{product_id}")
+    Observable<Response> removeProductFromCart(@Path("id") int userId,
+                                               @Path("product_id") int productId); //
 
     @GET(USER_URL + "/{id}/orders")
     Observable<List<OrderDTO>> getOrders(@Path("id") int userId);

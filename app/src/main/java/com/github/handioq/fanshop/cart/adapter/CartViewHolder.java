@@ -13,8 +13,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
+import com.github.handioq.fanshop.cart.RemoveFromCartEvent;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,8 +52,6 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (productDTO != null) {
                     Context context = itemView.getContext();
-                    //Toast.makeText(context, "onItemClick " + productDTO, Toast.LENGTH_SHORT).show();
-
                     context.startActivity(ProductInfoActivity.makeIntent(context, productDTO.getId()));
                 }
             }
@@ -64,8 +65,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
 
         removeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(itemView.getContext(),
-                        "Click remove button on product " + productDTO, Toast.LENGTH_SHORT).show();
+                EventBus.getDefault().post(new RemoveFromCartEvent(productDTO.getId()));
             }
         });
 

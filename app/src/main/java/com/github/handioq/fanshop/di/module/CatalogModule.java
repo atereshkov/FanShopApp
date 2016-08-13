@@ -23,13 +23,13 @@ public class CatalogModule {
 
     @Provides
     @PresenterScope
-    public AddToCartMvp.Presenter providesAddToCartPresenter(NetworkService networkService) {
-        return new AddToCartPresenter(networkService);
+    public SearchMvp.Presenter providesSearchPresenter(NetworkService networkService) {
+        return new SearchPresenter(networkService);
     }
 
     @Provides
     @PresenterScope
-    public SearchMvp.Presenter providesSearchPresenter(NetworkService networkService) {
-        return new SearchPresenter(networkService);
+    public AddToCartMvp.Presenter providesAddToCartPresenter(NetworkService networkService) {
+        return new AddToCartPresenter(networkService);
     }
 }
