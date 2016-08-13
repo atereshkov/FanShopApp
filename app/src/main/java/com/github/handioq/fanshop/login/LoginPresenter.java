@@ -1,8 +1,8 @@
 package com.github.handioq.fanshop.login;
 
-import android.util.Log;
-
+import com.github.handioq.fanshop.net.model.AuthResponse;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.net.model.LoginDTO;
 
 import javax.inject.Inject;
 
@@ -22,18 +22,18 @@ public class LoginPresenter implements LoginMvp.Presenter, LoginMvp.Model.Callba
     }
 
     @Override
-    public void loginValidate(String username, String password) {
+    public void loginValidate(LoginDTO login) {
 
         if (loginView != null) {
             loginView.showProgress();
         }
 
-        loginModel.getAuthState(username, password);
+        loginModel.getAuthState(login);
     }
 
     @Override
-    public void onSuccess(UserAuthState userAuthState) {
-        loginView.loginSuccess(userAuthState);
+    public void onSuccess(AuthResponse authResponse) {
+        loginView.loginSuccess(authResponse);
         loginView.hideProgress();
     }
 

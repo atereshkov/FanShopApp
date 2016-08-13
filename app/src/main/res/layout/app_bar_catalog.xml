@@ -41,6 +41,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_cart_white_24dp" />
+        android:src="@drawable/ic_cart_white_24dp"
+        app:layout_anchor="@+id/recycler_view"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_behavior="com.github.handioq.fanshop.util.FABScrollBehavior" />
 
 </android.support.design.widget.CoordinatorLayout>

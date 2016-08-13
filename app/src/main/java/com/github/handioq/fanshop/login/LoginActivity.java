@@ -7,10 +7,14 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
+import com.github.handioq.fanshop.net.model.AuthResponse;
+import com.github.handioq.fanshop.net.model.LoginDTO;
 import com.github.handioq.fanshop.signup.SignupActivity;
 
 import javax.inject.Inject;
@@ -18,13 +22,12 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * A login screen that offers login via email/password.
- */
 public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
+    public static final String TAG = "LoginActivity";
+
     @BindView(R.id.email)
-    AutoCompleteTextView mEmailView;
+    AutoCompleteTextView emailView;
 
     @BindView(R.id.password)
     EditText passwordView;
@@ -34,6 +37,9 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
     @BindView(R.id.login_progress)
     ProgressBar progressBar;
+
+    @BindView(R.id.forgot_password)
+    TextView forgotPasswordView;
 
     @Inject
     LoginMvp.Presenter loginPresenter;
@@ -50,9 +56,12 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
     @OnClick(R.id.sign_in)
     void signIn() {
-        String login = mEmailView.getText().toString();
+        // TODO add validation
+        String login = emailView.getText().toString();
         String password = passwordView.getText().toString();
-        loginPresenter.loginValidate(login, password);
+        LoginDTO loginDTO = new LoginDTO(login, password);
+
+        loginPresenter.loginValidate(loginDTO);
     }
 
     @OnClick(R.id.sign_up)
@@ -61,31 +70,22 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
         startActivity(intent);
     }
 
+    @OnClick(R.id.forgot_password)
+    void onRestoreClick() {
+        // TODO make restore activity
+        Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
-    public void loginSuccess(UserAuthState userAuthState) {
-        Log.i("UserAuthState", userAuthState.toString());
+    public void loginSuccess(AuthResponse authResponse) {
+        Log.i(TAG, authResponse.toString());
+        Toast.makeText(this, "Авторизация прошла успешно", Toast.LENGTH_SHORT).show(); // test
+        finish();
     }
 
     @Override
     public void loginFailure(Throwable e) {
-        //Log.i("UserAuthState", e.);
-        Log.i("UserAuthState", e.toString());
-        /*
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-         */
-        e.printStackTrace();
+        Log.i(TAG, e.toString());
     }
 
     @Override
@@ -112,6 +112,7 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
+        // EmailView.setError(getString(R.string.error_field_required));
         return email.contains("@");
     }
 

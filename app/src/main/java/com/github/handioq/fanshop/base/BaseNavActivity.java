@@ -19,6 +19,7 @@ import com.github.handioq.fanshop.account.AccountActivity;
 import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.catalog.CatalogActivity;
 import com.github.handioq.fanshop.categories.CategoriesActivity;
+import com.github.handioq.fanshop.login.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,7 +61,15 @@ public abstract class BaseNavActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         Button loginButton = (Button) header.findViewById(R.id.login_button);
 
-        loginButton.setText(getResources().getString(R.string.action_sign_in)); // change
+        // TODO change
+        loginButton.setText(getResources().getString(R.string.action_sign_in));
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BaseNavActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.github.handioq.fanshop.signup;
 
-import com.github.handioq.fanshop.model.dto.AuthDTO;
+import com.github.handioq.fanshop.net.model.RegisterDTO;
 import com.github.handioq.fanshop.net.NetworkService;
-import com.github.handioq.fanshop.net.Response;
+import com.github.handioq.fanshop.net.model.Response;
 
 import javax.inject.Inject;
 
@@ -20,13 +20,13 @@ public class SignupPresenter implements SignupMvp.Presenter, SignupModel.Callbac
     }
 
     @Override
-    public void signupValidate(AuthDTO authDTO) {
+    public void signupValidate(RegisterDTO registerDTO) {
 
         if (signupView != null) {
             signupView.showProgress();
         }
 
-        signupModel.getSignupState(authDTO);
+        signupModel.getSignupState(registerDTO);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.github.handioq.fanshop.cart;
 
 import com.github.handioq.fanshop.net.NetworkService;
-import com.github.handioq.fanshop.net.Response;
+import com.github.handioq.fanshop.net.model.Response;
 
 import rx.Subscriber;
 

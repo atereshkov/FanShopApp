@@ -1,12 +1,14 @@
 package com.github.handioq.fanshop.net;
 
-import com.github.handioq.fanshop.login.UserAuthState;
-import com.github.handioq.fanshop.model.dto.AuthDTO;
+import com.github.handioq.fanshop.net.model.LoginDTO;
+import com.github.handioq.fanshop.net.model.RegisterDTO;
 import com.github.handioq.fanshop.model.dto.CategoryDTO;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
 import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.net.model.AuthResponse;
+import com.github.handioq.fanshop.net.model.Response;
 
 import java.util.List;
 
@@ -25,12 +27,11 @@ public interface ApiService {
     String CATALOG_URL = "/catalog";
     String USER_URL = "/user";
 
-    @GET(LOGIN_URL)
-    Observable<UserAuthState> login(@Query("username") String login,
-                                    @Query("password") String password);
+    @POST(LOGIN_URL + "/signin")
+    Observable<AuthResponse> login(@Body LoginDTO loginDTO);
 
-    @POST(SIGNUP_URL)
-    Observable<Response> signup(@Body AuthDTO authDTO);
+    @POST(SIGNUP_URL + "/signup")
+    Observable<Response> signup(@Body RegisterDTO registerDTO);
 
     @GET(CATALOG_URL)
     Observable<List<ProductDTO>> getProducts(@Query("offset") int offset,

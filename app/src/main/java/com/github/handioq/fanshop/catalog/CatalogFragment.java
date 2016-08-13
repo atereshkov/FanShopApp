@@ -24,7 +24,7 @@ import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.catalog.search.SearchActivity;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.net.Response;
+import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.util.BadgeDrawable;
 import com.github.handioq.fanshop.util.NetworkConstants;
 

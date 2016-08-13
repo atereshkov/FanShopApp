@@ -5,22 +5,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
-import com.github.handioq.fanshop.model.dto.AuthDTO;
-import com.github.handioq.fanshop.net.Response;
+import com.github.handioq.fanshop.net.model.RegisterDTO;
+import com.github.handioq.fanshop.net.model.Response;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * A login screen that offers login via email/password.
- */
 public class SignupActivity extends BaseActivity implements SignupMvp.View {
+
+    private static final String TAG = "SignupActivity";
 
     @BindView(R.id.signup_email)
     AutoCompleteTextView emailView;
@@ -51,34 +52,26 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
     void signUp() {
         String login = emailView.getText().toString();
         String password = passwordView.getText().toString();
-        AuthDTO authDTO = new AuthDTO(login, password);
-        signupPresenter.signupValidate(authDTO);
+        RegisterDTO registerDTO = new RegisterDTO(login, password);
+        signupPresenter.signupValidate(registerDTO);
+    }
+
+    @OnClick(R.id.have_account)
+    void onHaveAccountClick() {
+        finish();
     }
 
     @Override
     public void signupSuccess(Response response) {
-        Log.i("AuthDTO", response.toString());
+        Log.i(TAG, response.toString());
+        Toast.makeText(this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show(); // test
+        finish();
     }
 
     @Override
     public void signupFailure(Throwable e) {
-        Log.i("AuthDTO", e.toString());
-        /*
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+        Log.i(TAG, e.toString());
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-         */
-        e.printStackTrace();
     }
 
     @Override
@@ -100,6 +93,7 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
+        // mEmailView.setError(getString(R.string.error_field_required));
         return email.contains("@");
     }
 

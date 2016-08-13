@@ -1,8 +1,8 @@
 package com.github.handioq.fanshop.signup;
 
-import com.github.handioq.fanshop.model.dto.AuthDTO;
+import com.github.handioq.fanshop.net.model.RegisterDTO;
 import com.github.handioq.fanshop.net.NetworkService;
-import com.github.handioq.fanshop.net.Response;
+import com.github.handioq.fanshop.net.model.Response;
 
 import rx.Subscriber;
 
@@ -16,10 +16,10 @@ public class SignupModel implements SignupMvp.Model {
     }
 
     @Override
-    public void getSignupState(AuthDTO authDTO) {
+    public void getSignupState(RegisterDTO registerDTO) {
 
         networkService.getApiService()
-                .signup(authDTO)
+                .signup(registerDTO)
                 .compose(NetworkService.<Response>applyScheduler())
                 .subscribe(new Subscriber<Response>() {
 

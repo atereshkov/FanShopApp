@@ -1,4 +1,4 @@
-package com.github.handioq.fanshop.net;
+package com.github.handioq.fanshop.net.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -30,7 +30,7 @@ public class Response {
     public String toString() {
         return "Response{" +
                 "statusCode=" + statusCode +
-                ", statusMessage='" + statusMessage + '\'' +
+                ", token='" + statusMessage + '\'' +
                 '}';
     }
 }

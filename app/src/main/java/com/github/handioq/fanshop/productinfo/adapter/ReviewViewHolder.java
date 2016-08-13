@@ -39,7 +39,7 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (reviewDTO != null) {
                     Context context = itemView.getContext();
-                    Toast.makeText(context, reviewDTO.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show();
                 }
             }
         });

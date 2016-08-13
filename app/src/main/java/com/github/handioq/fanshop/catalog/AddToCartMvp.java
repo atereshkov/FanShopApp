@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.catalog;
 
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.net.Response;
+import com.github.handioq.fanshop.net.model.Response;
 
 public interface AddToCartMvp {
 

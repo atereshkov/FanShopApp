@@ -25,7 +25,7 @@ import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.catalog.AddToCartMvp;
 import com.github.handioq.fanshop.model.dto.ImageDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.net.Response;
+import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
 import com.github.handioq.fanshop.productinfo.slider.ImageSliderAdapter;

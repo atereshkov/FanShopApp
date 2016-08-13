@@ -1,8 +1,6 @@
 package com.github.handioq.fanshop.cart;
 
 import com.github.handioq.fanshop.base.Mvp;
-import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.net.Response;
 
 public interface RemoveFromCartMvp {
 

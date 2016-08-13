@@ -1,8 +1,8 @@
-package com.github.handioq.fanshop.model.dto;
+package com.github.handioq.fanshop.net.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AuthDTO {
+public class RegisterDTO {
 
     @SerializedName("login")
     String login;
@@ -10,7 +10,7 @@ public class AuthDTO {
     @SerializedName("password")
     String password;
 
-    public AuthDTO(String login, String password) {
+    public RegisterDTO(String login, String password) {
         this.login = login;
         this.password = password;
     }
@@ -33,7 +33,7 @@ public class AuthDTO {
 
     @Override
     public String toString() {
-        return "AuthDTO{" +
+        return "RegisterDTO{" +
                 "login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 '}';

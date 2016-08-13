@@ -21,7 +21,8 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numStars="5" />
+            android:numStars="5"
+            android:theme="@style/RatingBar" />
 
         <ImageButton
             android:id="@+id/buy_button"
@@ -37,12 +38,12 @@
             android:id="@+id/review_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_below="@+id/rating_bar_small"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/rating_bar_small"
             android:layout_toLeftOf="@+id/buy_button"
-            android:layout_toStartOf="@+id/buy_button" />
+            android:layout_toStartOf="@+id/buy_button"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

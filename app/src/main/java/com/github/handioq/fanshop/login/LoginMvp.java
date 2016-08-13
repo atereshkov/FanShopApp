@@ -1,18 +1,20 @@
 package com.github.handioq.fanshop.login;
 
 import com.github.handioq.fanshop.base.Mvp;
+import com.github.handioq.fanshop.net.model.AuthResponse;
+import com.github.handioq.fanshop.net.model.LoginDTO;
 
 public interface LoginMvp {
 
     interface Model extends Mvp.Model {
 
-        void getAuthState(String username, String password);
+        void getAuthState(LoginDTO login);
 
         void setCallback(Callback callback);
 
         interface Callback {
 
-            void onSuccess(UserAuthState userAuthState);
+            void onSuccess(AuthResponse authResponse);
 
             void onError(Throwable error);
 
@@ -22,7 +24,7 @@ public interface LoginMvp {
 
     interface View extends Mvp.View {
 
-        void loginSuccess(UserAuthState userAuthState);
+        void loginSuccess(AuthResponse authResponse);
 
         void loginFailure(Throwable e);
 
@@ -36,7 +38,7 @@ public interface LoginMvp {
 
     interface Presenter extends Mvp.Presenter<LoginMvp.View> {
 
-        void loginValidate(String username, String password);
+        void loginValidate(LoginDTO login);
 
     }
 }
