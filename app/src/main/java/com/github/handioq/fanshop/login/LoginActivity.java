@@ -16,6 +16,7 @@ import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.net.model.AuthResponse;
 import com.github.handioq.fanshop.net.model.LoginDTO;
 import com.github.handioq.fanshop.signup.SignupActivity;
+import com.github.handioq.fanshop.util.Validation;
 
 import javax.inject.Inject;
 
@@ -56,12 +57,15 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
     @OnClick(R.id.sign_in)
     void signIn() {
-        // TODO add validation
-        String login = emailView.getText().toString();
+        String email = emailView.getText().toString();
         String password = passwordView.getText().toString();
-        LoginDTO loginDTO = new LoginDTO(login, password);
 
-        loginPresenter.loginValidate(loginDTO);
+        if (Validation.isEmailValid(email)) {
+            //LoginDTO loginDTO = new LoginDTO(email, password);
+            loginPresenter.loginValidate(email, password);
+        } else {
+            emailView.setError(getResources().getString(R.string.error_invalid_email));
+        }
     }
 
     @OnClick(R.id.sign_up)

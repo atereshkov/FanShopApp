@@ -1,5 +1,6 @@
 package com.github.handioq.fanshop.catalog;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -27,6 +28,13 @@ public class CatalogActivity extends BaseNavActivity {
     FloatingActionButton fab;
 
     private Menu optionsMenu;
+    private String category;
+
+    public static Intent makeIntent(Context context, String category){
+        Intent intent = new Intent(context, CatalogActivity.class);
+        intent.putExtra("category", category);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +42,21 @@ public class CatalogActivity extends BaseNavActivity {
         setContentView(R.layout.activity_catalog);
         Log.i(TAG, "onCreate");
 
+        if (getIntent().hasExtra("category")) {
+            category = getIntent().getExtras().getString("category");
+            setTitle(category);
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putString("category", category);
+
         if (getSupportFragmentManager().findFragmentByTag(CATALOG_FRAGMENT_TAG) == null) {
+            CatalogFragment catalogFragment = new CatalogFragment();
+            catalogFragment.setArguments(bundle);
+
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content, new CatalogFragment(), CATALOG_FRAGMENT_TAG)
+                    .replace(R.id.content, catalogFragment, CATALOG_FRAGMENT_TAG)
                     .commit();
 
             Log.i(TAG, "create new CatalogFragment");

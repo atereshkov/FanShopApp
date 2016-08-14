@@ -22,10 +22,10 @@ public class CatalogModel implements CatalogMvp.Model {
     }
 
     @Override
-    public void getProducts(int offset, int count) {
+    public void getProducts(String category, int offset, int count) {
 
         networkService.getApiService()
-                .getProducts(offset, count)
+                .getProducts(category, offset, count)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<List<ProductDTO>>applyScheduler())
                 .subscribe(new Subscriber<List<ProductDTO>>() {

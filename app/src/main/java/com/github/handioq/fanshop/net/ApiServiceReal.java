@@ -13,13 +13,15 @@ import java.util.List;
 
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
-public interface ApiService {
+public interface ApiServiceReal {
 
     //String LOGIN_URL = "/auth";
     String LOGIN_URL = "/api/auth/login";
@@ -27,10 +29,10 @@ public interface ApiService {
     String CATALOG_URL = "/catalog";
     String USER_URL = "/user";
 
-    //@FormUrlEncoded
+    @FormUrlEncoded
     @POST(LOGIN_URL)
-    Observable<AuthResponse> login(@Query("mail") String mail,
-                                   @Query("password") String password);
+    Observable<AuthResponse> login(@Field("mail") String mail,
+                                   @Field("password") String password);
 
     @POST(SIGNUP_URL + "/signup")
     Observable<Response> signup(@Body RegisterDTO registerDTO);

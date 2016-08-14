@@ -59,6 +59,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     AddToCartMvp.Presenter addToCartPresenter;
 
     private final String TAG = "CatalogFragment";
+    private String category;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        readBundle(getArguments());
         return inflater.inflate(R.layout.fragment_catalog, container, false);
     }
 
@@ -86,7 +88,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
         addToCartPresenter.setView(this);
         catalogPresenter.setView(this);
-        catalogPresenter.getProducts(0, NetworkConstants.PRODUCTS_LOAD_COUNT);
+        catalogPresenter.getProducts(category, 0, NetworkConstants.PRODUCTS_LOAD_COUNT);
 
         initRecycler();
     }
@@ -127,7 +129,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         firstPaginationLoad = state;
 
         setRefreshActionButtonState(true);
-        catalogPresenter.getProducts(totalItemCount, limit);
+        catalogPresenter.getProducts(category, totalItemCount, limit);
     }
 
     @Override
@@ -174,6 +176,12 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
                     refreshItem.setActionView(null);
                 }
             }
+        }
+    }
+
+    private void readBundle(Bundle bundle) {
+        if (bundle != null) {
+            category = bundle.getString("category");
         }
     }
 

@@ -29,13 +29,13 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
     }
 
     @Override
-    public void getProducts(int offset, int limit) {
+    public void getProducts(String category, int offset, int limit) {
         if (catalogView != null) {
             catalogView.showLoadProductsProgress();
             Log.i(TAG, "showLoadProductsProgress() on catalogView");
         }
 
-        catalogModel.getProducts(offset, limit);
+        catalogModel.getProducts(category, offset, limit);
     }
 
     /*

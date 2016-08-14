@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
+import com.github.handioq.fanshop.catalog.CatalogActivity;
 import com.github.handioq.fanshop.categories.subcategory.SubcategoryActivity;
 import com.github.handioq.fanshop.model.dto.SubcategoryDTO;
 
@@ -41,10 +42,7 @@ public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (subcategory != null) {
                     Context context = itemView.getContext();
-                    Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show();
-
-                    //context.startActivity(ProductInfoActivity.makeIntent(context, (int) buyButtonView.getTag()));
-                    //context.startActivity(SubcategoryActivity.makeIntent(context, 1)); // todo change
+                    context.startActivity(CatalogActivity.makeIntent(context, subcategory.getName()));
                 }
             }
         });

@@ -16,10 +16,10 @@ public class LoginModel implements LoginMvp.Model {
     }
 
     @Override
-    public void getAuthState(LoginDTO login) {
+    public void getAuthState(String mail, String password) {
 
         networkService.getApiService()
-                .login(login)
+                .login(mail, password)
                 .compose(NetworkService.<AuthResponse>applyScheduler())
                 .subscribe(new Subscriber<AuthResponse>() {
                     @Override

@@ -22,13 +22,13 @@ public class LoginPresenter implements LoginMvp.Presenter, LoginMvp.Model.Callba
     }
 
     @Override
-    public void loginValidate(LoginDTO login) {
+    public void loginValidate(String mail, String password) {
 
         if (loginView != null) {
             loginView.showProgress();
         }
 
-        loginModel.getAuthState(login);
+        loginModel.getAuthState(mail, password);
     }
 
     @Override
