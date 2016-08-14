@@ -56,5 +56,6 @@
     <string name="title_activity_search">Поиск</string>
     <string name="title_activity_categories">Категории товаров</string>
     <string name="nav_categories">Категории</string>
+    <string name="title_activity_subcategory">Подкатегория</string>
 
 </resources>

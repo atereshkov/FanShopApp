@@ -45,22 +45,10 @@ public class CatalogActivity extends BaseNavActivity {
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Toast.makeText(CatalogActivity.this, "fabOnclick", Toast.LENGTH_SHORT).show();
-                startCart();
+                Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
+                startActivity(intent);
             }
         });
-        //startLogin();
-        //startCart();
-    }
-
-    void startLogin() {
-        Intent intent = new Intent(CatalogActivity.this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-    void startCart() {
-        Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
-        startActivity(intent);
     }
 
     @Override
