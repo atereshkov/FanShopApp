@@ -63,4 +63,15 @@
     <string name="title_activity_categories">Categories</string>
     <string name="title_activity_subcategory">Subcategory</string>
 
+    <!-- Strings related to account -->
+    <string name="personal_info">Personal info</string>
+    <string name="delivery_address">Delivery address</string>
+    <string name="account_name">Name: %1s</string>
+    <string name="account_email">E-Mail: %1s</string>
+    <string name="account_phone">Contact phone: %1s</string>
+    <string name="account_street">Street: %1s</string>
+    <string name="account_city">City: %1s</string>
+    <string name="account_country">Country: %1s</string>
+    <string name="account_zipcode">Zipcode: %1d</string>
+
 </resources>

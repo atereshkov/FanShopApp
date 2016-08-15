@@ -16,8 +16,8 @@ public class UserDTO {
     @SerializedName("email")
     private String email;
 
-    @SerializedName("telephone")
-    private String telephone;
+    @SerializedName("phone")
+    private String phone;
 
     @SerializedName("address")
     private AddressDTO address;
@@ -30,12 +30,12 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public int getId() {
@@ -77,7 +77,7 @@ public class UserDTO {
                 ", name='" + name + '\'' +
                 ", amountSpent=" + amountSpent +
                 ", email='" + email + '\'' +
-                ", telephone='" + telephone + '\'' +
+                ", phone='" + phone + '\'' +
                 ", address=" + address +
                 '}';
     }

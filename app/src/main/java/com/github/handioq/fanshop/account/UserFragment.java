@@ -6,7 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
@@ -23,6 +25,30 @@ public class UserFragment extends BaseFragment implements UserMvp.View {
 
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+
+    @BindView(R.id.name_text_view)
+    TextView nameTextView;
+
+    @BindView(R.id.email_text_view)
+    TextView emailTextView;
+
+    @BindView(R.id.phone_text_view)
+    TextView phoneTextView;
+
+    @BindView(R.id.street_text_view)
+    TextView streetTextView;
+
+    @BindView(R.id.city_text_view)
+    TextView cityTextView;
+
+    @BindView(R.id.country_text_view)
+    TextView countryTextView;
+
+    @BindView(R.id.zipcode_text_view)
+    TextView zipcodeTextView;
+
+    @BindView(R.id.user_info_layout)
+    LinearLayout userInfoLayout;
 
     @Inject
     UserMvp.Presenter userPresenter;
@@ -51,19 +77,32 @@ public class UserFragment extends BaseFragment implements UserMvp.View {
         userPresenter.getUser(15); // TODO change to real ID
     }
 
+    private void bindUserInfo(UserDTO user) {
+        nameTextView.setText(getString(R.string.account_name, user.getName()));
+        emailTextView.setText(getString(R.string.account_email, user.getEmail()));
+        phoneTextView.setText(getString(R.string.account_phone, user.getPhone()));
+        streetTextView.setText(getString(R.string.account_street, user.getAddress().getStreet()));
+        cityTextView.setText(getString(R.string.account_city, user.getAddress().getCity()));
+        countryTextView.setText(getString(R.string.account_country, user.getAddress().getCountry()));
+        zipcodeTextView.setText(getString(R.string.account_zipcode, user.getAddress().getZipcode()));
+    }
+
     @Override
     public void setUser(UserDTO user) {
+        bindUserInfo(user);
         Log.i(TAG, user.toString());
     }
 
     @Override
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
+        userInfoLayout.setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
+        userInfoLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
