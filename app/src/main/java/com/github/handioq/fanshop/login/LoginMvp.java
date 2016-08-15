@@ -8,7 +8,7 @@ public interface LoginMvp {
 
     interface Model extends Mvp.Model {
 
-        void getAuthState(LoginDTO login);
+        void getAuthState(String mail, String password);
 
         void setCallback(Callback callback);
 
@@ -38,7 +38,7 @@ public interface LoginMvp {
 
     interface Presenter extends Mvp.Presenter<LoginMvp.View> {
 
-        void loginValidate(LoginDTO login);
+        void loginValidate(String mail, String password);
 
     }
 }
