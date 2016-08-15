@@ -15,7 +15,6 @@ import com.github.handioq.fanshop.account.adapter.OrderRecyclerAdapter;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
-import com.github.handioq.fanshop.model.dto.UserDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +23,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class AccountFragment extends BaseFragment implements OrderMvp.View, UserMvp.View {
+public class OrdersFragment extends BaseFragment implements OrderMvp.View {
 
-    private final static String TAG = "AccountFragment";
+    private final static String TAG = "OrdersFragment";
 
     private LinearLayoutManager layoutManager;
     private OrderRecyclerAdapter adapter;
@@ -38,22 +37,18 @@ public class AccountFragment extends BaseFragment implements OrderMvp.View, User
     RecyclerView recyclerView;
 
     @Inject
-    OrderMvp.Presenter accountPresenter;
-
-    @Inject
-    UserMvp.Presenter userPresenter;
+    OrderMvp.Presenter ordersPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // retain this fragment
         setRetainInstance(true);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_account, container, false);
+        return inflater.inflate(R.layout.fragment_orders, container, false);
     }
 
     @Override
@@ -66,11 +61,8 @@ public class AccountFragment extends BaseFragment implements OrderMvp.View, User
 
         adapter = new OrderRecyclerAdapter(new ArrayList<OrderDTO>());
 
-        userPresenter.setView(this);
-        userPresenter.getUser(15);
-
-        accountPresenter.setView(this);
-        accountPresenter.getOrders(575); // TODO CHANGE TO REAL ID
+        ordersPresenter.setView(this);
+        ordersPresenter.getOrders(575); // TODO CHANGE TO REAL ID
 
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
@@ -98,16 +90,5 @@ public class AccountFragment extends BaseFragment implements OrderMvp.View, User
     @Override
     public void onError(Throwable e) {
         Log.i(TAG, e.toString());
-    }
-
-    @Override
-    public void setUser(UserDTO user) {
-        Log.i(TAG, user.toString());
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG, "onDestroy");
     }
 }

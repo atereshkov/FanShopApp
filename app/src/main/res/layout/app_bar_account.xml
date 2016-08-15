@@ -27,7 +27,14 @@
         </android.support.design.widget.AppBarLayout>
 
         <FrameLayout
-            android:id="@+id/content"
+            android:id="@+id/content_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <FrameLayout
+            android:id="@+id/content_orders"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
