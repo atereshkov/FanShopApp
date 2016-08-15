@@ -91,6 +91,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         catalogPresenter.getProducts(category, 0, NetworkConstants.PRODUCTS_LOAD_COUNT);
 
         initRecycler();
+        ((CatalogActivity) getActivity()).setFabVisible(true);
     }
 
     private void initRecycler() {

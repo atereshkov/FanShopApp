@@ -24,6 +24,7 @@ import com.github.handioq.fanshop.di.component.ProductInfoComponent;
 import com.github.handioq.fanshop.di.component.SignupComponent;
 import com.github.handioq.fanshop.di.module.AppModule;
 import com.github.handioq.fanshop.di.module.DatabaseModule;
+import com.github.handioq.fanshop.di.module.NetModule;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -47,7 +48,7 @@ public class FanShopApp extends Application {
 
         netComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
-                //.netModule(new NetModule())
+                .netModule(new NetModule(this))
                 .build();
 
         databaseComponent = DaggerDatabaseComponent.builder()

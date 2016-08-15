@@ -21,14 +21,12 @@ import rx.Observable;
 
 public interface ApiService {
 
-    //String LOGIN_URL = "/auth";
-    String LOGIN_URL = "/api/auth/login";
+    String LOGIN_URL = "/auth";
     String SIGNUP_URL = "/auth";
     String CATALOG_URL = "/catalog";
     String USER_URL = "/user";
 
-    //@FormUrlEncoded
-    @POST(LOGIN_URL)
+    @POST(LOGIN_URL + "/signin")
     Observable<AuthResponse> login(@Query("mail") String mail,
                                    @Query("password") String password);
 

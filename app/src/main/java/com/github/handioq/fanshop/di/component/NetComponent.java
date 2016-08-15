@@ -3,6 +3,7 @@ package com.github.handioq.fanshop.di.component;
 import com.github.handioq.fanshop.di.module.AppModule;
 import com.github.handioq.fanshop.di.module.NetModule;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.util.AuthPreferences;
 
 import javax.inject.Singleton;
 
@@ -12,8 +13,8 @@ import dagger.Component;
 @Component(modules = {AppModule.class, NetModule.class})
 public interface NetComponent {
 
-    //void inject(LoginActivity loginActivity);
-
     NetworkService networkService();
+
+    AuthPreferences authPreferences();
 
 }

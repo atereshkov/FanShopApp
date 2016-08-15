@@ -20,7 +20,7 @@ public class DatabaseModule {
 
     @Provides
     @Singleton
-    Realm providesRealm() { // TODO: provide context
+    Realm providesRealm() {
         RealmConfiguration config = new RealmConfiguration.Builder(context).build();
         Realm.setDefaultConfiguration(config);
 
