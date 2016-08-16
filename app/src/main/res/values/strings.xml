@@ -15,6 +15,12 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_phone">Contact phone</string>
+    <string name="prompt_city">City</string>
+    <string name="prompt_zipcode">Zipcode</string>
+    <string name="prompt_street">Street</string>
+    <string name="prompt_name">Full Name</string>
+
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_up">Sign up</string>
     <string name="action_sign_in_short">Sign in</string>

@@ -66,5 +66,12 @@
     <string name="account_zipcode">Индекс: %1d</string>
     <string name="delivery_address">Адрес доставки</string>
     <string name="personal_info">Персональная информация</string>
+    <string name="account_orders">Заказы</string>
+    <string name="prompt_city">Город</string>
+    <string name="prompt_phone">Контактный телефон</string>
+    <string name="prompt_street">Улица</string>
+    <string name="prompt_zipcode">Почтовый индекс</string>
+    <string name="title_activity_checkout">Оформление заказа</string>
+    <string name="prompt_name">ФИО</string>
 
 </resources>
