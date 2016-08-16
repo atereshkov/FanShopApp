@@ -73,5 +73,6 @@
     <string name="account_city">City: %1s</string>
     <string name="account_country">Country: %1s</string>
     <string name="account_zipcode">Zipcode: %1d</string>
+    <string name="account_orders">Orders</string>
 
 </resources>
