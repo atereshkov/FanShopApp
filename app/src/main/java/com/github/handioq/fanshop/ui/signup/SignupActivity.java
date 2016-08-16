@@ -1,11 +1,10 @@
-package com.github.handioq.fanshop.signup;
+package com.github.handioq.fanshop.ui.signup;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.handioq.R;

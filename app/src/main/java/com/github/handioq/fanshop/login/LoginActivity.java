@@ -14,8 +14,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.net.model.AuthResponse;
-import com.github.handioq.fanshop.net.model.LoginDTO;
-import com.github.handioq.fanshop.signup.SignupActivity;
+import com.github.handioq.fanshop.ui.signup.SignupActivity;
 import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.Validation;
 

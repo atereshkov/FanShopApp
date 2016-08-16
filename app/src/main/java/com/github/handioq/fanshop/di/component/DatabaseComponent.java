@@ -5,7 +5,6 @@ import android.content.Context;
 import com.github.handioq.fanshop.database.ProductRepository;
 import com.github.handioq.fanshop.di.module.AppModule;
 import com.github.handioq.fanshop.di.module.DatabaseModule;
-import com.github.handioq.fanshop.signup.SignupActivity;
 
 import javax.inject.Singleton;
 
