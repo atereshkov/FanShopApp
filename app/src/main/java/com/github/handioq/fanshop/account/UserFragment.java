@@ -26,25 +26,25 @@ public class UserFragment extends BaseFragment implements UserMvp.View {
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
-    @BindView(R.id.name_text_view)
+    @BindView(R.id.name_text)
     TextView nameTextView;
 
-    @BindView(R.id.email_text_view)
+    @BindView(R.id.email_text)
     TextView emailTextView;
 
-    @BindView(R.id.phone_text_view)
+    @BindView(R.id.phone_text)
     TextView phoneTextView;
 
-    @BindView(R.id.street_text_view)
+    @BindView(R.id.street_text)
     TextView streetTextView;
 
-    @BindView(R.id.city_text_view)
+    @BindView(R.id.city_text)
     TextView cityTextView;
 
-    @BindView(R.id.country_text_view)
+    @BindView(R.id.country_text)
     TextView countryTextView;
 
-    @BindView(R.id.zipcode_text_view)
+    @BindView(R.id.zipcode_text)
     TextView zipcodeTextView;
 
     @BindView(R.id.user_info_layout)
