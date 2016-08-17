@@ -17,11 +17,13 @@ import com.github.handioq.fanshop.di.component.DaggerLoginComponent;
 import com.github.handioq.fanshop.di.component.DaggerNetComponent;
 import com.github.handioq.fanshop.di.component.DaggerProductInfoComponent;
 import com.github.handioq.fanshop.di.component.DaggerSignupComponent;
+import com.github.handioq.fanshop.di.component.DaggerWishlistComponent;
 import com.github.handioq.fanshop.di.component.DatabaseComponent;
 import com.github.handioq.fanshop.di.component.LoginComponent;
 import com.github.handioq.fanshop.di.component.NetComponent;
 import com.github.handioq.fanshop.di.component.ProductInfoComponent;
 import com.github.handioq.fanshop.di.component.SignupComponent;
+import com.github.handioq.fanshop.di.component.WishlistComponent;
 import com.github.handioq.fanshop.di.module.AppModule;
 import com.github.handioq.fanshop.di.module.DatabaseModule;
 import com.github.handioq.fanshop.di.module.NetModule;
@@ -41,6 +43,7 @@ public class FanShopApp extends Application {
     private CartComponent cartComponent;
     private AccountComponent accountComponent;
     private CategoriesComponent categoriesComponent;
+    private WishlistComponent wishlistComponent;
 
     @Override
     public void onCreate() {
@@ -81,6 +84,10 @@ public class FanShopApp extends Application {
                 .build();
 
         categoriesComponent = DaggerCategoriesComponent.builder()
+                .netComponent(netComponent)
+                .build();
+
+        wishlistComponent = DaggerWishlistComponent.builder()
                 .netComponent(netComponent)
                 .build();
 
@@ -127,5 +134,9 @@ public class FanShopApp extends Application {
 
     public CategoriesComponent getCategoriesComponent() {
         return categoriesComponent;
+    }
+
+    public WishlistComponent getWishlistComponent() {
+        return wishlistComponent;
     }
 }

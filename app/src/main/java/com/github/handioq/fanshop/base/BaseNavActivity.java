@@ -20,6 +20,7 @@ import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.catalog.CatalogActivity;
 import com.github.handioq.fanshop.categories.CategoriesActivity;
 import com.github.handioq.fanshop.login.LoginActivity;
+import com.github.handioq.fanshop.ui.wishlist.WishlistActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,27 +79,27 @@ public abstract class BaseNavActivity extends AppCompatActivity
         mToggle.syncState();
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_categories) {
-
             Intent intent = new Intent(BaseNavActivity.this, CategoriesActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 
         } else if (id == R.id.nav_catalog) {
-
             Intent intent = new Intent(BaseNavActivity.this, CatalogActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 
         } else if (id == R.id.nav_cart) {
-
             Intent intent = new Intent(BaseNavActivity.this, CartActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_wishlist) {
+            Intent intent = new Intent(BaseNavActivity.this, WishlistActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 

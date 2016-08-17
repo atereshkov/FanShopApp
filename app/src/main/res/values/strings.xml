@@ -46,6 +46,7 @@
     <string name="nav_title_info">Information</string>
     <string name="nav_title_shop">Shop</string>
     <string name="nav_delivery">Delivery</string>
+    <string name="nav_wishlist">Wishlist</string>
     <string name="nav_categories">Categories</string>
     <!--<string name="nav_">Account</string>-->
 
@@ -80,6 +81,7 @@
     <string name="account_country">Country: %1s</string>
     <string name="account_zipcode">Zipcode: %1d</string>
     <string name="account_orders">Orders</string>
-    <string name="title_activity_checkout">CheckoutActivity</string>
+    <string name="title_activity_checkout">Checkout</string>
+    <string name="title_activity_wishlist">Wishlist</string>
 
 </resources>

@@ -76,4 +76,11 @@ public interface ApiService {
     @GET(CATALOG_URL + "/categories/{id}")
     Observable<CategoryDTO> getCategory(@Path("id") int catId);
 
+    @GET(USER_URL + "/{id}/wishlist")
+    Observable<List<ProductDTO>> getWishlist(@Path("id") int userId);
+
+    @POST(USER_URL + "/{id}/wishlist")
+    Observable<Response> addProductToWishlist(@Path("id") int userId,
+                                              @Body ProductDTO product);
+
 }

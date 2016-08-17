@@ -8,6 +8,8 @@ import com.github.handioq.fanshop.productinfo.ProductInfoMvp;
 import com.github.handioq.fanshop.productinfo.ProductInfoPresenter;
 import com.github.handioq.fanshop.productinfo.ReviewsInfoMvp;
 import com.github.handioq.fanshop.productinfo.ReviewsInfoPresenter;
+import com.github.handioq.fanshop.ui.wishlist.AddToWishlistMvp;
+import com.github.handioq.fanshop.ui.wishlist.AddToWishlistPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -31,6 +33,12 @@ public class ProductInfoModule {
     @PresenterScope
     public AddToCartMvp.Presenter providesAddToCartPresenter(NetworkService networkService) {
         return new AddToCartPresenter(networkService);
+    }
+
+    @Provides
+    @PresenterScope
+    public AddToWishlistMvp.Presenter providesAddToWishlistPresenter(NetworkService networkService) {
+        return new AddToWishlistPresenter(networkService);
     }
 
 }

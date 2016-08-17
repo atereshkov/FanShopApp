@@ -18,6 +18,10 @@
                 android:icon="@drawable/ic_cart_black_24dp"
                 android:title="@string/nav_cart" />
             <item
+                android:id="@+id/nav_wishlist"
+                android:icon="@drawable/ic_favorite_black_24dp"
+                android:title="@string/nav_wishlist" />
+            <item
                 android:id="@+id/nav_account"
                 android:icon="@drawable/ic_account_black_24dp"
                 android:title="@string/nav_account" />

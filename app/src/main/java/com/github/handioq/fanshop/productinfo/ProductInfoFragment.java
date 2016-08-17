@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -29,6 +30,7 @@ import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
 import com.github.handioq.fanshop.productinfo.slider.ImageSliderAdapter;
+import com.github.handioq.fanshop.ui.wishlist.AddToWishlistMvp;
 
 import java.util.List;
 import java.util.Vector;
@@ -36,9 +38,10 @@ import java.util.Vector;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.View, ViewPager.OnPageChangeListener,
-        AddToCartMvp.View {
+        AddToCartMvp.View, AddToWishlistMvp.View {
 
     private final static String TAG = "ProductInfoFragment";
 
@@ -76,11 +79,17 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
+    @BindView(R.id.fav_button)
+    ImageButton favoriteButton;
+
     @Inject
     ProductInfoMvp.Presenter productInfoPresenter;
 
     @Inject
     AddToCartMvp.Presenter addToCartPresenter;
+
+    @Inject
+    AddToWishlistMvp.Presenter addToWishlistPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,7 +131,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         tabLayout.setupWithViewPager(descriptionPager);
 
         addToCartPresenter.setView(this);
-
+        addToWishlistPresenter.setView(this);
         productInfoPresenter.setView(this);
         productInfoPresenter.getProduct(selectedItemId);
 
@@ -175,6 +184,22 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @OnClick(R.id.fav_button)
+    void onFavoriteClick() {
+        addToWishlistPresenter.addProductToWishlist(100, selectedProduct); // TODO change mock user id
+    }
+
+    @Override
+    public void onProductAddedToWishlist(Response response) {
+        Toast.makeText(getActivity(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
+        favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp);
+    }
+
+    @Override
+    public void onWishlistAddError(Throwable e) {
+        Log.e(TAG, e.toString());
     }
 
     @Override
