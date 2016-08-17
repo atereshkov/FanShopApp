@@ -1,4 +1,4 @@
-package com.github.handioq.fanshop.signup;
+package com.github.handioq.fanshop.ui.signup;
 
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.net.model.RegisterDTO;

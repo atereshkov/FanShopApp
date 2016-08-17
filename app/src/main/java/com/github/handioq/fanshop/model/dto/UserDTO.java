@@ -13,6 +13,31 @@ public class UserDTO {
     @SerializedName("amount_spent")
     private double amountSpent;
 
+    @SerializedName("email")
+    private String email;
+
+    @SerializedName("phone")
+    private String phone;
+
+    @SerializedName("address")
+    private AddressDTO address;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public int getId() {
         return id;
     }
@@ -37,12 +62,23 @@ public class UserDTO {
         this.amountSpent = amountSpent;
     }
 
+    public AddressDTO getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDTO address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", amountSpent=" + amountSpent +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address=" + address +
                 '}';
     }
 }

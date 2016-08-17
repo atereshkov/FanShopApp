@@ -91,6 +91,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         catalogPresenter.getProducts(category, 0, NetworkConstants.PRODUCTS_LOAD_COUNT);
 
         initRecycler();
+        ((CatalogActivity) getActivity()).setFabVisible(true);
     }
 
     private void initRecycler() {
@@ -135,12 +136,15 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         optionsMenu = menu;
-
-        MenuItem itemCart = menu.findItem(R.id.cart);
-        LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
-        BadgeDrawable.setCartBadgeCount(getContext(), icon, "3"); // test
+        setBadgeCount(menu, "2");
 
         super.onCreateOptionsMenu(menu, menuInflater);
+    }
+
+    private void setBadgeCount(Menu menu, String count) {
+        MenuItem itemCart = menu.findItem(R.id.cart);
+        LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+        BadgeDrawable.setCartBadgeCount(getContext(), icon, count);
     }
 
     @Override
@@ -214,6 +218,8 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     @Override
     public void onProductAddSuccess(Response response) {
         Toast.makeText(getContext(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
+        // TODO inc badge in toolbar
+        setBadgeCount(optionsMenu, "5");
         Log.i(TAG, "onProductAddSuccess");
     }
 

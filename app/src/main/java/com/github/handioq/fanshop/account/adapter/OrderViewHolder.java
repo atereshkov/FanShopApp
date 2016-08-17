@@ -1,11 +1,13 @@
 package com.github.handioq.fanshop.account.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
@@ -34,6 +36,17 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
     private OrderViewHolder(View v) {
         super(v);
         ButterKnife.bind(this, v);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (orderDTO != null) {
+                    Context context = itemView.getContext();
+                    //context.startActivity(ProductInfoActivity.makeIntent(context, productDTO.getId()));
+                    Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public void bind(OrderDTO order) {

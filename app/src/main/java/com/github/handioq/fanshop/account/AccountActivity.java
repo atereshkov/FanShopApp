@@ -14,7 +14,8 @@ import butterknife.BindView;
 public class AccountActivity extends BaseNavActivity {
 
     private static final String TAG = "AccountActivity";
-    private static final String ACCOUNT_FRAGMENT_TAG = "account";
+    private static final String ORDERS_FRAGMENT_TAG = "orders";
+    private static final String USER_FRAGMENT_TAG = "user";
 
     @BindView(R.id.fab_account)
     FloatingActionButton fab;
@@ -24,13 +25,22 @@ public class AccountActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        if (getSupportFragmentManager().findFragmentByTag(ACCOUNT_FRAGMENT_TAG) == null) {
+        if (getSupportFragmentManager().findFragmentByTag(ORDERS_FRAGMENT_TAG) == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content, new AccountFragment(), ACCOUNT_FRAGMENT_TAG)
+                    .replace(R.id.content_orders, new OrdersFragment(), ORDERS_FRAGMENT_TAG)
                     .commit();
 
-            Log.i(TAG, "create new AccountFragment");
+            Log.i(TAG, "create new OrdersFragment");
+        }
+
+        if (getSupportFragmentManager().findFragmentByTag(USER_FRAGMENT_TAG) == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content_user, new UserFragment(), USER_FRAGMENT_TAG)
+                    .commit();
+
+            Log.i(TAG, "create new UserFragment");
         }
 
         fab.setOnClickListener(new View.OnClickListener() {

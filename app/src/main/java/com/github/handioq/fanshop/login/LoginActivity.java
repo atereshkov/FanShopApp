@@ -14,8 +14,8 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.net.model.AuthResponse;
-import com.github.handioq.fanshop.net.model.LoginDTO;
-import com.github.handioq.fanshop.signup.SignupActivity;
+import com.github.handioq.fanshop.ui.signup.SignupActivity;
+import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.Validation;
 
 import javax.inject.Inject;
@@ -45,6 +45,9 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
     @Inject
     LoginMvp.Presenter loginPresenter;
 
+    @Inject
+    AuthPreferences authPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +64,6 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
         String password = passwordView.getText().toString();
 
         if (Validation.isEmailValid(email)) {
-            //LoginDTO loginDTO = new LoginDTO(email, password);
             loginPresenter.loginValidate(email, password);
         } else {
             emailView.setError(getResources().getString(R.string.error_invalid_email));
@@ -83,7 +85,8 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
     @Override
     public void loginSuccess(AuthResponse authResponse) {
         Log.i(TAG, authResponse.toString());
-        Toast.makeText(this, "Авторизация прошла успешно", Toast.LENGTH_SHORT).show(); // test
+        authPreferences.setUserToken(authResponse.getToken());
+        Toast.makeText(this, "Auth success.. " + authPreferences.getUserToken(), Toast.LENGTH_SHORT).show(); // test
         finish();
     }
 

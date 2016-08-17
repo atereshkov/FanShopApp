@@ -66,10 +66,4 @@ public class NetworkService {
         return apiService;
     }
 
-    public <E> Observable<E> getPreparedObservable(Observable<E> unPreparedObservable) {
-        return unPreparedObservable
-                .subscribeOn(NETWORK_SINGLE)
-                .observeOn(AndroidSchedulers.mainThread());
-    }
-
 }

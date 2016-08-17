@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.di.component;
 
 import com.github.handioq.fanshop.di.module.SignupModule;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
-import com.github.handioq.fanshop.signup.SignupActivity;
+import com.github.handioq.fanshop.ui.signup.SignupActivity;
 
 import dagger.Component;
 

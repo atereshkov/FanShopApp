@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".fanshop.account.AccountActivity">
+    tools:context=".fanshop.ui.checkout.CheckoutActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,14 +27,7 @@
         </android.support.design.widget.AppBarLayout>
 
         <FrameLayout
-            android:id="@+id/content_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-        <FrameLayout
-            android:id="@+id/content_orders"
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -43,11 +36,11 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_account"
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_mode_edit_white_24dp" />
+        android:src="@drawable/ic_next_week_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

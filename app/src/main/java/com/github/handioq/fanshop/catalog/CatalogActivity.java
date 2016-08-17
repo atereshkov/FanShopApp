@@ -3,6 +3,7 @@ package com.github.handioq.fanshop.catalog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -62,12 +63,26 @@ public class CatalogActivity extends BaseNavActivity {
             Log.i(TAG, "create new CatalogFragment");
         }
 
+        setFabVisible(false);
+
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    public void setFabVisible(boolean visible) {
+        CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
+        p.setAnchorId(View.NO_ID);
+        fab.setLayoutParams(p);
+
+        if (visible) {
+            fab.setVisibility(View.VISIBLE);
+        } else {
+            fab.setVisibility(View.GONE);
+        }
     }
 
     @Override

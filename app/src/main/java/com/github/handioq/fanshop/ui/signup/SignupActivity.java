@@ -1,11 +1,12 @@
-package com.github.handioq.fanshop.signup;
+package com.github.handioq.fanshop.ui.signup;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.handioq.R;
@@ -13,6 +14,7 @@ import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.net.model.RegisterDTO;
 import com.github.handioq.fanshop.net.model.Response;
+import com.github.handioq.fanshop.util.LocaleUtils;
 
 import javax.inject.Inject;
 
@@ -35,6 +37,24 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
     @BindView(R.id.login_form)
     View loginForm;
 
+    @BindView(R.id.spinner_country)
+    Spinner countriesSpinnerView;
+
+    @BindView(R.id.signup_phone)
+    AutoCompleteTextView phoneView;
+
+    @BindView(R.id.signup_city)
+    AutoCompleteTextView cityView;
+
+    @BindView(R.id.signup_street)
+    AutoCompleteTextView streetView;
+
+    @BindView(R.id.signup_zipcode)
+    AutoCompleteTextView zipcodeView;
+
+    @BindView(R.id.signup_name)
+    AutoCompleteTextView nameView;
+
     @Inject
     SignupMvp.Presenter signupPresenter;
 
@@ -46,13 +66,33 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
         ((FanShopApp) getApplicationContext()).getSignupComponent().inject(this);
 
         signupPresenter.setView(this);
+        initCountrySpinner();
+    }
+
+    private void initCountrySpinner() {
+        ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, LocaleUtils.getCountries());
+        countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        countriesSpinnerView.setAdapter(countryAdapter);
+        countriesSpinnerView.setSelection(countryAdapter.getPosition(LocaleUtils.DEFAULT_LOCALE));
     }
 
     @OnClick(R.id.signup_button)
     void signUp() {
-        String login = emailView.getText().toString();
+        String mail = emailView.getText().toString();
         String password = passwordView.getText().toString();
-        RegisterDTO registerDTO = new RegisterDTO(login, password);
+        String contactPhone = phoneView.getText().toString();
+        String name = nameView.getText().toString();
+        String country = countriesSpinnerView.getSelectedItem().toString();
+        String city = cityView.getText().toString();
+        String street = streetView.getText().toString();
+        long zipcode = Long.valueOf(zipcodeView.getText().toString());
+
+        // TODO add validation
+
+        RegisterDTO registerDTO = new RegisterDTO(mail, password, name, contactPhone, street, city, country, zipcode);
+
         signupPresenter.signupValidate(registerDTO);
     }
 
