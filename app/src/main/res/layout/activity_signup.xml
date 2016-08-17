@@ -31,7 +31,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/personal_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -102,7 +102,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/delivery_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/delivery_address"
