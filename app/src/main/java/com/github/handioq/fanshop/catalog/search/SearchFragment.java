@@ -109,13 +109,13 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-                        Toast.makeText(getContext(), "on collapsed", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "on collapsed", Toast.LENGTH_SHORT).show();
                         return true;
                     }
 
                     @Override
                     public boolean onMenuItemActionExpand(MenuItem item) {
-                        Toast.makeText(getContext(), "on expanded", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "on expanded", Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
@@ -165,7 +165,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         if (query.isEmpty()) {
             adapter.clearItems();
         } else {
-            Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
             adapter.clearItems();
 
             recyclerView.clearOnScrollListeners(); // fix pagination previous count
