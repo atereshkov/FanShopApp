@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -37,7 +38,6 @@ public class NetworkService {
 
     public NetworkService() {
 
-        // Define the interceptor, add authentication headers
         Interceptor interceptor = new Interceptor() {
             @Override
             public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
@@ -50,6 +50,20 @@ public class NetworkService {
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.interceptors().add(interceptor);
+
+        builder.interceptors().add(new Interceptor() {
+            @Override
+            public Response intercept(Interceptor.Chain chain) throws IOException {
+                Request original = chain.request();
+
+                Request.Builder requestBuilder = original.newBuilder()
+                        .header("Authorization", "auth-value");
+
+                Request request = requestBuilder.build();
+                return chain.proceed(request);
+            }
+        });
+
         OkHttpClient okHttpClient = builder.build();
 
         Retrofit retrofit = new Retrofit.Builder()

@@ -16,6 +16,7 @@ import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.net.model.AuthResponse;
 import com.github.handioq.fanshop.ui.signup.SignupActivity;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.JWTUtils;
 import com.github.handioq.fanshop.util.Validation;
 
 import javax.inject.Inject;
@@ -86,7 +87,14 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
     public void loginSuccess(AuthResponse authResponse) {
         Log.i(TAG, authResponse.toString());
         authPreferences.setUserToken(authResponse.getToken());
-        Toast.makeText(this, "Auth success.. " + authPreferences.getUserToken(), Toast.LENGTH_SHORT).show(); // test
+
+        try {
+            authPreferences.setUserId(JWTUtils.getUserIdByToken(authResponse.getToken()));
+            Toast.makeText(this, "Auth success, userID: " + authPreferences.getUserId(), Toast.LENGTH_SHORT).show(); // test
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+
         finish();
     }
 

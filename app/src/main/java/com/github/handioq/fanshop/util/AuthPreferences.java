@@ -8,6 +8,8 @@ public class AuthPreferences {
     private static final String AUTH_PREFERENCES = "auth";
     private static final String TOKEN = "token";
     private static final String TOKEN_NULL = "null";
+    private static final String USER_ID = "userId";
+    private static final int USER_ID_NULL = -1;
 
     SharedPreferences sharedPreferences;
     Context context;
@@ -31,6 +33,22 @@ public class AuthPreferences {
         }
 
         return token;
+    }
+
+    public void setUserId(int id) {
+        sharedPreferences.edit()
+                .putInt(USER_ID, id)
+                .apply();
+    }
+
+    public int getUserId() {
+        int userId = USER_ID_NULL;
+
+        if (sharedPreferences.contains(USER_ID)) {
+            userId = sharedPreferences.getInt(USER_ID, USER_ID_NULL);
+        }
+
+        return userId;
     }
 
     public boolean isUserLoggedIn() {
