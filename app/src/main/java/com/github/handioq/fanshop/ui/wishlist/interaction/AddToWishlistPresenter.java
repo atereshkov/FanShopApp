@@ -1,4 +1,4 @@
-package com.github.handioq.fanshop.ui.wishlist;
+package com.github.handioq.fanshop.ui.wishlist.interaction;
 
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
@@ -8,7 +8,6 @@ public class AddToWishlistPresenter implements AddToWishlistMvp.Presenter, AddTo
 
     private AddToWishlistMvp.View addToWishlistView;
     private AddToWishlistMvp.Model addToWishlistModel;
-    private NetworkService networkService;
 
     public AddToWishlistPresenter(NetworkService networkService) {
         addToWishlistModel = new AddToWishlistModel(networkService);

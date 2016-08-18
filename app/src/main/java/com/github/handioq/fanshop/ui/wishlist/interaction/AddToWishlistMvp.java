@@ -1,4 +1,4 @@
-package com.github.handioq.fanshop.ui.wishlist;
+package com.github.handioq.fanshop.ui.wishlist.interaction;
 
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;

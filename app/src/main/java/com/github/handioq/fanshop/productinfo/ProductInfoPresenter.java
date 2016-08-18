@@ -12,9 +12,7 @@ import timber.log.Timber;
 public class ProductInfoPresenter implements ProductInfoMvp.Presenter, ProductInfoModel.Callback {
 
     private ProductInfoMvp.View productInfoView;
-    private ProductInfoModel productInfoModel;
-
-    private NetworkService networkService;
+    private ProductInfoMvp.Model productInfoModel;
 
     private final static String TAG = "ProductInfoPresenterImp";
 

@@ -30,7 +30,8 @@ import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
 import com.github.handioq.fanshop.productinfo.slider.ImageSliderAdapter;
-import com.github.handioq.fanshop.ui.wishlist.AddToWishlistMvp;
+import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistMvp;
+import com.github.handioq.fanshop.ui.wishlist.interaction.RemoveWishlistMvp;
 
 import java.util.List;
 import java.util.Vector;
@@ -41,7 +42,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.View, ViewPager.OnPageChangeListener,
-        AddToCartMvp.View, AddToWishlistMvp.View {
+        AddToCartMvp.View, AddToWishlistMvp.View, RemoveWishlistMvp.View {
 
     private final static String TAG = "ProductInfoFragment";
 
@@ -91,6 +92,9 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     @Inject
     AddToWishlistMvp.Presenter addToWishlistPresenter;
 
+    @Inject
+    RemoveWishlistMvp.Presenter removeWishlistPresenter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,6 +134,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         descriptionPager.setAdapter(infoAdapter);
         tabLayout.setupWithViewPager(descriptionPager);
 
+        removeWishlistPresenter.setView(this);
         addToCartPresenter.setView(this);
         addToWishlistPresenter.setView(this);
         productInfoPresenter.setView(this);
@@ -188,7 +193,11 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
     @OnClick(R.id.fav_button)
     void onFavoriteClick() {
-        addToWishlistPresenter.addProductToWishlist(100, selectedProduct); // TODO change mock user id
+        if (selectedProduct.isUserFavorite()) {
+            removeWishlistPresenter.removeProduct(100, selectedProduct.getId()); // TODO change mock user id
+        } else {
+            addToWishlistPresenter.addProductToWishlist(100, selectedProduct); // TODO change mock user id
+        }
     }
 
     @Override
@@ -225,8 +234,13 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
         infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, productDTO.getPrice()));
         infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
-
         descriptionView.setText(productDTO.getDescription());
+
+        if (selectedProduct.isUserFavorite()) {
+            favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp);
+        } else {
+            favoriteButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+        }
     }
 
     @Override
@@ -241,6 +255,17 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
     @Override
     public void onProductAddError(Throwable e) {
+        Log.e(TAG, e.toString());
+    }
+
+    @Override
+    public void onProductRemovedFromWishlist() {
+        Toast.makeText(getContext(), "Product removed from wishlist", Toast.LENGTH_SHORT).show();
+        favoriteButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+    }
+
+    @Override
+    public void onWishlistRemoveError(Throwable e) {
         Log.e(TAG, e.toString());
     }
 

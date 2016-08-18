@@ -6,7 +6,7 @@ public interface RemoveFromCartMvp {
 
     interface Model extends Mvp.Model {
 
-        void removeProductFromCart(int userId, int productId);
+        void removeProduct(int userId, int productId);
 
         void setCallback(Callback callback);
 

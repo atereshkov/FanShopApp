@@ -1,42 +1,46 @@
-package com.github.handioq.fanshop.ui.wishlist;
+package com.github.handioq.fanshop.ui.wishlist.interaction;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
+import android.util.Log;
+
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.model.Response;
 
 import rx.Subscriber;
 
-public class AddToWishlistModel implements AddToWishlistMvp.Model {
+public class RemoveWishlistModel implements RemoveWishlistMvp.Model {
 
     private final NetworkService networkService;
-    private AddToWishlistModel.Callback callback;
+    private RemoveWishlistMvp.Model.Callback callback;
 
-    public AddToWishlistModel(NetworkService networkService) {
+    private final static String TAG = "RemoveWishlistModel";
+
+    public RemoveWishlistModel(NetworkService networkService) {
         this.networkService = networkService;
     }
 
     @Override
-    public void addProductToWishlist(int userId, ProductDTO product) {
+    public void removeProduct(int userId, int productId) {
         networkService.getApiService()
-                .addProductToWishlist(userId, product)
+                .removeProductFromWishlist(userId, productId)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<Response>applyScheduler())
                 .subscribe(new Subscriber<Response>() {
                     @Override
                     public void onCompleted() {
-                        callback.onAddToWishlistCompleted();
+                        callback.onRemoveFromWishlistCompleted();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onWishlistAddError(e);
+                        callback.onWishlistRemoveError(e);
                     }
 
                     @Override
                     public void onNext(Response response) {
-                        callback.onProductAddedToWishlist(response);
+                        callback.onProductRemovedFromWishlist();
                     }
                 });
+        Log.i(TAG, "removeProduct");
     }
 
     @Override
