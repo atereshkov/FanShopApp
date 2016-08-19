@@ -202,10 +202,14 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
     @OnClick(R.id.fav_button)
     void onFavoriteClick() {
-        if (selectedProduct.isUserFavorite()) {
-            removeWishlistPresenter.removeProduct(100, selectedProduct.getId()); // TODO change mock user id
+        if (authPreferences.isUserLoggedIn()) {
+            if (selectedProduct.isUserFavorite()) {
+                removeWishlistPresenter.removeProduct(authPreferences.getUserId(), selectedProduct.getId());
+            } else {
+                addToWishlistPresenter.addProductToWishlist(authPreferences.getUserId(), selectedProduct);
+            }
         } else {
-            addToWishlistPresenter.addProductToWishlist(100, selectedProduct); // TODO change mock user id
+            Toast.makeText(getContext(), getResources().getString(R.string.wishlist_add_item_not_logged), Toast.LENGTH_SHORT).show();
         }
     }
 

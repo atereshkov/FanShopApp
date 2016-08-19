@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -68,7 +69,6 @@ public abstract class BaseNavActivity extends AppCompatActivity
 
         View header = navigationView.getHeaderView(0);
         loginButton = (Button) header.findViewById(R.id.login_button);
-
     }
 
     @Override
@@ -90,6 +90,7 @@ public abstract class BaseNavActivity extends AppCompatActivity
                     authPreferences.logout();
                     Timber.i("AuthState -> %s, userID: %d ", authPreferences.isUserLoggedIn(), authPreferences.getUserId());
                     drawer.closeDrawer(GravityCompat.START);
+                    ActivityCompat.invalidateOptionsMenu(BaseNavActivity.this);
                 }
             });
         } else {
@@ -125,20 +126,34 @@ public abstract class BaseNavActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_cart) {
-            Intent intent = new Intent(BaseNavActivity.this, CartActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
+            if (authPreferences.isUserLoggedIn()) {
+                Intent intent = new Intent(BaseNavActivity.this, CartActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(BaseNavActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
 
         } else if (id == R.id.nav_wishlist) {
-            Intent intent = new Intent(BaseNavActivity.this, WishlistActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
+            if (authPreferences.isUserLoggedIn()) {
+                Intent intent = new Intent(BaseNavActivity.this, WishlistActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(BaseNavActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
 
         } else if (id == R.id.nav_account) {
-            Intent intent = new Intent(BaseNavActivity.this, AccountActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
-
+            if (authPreferences.isUserLoggedIn()) {
+                Intent intent = new Intent(BaseNavActivity.this, AccountActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(BaseNavActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
         } else if (id == R.id.nav_delivery) {
             Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
         }

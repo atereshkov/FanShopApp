@@ -17,6 +17,7 @@ import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.cart.adapter.CartRecyclerAdapter;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.util.AuthPreferences;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -50,6 +51,9 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
     @Inject
     RemoveFromCartMvp.Presenter removeFromCartPresenter;
 
+    @Inject
+    AuthPreferences authPreferences;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +79,7 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
 
         removeFromCartPresenter.setView(this);
         cartPresenter.setView(this);
-        cartPresenter.getCartItems(575); // TODO CHANGE TO REAL ID
+        cartPresenter.getCartItems(authPreferences.getUserId());
 
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
@@ -97,8 +101,13 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
 
     @Subscribe
     public void onRemoveFromCartEvent(RemoveFromCartEvent event) {
-        removeFromCartPresenter.removeProductFromCart(500, event.getProductId());
         Log.i(TAG, "onRemoveFromCartEvent");
+
+        if (authPreferences.isUserLoggedIn()) {
+            removeFromCartPresenter.removeProductFromCart(authPreferences.getUserId(), event.getProductId());
+        } else {
+            Toast.makeText(getContext(), getResources().getString(R.string.cart_remove_item_not_logged), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

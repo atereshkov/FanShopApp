@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -144,7 +145,13 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         optionsMenu = menu;
-        setBadgeCount(menu, "2");
+
+        if (authPreferences.isUserLoggedIn()) {
+            setBadgeCount(menu, "2");
+        } else {
+            MenuItem itemCart = menu.findItem(R.id.cart);
+            itemCart.setVisible(false);
+        }
 
         super.onCreateOptionsMenu(menu, menuInflater);
     }

@@ -15,6 +15,7 @@ import com.github.handioq.fanshop.account.adapter.OrderRecyclerAdapter;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
+import com.github.handioq.fanshop.util.AuthPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,9 @@ public class OrdersFragment extends BaseFragment implements OrderMvp.View {
     @Inject
     OrderMvp.Presenter ordersPresenter;
 
+    @Inject
+    AuthPreferences authPreferences;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +66,7 @@ public class OrdersFragment extends BaseFragment implements OrderMvp.View {
         adapter = new OrderRecyclerAdapter(new ArrayList<OrderDTO>());
 
         ordersPresenter.setView(this);
-        ordersPresenter.getOrders(575); // TODO CHANGE TO REAL ID
+        ordersPresenter.getOrders(authPreferences.getUserId());
 
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);

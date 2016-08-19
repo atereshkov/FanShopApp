@@ -77,7 +77,7 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
 
         addToCartPresenter.setView(this);
         wishlistPresenter.setView(this);
-        wishlistPresenter.getWishlist(123); // TODO change mock user id for real
+        wishlistPresenter.getWishlist(authPreferences.getUserId());
 
         initRecycler();
     }

@@ -17,6 +17,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseNavActivity;
 import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.login.LoginActivity;
+import com.github.handioq.fanshop.util.AuthPreferences;
 
 import butterknife.BindView;
 
@@ -65,11 +66,17 @@ public class CatalogActivity extends BaseNavActivity {
         }
 
         setFabVisible(false);
+        final AuthPreferences authPreferences = new AuthPreferences(this);
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
-                startActivity(intent);
+                if (authPreferences.isUserLoggedIn()) {
+                    Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(CatalogActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
