@@ -2,8 +2,11 @@ package com.github.handioq.fanshop.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class AuthPreferences {
+
+    private static final String TAG = "AuthPreferences";
 
     private static final String AUTH_PREFERENCES = "auth";
     private static final String TOKEN = "token";
@@ -52,12 +55,23 @@ public class AuthPreferences {
     }
 
     public boolean isUserLoggedIn() {
-        return sharedPreferences.getString(TOKEN, TOKEN_NULL) != TOKEN_NULL;
+        Log.i(TAG, "isUserLoggedIn: " + sharedPreferences.getString(TOKEN, TOKEN_NULL));
+
+        boolean isLogged = true;
+
+        if (sharedPreferences.getString(TOKEN, TOKEN_NULL).equals(TOKEN_NULL)) {
+            isLogged = false;
+        }
+
+        return isLogged;
+        //return sharedPreferences.getString(TOKEN, TOKEN_NULL) != TOKEN_NULL;
     }
 
     public void logout() {
+        Log.i(TAG, "logout");
         sharedPreferences.edit()
                 .putString(TOKEN, TOKEN_NULL)
+                .putInt(USER_ID, USER_ID_NULL)
                 .apply();
     }
 }

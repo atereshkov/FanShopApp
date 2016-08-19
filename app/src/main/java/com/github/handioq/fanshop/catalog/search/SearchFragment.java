@@ -25,6 +25,7 @@ import com.github.handioq.fanshop.catalog.PaginationListener;
 import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.catalog.search.adapter.SearchRecyclerAdapter;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.NetworkConstants;
 
 import org.greenrobot.eventbus.EventBus;

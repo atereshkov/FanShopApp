@@ -75,5 +75,6 @@
     <string name="prompt_name">ФИО</string>
     <string name="title_activity_wishlist">Список желаемого</string>
     <string name="nav_wishlist">Список желаемого</string>
+    <string name="action_logout">Выйти</string>
 
 </resources>
