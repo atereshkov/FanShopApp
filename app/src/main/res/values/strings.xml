@@ -21,6 +21,8 @@
     <string name="prompt_street">Street</string>
     <string name="prompt_name">Full Name</string>
 
+    <string name="cart_add_item_not_logged">To add an item to the shopping cart please log in</string>
+    <string name="wishlist_add_item_not_logged">To add an item to the wishlist please log in</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_up">Sign up</string>
     <string name="action_sign_in_short">Sign in</string>

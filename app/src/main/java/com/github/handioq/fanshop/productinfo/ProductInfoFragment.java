@@ -32,6 +32,7 @@ import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
 import com.github.handioq.fanshop.productinfo.slider.ImageSliderAdapter;
 import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistMvp;
 import com.github.handioq.fanshop.ui.wishlist.interaction.RemoveWishlistMvp;
+import com.github.handioq.fanshop.util.AuthPreferences;
 
 import java.util.List;
 import java.util.Vector;
@@ -45,6 +46,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         AddToCartMvp.View, AddToWishlistMvp.View, RemoveWishlistMvp.View {
 
     private final static String TAG = "ProductInfoFragment";
+    private final static String ARGUMENT_ID = "id";
 
     private int selectedItemId;
     private InfoAdapter infoAdapter;
@@ -95,6 +97,9 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     @Inject
     RemoveWishlistMvp.Presenter removeWishlistPresenter;
 
+    @Inject
+    AuthPreferences authPreferences;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +112,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        selectedItemId = this.getArguments().getInt("id");
+        selectedItemId = this.getArguments().getInt(ARGUMENT_ID);
 
         return inflater.inflate(R.layout.fragment_product_info, container, false);
     }
@@ -118,7 +123,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         Log.i(TAG, "onViewCreated");
 
         Bundle bundle = new Bundle();
-        bundle.putInt("id", selectedItemId);
+        bundle.putInt(ARGUMENT_ID, selectedItemId);
 
         Fragment descriptionFragment = new DescriptionInfoFragment();
         descriptionFragment.setArguments(bundle);
@@ -142,7 +147,11 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addToCartPresenter.addProductToCart(5100, selectedProduct);
+                if (authPreferences.isUserLoggedIn()) {
+                    addToCartPresenter.addProductToCart(authPreferences.getUserId(), selectedProduct);
+                } else {
+                    Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

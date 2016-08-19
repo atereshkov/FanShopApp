@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import timber.log.Timber;
+
 public class AuthPreferences {
 
     private static final String TAG = "AuthPreferences";
@@ -55,7 +57,7 @@ public class AuthPreferences {
     }
 
     public boolean isUserLoggedIn() {
-        Log.i(TAG, "isUserLoggedIn: " + sharedPreferences.getString(TOKEN, TOKEN_NULL));
+        Timber.i("isUserLoggedIn: %s", sharedPreferences.getString(TOKEN, TOKEN_NULL));
 
         boolean isLogged = true;
 

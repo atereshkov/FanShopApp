@@ -14,6 +14,7 @@ public class JWTUtils {
     private static final String SPLITT = "\\.";
     private static final String TAG = "JWTUtils";
     private static final int INVALID_USER_ID = -1;
+    private static final String USER_ID = "userId";
 
     private static String getJson(String strEncoded) throws UnsupportedEncodingException {
         byte[] decodedBytes = Base64.decode(strEncoded, Base64.NO_WRAP);
@@ -26,7 +27,7 @@ public class JWTUtils {
             String[] split = JWTEncoded.split(SPLITT);
             String body = getJson(split[1]);
             JSONObject jsonObject = new JSONObject(body);
-            userId = jsonObject.getInt("userId");
+            userId = jsonObject.getInt(USER_ID);
             Timber.i("User ID decoded: %d", userId);
         } catch (UnsupportedEncodingException e) {
             Log.e(TAG, e.toString());

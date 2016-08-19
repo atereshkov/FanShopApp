@@ -64,7 +64,7 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
         String email = emailView.getText().toString();
         String password = passwordView.getText().toString();
 
-        if (Validation.isEmailValid(email)) {
+        if (Validation.isEmailValid(email)) { // TODO do it in presenter
             loginPresenter.loginValidate(email, password);
         } else {
             emailView.setError(getResources().getString(R.string.error_invalid_email));

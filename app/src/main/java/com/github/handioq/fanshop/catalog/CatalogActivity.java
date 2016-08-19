@@ -24,6 +24,7 @@ public class CatalogActivity extends BaseNavActivity {
 
     private static final String TAG = "CatalogActivity";
     private static final String CATALOG_FRAGMENT_TAG = "catalog";
+    private static final String KEY_CATEGORY = "category";
 
     @BindView(R.id.fab_catalog)
     FloatingActionButton fab;
@@ -33,7 +34,7 @@ public class CatalogActivity extends BaseNavActivity {
 
     public static Intent makeIntent(Context context, String category){
         Intent intent = new Intent(context, CatalogActivity.class);
-        intent.putExtra("category", category);
+        intent.putExtra(KEY_CATEGORY, category);
         return intent;
     }
 
@@ -43,13 +44,13 @@ public class CatalogActivity extends BaseNavActivity {
         setContentView(R.layout.activity_catalog);
         Log.i(TAG, "onCreate");
 
-        if (getIntent().hasExtra("category")) {
-            category = getIntent().getExtras().getString("category");
+        if (getIntent().hasExtra(KEY_CATEGORY)) {
+            category = getIntent().getExtras().getString(KEY_CATEGORY);
             setTitle(category);
         }
 
         Bundle bundle = new Bundle();
-        bundle.putString("category", category);
+        bundle.putString(KEY_CATEGORY, category);
 
         if (getSupportFragmentManager().findFragmentByTag(CATALOG_FRAGMENT_TAG) == null) {
             CatalogFragment catalogFragment = new CatalogFragment();

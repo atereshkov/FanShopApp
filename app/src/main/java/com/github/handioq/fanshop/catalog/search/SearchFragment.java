@@ -62,6 +62,9 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
     @Inject
     AddToCartMvp.Presenter addToCartPresenter;
 
+    @Inject
+    AuthPreferences authPreferences;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,7 +153,12 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
     public void onAddToCartEvent(AddToCartClickEvent event) {
         //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
 
-        addToCartPresenter.addProductToCart(500, event.getProduct()); // TODO change mock id for real
+        if (authPreferences.isUserLoggedIn()) {
+            addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct());
+        } else {
+            Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
+        }
+
         Timber.i("onAddToCartEvent(), product id: %d", event.getProduct().getId());
     }
 

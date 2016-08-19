@@ -25,6 +25,7 @@ import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.catalog.search.SearchActivity;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.model.Response;
+import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.BadgeDrawable;
 import com.github.handioq.fanshop.util.NetworkConstants;
 
@@ -57,6 +58,9 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     @Inject
     AddToCartMvp.Presenter addToCartPresenter;
+
+    @Inject
+    AuthPreferences authPreferences;
 
     private final String TAG = "CatalogFragment";
     private String category;
@@ -119,10 +123,14 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     @Subscribe
     public void onAddToCartEvent(AddToCartClickEvent event) {
+        Log.i(TAG, "onAddToCartEvent");
         //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
 
-        addToCartPresenter.addProductToCart(500, event.getProduct()); // TODO change mock id for real
-        Log.i(TAG, "onAddToCartEvent");
+        if (authPreferences.isUserLoggedIn()) {
+            addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct());
+        } else {
+            Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

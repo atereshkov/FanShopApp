@@ -19,6 +19,7 @@ import com.github.handioq.fanshop.catalog.AddToCartMvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.ui.wishlist.adapter.WishlistRecyclerAdapter;
+import com.github.handioq.fanshop.util.AuthPreferences;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -46,6 +47,9 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
 
     @Inject
     AddToCartMvp.Presenter addToCartPresenter;
+
+    @Inject
+    AuthPreferences authPreferences;
 
     private final String TAG = "WishlistFragment";
 
@@ -134,7 +138,12 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
 
     @Subscribe
     public void onAddToCartEvent(AddToCartClickEvent event) {
-        addToCartPresenter.addProductToCart(500, event.getProduct()); // TODO change mock user id for real
+        if (authPreferences.isUserLoggedIn()) {
+            addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct());
+        } else {
+            Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
+        }
+
         Log.i(TAG, "onAddToCartEvent");
     }
 
