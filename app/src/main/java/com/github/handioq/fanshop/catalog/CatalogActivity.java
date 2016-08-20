@@ -50,16 +50,10 @@ public class CatalogActivity extends BaseNavActivity {
             setTitle(category);
         }
 
-        Bundle bundle = new Bundle();
-        bundle.putString(KEY_CATEGORY, category);
-
         if (getSupportFragmentManager().findFragmentByTag(CATALOG_FRAGMENT_TAG) == null) {
-            CatalogFragment catalogFragment = new CatalogFragment();
-            catalogFragment.setArguments(bundle);
-
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content, catalogFragment, CATALOG_FRAGMENT_TAG)
+                    .replace(R.id.content, CatalogFragment.newInstance(category), CATALOG_FRAGMENT_TAG)
                     .commit();
 
             Log.i(TAG, "create new CatalogFragment");

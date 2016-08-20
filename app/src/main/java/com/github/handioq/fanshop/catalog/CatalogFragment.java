@@ -64,7 +64,18 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     AuthPreferences authPreferences;
 
     private final String TAG = "CatalogFragment";
+    private static final String CATEGORY_KEY = "category";
     private String category;
+
+    public static CatalogFragment newInstance(String category) {
+        CatalogFragment fragment = new CatalogFragment();
+
+        Bundle args = new Bundle();
+        args.putString(CATEGORY_KEY, category);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -16,10 +16,11 @@ public class ProductInfoActivity extends BaseNavActivity {
 
     private static final String TAG = "ProductInfoActivity";
     private static final String PRODUCT_FRAGMENT_TAG = "product_info";
+    private static final String ID_KEY = "id";
 
     public static Intent makeIntent(Context context, int id){
         Intent intent = new Intent(context, ProductInfoActivity.class);
-        intent.putExtra("id", id);
+        intent.putExtra(ID_KEY, id);
         return intent;
     }
 
@@ -28,18 +29,13 @@ public class ProductInfoActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
 
-        int selectedItem = getIntent().getExtras().getInt("id"); // TODO get item
-
-        Bundle bundle = new Bundle();
-        bundle.putInt("id", selectedItem);
+        int selectedItem = getIntent().getExtras().getInt(ID_KEY);
 
         if (getSupportFragmentManager().findFragmentByTag(PRODUCT_FRAGMENT_TAG) == null) {
-            ProductInfoFragment productInfoFragment = new ProductInfoFragment();
-            productInfoFragment.setArguments(bundle);
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content, productInfoFragment, PRODUCT_FRAGMENT_TAG)
+                    .replace(R.id.content, ProductInfoFragment.newInstance(selectedItem), PRODUCT_FRAGMENT_TAG)
                     .commit();
 
             Log.i(TAG, "create new ProductInfoFragment");

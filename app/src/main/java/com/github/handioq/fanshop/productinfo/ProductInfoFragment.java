@@ -100,6 +100,16 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     @Inject
     AuthPreferences authPreferences;
 
+    public static ProductInfoFragment newInstance(int id) {
+        ProductInfoFragment fragment = new ProductInfoFragment();
+
+        Bundle args = new Bundle();
+        args.putInt(ARGUMENT_ID, id);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,18 +132,9 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated");
 
-        Bundle bundle = new Bundle();
-        bundle.putInt(ARGUMENT_ID, selectedItemId);
-
-        Fragment descriptionFragment = new DescriptionInfoFragment();
-        descriptionFragment.setArguments(bundle);
-
-        Fragment reviewsFragment = new ReviewsInfoFragment();
-        reviewsFragment.setArguments(bundle);
-
         List<Fragment> fragments = new Vector<Fragment>();
-        fragments.add(descriptionFragment);
-        fragments.add(reviewsFragment);
+        fragments.add(DescriptionInfoFragment.newInstance(selectedItemId));
+        fragments.add(ReviewsInfoFragment.newInstance(selectedItemId));
 
         infoAdapter = new InfoAdapter(getActivity().getSupportFragmentManager(), fragments, getActivity());
         descriptionPager.setAdapter(infoAdapter);

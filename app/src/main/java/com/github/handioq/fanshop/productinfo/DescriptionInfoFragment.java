@@ -14,10 +14,21 @@ public class DescriptionInfoFragment extends Fragment {
     private int selectedItem;
 
     private final static String TAG = "DescriptionFragment";
+    private final static String ARGUMENT_ID = "id";
+
+    public static DescriptionInfoFragment newInstance(int id) {
+        DescriptionInfoFragment fragment = new DescriptionInfoFragment();
+
+        Bundle args = new Bundle();
+        args.putInt(ARGUMENT_ID, id);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
-            selectedItem = bundle.getInt("id");
+            selectedItem = bundle.getInt(ARGUMENT_ID);
         }
     }
 
