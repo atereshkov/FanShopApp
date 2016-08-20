@@ -9,17 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
-import com.github.handioq.fanshop.catalog.CatalogMvp;
 import com.github.handioq.fanshop.catalog.AddToCartClickEvent;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
+import com.github.handioq.fanshop.productinfo.ProductActivity;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,8 +53,8 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
                     Context context = itemView.getContext();
                     //Toast.makeText(context, "onItemClick " + productDTO.getId(), Toast.LENGTH_SHORT).show();
 
-                    //context.startActivity(ProductInfoActivity.makeIntent(context, (int) buyButtonView.getTag()));
-                    context.startActivity(ProductInfoActivity.makeIntent(context, productDTO.getId()));
+                    //context.startActivity(ProductActivity.makeIntent(context, (int) buyButtonView.getTag()));
+                    context.startActivity(ProductActivity.makeIntent(context, productDTO.getId()));
                 }
             }
         });

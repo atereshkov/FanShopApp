@@ -21,7 +21,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class ReviewsInfoFragment extends BaseFragment implements ReviewsInfoMvp.View {
+public class ReviewsFragment extends BaseFragment implements ReviewsMvp.View {
 
     @BindView(R.id.reviews_recycler_view)
     RecyclerView recyclerView;
@@ -29,14 +29,14 @@ public class ReviewsInfoFragment extends BaseFragment implements ReviewsInfoMvp.
     private ReviewAdapter reviewAdapter;
     private int productId;
 
-    private final static String TAG = "ReviewsInfoFragment";
+    private final static String TAG = "ReviewsFragment";
     private final static String ARGUMENT_ID = "id";
 
     @Inject
-    ReviewsInfoMvp.Presenter reviewsPresenter;
+    ReviewsMvp.Presenter reviewsPresenter;
 
-    public static ReviewsInfoFragment newInstance(int id) {
-        ReviewsInfoFragment fragment = new ReviewsInfoFragment();
+    public static ReviewsFragment newInstance(int id) {
+        ReviewsFragment fragment = new ReviewsFragment();
 
         Bundle args = new Bundle();
         args.putInt(ARGUMENT_ID, id);

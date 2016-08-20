@@ -3,8 +3,8 @@ package com.github.handioq.fanshop.di.component;
 
 import com.github.handioq.fanshop.di.module.ProductInfoModule;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
-import com.github.handioq.fanshop.productinfo.ProductInfoFragment;
-import com.github.handioq.fanshop.productinfo.ReviewsInfoFragment;
+import com.github.handioq.fanshop.productinfo.ProductFragment;
+import com.github.handioq.fanshop.productinfo.ReviewsFragment;
 
 import dagger.Component;
 
@@ -12,8 +12,8 @@ import dagger.Component;
 @Component(dependencies = NetComponent.class, modules = ProductInfoModule.class)
 public interface ProductInfoComponent {
 
-    void inject(ProductInfoFragment productInfoFragment);
+    void inject(ProductFragment productInfoFragment);
 
-    void inject(ReviewsInfoFragment reviewsInfoFragment);
+    void inject(ReviewsFragment reviewsInfoFragment);
 
 }

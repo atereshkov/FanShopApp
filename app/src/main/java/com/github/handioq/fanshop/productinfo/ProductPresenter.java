@@ -9,21 +9,21 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
-public class ProductInfoPresenter implements ProductInfoMvp.Presenter, ProductInfoModel.Callback {
+public class ProductPresenter implements ProductMvp.Presenter, ProductInfoModel.Callback {
 
-    private ProductInfoMvp.View productInfoView;
-    private ProductInfoMvp.Model productInfoModel;
+    private ProductMvp.View productInfoView;
+    private ProductMvp.Model productInfoModel;
 
     private final static String TAG = "ProductInfoPresenterImp";
 
     @Inject
-    public ProductInfoPresenter(NetworkService networkService) {
+    public ProductPresenter(NetworkService networkService) {
         productInfoModel = new ProductInfoModel(networkService);
         productInfoModel.setCallback(this);
     }
 
     @Override
-    public void setView(ProductInfoMvp.View productInfoView) {
+    public void setView(ProductMvp.View productInfoView) {
         this.productInfoView = productInfoView;
     }
 

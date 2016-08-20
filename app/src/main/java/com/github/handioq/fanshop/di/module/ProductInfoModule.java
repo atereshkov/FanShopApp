@@ -4,10 +4,10 @@ import com.github.handioq.fanshop.catalog.AddToCartMvp;
 import com.github.handioq.fanshop.catalog.AddToCartPresenter;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
 import com.github.handioq.fanshop.net.NetworkService;
-import com.github.handioq.fanshop.productinfo.ProductInfoMvp;
-import com.github.handioq.fanshop.productinfo.ProductInfoPresenter;
-import com.github.handioq.fanshop.productinfo.ReviewsInfoMvp;
-import com.github.handioq.fanshop.productinfo.ReviewsInfoPresenter;
+import com.github.handioq.fanshop.productinfo.ProductMvp;
+import com.github.handioq.fanshop.productinfo.ProductPresenter;
+import com.github.handioq.fanshop.productinfo.ReviewsMvp;
+import com.github.handioq.fanshop.productinfo.ReviewsPresenter;
 import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistMvp;
 import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistPresenter;
 import com.github.handioq.fanshop.ui.wishlist.interaction.RemoveWishlistMvp;
@@ -21,14 +21,14 @@ public class ProductInfoModule {
 
     @Provides
     @PresenterScope
-    public ProductInfoMvp.Presenter providesCatalogPresenter(NetworkService networkService) {
-        return new ProductInfoPresenter(networkService);
+    public ProductMvp.Presenter providesCatalogPresenter(NetworkService networkService) {
+        return new ProductPresenter(networkService);
     }
 
     @Provides
     @PresenterScope
-    public ReviewsInfoMvp.Presenter providesReviewsInfoPresenter(NetworkService networkService) {
-        return new ReviewsInfoPresenter(networkService);
+    public ReviewsMvp.Presenter providesReviewsInfoPresenter(NetworkService networkService) {
+        return new ReviewsPresenter(networkService);
     }
 
     @Provides

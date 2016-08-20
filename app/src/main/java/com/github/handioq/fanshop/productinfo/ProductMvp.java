@@ -3,7 +3,7 @@ package com.github.handioq.fanshop.productinfo;
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 
-public interface ProductInfoMvp {
+public interface ProductMvp {
 
     interface Model extends Mvp.Model {
 
@@ -31,7 +31,7 @@ public interface ProductInfoMvp {
 
     }
 
-    interface Presenter extends Mvp.Presenter<ProductInfoMvp.View> {
+    interface Presenter extends Mvp.Presenter<ProductMvp.View> {
 
         void getProduct(int id);
 

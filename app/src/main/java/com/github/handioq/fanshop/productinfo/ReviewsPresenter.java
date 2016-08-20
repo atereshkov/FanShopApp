@@ -9,18 +9,18 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class ReviewsInfoPresenter implements ReviewsInfoMvp.Presenter, ReviewsInfoMvp.Model.Callback {
+public class ReviewsPresenter implements ReviewsMvp.Presenter, ReviewsMvp.Model.Callback {
 
-    private ReviewsInfoMvp.View reviewsInfoView;
-    private ReviewsInfoMvp.Model reviewsInfoModel;
+    private ReviewsMvp.View reviewsInfoView;
+    private ReviewsMvp.Model reviewsInfoModel;
 
     private NetworkService networkService;
 
     private final static String TAG = "ReviewsInfoPresenterImp";
 
     @Inject
-    public ReviewsInfoPresenter(NetworkService networkService) {
-        reviewsInfoModel = new ReviewsInfoModel(networkService);
+    public ReviewsPresenter(NetworkService networkService) {
+        reviewsInfoModel = new ReviewsModel(networkService);
         reviewsInfoModel.setCallback(this);
     }
 
@@ -47,7 +47,7 @@ public class ReviewsInfoPresenter implements ReviewsInfoMvp.Presenter, ReviewsIn
     }
 
     @Override
-    public void setView(ReviewsInfoMvp.View view) {
+    public void setView(ReviewsMvp.View view) {
         this.reviewsInfoView = view;
     }
 

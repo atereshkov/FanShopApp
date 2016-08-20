@@ -5,7 +5,7 @@ import com.github.handioq.fanshop.model.dto.ReviewDTO;
 
 import java.util.List;
 
-public interface ReviewsInfoMvp {
+public interface ReviewsMvp {
 
     interface Model extends Mvp.Model {
 
@@ -35,7 +35,7 @@ public interface ReviewsInfoMvp {
 
     }
 
-    interface Presenter extends Mvp.Presenter<ReviewsInfoMvp.View> {
+    interface Presenter extends Mvp.Presenter<ReviewsMvp.View> {
 
         void getReviews(int id);
 

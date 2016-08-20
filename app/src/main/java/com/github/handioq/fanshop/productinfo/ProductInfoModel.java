@@ -5,10 +5,9 @@ import android.util.Log;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 
-import rx.Observer;
 import rx.Subscriber;
 
-public class ProductInfoModel implements ProductInfoMvp.Model {
+public class ProductInfoModel implements ProductMvp.Model {
 
     private final NetworkService networkService;
     private ProductInfoModel.Callback callback;

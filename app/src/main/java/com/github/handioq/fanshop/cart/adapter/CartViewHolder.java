@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.cart.RemoveFromCartEvent;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
+import com.github.handioq.fanshop.productinfo.ProductActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -52,7 +51,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (productDTO != null) {
                     Context context = itemView.getContext();
-                    context.startActivity(ProductInfoActivity.makeIntent(context, productDTO.getId()));
+                    context.startActivity(ProductActivity.makeIntent(context, productDTO.getId()));
                 }
             }
         });

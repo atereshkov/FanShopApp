@@ -42,10 +42,10 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.View, ViewPager.OnPageChangeListener,
+public class ProductFragment extends BaseFragment implements ProductMvp.View, ViewPager.OnPageChangeListener,
         AddToCartMvp.View, AddToWishlistMvp.View, RemoveWishlistMvp.View {
 
-    private final static String TAG = "ProductInfoFragment";
+    private final static String TAG = "ProductFragment";
     private final static String ARGUMENT_ID = "id";
 
     private int selectedItemId;
@@ -86,7 +86,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     ImageButton favoriteButton;
 
     @Inject
-    ProductInfoMvp.Presenter productInfoPresenter;
+    ProductMvp.Presenter productInfoPresenter;
 
     @Inject
     AddToCartMvp.Presenter addToCartPresenter;
@@ -100,8 +100,8 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     @Inject
     AuthPreferences authPreferences;
 
-    public static ProductInfoFragment newInstance(int id) {
-        ProductInfoFragment fragment = new ProductInfoFragment();
+    public static ProductFragment newInstance(int id) {
+        ProductFragment fragment = new ProductFragment();
 
         Bundle args = new Bundle();
         args.putInt(ARGUMENT_ID, id);
@@ -133,8 +133,8 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         Log.i(TAG, "onViewCreated");
 
         List<Fragment> fragments = new Vector<Fragment>();
-        fragments.add(DescriptionInfoFragment.newInstance(selectedItemId));
-        fragments.add(ReviewsInfoFragment.newInstance(selectedItemId));
+        fragments.add(DescriptionFragment.newInstance(selectedItemId));
+        fragments.add(ReviewsFragment.newInstance(selectedItemId));
 
         infoAdapter = new InfoAdapter(getActivity().getSupportFragmentManager(), fragments, getActivity());
         descriptionPager.setAdapter(infoAdapter);

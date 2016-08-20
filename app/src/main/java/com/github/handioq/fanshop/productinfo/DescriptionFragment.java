@@ -9,15 +9,15 @@ import android.view.ViewGroup;
 
 import com.github.handioq.R;
 
-public class DescriptionInfoFragment extends Fragment {
+public class DescriptionFragment extends Fragment {
 
     private int selectedItem;
 
     private final static String TAG = "DescriptionFragment";
     private final static String ARGUMENT_ID = "id";
 
-    public static DescriptionInfoFragment newInstance(int id) {
-        DescriptionInfoFragment fragment = new DescriptionInfoFragment();
+    public static DescriptionFragment newInstance(int id) {
+        DescriptionFragment fragment = new DescriptionFragment();
 
         Bundle args = new Bundle();
         args.putInt(ARGUMENT_ID, id);

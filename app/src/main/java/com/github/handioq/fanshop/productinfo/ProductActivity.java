@@ -12,14 +12,14 @@ import android.view.MenuItem;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseNavActivity;
 
-public class ProductInfoActivity extends BaseNavActivity {
+public class ProductActivity extends BaseNavActivity {
 
-    private static final String TAG = "ProductInfoActivity";
+    private static final String TAG = "ProductActivity";
     private static final String PRODUCT_FRAGMENT_TAG = "product_info";
     private static final String ID_KEY = "id";
 
     public static Intent makeIntent(Context context, int id){
-        Intent intent = new Intent(context, ProductInfoActivity.class);
+        Intent intent = new Intent(context, ProductActivity.class);
         intent.putExtra(ID_KEY, id);
         return intent;
     }
@@ -35,10 +35,10 @@ public class ProductInfoActivity extends BaseNavActivity {
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content, ProductInfoFragment.newInstance(selectedItem), PRODUCT_FRAGMENT_TAG)
+                    .replace(R.id.content, ProductFragment.newInstance(selectedItem), PRODUCT_FRAGMENT_TAG)
                     .commit();
 
-            Log.i(TAG, "create new ProductInfoFragment");
+            Log.i(TAG, "create new ProductFragment");
         }
     }
 

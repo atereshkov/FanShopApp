@@ -42,7 +42,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
 
                 if (orderDTO != null) {
                     Context context = itemView.getContext();
-                    //context.startActivity(ProductInfoActivity.makeIntent(context, productDTO.getId()));
+                    //context.startActivity(ProductActivity.makeIntent(context, productDTO.getId()));
                     Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show();
                 }
             }

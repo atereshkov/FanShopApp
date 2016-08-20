@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.catalog.AddToCartClickEvent;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.productinfo.ProductInfoActivity;
+import com.github.handioq.fanshop.productinfo.ProductActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -51,7 +51,7 @@ public class WishlistViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (product != null) {
                     Context context = itemView.getContext();
-                    context.startActivity(ProductInfoActivity.makeIntent(context, product.getId()));
+                    context.startActivity(ProductActivity.makeIntent(context, product.getId()));
                 }
             }
         });

@@ -9,14 +9,14 @@ import java.util.List;
 
 import rx.Subscriber;
 
-public class ReviewsInfoModel implements ReviewsInfoMvp.Model {
+public class ReviewsModel implements ReviewsMvp.Model {
 
     private final NetworkService networkService;
-    private ReviewsInfoModel.Callback callback;
+    private ReviewsModel.Callback callback;
 
-    private final static String TAG = "ReviewsInfoModel";
+    private final static String TAG = "ReviewsModel";
 
-    public ReviewsInfoModel(NetworkService networkService) {
+    public ReviewsModel(NetworkService networkService) {
         this.networkService = networkService;
     }
 
