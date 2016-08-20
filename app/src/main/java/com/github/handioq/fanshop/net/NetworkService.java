@@ -20,6 +20,8 @@ import rx.schedulers.Schedulers;
 public class NetworkService {
 
     private static final String USER_AGENT_HEADER = "Retrofit-FanShop-App";
+    private static final String HEADER_USER_AGENT = "User-Agent";
+    private static final String HEADER_AUTHORIZATION = "Authorization";
 
     private ApiService apiService;
     private final static Scheduler NETWORK_SINGLE
@@ -43,7 +45,7 @@ public class NetworkService {
             public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
                 Request newRequest = chain.request()
                         .newBuilder()
-                        .addHeader("User-Agent", USER_AGENT_HEADER).build();
+                        .addHeader(HEADER_USER_AGENT, USER_AGENT_HEADER).build();
                 return chain.proceed(newRequest);
             }
         };
@@ -57,7 +59,7 @@ public class NetworkService {
                 Request original = chain.request();
 
                 Request.Builder requestBuilder = original.newBuilder()
-                        .header("Authorization", "auth-value");
+                        .header(HEADER_AUTHORIZATION, "auth-token"); // TODO get token
 
                 Request request = requestBuilder.build();
                 return chain.proceed(request);
