@@ -9,7 +9,7 @@ public interface CartMvp {
 
     interface Model extends Mvp.Model {
 
-        void gerCartItems(int userid);
+        void getCartItems(int userid);
 
         void setCallback(Callback callback);
 

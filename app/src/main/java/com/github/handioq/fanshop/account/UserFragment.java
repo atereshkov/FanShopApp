@@ -14,6 +14,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.util.AuthPreferences;
 
 import javax.inject.Inject;
 
@@ -53,6 +54,9 @@ public class UserFragment extends BaseFragment implements UserMvp.View {
     @Inject
     UserMvp.Presenter userPresenter;
 
+    @Inject
+    AuthPreferences authPreferences;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +78,7 @@ public class UserFragment extends BaseFragment implements UserMvp.View {
         ((FanShopApp) getContext().getApplicationContext()).getAccountComponent().inject(this);
 
         userPresenter.setView(this);
-        userPresenter.getUser(15); // TODO change to real ID
+        userPresenter.getUser(authPreferences.getUserId());
     }
 
     private void bindUserInfo(UserDTO user) {

@@ -1,4 +1,4 @@
-package com.github.handioq.fanshop.catalog.search.adapter;
+package com.github.handioq.fanshop.ui.wishlist.adapter;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
@@ -22,7 +21,7 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SearchViewHolder extends RecyclerView.ViewHolder {
+public class WishlistViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.catalog_item_name)
     TextView catalogItemNameView;
@@ -36,36 +35,35 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.buy_button)
     ImageButton buyButtonView;
 
-    private ProductDTO productDTO;
+    private ProductDTO product;
 
-    static SearchViewHolder inflate(ViewGroup parent) {
+    static WishlistViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.catalog_item, parent, false);
-        return new SearchViewHolder(view);
+        return new WishlistViewHolder(view);
     }
 
-    private SearchViewHolder(View v) {
+    private WishlistViewHolder(View v) {
         super(v);
         ButterKnife.bind(this, v);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (productDTO != null) {
+                if (product != null) {
                     Context context = itemView.getContext();
-                    context.startActivity(ProductInfoActivity.makeIntent(context, productDTO.getId()));
+                    context.startActivity(ProductInfoActivity.makeIntent(context, product.getId()));
                 }
             }
         });
     }
 
     public void bind(final ProductDTO item) {
-        productDTO = item;
+        product = item;
         catalogItemNameView.setText(item.getName());
 
-        buyButtonView.setTag(getAdapterPosition());
         buyButtonView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                EventBus.getDefault().post(new AddToCartClickEvent(productDTO));
+                EventBus.getDefault().post(new AddToCartClickEvent(product));
             }
         });
 

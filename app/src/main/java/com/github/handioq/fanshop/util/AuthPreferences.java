@@ -2,12 +2,19 @@ package com.github.handioq.fanshop.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+
+import timber.log.Timber;
 
 public class AuthPreferences {
+
+    private static final String TAG = "AuthPreferences";
 
     private static final String AUTH_PREFERENCES = "auth";
     private static final String TOKEN = "token";
     private static final String TOKEN_NULL = "null";
+    private static final String USER_ID = "userId";
+    private static final int USER_ID_NULL = -1;
 
     SharedPreferences sharedPreferences;
     Context context;
@@ -33,13 +40,40 @@ public class AuthPreferences {
         return token;
     }
 
+    public void setUserId(int id) {
+        sharedPreferences.edit()
+                .putInt(USER_ID, id)
+                .apply();
+    }
+
+    public int getUserId() {
+        int userId = USER_ID_NULL;
+
+        if (sharedPreferences.contains(USER_ID)) {
+            userId = sharedPreferences.getInt(USER_ID, USER_ID_NULL);
+        }
+
+        return userId;
+    }
+
     public boolean isUserLoggedIn() {
-        return sharedPreferences.getString(TOKEN, TOKEN_NULL) != TOKEN_NULL;
+        Timber.i("isUserLoggedIn: %s", sharedPreferences.getString(TOKEN, TOKEN_NULL));
+
+        boolean isLogged = true;
+
+        if (sharedPreferences.getString(TOKEN, TOKEN_NULL).equals(TOKEN_NULL)) {
+            isLogged = false;
+        }
+
+        return isLogged;
+        //return sharedPreferences.getString(TOKEN, TOKEN_NULL) != TOKEN_NULL;
     }
 
     public void logout() {
+        Log.i(TAG, "logout");
         sharedPreferences.edit()
                 .putString(TOKEN, TOKEN_NULL)
+                .putInt(USER_ID, USER_ID_NULL)
                 .apply();
     }
 }

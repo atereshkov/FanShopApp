@@ -12,6 +12,9 @@ public class ProductDTO {
     private double price;
     private String description;
 
+    @SerializedName("user_favorite")
+    private boolean isUserFavorite;
+
     @SerializedName("image_url")
     private String imageUrl;
 
@@ -75,6 +78,14 @@ public class ProductDTO {
 
     public void setReviews(List<ReviewDTO> reviews) {
         this.reviews = reviews;
+    }
+
+    public boolean isUserFavorite() {
+        return isUserFavorite;
+    }
+
+    public void setUserFavorite(boolean userFavorite) {
+        isUserFavorite = userFavorite;
     }
 
     @Override

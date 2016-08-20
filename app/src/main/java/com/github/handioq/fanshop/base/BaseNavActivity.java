@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,14 +22,18 @@ import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.catalog.CatalogActivity;
 import com.github.handioq.fanshop.categories.CategoriesActivity;
 import com.github.handioq.fanshop.login.LoginActivity;
+import com.github.handioq.fanshop.ui.wishlist.WishlistActivity;
+import com.github.handioq.fanshop.util.AuthPreferences;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import timber.log.Timber;
 
 public abstract class BaseNavActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = "BaseNavActivity";
     private Unbinder unbinder;
 
     @BindView(R.id.nav_view)
@@ -41,6 +47,9 @@ public abstract class BaseNavActivity extends AppCompatActivity
     Toolbar toolbar;
 
     ActionBarDrawerToggle mToggle;
+
+    private AuthPreferences authPreferences;
+    Button loginButton;
 
     @Override
     public void onContentChanged() {
@@ -59,17 +68,41 @@ public abstract class BaseNavActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View header = navigationView.getHeaderView(0);
-        Button loginButton = (Button) header.findViewById(R.id.login_button);
+        loginButton = (Button) header.findViewById(R.id.login_button);
+    }
 
-        // TODO change
-        loginButton.setText(getResources().getString(R.string.action_sign_in));
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(BaseNavActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        authPreferences = new AuthPreferences(getApplicationContext());
+    }
+
+    @Override
+    protected void onStart() { // onDrawerStateChanged?
+        super.onStart();
+        Timber.i("AuthState -> %s ", authPreferences.isUserLoggedIn());
+
+        if (authPreferences.isUserLoggedIn()) {
+            loginButton.setText(getResources().getString(R.string.action_logout));
+            loginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    authPreferences.logout();
+                    Timber.i("AuthState -> %s, userID: %d ", authPreferences.isUserLoggedIn(), authPreferences.getUserId());
+                    drawer.closeDrawer(GravityCompat.START);
+                    ActivityCompat.invalidateOptionsMenu(BaseNavActivity.this);
+                }
+            });
+        } else {
+            loginButton.setText(getResources().getString(R.string.action_sign_in));
+            loginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(BaseNavActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
@@ -78,35 +111,49 @@ public abstract class BaseNavActivity extends AppCompatActivity
         mToggle.syncState();
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_categories) {
-
             Intent intent = new Intent(BaseNavActivity.this, CategoriesActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 
         } else if (id == R.id.nav_catalog) {
-
             Intent intent = new Intent(BaseNavActivity.this, CatalogActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 
         } else if (id == R.id.nav_cart) {
+            if (authPreferences.isUserLoggedIn()) {
+                Intent intent = new Intent(BaseNavActivity.this, CartActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(BaseNavActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
 
-            Intent intent = new Intent(BaseNavActivity.this, CartActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
+        } else if (id == R.id.nav_wishlist) {
+            if (authPreferences.isUserLoggedIn()) {
+                Intent intent = new Intent(BaseNavActivity.this, WishlistActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(BaseNavActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
 
         } else if (id == R.id.nav_account) {
-            Intent intent = new Intent(BaseNavActivity.this, AccountActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
-
+            if (authPreferences.isUserLoggedIn()) {
+                Intent intent = new Intent(BaseNavActivity.this, AccountActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(BaseNavActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
         } else if (id == R.id.nav_delivery) {
             Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
         }

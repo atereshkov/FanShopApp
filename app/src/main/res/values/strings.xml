@@ -21,9 +21,15 @@
     <string name="prompt_street">Street</string>
     <string name="prompt_name">Full Name</string>
 
+    <string name="cart_add_item_not_logged">To add an item to shopping cart please log in</string>
+    <string name="wishlist_add_item_not_logged">To add an item to wishlist please log in</string>
+    <string name="cart_remove_item_not_logged">To remove an item from shopping cart please log in</string>
+    <string name="account_not_logged">You are not logged in</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_up">Sign up</string>
     <string name="action_sign_in_short">Sign in</string>
+    <string name="action_logout">Logout</string>
+    <string name="success_register">Registration successful</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -46,6 +52,7 @@
     <string name="nav_title_info">Information</string>
     <string name="nav_title_shop">Shop</string>
     <string name="nav_delivery">Delivery</string>
+    <string name="nav_wishlist">Wishlist</string>
     <string name="nav_categories">Categories</string>
     <!--<string name="nav_">Account</string>-->
 
@@ -80,6 +87,7 @@
     <string name="account_country">Country: %1s</string>
     <string name="account_zipcode">Zipcode: %1d</string>
     <string name="account_orders">Orders</string>
-    <string name="title_activity_checkout">CheckoutActivity</string>
+    <string name="title_activity_checkout">Checkout</string>
+    <string name="title_activity_wishlist">Wishlist</string>
 
 </resources>

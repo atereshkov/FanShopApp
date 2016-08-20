@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,6 +20,8 @@ import rx.schedulers.Schedulers;
 public class NetworkService {
 
     private static final String USER_AGENT_HEADER = "Retrofit-FanShop-App";
+    private static final String HEADER_USER_AGENT = "User-Agent";
+    private static final String HEADER_AUTHORIZATION = "Authorization";
 
     private ApiService apiService;
     private final static Scheduler NETWORK_SINGLE
@@ -37,19 +40,32 @@ public class NetworkService {
 
     public NetworkService() {
 
-        // Define the interceptor, add authentication headers
         Interceptor interceptor = new Interceptor() {
             @Override
             public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
                 Request newRequest = chain.request()
                         .newBuilder()
-                        .addHeader("User-Agent", USER_AGENT_HEADER).build();
+                        .addHeader(HEADER_USER_AGENT, USER_AGENT_HEADER).build();
                 return chain.proceed(newRequest);
             }
         };
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.interceptors().add(interceptor);
+
+        builder.interceptors().add(new Interceptor() {
+            @Override
+            public Response intercept(Interceptor.Chain chain) throws IOException {
+                Request original = chain.request();
+
+                Request.Builder requestBuilder = original.newBuilder()
+                        .header(HEADER_AUTHORIZATION, "auth-token"); // TODO get token
+
+                Request request = requestBuilder.build();
+                return chain.proceed(request);
+            }
+        });
+
         OkHttpClient okHttpClient = builder.build();
 
         Retrofit retrofit = new Retrofit.Builder()

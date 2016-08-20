@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -29,6 +30,9 @@ import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
 import com.github.handioq.fanshop.productinfo.slider.ImageSliderAdapter;
+import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistMvp;
+import com.github.handioq.fanshop.ui.wishlist.interaction.RemoveWishlistMvp;
+import com.github.handioq.fanshop.util.AuthPreferences;
 
 import java.util.List;
 import java.util.Vector;
@@ -36,11 +40,13 @@ import java.util.Vector;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.View, ViewPager.OnPageChangeListener,
-        AddToCartMvp.View {
+        AddToCartMvp.View, AddToWishlistMvp.View, RemoveWishlistMvp.View {
 
     private final static String TAG = "ProductInfoFragment";
+    private final static String ARGUMENT_ID = "id";
 
     private int selectedItemId;
     private InfoAdapter infoAdapter;
@@ -76,11 +82,33 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
+    @BindView(R.id.fav_button)
+    ImageButton favoriteButton;
+
     @Inject
     ProductInfoMvp.Presenter productInfoPresenter;
 
     @Inject
     AddToCartMvp.Presenter addToCartPresenter;
+
+    @Inject
+    AddToWishlistMvp.Presenter addToWishlistPresenter;
+
+    @Inject
+    RemoveWishlistMvp.Presenter removeWishlistPresenter;
+
+    @Inject
+    AuthPreferences authPreferences;
+
+    public static ProductInfoFragment newInstance(int id) {
+        ProductInfoFragment fragment = new ProductInfoFragment();
+
+        Bundle args = new Bundle();
+        args.putInt(ARGUMENT_ID, id);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,7 +122,7 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        selectedItemId = this.getArguments().getInt("id");
+        selectedItemId = this.getArguments().getInt(ARGUMENT_ID);
 
         return inflater.inflate(R.layout.fragment_product_info, container, false);
     }
@@ -104,31 +132,27 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated");
 
-        Bundle bundle = new Bundle();
-        bundle.putInt("id", selectedItemId);
-
-        Fragment descriptionFragment = new DescriptionInfoFragment();
-        descriptionFragment.setArguments(bundle);
-
-        Fragment reviewsFragment = new ReviewsInfoFragment();
-        reviewsFragment.setArguments(bundle);
-
         List<Fragment> fragments = new Vector<Fragment>();
-        fragments.add(descriptionFragment);
-        fragments.add(reviewsFragment);
+        fragments.add(DescriptionInfoFragment.newInstance(selectedItemId));
+        fragments.add(ReviewsInfoFragment.newInstance(selectedItemId));
 
         infoAdapter = new InfoAdapter(getActivity().getSupportFragmentManager(), fragments, getActivity());
         descriptionPager.setAdapter(infoAdapter);
         tabLayout.setupWithViewPager(descriptionPager);
 
+        removeWishlistPresenter.setView(this);
         addToCartPresenter.setView(this);
-
+        addToWishlistPresenter.setView(this);
         productInfoPresenter.setView(this);
         productInfoPresenter.getProduct(selectedItemId);
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addToCartPresenter.addProductToCart(5100, selectedProduct);
+                if (authPreferences.isUserLoggedIn()) {
+                    addToCartPresenter.addProductToCart(authPreferences.getUserId(), selectedProduct);
+                } else {
+                    Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -177,6 +201,30 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
     }
 
+    @OnClick(R.id.fav_button)
+    void onFavoriteClick() {
+        if (authPreferences.isUserLoggedIn()) {
+            if (selectedProduct.isUserFavorite()) {
+                removeWishlistPresenter.removeProduct(authPreferences.getUserId(), selectedProduct.getId());
+            } else {
+                addToWishlistPresenter.addProductToWishlist(authPreferences.getUserId(), selectedProduct);
+            }
+        } else {
+            Toast.makeText(getContext(), getResources().getString(R.string.wishlist_add_item_not_logged), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onProductAddedToWishlist(Response response) {
+        Toast.makeText(getActivity(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
+        favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp);
+    }
+
+    @Override
+    public void onWishlistAddError(Throwable e) {
+        Log.e(TAG, e.toString());
+    }
+
     @Override
     public void showProgress() {
         progressBarView.setVisibility(View.VISIBLE);
@@ -200,8 +248,13 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
         infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, productDTO.getPrice()));
         infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
-
         descriptionView.setText(productDTO.getDescription());
+
+        if (selectedProduct.isUserFavorite()) {
+            favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp);
+        } else {
+            favoriteButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+        }
     }
 
     @Override
@@ -216,6 +269,17 @@ public class ProductInfoFragment extends BaseFragment implements ProductInfoMvp.
 
     @Override
     public void onProductAddError(Throwable e) {
+        Log.e(TAG, e.toString());
+    }
+
+    @Override
+    public void onProductRemovedFromWishlist() {
+        Toast.makeText(getContext(), "Product removed from wishlist", Toast.LENGTH_SHORT).show();
+        favoriteButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+    }
+
+    @Override
+    public void onWishlistRemoveError(Throwable e) {
         Log.e(TAG, e.toString());
     }
 

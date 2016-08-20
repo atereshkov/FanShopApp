@@ -1,46 +1,46 @@
-package com.github.handioq.fanshop.cart;
+package com.github.handioq.fanshop.ui.wishlist.interaction;
 
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.model.Response;
 
 import rx.Subscriber;
 
-public class RemoveFromCartModel implements RemoveFromCartMvp.Model {
+public class AddToWishlistModel implements AddToWishlistMvp.Model {
 
     private final NetworkService networkService;
-    private RemoveFromCartMvp.Model.Callback callback;
+    private AddToWishlistModel.Callback callback;
 
-    public RemoveFromCartModel(NetworkService networkService) {
+    public AddToWishlistModel(NetworkService networkService) {
         this.networkService = networkService;
     }
 
     @Override
-    public void removeProduct(int userId, int productId) {
+    public void addProductToWishlist(int userId, ProductDTO product) {
         networkService.getApiService()
-                .removeProductFromCart(userId, productId)
+                .addProductToWishlist(userId, product)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<Response>applyScheduler())
                 .subscribe(new Subscriber<Response>() {
                     @Override
                     public void onCompleted() {
-                        callback.onRemoveCompleted();
+                        callback.onAddToWishlistCompleted();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onProductRemoveError(e);
+                        callback.onWishlistAddError(e);
                     }
 
                     @Override
                     public void onNext(Response response) {
-                        callback.onProductRemoved();
+                        callback.onProductAddedToWishlist(response);
                     }
                 });
     }
 
     @Override
-    public void setCallback(RemoveFromCartMvp.Model.Callback callback) {
+    public void setCallback(Callback callback) {
         this.callback = callback;
     }
-
 }

@@ -30,9 +30,20 @@ public class ReviewsInfoFragment extends BaseFragment implements ReviewsInfoMvp.
     private int productId;
 
     private final static String TAG = "ReviewsInfoFragment";
+    private final static String ARGUMENT_ID = "id";
 
     @Inject
     ReviewsInfoMvp.Presenter reviewsPresenter;
+
+    public static ReviewsInfoFragment newInstance(int id) {
+        ReviewsInfoFragment fragment = new ReviewsInfoFragment();
+
+        Bundle args = new Bundle();
+        args.putInt(ARGUMENT_ID, id);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,18 +68,11 @@ public class ReviewsInfoFragment extends BaseFragment implements ReviewsInfoMvp.
 
         reviewsPresenter.setView(this);
         reviewsPresenter.getReviews(productId);
-
-/*        List<ReviewDTO> list = new ArrayList<>(); // TODO THIS IS JUST FOR TEST, DELETE!
-        list.add(new ReviewDTO("message 1", 2));
-        list.add(new ReviewDTO("some awsome review about this fckni humburger doto awsm review multiline text lipsum liospz multiline text a123 as123", 2));
-        list.add(new ReviewDTO("nice go asdhome dt2", 3));
-
-        initRecyclerView(list);*/
     }
 
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
-            productId = bundle.getInt("id");
+            productId = bundle.getInt(ARGUMENT_ID);
         }
     }
 

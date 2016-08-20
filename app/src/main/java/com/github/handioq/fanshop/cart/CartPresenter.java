@@ -50,7 +50,7 @@ public class CartPresenter implements CartMvp.Presenter, CartMvp.Model.Callback 
             Log.i(TAG, "showLoadProductsProgress() on cartView");
         }
 
-        cartModel.gerCartItems(userId);
+        cartModel.getCartItems(userId);
     }
 
     /*

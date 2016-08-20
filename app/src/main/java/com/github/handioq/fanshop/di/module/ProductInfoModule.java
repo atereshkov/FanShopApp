@@ -8,6 +8,10 @@ import com.github.handioq.fanshop.productinfo.ProductInfoMvp;
 import com.github.handioq.fanshop.productinfo.ProductInfoPresenter;
 import com.github.handioq.fanshop.productinfo.ReviewsInfoMvp;
 import com.github.handioq.fanshop.productinfo.ReviewsInfoPresenter;
+import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistMvp;
+import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistPresenter;
+import com.github.handioq.fanshop.ui.wishlist.interaction.RemoveWishlistMvp;
+import com.github.handioq.fanshop.ui.wishlist.interaction.RemoveWishlistPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -33,4 +37,15 @@ public class ProductInfoModule {
         return new AddToCartPresenter(networkService);
     }
 
+    @Provides
+    @PresenterScope
+    public AddToWishlistMvp.Presenter providesAddToWishlistPresenter(NetworkService networkService) {
+        return new AddToWishlistPresenter(networkService);
+    }
+
+    @Provides
+    @PresenterScope
+    public RemoveWishlistMvp.Presenter providesRemoveWishlistPresenter(NetworkService networkService) {
+        return new RemoveWishlistPresenter(networkService);
+    }
 }

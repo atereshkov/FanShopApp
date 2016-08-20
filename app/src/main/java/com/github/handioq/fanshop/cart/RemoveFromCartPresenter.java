@@ -11,20 +11,17 @@ public class RemoveFromCartPresenter implements RemoveFromCartMvp.Presenter, Rem
     private static final String TAG = "RemoveFromCartPresenter";
 
     private RemoveFromCartMvp.View removeView;
-    private RemoveFromCartModel removeModel;
-    private NetworkService networkService;
+    private RemoveFromCartMvp.Model removeModel;
 
     @Inject
     public RemoveFromCartPresenter(NetworkService networkService) {
-        this.networkService = networkService;
-
         removeModel = new RemoveFromCartModel(networkService);
         removeModel.setCallback(this);
     }
 
     @Override
     public void removeProductFromCart(int userId, int productId) {
-        removeModel.removeProductFromCart(userId, productId);
+        removeModel.removeProduct(userId, productId);
     }
 
     @Override

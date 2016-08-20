@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class ReviewsInfoPresenter implements ReviewsInfoMvp.Presenter, ReviewsInfoMvp.Model.Callback {
 
     private ReviewsInfoMvp.View reviewsInfoView;
-    private ReviewsInfoModel reviewsInfoModel;
+    private ReviewsInfoMvp.Model reviewsInfoModel;
 
     private NetworkService networkService;
 

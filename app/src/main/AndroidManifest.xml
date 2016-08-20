@@ -55,6 +55,10 @@
         <activity
             android:name=".fanshop.ui.checkout.CheckoutActivity"
             android:label="@string/title_activity_checkout"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.ui.wishlist.WishlistActivity"
+            android:label="@string/title_activity_wishlist"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

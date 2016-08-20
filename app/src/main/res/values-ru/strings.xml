@@ -73,5 +73,13 @@
     <string name="prompt_zipcode">Почтовый индекс</string>
     <string name="title_activity_checkout">Оформление заказа</string>
     <string name="prompt_name">ФИО</string>
+    <string name="title_activity_wishlist">Список желаемого</string>
+    <string name="nav_wishlist">Список желаемого</string>
+    <string name="action_logout">Выйти</string>
+    <string name="success_register">Регистрация прошла успешно</string>
+    <string name="cart_add_item_not_logged">Для добавления товара в корзину необходимо войти в аккаунт</string>
+    <string name="wishlist_add_item_not_logged">Для добавления товара в список желаемого необходимо войти в аккаунт</string>
+    <string name="cart_remove_item_not_logged">Для удаления товара из списка желаемого необходимо войти в аккаунт</string>
+    <string name="account_not_logged">Вы не авторизованы</string>
 
 </resources>

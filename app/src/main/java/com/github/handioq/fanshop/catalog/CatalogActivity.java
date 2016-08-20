@@ -17,6 +17,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseNavActivity;
 import com.github.handioq.fanshop.cart.CartActivity;
 import com.github.handioq.fanshop.login.LoginActivity;
+import com.github.handioq.fanshop.util.AuthPreferences;
 
 import butterknife.BindView;
 
@@ -24,6 +25,7 @@ public class CatalogActivity extends BaseNavActivity {
 
     private static final String TAG = "CatalogActivity";
     private static final String CATALOG_FRAGMENT_TAG = "catalog";
+    private static final String KEY_CATEGORY = "category";
 
     @BindView(R.id.fab_catalog)
     FloatingActionButton fab;
@@ -33,7 +35,7 @@ public class CatalogActivity extends BaseNavActivity {
 
     public static Intent makeIntent(Context context, String category){
         Intent intent = new Intent(context, CatalogActivity.class);
-        intent.putExtra("category", category);
+        intent.putExtra(KEY_CATEGORY, category);
         return intent;
     }
 
@@ -43,32 +45,32 @@ public class CatalogActivity extends BaseNavActivity {
         setContentView(R.layout.activity_catalog);
         Log.i(TAG, "onCreate");
 
-        if (getIntent().hasExtra("category")) {
-            category = getIntent().getExtras().getString("category");
+        if (getIntent().hasExtra(KEY_CATEGORY)) {
+            category = getIntent().getExtras().getString(KEY_CATEGORY);
             setTitle(category);
         }
 
-        Bundle bundle = new Bundle();
-        bundle.putString("category", category);
-
         if (getSupportFragmentManager().findFragmentByTag(CATALOG_FRAGMENT_TAG) == null) {
-            CatalogFragment catalogFragment = new CatalogFragment();
-            catalogFragment.setArguments(bundle);
-
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content, catalogFragment, CATALOG_FRAGMENT_TAG)
+                    .replace(R.id.content, CatalogFragment.newInstance(category), CATALOG_FRAGMENT_TAG)
                     .commit();
 
             Log.i(TAG, "create new CatalogFragment");
         }
 
         setFabVisible(false);
+        final AuthPreferences authPreferences = new AuthPreferences(this);
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
-                startActivity(intent);
+                if (authPreferences.isUserLoggedIn()) {
+                    Intent intent = new Intent(CatalogActivity.this, CartActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(CatalogActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
