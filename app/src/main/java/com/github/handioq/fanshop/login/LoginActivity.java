@@ -94,7 +94,6 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
-
         finish();
     }
 
