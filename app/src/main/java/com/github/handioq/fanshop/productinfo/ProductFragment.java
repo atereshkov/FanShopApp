@@ -133,7 +133,7 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
         Log.i(TAG, "onViewCreated");
 
         List<Fragment> fragments = new Vector<Fragment>();
-        fragments.add(DescriptionFragment.newInstance(selectedItemId));
+        fragments.add(SpecificationFragment.newInstance(selectedItemId));
         fragments.add(ReviewsFragment.newInstance(selectedItemId));
 
         infoAdapter = new InfoAdapter(getActivity().getSupportFragmentManager(), fragments, getActivity());

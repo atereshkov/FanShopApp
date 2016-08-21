@@ -5,6 +5,7 @@ import com.github.handioq.fanshop.di.module.ProductInfoModule;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
 import com.github.handioq.fanshop.productinfo.ProductFragment;
 import com.github.handioq.fanshop.productinfo.ReviewsFragment;
+import com.github.handioq.fanshop.productinfo.SpecificationFragment;
 
 import dagger.Component;
 
@@ -15,5 +16,7 @@ public interface ProductInfoComponent {
     void inject(ProductFragment productInfoFragment);
 
     void inject(ReviewsFragment reviewsInfoFragment);
+
+    void inject(SpecificationFragment specificationFragment);
 
 }

@@ -7,14 +7,14 @@ import com.github.handioq.fanshop.net.NetworkService;
 
 import rx.Subscriber;
 
-public class ProductInfoModel implements ProductMvp.Model {
+public class ProductModel implements ProductMvp.Model {
 
     private final NetworkService networkService;
-    private ProductInfoModel.Callback callback;
+    private ProductModel.Callback callback;
 
-    private final static String TAG = "ProductInfoModel";
+    private final static String TAG = "ProductModel";
 
-    public ProductInfoModel(NetworkService networkService) {
+    public ProductModel(NetworkService networkService) {
         this.networkService = networkService;
     }
 

@@ -81,5 +81,10 @@
     <string name="wishlist_add_item_not_logged">Для добавления товара в список желаемого необходимо войти в аккаунт</string>
     <string name="cart_remove_item_not_logged">Для удаления товара из списка желаемого необходимо войти в аккаунт</string>
     <string name="account_not_logged">Вы не авторизованы</string>
+    <string name="specification_brand">Бренд: %1s</string>
+    <string name="specification_code">Артикул: %1s</string>
+    <string name="specification_color">Цвет: %1s</string>
+    <string name="specification_country">Страна-производитель: %1s</string>
+    <string name="specification_sizes">Размеры в наличии: %1s</string>
 
 </resources>

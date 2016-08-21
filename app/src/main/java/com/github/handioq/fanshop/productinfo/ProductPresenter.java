@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
-public class ProductPresenter implements ProductMvp.Presenter, ProductInfoModel.Callback {
+public class ProductPresenter implements ProductMvp.Presenter, ProductModel.Callback {
 
     private ProductMvp.View productInfoView;
     private ProductMvp.Model productInfoModel;
@@ -18,7 +18,7 @@ public class ProductPresenter implements ProductMvp.Presenter, ProductInfoModel.
 
     @Inject
     public ProductPresenter(NetworkService networkService) {
-        productInfoModel = new ProductInfoModel(networkService);
+        productInfoModel = new ProductModel(networkService);
         productInfoModel.setCallback(this);
     }
 

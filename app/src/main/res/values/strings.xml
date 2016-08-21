@@ -65,11 +65,16 @@
     </plurals>
     <string name="cart_pay_amount">$%1$.2f</string>
 
-    <!-- Strings related to productDTO info -->
+    <!-- Strings related to product info -->
     <string name="title_activity_productInfo">Information</string>
-    <string name="pager_title_description">Description</string>
+    <string name="pager_title_description">Specification</string>
     <string name="pager_title_reviews">Reviews</string>
     <string name="title_activity_account">Account</string>
+    <string name="specification_color">Color: %1s</string>
+    <string name="specification_country">Country: %1s</string>
+    <string name="specification_code">Code: %1s</string>
+    <string name="specification_brand">Brand: %1s</string>
+    <string name="specification_sizes">Available sizes: %1s</string>
 
     <string name="order_id">%1d</string>
     <string name="title_activity_search">Search</string>
