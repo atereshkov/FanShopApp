@@ -4,41 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/specification_form" >
-
-        <TextView
-            android:id="@+id/color_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/specification_color"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="@dimen/text_body" />
-
-    </RelativeLayout>
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
-
     <TextView
-        android:id="@+id/country_text"
+        android:id="@+id/color_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/specification_country"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="@dimen/text_body" />
-
-    <TextView
-        android:id="@+id/brand_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/specification_brand"
+        android:text="@string/specification_color"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="@dimen/text_body" />
 
@@ -51,6 +21,22 @@
         android:textSize="@dimen/text_body" />
 
     <TextView
+        android:id="@+id/brand_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/specification_brand"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="@dimen/text_body" />
+
+    <TextView
+        android:id="@+id/country_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/specification_country"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="@dimen/text_body" />
+
+    <TextView
         android:id="@+id/sizes_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,5 +44,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="@dimen/text_body" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </LinearLayout>

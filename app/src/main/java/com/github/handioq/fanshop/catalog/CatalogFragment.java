@@ -25,6 +25,7 @@ import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.catalog.search.SearchActivity;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.BadgeDrawable;
@@ -100,7 +101,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
         ((FanShopApp) getContext().getApplicationContext()).getCatalogComponent().inject(this);
 
-        adapter = new CatalogRecyclerAdapter(new ArrayList<ProductDTO>());
+        adapter = new CatalogRecyclerAdapter(new ArrayList<ProductDVO>());
 
         addToCartPresenter.setView(this);
         catalogPresenter.setView(this);
@@ -140,7 +141,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
 
         if (authPreferences.isUserLoggedIn()) {
-            addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct());
+            //addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct().getId());
         } else {
             Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
         }
@@ -233,8 +234,8 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     }
 
     @Override
-    public void setProducts(List<ProductDTO> productDTOs) {
-        adapter.addItems(productDTOs);
+    public void setProducts(List<ProductDVO> products) {
+        adapter.addItems(products);
     }
 
     @Override

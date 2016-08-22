@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.catalog;
 
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface CatalogMvp {
 
         interface Callback {
 
-            void onProductsLoaded(List<ProductDTO> productDTOs);
+            void onProductsLoaded(List<ProductDVO> productDTOs);
 
             void onProductsLoadError(Throwable error);
 
@@ -29,7 +30,7 @@ public interface CatalogMvp {
 
         void hideLoadProductsProgress();
 
-        void setProducts(List<ProductDTO> productDTOs);
+        void setProducts(List<ProductDVO> productDTOs);
 
         void showLoadProductsError(Throwable e); // change to showLoadProductsError(int errorCode);
 

@@ -64,7 +64,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
         buyButtonView.setTag(getAdapterPosition());
         buyButtonView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                EventBus.getDefault().post(new AddToCartClickEvent(productDTO));
+                //EventBus.getDefault().post(new AddToCartClickEvent(productDTO));
             }
         });
 

@@ -139,7 +139,7 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
     @Subscribe
     public void onAddToCartEvent(AddToCartClickEvent event) {
         if (authPreferences.isUserLoggedIn()) {
-            addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct());
+            //addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct());
         } else {
             Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
         }

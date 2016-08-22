@@ -61,7 +61,7 @@ public interface ApiService {
 
     @POST(USER_URL + "/{id}/cart")
     Observable<Response> addProductToCart(@Path("id") int userId,
-                                          @Body ProductDTO productDTO);
+                                          @Body ProductDTO productDTO); // TODO CHANGE
 
     @DELETE(USER_URL + "/{id}/cart/{product_id}")
     Observable<Response> removeProductFromCart(@Path("id") int userId,

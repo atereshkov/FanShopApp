@@ -1,11 +1,11 @@
-package com.github.handioq.fanshop.model.dto;
+package com.github.handioq.fanshop.model.dvo;
 
-public class ReviewDTO {
+public class ReviewDVO {
 
     private String message;
     private int stars;
 
-    public ReviewDTO(String message, int stars) {
+    public ReviewDVO(String message, int stars) {
         this.message = message;
         this.stars = stars;
     }
@@ -24,5 +24,13 @@ public class ReviewDTO {
 
     public void setStars(int stars) {
         this.stars = stars;
+    }
+
+    @Override
+    public String toString() {
+        return "ReviewDVO{" +
+                "message='" + message + '\'' +
+                ", stars=" + stars +
+                '}';
     }
 }

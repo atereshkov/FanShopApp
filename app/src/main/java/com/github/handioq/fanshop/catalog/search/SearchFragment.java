@@ -154,7 +154,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
 
         if (authPreferences.isUserLoggedIn()) {
-            addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct());
+            //addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct());
         } else {
             Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
         }

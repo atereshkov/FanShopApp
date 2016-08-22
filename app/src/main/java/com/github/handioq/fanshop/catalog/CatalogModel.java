@@ -4,7 +4,9 @@ package com.github.handioq.fanshop.catalog;
 import android.util.Log;
 
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.util.Mapper;
 
 import java.util.List;
 
@@ -26,9 +28,10 @@ public class CatalogModel implements CatalogMvp.Model {
 
         networkService.getApiService()
                 .getProducts(category, offset, count)
+                .map(Mapper::mapDtoToDvo)
                 //.delay(3, TimeUnit.SECONDS)
-                .compose(NetworkService.<List<ProductDTO>>applyScheduler())
-                .subscribe(new Subscriber<List<ProductDTO>>() {
+                .compose(NetworkService.<List<ProductDVO>>applyScheduler())
+                .subscribe(new Subscriber<List<ProductDVO>>() {
                     @Override
                     public void onCompleted() {
                         callback.onLoadProductsCompleted();
@@ -40,8 +43,8 @@ public class CatalogModel implements CatalogMvp.Model {
                     }
 
                     @Override
-                    public void onNext(List<ProductDTO> productDTOs) {
-                        callback.onProductsLoaded(productDTOs);
+                    public void onNext(List<ProductDVO> products) {
+                        callback.onProductsLoaded(products);
                     }
                 });
 

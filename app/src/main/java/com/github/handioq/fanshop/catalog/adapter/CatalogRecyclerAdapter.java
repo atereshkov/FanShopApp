@@ -5,14 +5,15 @@ import android.view.ViewGroup;
 
 import com.github.handioq.fanshop.model.dbo.ProductDBO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 
 import java.util.List;
 
 public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHolder> {
 
-    private List<ProductDTO> items;
+    private List<ProductDVO> items;
 
-    public CatalogRecyclerAdapter(List<ProductDTO> items) {
+    public CatalogRecyclerAdapter(List<ProductDVO> items) {
         this.items = items;
     }
 
@@ -31,17 +32,17 @@ public class CatalogRecyclerAdapter extends RecyclerView.Adapter<CatalogViewHold
         return items.size();
     }
 
-    public void addItems(List<ProductDTO> newItems) {
+    public void addItems(List<ProductDVO> newItems) {
         items.addAll(newItems);
         notifyDataSetChanged();
     }
 
-    public void setItems(List<ProductDTO> items) {
+    public void setItems(List<ProductDVO> items) {
         this.items = items;
         notifyDataSetChanged();
     }
 
-    public List<ProductDTO> getItems() {
+    public List<ProductDVO> getItems() {
         return items;
     }
 }

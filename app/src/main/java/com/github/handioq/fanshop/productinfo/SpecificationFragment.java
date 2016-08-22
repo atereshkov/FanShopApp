@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -41,9 +42,6 @@ public class SpecificationFragment extends BaseFragment implements Specification
     @BindView(R.id.code_text)
     TextView codeTextView;
 
-    @BindView(R.id.specification_form)
-    RelativeLayout specificationFormView;
-
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
@@ -75,6 +73,7 @@ public class SpecificationFragment extends BaseFragment implements Specification
         Log.i(TAG, "onCreateView");
         return inflater.inflate(R.layout.fragment_info_specification, container, false);
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -91,15 +90,29 @@ public class SpecificationFragment extends BaseFragment implements Specification
         }
     }
 
+    private void hideInfoView(boolean hide) {
+        if (hide) {
+            colorTextView.setVisibility(View.GONE);
+            countryTextView.setVisibility(View.GONE);
+            brandTextView.setVisibility(View.GONE);
+            codeTextView.setVisibility(View.GONE);
+        } else {
+            colorTextView.setVisibility(View.VISIBLE);
+            countryTextView.setVisibility(View.VISIBLE);
+            brandTextView.setVisibility(View.VISIBLE);
+            codeTextView.setVisibility(View.VISIBLE);
+        }
+    }
+
     @Override
     public void showProgress() {
-        specificationFormView.setVisibility(View.GONE);
+        //hideInfoView(true);
         progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        specificationFormView.setVisibility(View.VISIBLE);
+        //hideInfoView(false);
         progressBar.setVisibility(View.GONE);
     }
 
@@ -109,6 +122,7 @@ public class SpecificationFragment extends BaseFragment implements Specification
         countryTextView.setText(getString(R.string.specification_country, specification.getCountry()));
         brandTextView.setText(getString(R.string.specification_brand, specification.getBrand()));
         codeTextView.setText(getString(R.string.specification_code, specification.getCode()));
+        
     }
 
     @Override

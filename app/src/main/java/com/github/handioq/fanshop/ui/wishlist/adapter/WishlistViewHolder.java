@@ -63,7 +63,7 @@ public class WishlistViewHolder extends RecyclerView.ViewHolder {
 
         buyButtonView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                EventBus.getDefault().post(new AddToCartClickEvent(product));
+                //EventBus.getDefault().post(new AddToCartClickEvent(product));
             }
         });
 
