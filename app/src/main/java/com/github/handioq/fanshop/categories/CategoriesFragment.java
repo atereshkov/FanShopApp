@@ -3,7 +3,6 @@ package com.github.handioq.fanshop.categories;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +14,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.categories.adapter.CategoriesRecyclerAdapter;
-import com.github.handioq.fanshop.model.dto.CategoryDTO;
+import com.github.handioq.fanshop.model.dvo.CategoryDVO;
 import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
 
 import java.util.ArrayList;
@@ -61,7 +60,7 @@ public class CategoriesFragment extends BaseFragment implements CategoriesMvp.Vi
 
         ((FanShopApp) getContext().getApplicationContext()).getCategoriesComponent().inject(this);
 
-        adapter = new CategoriesRecyclerAdapter(new ArrayList<CategoryDTO>());
+        adapter = new CategoriesRecyclerAdapter(new ArrayList<CategoryDVO>());
 
         categoriesPresenter.setView(this);
         categoriesPresenter.getCategories();
@@ -92,7 +91,7 @@ public class CategoriesFragment extends BaseFragment implements CategoriesMvp.Vi
     }
 
     @Override
-    public void setCategories(List<CategoryDTO> categories) {
+    public void setCategories(List<CategoryDVO> categories) {
         adapter.setCategories(categories);
     }
 

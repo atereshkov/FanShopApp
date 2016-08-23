@@ -4,14 +4,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.github.handioq.fanshop.model.dto.CategoryDTO;
+import com.github.handioq.fanshop.model.dvo.CategoryDVO;
 
 import java.util.List;
 
 public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesViewHolder> {
 
-    private List<CategoryDTO> categories;
+    private List<CategoryDVO> categories;
 
-    public CategoriesRecyclerAdapter(List<CategoryDTO> categories) {
+    public CategoriesRecyclerAdapter(List<CategoryDVO> categories) {
         this.categories = categories;
     }
 
@@ -30,12 +31,12 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesVi
         return categories.size();
     }
 
-    public void setCategories(List<CategoryDTO> categories) {
+    public void setCategories(List<CategoryDVO> categories) {
         this.categories = categories;
         notifyDataSetChanged();
     }
 
-    public List<CategoryDTO> getCategories() {
+    public List<CategoryDVO> getCategories() {
         return categories;
     }
 }

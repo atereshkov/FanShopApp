@@ -4,14 +4,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 
 import java.util.List;
 
 public class CartRecyclerAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
-    private List<ProductDTO> items;
+    private List<ProductDVO> items;
 
-    public CartRecyclerAdapter(List<ProductDTO> items) {
+    public CartRecyclerAdapter(List<ProductDVO> items) {
         this.items = items;
     }
 
@@ -30,7 +31,7 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartViewHolder> {
         return items.size();
     }
 
-    public void setItems(List<ProductDTO> newItems) {
+    public void setItems(List<ProductDVO> newItems) {
         this.items = newItems;
         notifyDataSetChanged();
     }

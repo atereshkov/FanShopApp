@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.categories.subcategory;
 
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.CategoryDTO;
+import com.github.handioq.fanshop.model.dvo.CategoryDVO;
 
 public interface SubcategoryMvp {
 
@@ -13,7 +14,7 @@ public interface SubcategoryMvp {
 
         interface Callback {
 
-            void onCategoryLoaded(CategoryDTO category);
+            void onCategoryLoaded(CategoryDVO category);
 
             void onCategoryLoadError(Throwable error);
 
@@ -27,7 +28,7 @@ public interface SubcategoryMvp {
 
         void hideLoadCategoryProgress();
 
-        void setCategory(CategoryDTO category);
+        void setCategory(CategoryDVO category);
 
         void showLoadCategoryError(Throwable e);
 

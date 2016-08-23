@@ -3,6 +3,7 @@ package com.github.handioq.fanshop.cart;
 import android.util.Log;
 
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class CartPresenter implements CartMvp.Presenter, CartMvp.Model.Callback 
     }
 
     @Override
-    public void onProductsLoaded(List<ProductDTO> productDTOs) {
-        cartView.setCartItems(productDTOs);
+    public void onProductsLoaded(List<ProductDVO> products) {
+        cartView.setCartItems(products);
     }
 
     @Override
@@ -52,10 +53,4 @@ public class CartPresenter implements CartMvp.Presenter, CartMvp.Model.Callback 
 
         cartModel.getCartItems(userId);
     }
-
-    /*
-    @Override
-    public void onItemClicked(View view, int position) {
-        cartView.onItemClicked(view, position);
-    }*/
 }

@@ -3,7 +3,9 @@ package com.github.handioq.fanshop.categories;
 import android.util.Log;
 
 import com.github.handioq.fanshop.model.dto.CategoryDTO;
+import com.github.handioq.fanshop.model.dvo.CategoryDVO;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.util.Mapper;
 
 import java.util.List;
 
@@ -25,9 +27,10 @@ public class CategoriesModel implements CategoriesMvp.Model {
 
         networkService.getApiService()
                 .getCategories()
+                .map(Mapper::mapCategoriesToDvo)
                 //.delay(3, TimeUnit.SECONDS)
-                .compose(NetworkService.<List<CategoryDTO>>applyScheduler())
-                .subscribe(new Subscriber<List<CategoryDTO>>() {
+                .compose(NetworkService.<List<CategoryDVO>>applyScheduler())
+                .subscribe(new Subscriber<List<CategoryDVO>>() {
                     @Override
                     public void onCompleted() {
                         callback.onLoadCategoriesCompleted();
@@ -39,7 +42,7 @@ public class CategoriesModel implements CategoriesMvp.Model {
                     }
 
                     @Override
-                    public void onNext(List<CategoryDTO> categories) {
+                    public void onNext(List<CategoryDVO> categories) {
                         callback.onCategoriesLoaded(categories);
                     }
                 });

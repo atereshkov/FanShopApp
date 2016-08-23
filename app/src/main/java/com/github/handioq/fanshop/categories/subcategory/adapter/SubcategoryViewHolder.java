@@ -14,6 +14,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.catalog.CatalogActivity;
 import com.github.handioq.fanshop.categories.subcategory.SubcategoryActivity;
 import com.github.handioq.fanshop.model.dto.SubcategoryDTO;
+import com.github.handioq.fanshop.model.dvo.SubcategoryDVO;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +27,7 @@ public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.subcategory_image)
     ImageView subcategoryImageView;
 
-    private SubcategoryDTO subcategory;
+    private SubcategoryDVO subcategory;
 
     static SubcategoryViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.subcategory_item, parent, false);
@@ -48,7 +49,7 @@ public class SubcategoryViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void bind(final SubcategoryDTO item) {
+    public void bind(final SubcategoryDVO item) {
         subcategory = item;
 
         subcategoryNameView.setText(item.getName());

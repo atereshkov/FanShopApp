@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.cart.interaction.RemoveFromCartEvent;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.productinfo.ProductActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,7 +36,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.product_image)
     ImageView productImage;
 
-    private ProductDTO productDTO;
+    private ProductDVO product;
 
     static CartViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item, parent, false);
@@ -49,22 +50,22 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (productDTO != null) {
+                if (product != null) {
                     Context context = itemView.getContext();
-                    context.startActivity(ProductActivity.makeIntent(context, productDTO.getId()));
+                    context.startActivity(ProductActivity.makeIntent(context, product.getId()));
                 }
             }
         });
     }
 
-    public void bind(ProductDTO item) {
-        productDTO = item;
+    public void bind(ProductDVO item) {
+        product = item;
 
         cartItemNameView.setText(item.getName());
 
         removeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                EventBus.getDefault().post(new RemoveFromCartEvent(productDTO.getId()));
+                EventBus.getDefault().post(new RemoveFromCartEvent(product.getId()));
             }
         });
 

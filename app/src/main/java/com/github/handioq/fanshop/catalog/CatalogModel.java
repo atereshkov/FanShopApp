@@ -3,7 +3,6 @@ package com.github.handioq.fanshop.catalog;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.util.Mapper;
@@ -28,7 +27,7 @@ public class CatalogModel implements CatalogMvp.Model {
 
         networkService.getApiService()
                 .getProducts(category, offset, count)
-                .map(Mapper::mapDtoToDvo)
+                .map(Mapper::mapProductsToDvo)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<List<ProductDVO>>applyScheduler())
                 .subscribe(new Subscriber<List<ProductDVO>>() {

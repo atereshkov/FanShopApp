@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.categories.subcategory;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.CategoryDTO;
+import com.github.handioq.fanshop.model.dvo.CategoryDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import javax.inject.Inject;
@@ -36,7 +36,7 @@ public class SubcategoryPresenter implements SubcategoryMvp.Presenter, Subcatego
     }
 
     @Override
-    public void onCategoryLoaded(CategoryDTO category) {
+    public void onCategoryLoaded(CategoryDVO category) {
         subcategoryView.hideLoadCategoryProgress();
         subcategoryView.setCategory(category);
     }

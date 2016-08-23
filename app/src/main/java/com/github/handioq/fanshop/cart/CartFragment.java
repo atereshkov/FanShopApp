@@ -19,6 +19,7 @@ import com.github.handioq.fanshop.cart.adapter.CartRecyclerAdapter;
 import com.github.handioq.fanshop.cart.interaction.RemoveFromCartEvent;
 import com.github.handioq.fanshop.cart.interaction.RemoveFromCartMvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.util.AuthPreferences;
 
 import org.greenrobot.eventbus.EventBus;
@@ -77,7 +78,7 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
 
         ((FanShopApp) getContext().getApplicationContext()).getCartComponent().inject(this);
 
-        adapter = new CartRecyclerAdapter(new ArrayList<ProductDTO>());
+        adapter = new CartRecyclerAdapter(new ArrayList<ProductDVO>());
 
         removeFromCartPresenter.setView(this);
         cartPresenter.setView(this);
@@ -127,8 +128,8 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
     }
 
     @Override
-    public void setCartItems(List<ProductDTO> productDTOs) {
-        adapter.setItems(productDTOs);
+    public void setCartItems(List<ProductDVO> products) {
+        adapter.setItems(products);
         cartItemsCount.setText(getResources().getQuantityString(R.plurals.cart_items_count, adapter.getItemCount(), adapter.getItemCount()));
     }
 

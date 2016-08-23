@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.categories;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.CategoryDTO;
+import com.github.handioq.fanshop.model.dvo.CategoryDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
@@ -38,7 +38,7 @@ public class CategoriesPresenter implements CategoriesMvp.Presenter, CategoriesM
     }
 
     @Override
-    public void onCategoriesLoaded(List<CategoryDTO> categories) {
+    public void onCategoriesLoaded(List<CategoryDVO> categories) {
         categoriesView.hideLoadCategoriesProgress();
         categoriesView.setCategories(categories);
     }

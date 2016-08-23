@@ -2,12 +2,12 @@ package com.github.handioq.fanshop.cart;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.util.Mapper;
 
 import java.util.List;
 
-import rx.Observer;
 import rx.Subscriber;
 
 public class CartModel implements CartMvp.Model {
@@ -26,8 +26,9 @@ public class CartModel implements CartMvp.Model {
 
         networkService.getApiService()
                 .getCart(userId)
-                .compose(NetworkService.<List<ProductDTO>>applyScheduler())
-                .subscribe(new Subscriber<List<ProductDTO>>() {
+                .map(Mapper::mapProductsToDvo)
+                .compose(NetworkService.<List<ProductDVO>>applyScheduler())
+                .subscribe(new Subscriber<List<ProductDVO>>() {
                     @Override
                     public void onCompleted() {
                         callback.onCompleted();
@@ -39,8 +40,8 @@ public class CartModel implements CartMvp.Model {
                     }
 
                     @Override
-                    public void onNext(List<ProductDTO> productDTOs) {
-                        callback.onProductsLoaded(productDTOs);
+                    public void onNext(List<ProductDVO> products) {
+                        callback.onProductsLoaded(products);
                     }
                 });
 
