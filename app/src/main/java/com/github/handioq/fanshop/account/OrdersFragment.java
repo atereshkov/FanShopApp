@@ -15,6 +15,7 @@ import com.github.handioq.fanshop.account.adapter.OrderRecyclerAdapter;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
+import com.github.handioq.fanshop.model.dvo.OrderDVO;
 import com.github.handioq.fanshop.util.AuthPreferences;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class OrdersFragment extends BaseFragment implements OrderMvp.View {
 
         ((FanShopApp) getContext().getApplicationContext()).getAccountComponent().inject(this);
 
-        adapter = new OrderRecyclerAdapter(new ArrayList<OrderDTO>());
+        adapter = new OrderRecyclerAdapter(new ArrayList<OrderDVO>());
 
         ordersPresenter.setView(this);
         ordersPresenter.getOrders(authPreferences.getUserId());
@@ -87,7 +88,7 @@ public class OrdersFragment extends BaseFragment implements OrderMvp.View {
     }
 
     @Override
-    public void setOrders(List<OrderDTO> orders) {
+    public void setOrders(List<OrderDVO> orders) {
         adapter.setOrders(orders);
     }
 

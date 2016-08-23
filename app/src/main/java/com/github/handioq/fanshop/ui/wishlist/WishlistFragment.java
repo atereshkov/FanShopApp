@@ -17,6 +17,7 @@ import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.cart.interaction.AddToCartClickEvent;
 import com.github.handioq.fanshop.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.ui.wishlist.adapter.WishlistRecyclerAdapter;
 import com.github.handioq.fanshop.util.AuthPreferences;
@@ -73,7 +74,7 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
 
         ((FanShopApp) getContext().getApplicationContext()).getWishlistComponent().inject(this);
 
-        adapter = new WishlistRecyclerAdapter(new ArrayList<ProductDTO>());
+        adapter = new WishlistRecyclerAdapter(new ArrayList<ProductDVO>());
 
         addToCartPresenter.setView(this);
         wishlistPresenter.setView(this);
@@ -104,7 +105,7 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
     }
 
     @Override
-    public void setWishlist(List<ProductDTO> products) {
+    public void setWishlist(List<ProductDVO> products) {
         adapter.setItems(products);
     }
 

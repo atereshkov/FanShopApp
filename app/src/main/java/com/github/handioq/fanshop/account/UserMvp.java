@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.account;
 
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.model.dvo.UserDVO;
 
 public interface UserMvp {
 
@@ -13,7 +14,7 @@ public interface UserMvp {
 
         interface Callback {
 
-            void onUserLoaded(UserDTO user);
+            void onUserLoaded(UserDVO user);
 
             void onUserLoadError(Throwable error);
 
@@ -27,7 +28,7 @@ public interface UserMvp {
 
         void hideProgress();
 
-        void setUser(UserDTO user);
+        void setUser(UserDVO user);
 
         void onError(Throwable e);
 

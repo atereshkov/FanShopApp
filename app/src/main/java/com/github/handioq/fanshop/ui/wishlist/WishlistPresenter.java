@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.ui.wishlist;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class WishlistPresenter implements WishlistMvp.Presenter, WishlistMvp.Mod
     }
 
     @Override
-    public void onWishlistLoaded(List<ProductDTO> products) {
+    public void onWishlistLoaded(List<ProductDVO> products) {
         wishlistView.setWishlist(products);
         wishlistView.hideLoadWishlistProgress();
     }

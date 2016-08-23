@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.productinfo;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import javax.inject.Inject;
@@ -14,7 +14,7 @@ public class ProductPresenter implements ProductMvp.Presenter, ProductModel.Call
     private ProductMvp.View productInfoView;
     private ProductMvp.Model productInfoModel;
 
-    private final static String TAG = "ProductInfoPresenterImp";
+    private final static String TAG = "ProductPresenter";
 
     @Inject
     public ProductPresenter(NetworkService networkService) {
@@ -38,10 +38,10 @@ public class ProductPresenter implements ProductMvp.Presenter, ProductModel.Call
     }
 
     @Override
-    public void onProductLoaded(ProductDTO productDTO) {
-        productInfoView.setProduct(productDTO);
+    public void onProductLoaded(ProductDVO product) {
+        productInfoView.setProduct(product);
         productInfoView.hideProgress();
-        Timber.i("onProductLoaded: %s, id: %d", productDTO.getName(), productDTO.getId());
+        Timber.i("onProductLoaded: %s, id: %d", product.getName(), product.getId());
     }
 
     @Override

@@ -4,14 +4,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
+import com.github.handioq.fanshop.model.dvo.ReviewDVO;
 
 import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
 
-    private final List<ReviewDTO> items;
+    private final List<ReviewDVO> items;
 
-    public ReviewAdapter(List<ReviewDTO> items) {
+    public ReviewAdapter(List<ReviewDVO> items) {
         this.items = items;
     }
 

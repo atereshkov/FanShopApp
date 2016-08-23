@@ -26,6 +26,8 @@ import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.model.dto.ImageDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ImageDVO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.productinfo.adapter.InfoAdapter;
 import com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager;
@@ -53,7 +55,7 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
     private int dotsCount;
     private ImageView[] dots;
 
-    private ProductDTO selectedProduct;
+    private ProductDVO selectedProduct;
 
     @BindView(R.id.image_pager)
     ViewPager imageSlider;
@@ -157,12 +159,12 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
         });
     }
 
-    private void initSlider(List<ImageDTO> imageDTOs) {
+    private void initSlider(List<ImageDVO> images) {
 
-        imageSlider.setAdapter(new ImageSliderAdapter(getActivity(), imageDTOs));
+        imageSlider.setAdapter(new ImageSliderAdapter(getActivity(), images));
         imageSlider.addOnPageChangeListener(this);
 
-        dotsCount = imageDTOs.size();
+        dotsCount = images.size();
         dots = new ImageView[dotsCount];
 
         for (int i = 0; i < dotsCount; i++) {
@@ -240,15 +242,15 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
     }
 
     @Override
-    public void setProduct(ProductDTO productDTO) {
-        selectedProduct = productDTO;
+    public void setProduct(ProductDVO product) {
+        selectedProduct = product;
 
-        getActivity().setTitle(productDTO.getName());
-        initSlider(productDTO.getImages());
+        getActivity().setTitle(product.getName());
+        initSlider(product.getImages());
 
-        infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, productDTO.getPrice()));
+        infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, product.getPrice()));
         infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
-        descriptionView.setText(productDTO.getDescription());
+        descriptionView.setText(product.getDescription());
 
         if (selectedProduct.isUserFavorite()) {
             favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp);

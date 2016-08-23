@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.account;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.OrderDTO;
+import com.github.handioq.fanshop.model.dvo.OrderDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public class OrderPresenter implements OrderMvp.Presenter, OrderMvp.Model.Callba
     }
 
     @Override
-    public void onOrdersLoaded(List<OrderDTO> orders) {
+    public void onOrdersLoaded(List<OrderDVO> orders) {
         accountView.setOrders(orders);
     }
 

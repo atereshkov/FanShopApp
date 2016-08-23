@@ -3,7 +3,9 @@ package com.github.handioq.fanshop.productinfo;
 import android.util.Log;
 
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.util.Mapper;
 
 import rx.Subscriber;
 
@@ -23,8 +25,9 @@ public class ProductModel implements ProductMvp.Model {
 
         networkService.getApiService()
                 .getProduct(id)
-                .compose(NetworkService.<ProductDTO>applyScheduler())
-                .subscribe(new Subscriber<ProductDTO>() {
+                .map(Mapper::mapProductToDvo)
+                .compose(NetworkService.<ProductDVO>applyScheduler())
+                .subscribe(new Subscriber<ProductDVO>() {
                     @Override
                     public void onCompleted() {
 
@@ -36,8 +39,8 @@ public class ProductModel implements ProductMvp.Model {
                     }
 
                     @Override
-                    public void onNext(ProductDTO productDTO) {
-                        callback.onProductLoaded(productDTO);
+                    public void onNext(ProductDVO product) {
+                        callback.onProductLoaded(product);
                     }
                 });
 

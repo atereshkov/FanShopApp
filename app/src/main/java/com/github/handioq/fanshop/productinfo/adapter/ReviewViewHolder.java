@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
+import com.github.handioq.fanshop.model.dvo.ReviewDVO;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +24,7 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.rating_bar_small)
     RatingBar ratingBar;
 
-    private ReviewDTO reviewDTO;
+    private ReviewDVO review;
 
     static ReviewViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.review_item, parent, false);
@@ -37,7 +38,7 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (reviewDTO != null) {
+                if (review != null) {
                     Context context = itemView.getContext();
                     Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show();
                 }
@@ -45,8 +46,8 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void bind(ReviewDTO item) {
-        reviewDTO = item;
+    public void bind(ReviewDVO item) {
+        review = item;
         catalogItemNameView.setText(item.getMessage());
         ratingBar.setRating(item.getStars());
     }

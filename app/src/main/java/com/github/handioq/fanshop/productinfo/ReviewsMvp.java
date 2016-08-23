@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.productinfo;
 
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
+import com.github.handioq.fanshop.model.dvo.ReviewDVO;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface ReviewsMvp {
 
         interface Callback {
 
-            void onReviewsLoaded(List<ReviewDTO> reviews);
+            void onReviewsLoaded(List<ReviewDVO> reviews);
 
             void onReviewsLoadError(Throwable error);
 
@@ -29,7 +30,7 @@ public interface ReviewsMvp {
 
         void hideProgress();
 
-        void setReviews(List<ReviewDTO> reviews);
+        void setReviews(List<ReviewDVO> reviews);
 
         void onError(Throwable e);
 

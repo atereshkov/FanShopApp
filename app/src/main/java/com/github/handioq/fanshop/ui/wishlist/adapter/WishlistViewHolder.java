@@ -12,8 +12,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
+import com.github.handioq.fanshop.cart.interaction.AddToCartClickEvent;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.productinfo.ProductActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +36,7 @@ public class WishlistViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.buy_button)
     ImageButton buyButtonView;
 
-    private ProductDTO product;
+    private ProductDVO product;
 
     static WishlistViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.catalog_item, parent, false);
@@ -54,13 +58,13 @@ public class WishlistViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void bind(final ProductDTO item) {
+    public void bind(final ProductDVO item) {
         product = item;
         catalogItemNameView.setText(item.getName());
 
         buyButtonView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //EventBus.getDefault().post(new AddToCartClickEvent(product));
+                EventBus.getDefault().post(new AddToCartClickEvent(product));
             }
         });
 

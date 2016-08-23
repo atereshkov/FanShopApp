@@ -3,7 +3,9 @@ package com.github.handioq.fanshop.account;
 import android.util.Log;
 
 import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.model.dvo.UserDVO;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.util.Mapper;
 
 import rx.Subscriber;
 
@@ -22,8 +24,9 @@ public class UserModel implements UserMvp.Model {
     public void gerUser(int userId) {
         networkService.getApiService()
                 .getUser(userId)
-                .compose(NetworkService.<UserDTO>applyScheduler())
-                .subscribe(new Subscriber<UserDTO>() {
+                .map(Mapper::mapUserToDvo)
+                .compose(NetworkService.<UserDVO>applyScheduler())
+                .subscribe(new Subscriber<UserDVO>() {
                     @Override
                     public void onCompleted() {
                         callback.onCompleted();
@@ -35,8 +38,8 @@ public class UserModel implements UserMvp.Model {
                     }
 
                     @Override
-                    public void onNext(UserDTO order) {
-                        callback.onUserLoaded(order);
+                    public void onNext(UserDVO user) {
+                        callback.onUserLoaded(user);
                     }
                 });
 

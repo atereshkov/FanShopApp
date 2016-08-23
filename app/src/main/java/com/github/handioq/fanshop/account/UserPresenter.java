@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.account;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.model.dvo.UserDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import javax.inject.Inject;
@@ -32,7 +32,7 @@ public class UserPresenter implements UserMvp.Presenter, UserMvp.Model.Callback{
     }
 
     @Override
-    public void onUserLoaded(UserDTO user) {
+    public void onUserLoaded(UserDVO user) {
         userView.setUser(user);
     }
 

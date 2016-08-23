@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.productinfo;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.ReviewDTO;
+import com.github.handioq.fanshop.model.dvo.ReviewDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class ReviewsPresenter implements ReviewsMvp.Presenter, ReviewsMvp.Model.
 
     private NetworkService networkService;
 
-    private final static String TAG = "ReviewsInfoPresenterImp";
+    private final static String TAG = "ReviewsPresenter";
 
     @Inject
     public ReviewsPresenter(NetworkService networkService) {
@@ -25,14 +25,13 @@ public class ReviewsPresenter implements ReviewsMvp.Presenter, ReviewsMvp.Model.
     }
 
     @Override
-    public void onReviewsLoaded(List<ReviewDTO> reviews) {
+    public void onReviewsLoaded(List<ReviewDVO> reviews) {
         reviewsInfoView.hideProgress();
         reviewsInfoView.setReviews(reviews);
     }
 
     @Override
     public void onReviewsLoadError(Throwable error) {
-        Log.e(TAG, error.toString());
         reviewsInfoView.onError(error);
         reviewsInfoView.hideProgress();
     }

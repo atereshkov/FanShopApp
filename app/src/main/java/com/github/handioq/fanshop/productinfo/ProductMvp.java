@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.productinfo;
 
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 
 public interface ProductMvp {
 
@@ -13,7 +14,7 @@ public interface ProductMvp {
 
         interface Callback {
 
-            void onProductLoaded(ProductDTO productDTO);
+            void onProductLoaded(ProductDVO product);
 
             void onProductLoadError(Throwable error);
         }
@@ -25,7 +26,7 @@ public interface ProductMvp {
 
         void hideProgress();
 
-        void setProduct(ProductDTO productDTO);
+        void setProduct(ProductDVO product);
 
         void onError(Throwable e);
 

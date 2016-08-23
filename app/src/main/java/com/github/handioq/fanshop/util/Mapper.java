@@ -1,15 +1,21 @@
 package com.github.handioq.fanshop.util;
 
+import com.github.handioq.fanshop.model.dto.AddressDTO;
 import com.github.handioq.fanshop.model.dto.CategoryDTO;
 import com.github.handioq.fanshop.model.dto.ImageDTO;
+import com.github.handioq.fanshop.model.dto.OrderDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
 import com.github.handioq.fanshop.model.dto.SubcategoryDTO;
+import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.model.dvo.AddressDVO;
 import com.github.handioq.fanshop.model.dvo.CategoryDVO;
 import com.github.handioq.fanshop.model.dvo.ImageDVO;
+import com.github.handioq.fanshop.model.dvo.OrderDVO;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.model.dvo.ReviewDVO;
 import com.github.handioq.fanshop.model.dvo.SubcategoryDVO;
+import com.github.handioq.fanshop.model.dvo.UserDVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +39,7 @@ public class Mapper {
         return new ReviewDVO(reviewDTO.getMessage(), reviewDTO.getStars());
     }
 
-    private static ProductDVO mapProductToDvo(ProductDTO productDTO) {
+    public static ProductDVO mapProductToDvo(ProductDTO productDTO) {
         List<ImageDVO> imagesDVO = mapImagesList(productDTO);
         List<ReviewDVO> reviewsDVO = mapReviewsList(productDTO);
 
@@ -54,6 +60,14 @@ public class Mapper {
     private static List<ReviewDVO> mapReviewsList(ProductDTO productDTO) {
         List<ReviewDVO> reviewsDVO = new ArrayList<>(productDTO.getReviews().size());
         for (ReviewDTO reviewDTO : productDTO.getReviews()) {
+            reviewsDVO.add(mapReviewToDvo(reviewDTO));
+        }
+        return reviewsDVO;
+    }
+
+    public static List<ReviewDVO> mapReviewsToDvo(List<ReviewDTO> reviewsDTO) {
+        List<ReviewDVO> reviewsDVO = new ArrayList<>(reviewsDTO.size());
+        for (ReviewDTO reviewDTO : reviewsDTO) {
             reviewsDVO.add(mapReviewToDvo(reviewDTO));
         }
         return reviewsDVO;
@@ -85,6 +99,29 @@ public class Mapper {
 
     private static SubcategoryDVO mapSubcategoryToDvo(SubcategoryDTO subcategoryDTO) {
         return new SubcategoryDVO(subcategoryDTO.getId(), subcategoryDTO.getName(), subcategoryDTO.getImageUrl());
+    }
+
+    private static AddressDVO mapAddressToDvo(AddressDTO addressDTO) {
+        return new AddressDVO(addressDTO.getStreet(), addressDTO.getCity(),
+                addressDTO.getCountry(), addressDTO.getZipcode());
+    }
+
+    public static UserDVO mapUserToDvo(UserDTO userDTO) {
+        return new UserDVO(userDTO.getId(), userDTO.getName(),
+                userDTO.getAmountSpent(), userDTO.getEmail(),
+                userDTO.getPhone(), mapAddressToDvo(userDTO.getAddress()));
+    }
+
+    private static OrderDVO mapOrderToDvo(OrderDTO orderDTO) {
+        return new OrderDVO(orderDTO.getId(), orderDTO.getStatus(), mapProductsToDvo(orderDTO.getProducts()));
+    }
+
+    public static List<OrderDVO> mapOrdersToDvo(List<OrderDTO> ordersDTO) {
+        List<OrderDVO> ordersDVO = new ArrayList<>(ordersDTO.size());
+        for (OrderDTO orderDTO : ordersDTO) {
+            ordersDVO.add(mapOrderToDvo(orderDTO));
+        }
+        return ordersDVO;
     }
 
 }

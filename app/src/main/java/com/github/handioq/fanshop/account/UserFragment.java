@@ -14,6 +14,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dto.UserDTO;
+import com.github.handioq.fanshop.model.dvo.UserDVO;
 import com.github.handioq.fanshop.util.AuthPreferences;
 
 import javax.inject.Inject;
@@ -81,7 +82,7 @@ public class UserFragment extends BaseFragment implements UserMvp.View {
         userPresenter.getUser(authPreferences.getUserId());
     }
 
-    private void bindUserInfo(UserDTO user) {
+    private void bindUserInfo(UserDVO user) {
         nameTextView.setText(getString(R.string.account_name, user.getName()));
         emailTextView.setText(getString(R.string.account_email, user.getEmail()));
         phoneTextView.setText(getString(R.string.account_phone, user.getPhone()));
@@ -92,7 +93,7 @@ public class UserFragment extends BaseFragment implements UserMvp.View {
     }
 
     @Override
-    public void setUser(UserDTO user) {
+    public void setUser(UserDVO user) {
         bindUserInfo(user);
         Log.i(TAG, user.toString());
     }

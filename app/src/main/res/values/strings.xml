@@ -20,6 +20,7 @@
     <string name="prompt_zipcode">Zipcode</string>
     <string name="prompt_street">Street</string>
     <string name="prompt_name">Full Name</string>
+    <string name="success_auth">You have successfully logged into your account! Welcome!</string>
 
     <string name="cart_add_item_not_logged">To add an item to shopping cart please log in</string>
     <string name="wishlist_add_item_not_logged">To add an item to wishlist please log in</string>
@@ -35,7 +36,6 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
 
     <!-- Strings related to signup -->
     <string name="title_activity_signup">Sign up</string>

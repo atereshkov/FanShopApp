@@ -4,14 +4,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.github.handioq.fanshop.model.dto.OrderDTO;
+import com.github.handioq.fanshop.model.dvo.OrderDVO;
 
 import java.util.List;
 
 public class OrderRecyclerAdapter extends RecyclerView.Adapter<OrderViewHolder> {
 
-    private List<OrderDTO> orders;
+    private List<OrderDVO> orders;
 
-    public OrderRecyclerAdapter(List<OrderDTO> orders) {
+    public OrderRecyclerAdapter(List<OrderDVO> orders) {
         this.orders = orders;
     }
 
@@ -30,7 +31,7 @@ public class OrderRecyclerAdapter extends RecyclerView.Adapter<OrderViewHolder> 
         return orders.size();
     }
 
-    public void setOrders(List<OrderDTO> newOrders) {
+    public void setOrders(List<OrderDVO> newOrders) {
         this.orders = newOrders;
         notifyDataSetChanged();
     }

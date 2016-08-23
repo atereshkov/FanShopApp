@@ -3,7 +3,9 @@ package com.github.handioq.fanshop.productinfo;
 import android.util.Log;
 
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
+import com.github.handioq.fanshop.model.dvo.ReviewDVO;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.util.Mapper;
 
 import java.util.List;
 
@@ -25,8 +27,9 @@ public class ReviewsModel implements ReviewsMvp.Model {
 
         networkService.getApiService()
                 .getReviews(id)
-                .compose(NetworkService.<List<ReviewDTO>>applyScheduler())
-                .subscribe(new Subscriber<List<ReviewDTO>>() {
+                .map(Mapper::mapReviewsToDvo)
+                .compose(NetworkService.<List<ReviewDVO>>applyScheduler())
+                .subscribe(new Subscriber<List<ReviewDVO>>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -37,7 +40,7 @@ public class ReviewsModel implements ReviewsMvp.Model {
                     }
 
                     @Override
-                    public void onNext(List<ReviewDTO> reviews) {
+                    public void onNext(List<ReviewDVO> reviews) {
                         callback.onReviewsLoaded(reviews);
                     }
                 });

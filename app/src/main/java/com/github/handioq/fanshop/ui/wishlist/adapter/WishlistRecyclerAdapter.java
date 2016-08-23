@@ -4,14 +4,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 
 import java.util.List;
 
 public class WishlistRecyclerAdapter extends RecyclerView.Adapter<WishlistViewHolder> {
 
-    private List<ProductDTO> items;
+    private List<ProductDVO> items;
 
-    public WishlistRecyclerAdapter(List<ProductDTO> items) {
+    public WishlistRecyclerAdapter(List<ProductDVO> items) {
         this.items = items;
     }
 
@@ -30,12 +31,12 @@ public class WishlistRecyclerAdapter extends RecyclerView.Adapter<WishlistViewHo
         return items.size();
     }
 
-    public void setItems(List<ProductDTO> items) {
+    public void setItems(List<ProductDVO> items) {
         this.items = items;
         notifyDataSetChanged();
     }
 
-    public List<ProductDTO> getItems() {
+    public List<ProductDVO> getItems() {
         return items;
     }
 }

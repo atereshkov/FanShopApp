@@ -23,6 +23,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
@@ -90,7 +91,8 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
         try {
             authPreferences.setUserId(JWTUtils.getUserIdByToken(authResponse.getToken()));
-            Toast.makeText(this, "Auth success, userID: " + authPreferences.getUserId(), Toast.LENGTH_SHORT).show(); // test
+            Toast.makeText(this, getString(R.string.success_auth), Toast.LENGTH_SHORT).show();
+            Timber.i("Auth success, userID: %d", authPreferences.getUserId());
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
