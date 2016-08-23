@@ -1,4 +1,4 @@
-package com.github.handioq.fanshop.cart;
+package com.github.handioq.fanshop.cart.interaction;
 
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.model.Response;

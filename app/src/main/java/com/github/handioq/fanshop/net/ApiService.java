@@ -59,9 +59,9 @@ public interface ApiService {
     @GET(USER_URL + "/{id}/cart")
     Observable<List<ProductDTO>> getCart(@Path("id") int userId);
 
-    @POST(USER_URL + "/{id}/cart")
+    @POST(USER_URL + "/{id}/cart/{product_id}")
     Observable<Response> addProductToCart(@Path("id") int userId,
-                                          @Body ProductDTO productDTO); // TODO CHANGE
+                                          @Path("product_id") int productId);
 
     @DELETE(USER_URL + "/{id}/cart/{product_id}")
     Observable<Response> removeProductFromCart(@Path("id") int userId,
@@ -83,9 +83,9 @@ public interface ApiService {
     @GET(USER_URL + "/{id}/wishlist")
     Observable<List<ProductDTO>> getWishlist(@Path("id") int userId);
 
-    @POST(USER_URL + "/{id}/wishlist")
+    @POST(USER_URL + "/{id}/wishlist/{product_id}")
     Observable<Response> addProductToWishlist(@Path("id") int userId,
-                                              @Body ProductDTO product);
+                                              @Path("product_id") int productId);
 
     @DELETE(USER_URL + "/{id}/wishlist/{product_id}")
     Observable<Response> removeProductFromWishlist(@Path("id") int userId,

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
-import com.github.handioq.fanshop.cart.RemoveFromCartEvent;
+import com.github.handioq.fanshop.cart.interaction.RemoveFromCartEvent;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.productinfo.ProductActivity;
 

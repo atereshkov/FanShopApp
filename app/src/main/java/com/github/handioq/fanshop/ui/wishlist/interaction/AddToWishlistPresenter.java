@@ -1,6 +1,5 @@
 package com.github.handioq.fanshop.ui.wishlist.interaction;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.model.Response;
 
@@ -30,8 +29,8 @@ public class AddToWishlistPresenter implements AddToWishlistMvp.Presenter, AddTo
     }
 
     @Override
-    public void addProductToWishlist(int userId, ProductDTO product) {
-        addToWishlistModel.addProductToWishlist(userId, product);
+    public void addProductToWishlist(int userId, int productId) {
+        addToWishlistModel.addProductToWishlist(userId, productId);
     }
 
     @Override

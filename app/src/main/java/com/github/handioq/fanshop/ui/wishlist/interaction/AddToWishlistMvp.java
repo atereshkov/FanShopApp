@@ -8,7 +8,7 @@ public interface AddToWishlistMvp {
 
     interface Model extends Mvp.Model {
 
-        void addProductToWishlist(int userId, ProductDTO product);
+        void addProductToWishlist(int userId, int productId);
 
         void setCallback(Callback callback);
 
@@ -32,7 +32,7 @@ public interface AddToWishlistMvp {
 
     interface Presenter extends Mvp.Presenter <AddToWishlistMvp.View> {
 
-        void addProductToWishlist(int userId, ProductDTO product);
+        void addProductToWishlist(int userId, int productId);
 
     }
 }

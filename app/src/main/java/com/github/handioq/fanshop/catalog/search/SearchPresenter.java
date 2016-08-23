@@ -2,7 +2,7 @@ package com.github.handioq.fanshop.catalog.search;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class SearchPresenter implements SearchMvp.Presenter, SearchMvp.Model.Cal
     }
 
     @Override
-    public void onSearchSuccess(List<ProductDTO> products) {
+    public void onSearchSuccess(List<ProductDVO> products) {
         searchView.onSearchSuccess(products);
     }
 

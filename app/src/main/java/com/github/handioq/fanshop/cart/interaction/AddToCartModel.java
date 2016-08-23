@@ -1,6 +1,5 @@
-package com.github.handioq.fanshop.catalog;
+package com.github.handioq.fanshop.cart.interaction;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.model.Response;
 
@@ -16,9 +15,9 @@ public class AddToCartModel implements AddToCartMvp.Model {
     }
 
     @Override
-    public void addProductToCart(int userId, ProductDTO productDTO) {
+    public void addProductToCart(int userId, int productId) {
         networkService.getApiService()
-                .addProductToCart(userId, productDTO)
+                .addProductToCart(userId, productId)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<Response>applyScheduler())
                 .subscribe(new Subscriber<Response>() {

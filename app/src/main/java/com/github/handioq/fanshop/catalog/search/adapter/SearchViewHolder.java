@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
-import com.github.handioq.fanshop.catalog.AddToCartClickEvent;
-import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.cart.interaction.AddToCartClickEvent;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.productinfo.ProductActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,7 +35,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.buy_button)
     ImageButton buyButtonView;
 
-    private ProductDTO productDTO;
+    private ProductDVO product;
 
     static SearchViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.catalog_item, parent, false);
@@ -49,22 +49,22 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (productDTO != null) {
+                if (product != null) {
                     Context context = itemView.getContext();
-                    context.startActivity(ProductActivity.makeIntent(context, productDTO.getId()));
+                    context.startActivity(ProductActivity.makeIntent(context, product.getId()));
                 }
             }
         });
     }
 
-    public void bind(final ProductDTO item) {
-        productDTO = item;
+    public void bind(final ProductDVO item) {
+        product = item;
         catalogItemNameView.setText(item.getName());
 
         buyButtonView.setTag(getAdapterPosition());
         buyButtonView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //EventBus.getDefault().post(new AddToCartClickEvent(productDTO));
+                EventBus.getDefault().post(new AddToCartClickEvent(product));
             }
         });
 

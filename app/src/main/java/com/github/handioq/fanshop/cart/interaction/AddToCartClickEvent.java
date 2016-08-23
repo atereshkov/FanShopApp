@@ -1,6 +1,5 @@
-package com.github.handioq.fanshop.catalog;
+package com.github.handioq.fanshop.cart.interaction;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
 
 public class AddToCartClickEvent {

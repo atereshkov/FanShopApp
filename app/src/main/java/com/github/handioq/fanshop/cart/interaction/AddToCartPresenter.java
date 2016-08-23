@@ -1,6 +1,5 @@
-package com.github.handioq.fanshop.catalog;
+package com.github.handioq.fanshop.cart.interaction;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.model.Response;
 
@@ -21,8 +20,8 @@ public class AddToCartPresenter implements AddToCartMvp.Presenter, AddToCartMvp.
     }
 
     @Override
-    public void addProductToCart(int userId, ProductDTO productDTO) {
-        addToCartModel.addProductToCart(userId, productDTO);
+    public void addProductToCart(int userId, int productId) {
+        addToCartModel.addProductToCart(userId, productId);
     }
 
     @Override

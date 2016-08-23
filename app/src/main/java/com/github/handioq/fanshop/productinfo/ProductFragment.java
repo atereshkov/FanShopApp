@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
-import com.github.handioq.fanshop.catalog.AddToCartMvp;
+import com.github.handioq.fanshop.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.model.dto.ImageDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.model.Response;
@@ -149,7 +149,7 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (authPreferences.isUserLoggedIn()) {
-                    addToCartPresenter.addProductToCart(authPreferences.getUserId(), selectedProduct);
+                    addToCartPresenter.addProductToCart(authPreferences.getUserId(), selectedProduct.getId());
                 } else {
                     Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
                 }
@@ -207,7 +207,7 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
             if (selectedProduct.isUserFavorite()) {
                 removeWishlistPresenter.removeProduct(authPreferences.getUserId(), selectedProduct.getId());
             } else {
-                addToWishlistPresenter.addProductToWishlist(authPreferences.getUserId(), selectedProduct);
+                addToWishlistPresenter.addProductToWishlist(authPreferences.getUserId(), selectedProduct.getId());
             }
         } else {
             Toast.makeText(getContext(), getResources().getString(R.string.wishlist_add_item_not_logged), Toast.LENGTH_SHORT).show();

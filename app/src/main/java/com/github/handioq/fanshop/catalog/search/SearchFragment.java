@@ -19,12 +19,12 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
-import com.github.handioq.fanshop.catalog.AddToCartClickEvent;
-import com.github.handioq.fanshop.catalog.AddToCartMvp;
+import com.github.handioq.fanshop.cart.interaction.AddToCartClickEvent;
+import com.github.handioq.fanshop.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.catalog.PaginationListener;
 import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.catalog.search.adapter.SearchRecyclerAdapter;
-import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.NetworkConstants;
 
@@ -87,7 +87,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         ((FanShopApp) getContext().getApplicationContext()).getCatalogComponent().inject(this);
 
         searchPresenter.setView(this);
-        adapter = new SearchRecyclerAdapter(new ArrayList<ProductDTO>());
+        adapter = new SearchRecyclerAdapter(new ArrayList<ProductDVO>());
         initRecycler();
     }
 
@@ -154,7 +154,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
 
         if (authPreferences.isUserLoggedIn()) {
-            //addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct());
+            addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct().getId());
         } else {
             Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
         }
@@ -195,7 +195,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
     }
 
     @Override
-    public void onSearchSuccess(List<ProductDTO> products) {
+    public void onSearchSuccess(List<ProductDVO> products) {
         Timber.i("onSearchSuccess() - products.size: %d, firstPaginationLoad: %b", products.size(), firstPaginationLoad);
 
         if (firstPaginationLoad) {

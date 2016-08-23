@@ -16,6 +16,8 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.cart.adapter.CartRecyclerAdapter;
+import com.github.handioq.fanshop.cart.interaction.RemoveFromCartEvent;
+import com.github.handioq.fanshop.cart.interaction.RemoveFromCartMvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.util.AuthPreferences;
 

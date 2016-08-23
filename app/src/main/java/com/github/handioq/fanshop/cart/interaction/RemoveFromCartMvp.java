@@ -1,4 +1,4 @@
-package com.github.handioq.fanshop.cart;
+package com.github.handioq.fanshop.cart.interaction;
 
 import com.github.handioq.fanshop.base.Mvp;
 

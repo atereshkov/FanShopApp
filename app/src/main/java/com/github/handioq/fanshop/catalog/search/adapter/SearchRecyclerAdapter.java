@@ -4,14 +4,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
 
 import java.util.List;
 
 public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchViewHolder> {
 
-    private List<ProductDTO> items;
+    private List<ProductDVO> items;
 
-    public SearchRecyclerAdapter(List<ProductDTO> items) {
+    public SearchRecyclerAdapter(List<ProductDVO> items) {
         this.items = items;
     }
 
@@ -30,17 +31,17 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchViewHolder
         return items.size();
     }
 
-    public void addItems(List<ProductDTO> newItems) {
+    public void addItems(List<ProductDVO> newItems) {
         items.addAll(newItems);
         notifyDataSetChanged();
     }
 
-    public void setItems(List<ProductDTO> items) {
+    public void setItems(List<ProductDVO> items) {
         this.items = items;
         notifyDataSetChanged();
     }
 
-    public List<ProductDTO> getItems() {
+    public List<ProductDVO> getItems() {
         return items;
     }
 

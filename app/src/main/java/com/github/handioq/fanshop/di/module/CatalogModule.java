@@ -1,7 +1,7 @@
 package com.github.handioq.fanshop.di.module;
 
-import com.github.handioq.fanshop.catalog.AddToCartMvp;
-import com.github.handioq.fanshop.catalog.AddToCartPresenter;
+import com.github.handioq.fanshop.cart.interaction.AddToCartMvp;
+import com.github.handioq.fanshop.cart.interaction.AddToCartPresenter;
 import com.github.handioq.fanshop.catalog.CatalogMvp;
 import com.github.handioq.fanshop.catalog.CatalogPresenter;
 import com.github.handioq.fanshop.catalog.search.SearchMvp;

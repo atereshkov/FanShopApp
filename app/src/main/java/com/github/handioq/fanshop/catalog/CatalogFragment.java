@@ -21,10 +21,11 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.cart.CartActivity;
+import com.github.handioq.fanshop.cart.interaction.AddToCartClickEvent;
+import com.github.handioq.fanshop.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.catalog.search.SearchActivity;
-import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.util.AuthPreferences;
@@ -141,7 +142,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         //Toast.makeText(getContext(), "AddToCartEvent: " + event.product, Toast.LENGTH_SHORT).show();
 
         if (authPreferences.isUserLoggedIn()) {
-            //addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct().getId());
+            addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct().getId());
         } else {
             Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
         }

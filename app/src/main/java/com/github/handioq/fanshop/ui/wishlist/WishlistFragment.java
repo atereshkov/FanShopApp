@@ -14,8 +14,8 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
-import com.github.handioq.fanshop.catalog.AddToCartClickEvent;
-import com.github.handioq.fanshop.catalog.AddToCartMvp;
+import com.github.handioq.fanshop.cart.interaction.AddToCartClickEvent;
+import com.github.handioq.fanshop.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.ui.wishlist.adapter.WishlistRecyclerAdapter;
@@ -139,7 +139,7 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
     @Subscribe
     public void onAddToCartEvent(AddToCartClickEvent event) {
         if (authPreferences.isUserLoggedIn()) {
-            //addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct());
+            addToCartPresenter.addProductToCart(authPreferences.getUserId(), event.getProduct().getId());
         } else {
             Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
         }

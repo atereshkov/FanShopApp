@@ -1,6 +1,5 @@
 package com.github.handioq.fanshop.ui.wishlist.interaction;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.model.Response;
 
@@ -16,9 +15,9 @@ public class AddToWishlistModel implements AddToWishlistMvp.Model {
     }
 
     @Override
-    public void addProductToWishlist(int userId, ProductDTO product) {
+    public void addProductToWishlist(int userId, int productId) {
         networkService.getApiService()
-                .addProductToWishlist(userId, product)
+                .addProductToWishlist(userId, productId)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<Response>applyScheduler())
                 .subscribe(new Subscriber<Response>() {
