@@ -6,7 +6,7 @@ import java.util.Locale;
 
 public class LocaleUtils {
 
-    public static final String DEFAULT_LOCALE = "Belarus";
+    //public static final String DEFAULT_LOCALE = "Belarus";
 
     public static ArrayList<String> getCountries() {
         Locale[] locales = Locale.getAvailableLocales();
@@ -23,4 +23,7 @@ public class LocaleUtils {
         return countries;
     }
 
+    public static String getDefaultLocale() {
+        return Locale.getDefault().getDisplayCountry();
+    }
 }

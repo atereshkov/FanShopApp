@@ -80,11 +80,16 @@
     <string name="wishlist_add_item_not_logged">Для добавления товара в список желаемого необходимо войти в аккаунт</string>
     <string name="cart_remove_item_not_logged">Для удаления товара из списка желаемого необходимо войти в аккаунт</string>
     <string name="account_not_logged">Вы не авторизованы</string>
-    <string name="specification_brand">Бренд: %1s</string>
-    <string name="specification_code">Артикул: %1s</string>
-    <string name="specification_color">Цвет: %1s</string>
-    <string name="specification_country">Страна-производитель: %1s</string>
-    <string name="specification_sizes">Размеры в наличии: %1s</string>
     <string name="success_auth">Вы успешно вошли в аккаунт! Добро пожаловать!</string>
+    <string name="specification_name_brand">Бренд: </string>
+    <string name="specification_name_code">Артикул: </string>
+    <string name="specification_name_color">Цвет: </string>
+    <string name="specification_name_country">Страна-производитель: </string>
+    <string name="specification_name_sizes">Доступные размеры: </string>
+    <string name="specification_value_brand">%1s</string>
+    <string name="specification_value_code">%1s</string>
+    <string name="specification_value_color">%1s</string>
+    <string name="specification_value_country">%1s</string>
+    <string name="specification_value_sizes">%1s</string>
 
 </resources>

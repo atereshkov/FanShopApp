@@ -127,7 +127,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     public void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
-        ActivityCompat.invalidateOptionsMenu(getActivity());
+        ActivityCompat.invalidateOptionsMenu(getActivity()); // TODO rework
     }
 
     @Override

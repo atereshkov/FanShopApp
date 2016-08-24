@@ -75,7 +75,8 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
         countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         countriesSpinnerView.setAdapter(countryAdapter);
-        countriesSpinnerView.setSelection(countryAdapter.getPosition(LocaleUtils.DEFAULT_LOCALE));
+        countriesSpinnerView.setSelection(countryAdapter.getPosition(LocaleUtils.getDefaultLocale()));
+        Log.e(TAG, LocaleUtils.getDefaultLocale());
     }
 
     @OnClick(R.id.signup_button)

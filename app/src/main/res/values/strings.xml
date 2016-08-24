@@ -70,11 +70,18 @@
     <string name="pager_title_description">Specification</string>
     <string name="pager_title_reviews">Reviews</string>
     <string name="title_activity_account">Account</string>
-    <string name="specification_color">Color: %1s</string>
-    <string name="specification_country">Country: %1s</string>
-    <string name="specification_code">Code: %1s</string>
-    <string name="specification_brand">Brand: %1s</string>
-    <string name="specification_sizes">Available sizes: %1s</string>
+
+    <string name="specification_value_color">%1s</string>
+    <string name="specification_value_country">%1s</string>
+    <string name="specification_value_code">%1s</string>
+    <string name="specification_value_brand">%1s</string>
+    <string name="specification_value_sizes">%1s</string>
+
+    <string name="specification_name_color">Color: </string>
+    <string name="specification_name_country">Country: </string>
+    <string name="specification_name_code">Code: </string>
+    <string name="specification_name_brand">Brand: </string>
+    <string name="specification_name_sizes">Sizes: </string>
 
     <string name="order_id">%1d</string>
     <string name="title_activity_search">Search</string>

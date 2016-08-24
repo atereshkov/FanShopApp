@@ -57,7 +57,7 @@ public class AuthPreferences {
     }
 
     public boolean isUserLoggedIn() {
-        Timber.i("token: %s", sharedPreferences.getString(TOKEN, TOKEN_NULL));
+        //Timber.i("token: %s", sharedPreferences.getString(TOKEN, TOKEN_NULL));
 
         boolean isLogged = true;
 
