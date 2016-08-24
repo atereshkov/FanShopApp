@@ -6,6 +6,8 @@ import com.github.handioq.fanshop.model.dto.ImageDTO;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
+import com.github.handioq.fanshop.model.dto.SizeDTO;
+import com.github.handioq.fanshop.model.dto.SpecificationDTO;
 import com.github.handioq.fanshop.model.dto.SubcategoryDTO;
 import com.github.handioq.fanshop.model.dto.UserDTO;
 import com.github.handioq.fanshop.model.dvo.AddressDVO;
@@ -14,6 +16,8 @@ import com.github.handioq.fanshop.model.dvo.ImageDVO;
 import com.github.handioq.fanshop.model.dvo.OrderDVO;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.model.dvo.ReviewDVO;
+import com.github.handioq.fanshop.model.dvo.SizeDVO;
+import com.github.handioq.fanshop.model.dvo.SpecificationDVO;
 import com.github.handioq.fanshop.model.dvo.SubcategoryDVO;
 import com.github.handioq.fanshop.model.dvo.UserDVO;
 
@@ -122,6 +126,24 @@ public class Mapper {
             ordersDVO.add(mapOrderToDvo(orderDTO));
         }
         return ordersDVO;
+    }
+
+    private static SizeDVO mapSizeToDvo(SizeDTO sizeDTO) {
+        return new SizeDVO(sizeDTO.getSize());
+    }
+
+    private static List<SizeDVO> mapSizesToDvo(List<SizeDTO> sizesDTO) {
+        List<SizeDVO> sizesDVO = new ArrayList<>(sizesDTO.size());
+        for (SizeDTO sizeDTO : sizesDTO) {
+            sizesDVO.add(mapSizeToDvo(sizeDTO));
+        }
+        return sizesDVO;
+    }
+
+    public static SpecificationDVO mapSpecificationToDvo(SpecificationDTO specificationDTO) {
+        List<SizeDVO> sizesDVO = mapSizesToDvo(specificationDTO.getSizes());
+        return new SpecificationDVO(specificationDTO.getColor(), specificationDTO.getCountry(),
+                specificationDTO.getCode(), specificationDTO.getBrand(), sizesDVO);
     }
 
 }

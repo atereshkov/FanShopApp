@@ -15,6 +15,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dto.SpecificationDTO;
+import com.github.handioq.fanshop.model.dvo.SpecificationDVO;
 import com.github.handioq.fanshop.util.StringUtils;
 
 import javax.inject.Inject;
@@ -118,7 +119,7 @@ public class SpecificationFragment extends BaseFragment implements Specification
     }
 
     @Override
-    public void setSpecification(SpecificationDTO specification) {
+    public void setSpecification(SpecificationDVO specification) {
         colorTextView.setText(getString(R.string.specification_value_color, specification.getColor()));
         countryTextView.setText(getString(R.string.specification_value_country, specification.getCountry()));
         brandTextView.setText(getString(R.string.specification_value_brand, specification.getBrand()));

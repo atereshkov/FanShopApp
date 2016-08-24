@@ -1,6 +1,6 @@
 package com.github.handioq.fanshop.productinfo;
 
-import com.github.handioq.fanshop.model.dto.SpecificationDTO;
+import com.github.handioq.fanshop.model.dvo.SpecificationDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import javax.inject.Inject;
@@ -20,7 +20,7 @@ public class SpecificationPresenter implements SpecificationMvp.Presenter, Speci
     }
 
     @Override
-    public void onSpecificationLoaded(SpecificationDTO specification) {
+    public void onSpecificationLoaded(SpecificationDVO specification) {
         specificationView.hideProgress();
         specificationView.setSpecification(specification);
     }

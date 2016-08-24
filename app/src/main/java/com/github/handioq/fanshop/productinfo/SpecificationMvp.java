@@ -1,7 +1,7 @@
 package com.github.handioq.fanshop.productinfo;
 
 import com.github.handioq.fanshop.base.Mvp;
-import com.github.handioq.fanshop.model.dto.SpecificationDTO;
+import com.github.handioq.fanshop.model.dvo.SpecificationDVO;
 
 public interface SpecificationMvp {
 
@@ -13,7 +13,7 @@ public interface SpecificationMvp {
 
         interface Callback {
 
-            void onSpecificationLoaded(SpecificationDTO specification);
+            void onSpecificationLoaded(SpecificationDVO specification);
 
             void onSpecificationLoadError(Throwable error);
 
@@ -27,7 +27,7 @@ public interface SpecificationMvp {
 
         void hideProgress();
 
-        void setSpecification(SpecificationDTO specification);
+        void setSpecification(SpecificationDVO specification);
 
         void onError(Throwable e);
 

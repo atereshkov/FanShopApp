@@ -3,7 +3,9 @@ package com.github.handioq.fanshop.productinfo;
 import android.util.Log;
 
 import com.github.handioq.fanshop.model.dto.SpecificationDTO;
+import com.github.handioq.fanshop.model.dvo.SpecificationDVO;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.util.Mapper;
 
 import rx.Subscriber;
 
@@ -22,8 +24,9 @@ public class SpecificationModel implements SpecificationMvp.Model {
     public void getSpecification(int id) {
         networkService.getApiService()
                 .getSpecification(id)
-                .compose(NetworkService.<SpecificationDTO>applyScheduler())
-                .subscribe(new Subscriber<SpecificationDTO>() {
+                .map(Mapper::mapSpecificationToDvo)
+                .compose(NetworkService.<SpecificationDVO>applyScheduler())
+                .subscribe(new Subscriber<SpecificationDVO>() {
                     @Override
                     public void onCompleted() {
                         callback.onSpecificationLoadCompleted();
@@ -35,7 +38,7 @@ public class SpecificationModel implements SpecificationMvp.Model {
                     }
 
                     @Override
-                    public void onNext(SpecificationDTO specification) {
+                    public void onNext(SpecificationDVO specification) {
                         callback.onSpecificationLoaded(specification);
                     }
                 });
