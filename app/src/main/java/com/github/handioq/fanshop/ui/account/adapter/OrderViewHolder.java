@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.model.dvo.OrderDVO;
+import com.github.handioq.fanshop.ui.account.orders.OrderDetailsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,8 +43,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
 
                 if (order != null) {
                     Context context = itemView.getContext();
-                    //context.startActivity(ProductActivity.makeIntent(context, productDTO.getId()));
-                    Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show();
+                    context.startActivity(OrderDetailsActivity.makeIntent(context, order.getId()));
                 }
             }
         });
@@ -51,6 +51,12 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(OrderDVO order) {
         this.order = order;
+
+        detailsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+            }
+        });
 
         orderIdView.setText(itemView.getContext().getString(R.string.order_id, order.getId()));
         orderStatusView.setText(order.getStatus());

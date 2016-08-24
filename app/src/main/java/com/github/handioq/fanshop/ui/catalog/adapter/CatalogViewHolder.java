@@ -51,9 +51,6 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (productDVO != null) {
                     Context context = itemView.getContext();
-                    //Toast.makeText(context, "onItemClick " + productDTO.getId(), Toast.LENGTH_SHORT).show();
-
-                    //context.startActivity(ProductActivity.makeIntent(context, (int) buyButtonView.getTag()));
                     context.startActivity(ProductActivity.makeIntent(context, productDVO.getId()));
                 }
             }
@@ -66,8 +63,6 @@ class CatalogViewHolder extends RecyclerView.ViewHolder {
 
         buyButtonView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Toast.makeText(itemView.getContext(), "Click buy button on product " + productDTO, Toast.LENGTH_SHORT).show();
-
                 EventBus.getDefault().post(new AddToCartClickEvent(productDVO));
             }
         });

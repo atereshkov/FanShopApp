@@ -101,5 +101,6 @@
     <string name="account_orders">Orders</string>
     <string name="title_activity_checkout">Checkout</string>
     <string name="title_activity_wishlist">Wishlist</string>
+    <string name="title_activity_order_details">OrderDetailsActivity</string>
 
 </resources>
