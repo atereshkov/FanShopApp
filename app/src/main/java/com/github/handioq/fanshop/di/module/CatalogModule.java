@@ -1,11 +1,11 @@
 package com.github.handioq.fanshop.di.module;
 
-import com.github.handioq.fanshop.cart.interaction.AddToCartMvp;
-import com.github.handioq.fanshop.cart.interaction.AddToCartPresenter;
-import com.github.handioq.fanshop.catalog.CatalogMvp;
-import com.github.handioq.fanshop.catalog.CatalogPresenter;
-import com.github.handioq.fanshop.catalog.search.SearchMvp;
-import com.github.handioq.fanshop.catalog.search.SearchPresenter;
+import com.github.handioq.fanshop.ui.cart.interaction.AddToCartMvp;
+import com.github.handioq.fanshop.ui.cart.interaction.AddToCartPresenter;
+import com.github.handioq.fanshop.ui.catalog.CatalogMvp;
+import com.github.handioq.fanshop.ui.catalog.CatalogPresenter;
+import com.github.handioq.fanshop.ui.catalog.search.SearchMvp;
+import com.github.handioq.fanshop.ui.catalog.search.SearchPresenter;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
 import com.github.handioq.fanshop.net.NetworkService;
 

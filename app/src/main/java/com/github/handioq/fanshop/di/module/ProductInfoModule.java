@@ -1,15 +1,15 @@
 package com.github.handioq.fanshop.di.module;
 
-import com.github.handioq.fanshop.cart.interaction.AddToCartMvp;
-import com.github.handioq.fanshop.cart.interaction.AddToCartPresenter;
+import com.github.handioq.fanshop.ui.cart.interaction.AddToCartMvp;
+import com.github.handioq.fanshop.ui.cart.interaction.AddToCartPresenter;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
 import com.github.handioq.fanshop.net.NetworkService;
-import com.github.handioq.fanshop.productinfo.ProductMvp;
-import com.github.handioq.fanshop.productinfo.ProductPresenter;
-import com.github.handioq.fanshop.productinfo.ReviewsMvp;
-import com.github.handioq.fanshop.productinfo.ReviewsPresenter;
-import com.github.handioq.fanshop.productinfo.SpecificationMvp;
-import com.github.handioq.fanshop.productinfo.SpecificationPresenter;
+import com.github.handioq.fanshop.ui.productinfo.ProductMvp;
+import com.github.handioq.fanshop.ui.productinfo.ProductPresenter;
+import com.github.handioq.fanshop.ui.productinfo.ReviewsMvp;
+import com.github.handioq.fanshop.ui.productinfo.ReviewsPresenter;
+import com.github.handioq.fanshop.ui.productinfo.SpecificationMvp;
+import com.github.handioq.fanshop.ui.productinfo.SpecificationPresenter;
 import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistMvp;
 import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistPresenter;
 import com.github.handioq.fanshop.ui.wishlist.interaction.RemoveWishlistMvp;

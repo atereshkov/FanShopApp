@@ -3,9 +3,9 @@ package com.github.handioq.fanshop.di.component;
 
 import com.github.handioq.fanshop.di.module.ProductInfoModule;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
-import com.github.handioq.fanshop.productinfo.ProductFragment;
-import com.github.handioq.fanshop.productinfo.ReviewsFragment;
-import com.github.handioq.fanshop.productinfo.SpecificationFragment;
+import com.github.handioq.fanshop.ui.productinfo.ProductFragment;
+import com.github.handioq.fanshop.ui.productinfo.ReviewsFragment;
+import com.github.handioq.fanshop.ui.productinfo.SpecificationFragment;
 
 import dagger.Component;
 

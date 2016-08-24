@@ -1,8 +1,8 @@
 package com.github.handioq.fanshop.di.module;
 
 import com.github.handioq.fanshop.di.scope.PresenterScope;
-import com.github.handioq.fanshop.login.LoginMvp;
-import com.github.handioq.fanshop.login.LoginPresenter;
+import com.github.handioq.fanshop.ui.login.LoginMvp;
+import com.github.handioq.fanshop.ui.login.LoginPresenter;
 import com.github.handioq.fanshop.net.NetworkService;
 
 import dagger.Module;

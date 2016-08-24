@@ -16,11 +16,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.handioq.R;
-import com.github.handioq.fanshop.account.AccountActivity;
-import com.github.handioq.fanshop.cart.CartActivity;
-import com.github.handioq.fanshop.catalog.CatalogActivity;
-import com.github.handioq.fanshop.categories.CategoriesActivity;
-import com.github.handioq.fanshop.login.LoginActivity;
+import com.github.handioq.fanshop.ui.account.AccountActivity;
+import com.github.handioq.fanshop.ui.cart.CartActivity;
+import com.github.handioq.fanshop.ui.catalog.CatalogActivity;
+import com.github.handioq.fanshop.ui.categories.CategoriesActivity;
+import com.github.handioq.fanshop.ui.login.LoginActivity;
 import com.github.handioq.fanshop.ui.wishlist.WishlistActivity;
 import com.github.handioq.fanshop.util.AuthPreferences;
 

@@ -1,9 +1,9 @@
 package com.github.handioq.fanshop.di.module;
 
-import com.github.handioq.fanshop.account.OrderMvp;
-import com.github.handioq.fanshop.account.OrderPresenter;
-import com.github.handioq.fanshop.account.UserMvp;
-import com.github.handioq.fanshop.account.UserPresenter;
+import com.github.handioq.fanshop.ui.account.OrderMvp;
+import com.github.handioq.fanshop.ui.account.OrderPresenter;
+import com.github.handioq.fanshop.ui.account.UserMvp;
+import com.github.handioq.fanshop.ui.account.UserPresenter;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
 import com.github.handioq.fanshop.net.NetworkService;
 

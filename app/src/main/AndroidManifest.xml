@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".fanshop.catalog.CatalogActivity"
+            android:name=".fanshop.ui.catalog.CatalogActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,33 +23,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fanshop.login.LoginActivity"
+            android:name=".fanshop.ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".fanshop.ui.signup.SignupActivity"
             android:label="@string/title_activity_signup" />
         <activity
-            android:name=".fanshop.cart.CartActivity"
+            android:name=".fanshop.ui.cart.CartActivity"
             android:label="@string/title_activity_cart"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".fanshop.productinfo.ProductActivity"
+            android:name=".fanshop.ui.productinfo.ProductActivity"
             android:label="@string/title_activity_productInfo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".fanshop.account.AccountActivity"
+            android:name=".fanshop.ui.account.AccountActivity"
             android:label="@string/title_activity_account"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".fanshop.catalog.search.SearchActivity"
+            android:name=".fanshop.ui.catalog.search.SearchActivity"
             android:label="@string/title_activity_search"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".fanshop.categories.CategoriesActivity"
+            android:name=".fanshop.ui.categories.CategoriesActivity"
             android:label="@string/title_activity_categories"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".fanshop.categories.subcategory.SubcategoryActivity"
+            android:name=".fanshop.ui.categories.subcategory.SubcategoryActivity"
             android:label="@string/title_activity_subcategory"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

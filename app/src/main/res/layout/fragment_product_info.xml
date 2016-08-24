@@ -84,7 +84,7 @@
                 app:tabSelectedTextColor="@color/colorPrimaryTextWhite"
                 app:tabTextColor="@color/colorGray" />
 
-            <com.github.handioq.fanshop.productinfo.adapter.WrapContentViewPager
+            <com.github.handioq.fanshop.ui.productinfo.adapter.WrapContentViewPager
                 android:id="@+id/view_pager_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

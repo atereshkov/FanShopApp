@@ -1,7 +1,7 @@
 package com.github.handioq.fanshop.di.component;
 
-import com.github.handioq.fanshop.account.OrdersFragment;
-import com.github.handioq.fanshop.account.UserFragment;
+import com.github.handioq.fanshop.ui.account.OrdersFragment;
+import com.github.handioq.fanshop.ui.account.UserFragment;
 import com.github.handioq.fanshop.di.module.AccountModule;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
 

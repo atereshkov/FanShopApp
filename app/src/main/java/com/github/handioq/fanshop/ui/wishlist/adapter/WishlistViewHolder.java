@@ -12,10 +12,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.github.handioq.R;
-import com.github.handioq.fanshop.cart.interaction.AddToCartClickEvent;
-import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.ui.cart.interaction.AddToCartClickEvent;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
-import com.github.handioq.fanshop.productinfo.ProductActivity;
+import com.github.handioq.fanshop.ui.productinfo.ProductActivity;
 
 import org.greenrobot.eventbus.EventBus;
 

@@ -1,7 +1,7 @@
 package com.github.handioq.fanshop.di.component;
 
-import com.github.handioq.fanshop.categories.CategoriesFragment;
-import com.github.handioq.fanshop.categories.subcategory.SubcategoryFragment;
+import com.github.handioq.fanshop.ui.categories.CategoriesFragment;
+import com.github.handioq.fanshop.ui.categories.subcategory.SubcategoryFragment;
 import com.github.handioq.fanshop.di.module.CategoriesModule;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
 
