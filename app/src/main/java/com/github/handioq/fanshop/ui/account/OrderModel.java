@@ -22,7 +22,7 @@ public class OrderModel implements OrderMvp.Model {
     }
 
     @Override
-    public void gerOrders(int userId) {
+    public void getOrders(int userId) {
         networkService.getApiService()
                 .getOrders(userId)
                 .map(Mapper::mapOrdersToDvo)

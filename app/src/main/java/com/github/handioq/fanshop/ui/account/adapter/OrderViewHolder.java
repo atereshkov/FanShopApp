@@ -28,6 +28,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
     TextView orderStatusView;
 
     private OrderDVO order;
+    private Context context;
 
     static OrderViewHolder inflate(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item, parent, false);
@@ -37,12 +38,13 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
     private OrderViewHolder(View v) {
         super(v);
         ButterKnife.bind(this, v);
+        context = itemView.getContext();
+
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (order != null) {
-                    Context context = itemView.getContext();
                     context.startActivity(OrderDetailsActivity.makeIntent(context, order.getId()));
                 }
             }
@@ -54,7 +56,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
 
         detailsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                context.startActivity(OrderDetailsActivity.makeIntent(context, order.getId()));
             }
         });
 

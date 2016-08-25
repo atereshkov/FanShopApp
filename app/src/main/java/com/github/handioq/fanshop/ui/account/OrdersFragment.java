@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.github.handioq.R;
-import com.github.handioq.fanshop.ui.account.adapter.OrderRecyclerAdapter;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dvo.OrderDVO;
+import com.github.handioq.fanshop.ui.account.adapter.OrderRecyclerAdapter;
 import com.github.handioq.fanshop.util.AuthPreferences;
 
 import java.util.ArrayList;

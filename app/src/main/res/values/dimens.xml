@@ -42,7 +42,11 @@
     <!-- Default recyclerView paddings -->
     <dimen name="recycler_view_top">8dp</dimen>
 
-    <!-- Product specification marings -->
+    <!-- Product specification margins -->
     <dimen name="grid_specification_margin_left">8dp</dimen>
+
+    <!-- Order -->
+    <dimen name="order_info_bottom">6dp</dimen>
+    <dimen name="order_products">6dp</dimen>
 
 </resources>

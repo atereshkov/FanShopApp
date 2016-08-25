@@ -91,5 +91,11 @@
     <string name="specification_value_color">%1s</string>
     <string name="specification_value_country">%1s</string>
     <string name="specification_value_sizes">%1s</string>
+    <string name="order_details_date">Дата заказа: %1s</string>
+    <string name="order_details_id">Номер заказа: %1s</string>
+    <string name="order_details_info">Информация по заказу</string>
+    <string name="order_details_status">Статус заказа: %1s</string>
+    <string name="order_products">Товары</string>
+    <string name="title_activity_order_details">Информация по заказу</string>
 
 </resources>

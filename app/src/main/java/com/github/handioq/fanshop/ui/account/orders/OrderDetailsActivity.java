@@ -35,7 +35,7 @@ public class OrderDetailsActivity extends BaseNavActivity {
         if (getSupportFragmentManager().findFragmentByTag(ORDER_DETAILS_FRAGMENT_TAG) == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content_orders, OrderDetailsFragment.newInstance(orderId), ORDER_DETAILS_FRAGMENT_TAG)
+                    .replace(R.id.content, OrderDetailsFragment.newInstance(orderId), ORDER_DETAILS_FRAGMENT_TAG)
                     .commit();
 
             Log.i(TAG, "create new OrderDetailsFragment");

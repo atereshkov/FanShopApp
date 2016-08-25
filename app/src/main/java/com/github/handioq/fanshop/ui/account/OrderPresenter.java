@@ -30,7 +30,7 @@ public class OrderPresenter implements OrderMvp.Presenter, OrderMvp.Model.Callba
             Log.i(TAG, "showLoadProductsProgress() on orderView");
         }
 
-        accountModel.gerOrders(userId);
+        accountModel.getOrders(userId);
     }
 
     @Override

@@ -6,6 +6,8 @@ import com.github.handioq.fanshop.ui.account.UserMvp;
 import com.github.handioq.fanshop.ui.account.UserPresenter;
 import com.github.handioq.fanshop.di.scope.PresenterScope;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.ui.account.orders.OrderDetailsMvp;
+import com.github.handioq.fanshop.ui.account.orders.OrderDetailsPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,5 +25,11 @@ public class AccountModule {
     @PresenterScope
     public UserMvp.Presenter providesUserPresenter(NetworkService networkService) {
         return new UserPresenter(networkService);
+    }
+
+    @Provides
+    @PresenterScope
+    public OrderDetailsMvp.Presenter providesOrderDetailsPresenter(NetworkService networkService) {
+        return new OrderDetailsPresenter(networkService);
     }
 }

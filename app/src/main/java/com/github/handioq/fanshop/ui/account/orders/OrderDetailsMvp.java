@@ -7,7 +7,7 @@ public interface OrderDetailsMvp {
 
     interface Model extends Mvp.Model {
 
-        void getOrderDetails(int orderId);
+        void getOrderDetails(int userId, int orderId);
 
         void setCallback(Callback callback);
 
@@ -16,6 +16,8 @@ public interface OrderDetailsMvp {
             void onDetailsLoaded(OrderDetailsDVO orderDetails);
 
             void onDetailsLoadError(Throwable error);
+
+            void onCompleted();
         }
     }
 
@@ -33,7 +35,7 @@ public interface OrderDetailsMvp {
 
     interface Presenter extends Mvp.Presenter<OrderDetailsMvp.View> {
 
-        void getOrderDetails(int orderId);
+        void getOrderDetails(int userId, int orderId);
 
     }
 

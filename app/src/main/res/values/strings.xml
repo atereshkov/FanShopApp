@@ -101,6 +101,13 @@
     <string name="account_orders">Orders</string>
     <string name="title_activity_checkout">Checkout</string>
     <string name="title_activity_wishlist">Wishlist</string>
-    <string name="title_activity_order_details">OrderDetailsActivity</string>
+    <string name="title_activity_order_details">Order Details</string>
+
+    <!-- Order Detauls -->
+    <string name="order_details_info">Order details</string>
+    <string name="order_products">Products</string>
+    <string name="order_details_id">Order ID: %1d</string>
+    <string name="order_details_date">Order date: %1s</string>
+    <string name="order_details_status">Order status: %1s</string>
 
 </resources>

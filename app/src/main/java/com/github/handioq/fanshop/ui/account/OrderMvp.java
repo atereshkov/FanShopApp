@@ -9,7 +9,7 @@ public interface OrderMvp {
 
     interface Model extends Mvp.Model {
 
-        void gerOrders(int userId);
+        void getOrders(int userId);
 
         void setCallback(Callback callback);
 
