@@ -30,6 +30,7 @@ import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.BadgeDrawable;
+import com.github.handioq.fanshop.util.ErrorUtils;
 import com.github.handioq.fanshop.util.NetworkConstants;
 
 import org.greenrobot.eventbus.EventBus;
@@ -241,7 +242,8 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     @Override
     public void showLoadProductsError(Throwable e) {
-        e.printStackTrace();
+        Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_LONG).show();
     }
 
     @Override

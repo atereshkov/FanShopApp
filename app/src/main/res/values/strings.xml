@@ -83,7 +83,7 @@
     <string name="specification_name_brand">Brand: </string>
     <string name="specification_name_sizes">Sizes: </string>
 
-    <string name="order_id">%1d</string>
+    <string name="order_id">Order ID: %1d</string>
     <string name="title_activity_search">Search</string>
     <string name="title_activity_categories">Categories</string>
     <string name="title_activity_subcategory">Subcategory</string>

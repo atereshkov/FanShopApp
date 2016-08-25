@@ -21,6 +21,7 @@
     <dimen name="card_elevation">4dp</dimen>
     <dimen name="card_content_padding">10dp</dimen>
     <dimen name="card_content_padding_small">4dp</dimen>
+    <dimen name="card_content_padding_middle">8dp</dimen>
 
     <!-- Default text sizes -->
     <dimen name="text_caption">12sp</dimen>
