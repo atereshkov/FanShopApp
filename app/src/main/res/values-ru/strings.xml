@@ -97,5 +97,7 @@
     <string name="order_details_status">Статус заказа: %1s</string>
     <string name="order_products">Товары</string>
     <string name="title_activity_order_details">Информация по заказу</string>
+    <string name="nav_stores">Наши магазины</string>
+    <string name="title_activity_stores">Магазины на карте</string>
 
 </resources>
