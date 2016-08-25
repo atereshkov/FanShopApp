@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+    <!--<group android:checkableBehavior="single">-->
 
-    <item android:title="Communicate">
+    <item android:title="@string/nav_title_shop">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_categories"
+                android:icon="@drawable/ic_cats_black_24dp"
+                android:title="@string/nav_categories" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_catalog"
+                android:icon="@drawable/ic_shopping_black_24dp"
+                android:title="@string/nav_catalog" />
+            <item
+                android:id="@+id/nav_cart"
+                android:icon="@drawable/ic_cart_black_24dp"
+                android:title="@string/nav_cart" />
+            <item
+                android:id="@+id/nav_wishlist"
+                android:icon="@drawable/ic_favorite_black_24dp"
+                android:title="@string/nav_wishlist" />
+            <item
+                android:id="@+id/nav_account"
+                android:icon="@drawable/ic_account_black_24dp"
+                android:title="@string/nav_account" />
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_title_info">
+        <menu>
+            <item
+                android:id="@+id/nav_delivery"
+                android:icon="@drawable/ic_truck_delivery_black_24dp"
+                android:title="@string/nav_delivery" />
         </menu>
     </item>
 

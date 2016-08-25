@@ -2,11 +2,69 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.handioq">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:name=".fanshop.application.FanShopApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"></application>
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".fanshop.ui.catalog.CatalogActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".fanshop.ui.login.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".fanshop.ui.signup.SignupActivity"
+            android:label="@string/title_activity_signup" />
+        <activity
+            android:name=".fanshop.ui.cart.CartActivity"
+            android:label="@string/title_activity_cart"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.ui.productinfo.ProductActivity"
+            android:label="@string/title_activity_productInfo"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.ui.account.AccountActivity"
+            android:label="@string/title_activity_account"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.ui.catalog.search.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.ui.categories.CategoriesActivity"
+            android:label="@string/title_activity_categories"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.ui.categories.subcategory.SubcategoryActivity"
+            android:label="@string/title_activity_subcategory"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.ui.checkout.CheckoutActivity"
+            android:label="@string/title_activity_checkout"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.ui.wishlist.WishlistActivity"
+            android:label="@string/title_activity_wishlist"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fanshop.ui.account.orders.OrderDetailsActivity"
+            android:label="@string/title_activity_order_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
 
 </manifest>

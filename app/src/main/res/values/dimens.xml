@@ -1,9 +1,53 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_horizontal_spacing">16dp</dimen>
+    <dimen name="nav_header_bottom_spacing">8dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin_small">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Default card sizes -->
+    <dimen name="card_width">320dp</dimen>
+    <dimen name="card_height">210dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="card_width_category">160dp</dimen>
+
+    <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_content_padding">10dp</dimen>
+    <dimen name="card_content_padding_small">4dp</dimen>
+    <dimen name="card_content_padding_middle">8dp</dimen>
+
+    <!-- Default text sizes -->
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_subheading">16sp</dimen>
+    <dimen name="text_title">20sp</dimen>
+
+    <!-- Default review card size -->
+    <dimen name="card_review_height">100dp</dimen>
+    <dimen name="card_review_width">320dp</dimen>
+
+    <!-- Default cart image size -->
+    <dimen name="cart_image_height">90dp</dimen>
+    <dimen name="cart_image_weight">90dp</dimen>
+    <dimen name="category_image_height">60dp</dimen>
+    <dimen name="category_image_weight">60dp</dimen>
+    <dimen name="subcategory_name_margin">8dp</dimen>
+
+    <!-- Default recyclerView paddings -->
+    <dimen name="recycler_view_top">8dp</dimen>
+
+    <!-- Product specification margins -->
+    <dimen name="grid_specification_margin_left">8dp</dimen>
+
+    <!-- Order -->
+    <dimen name="order_info_bottom">6dp</dimen>
+    <dimen name="order_products">6dp</dimen>
+
 </resources>

@@ -5,4 +5,109 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_cart">Cart</string>
+    <string name="action_refresh">Refresh</string>
+
+    <string name="not_implemented">Not implemented now</string>
+
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_phone">Contact phone</string>
+    <string name="prompt_city">City</string>
+    <string name="prompt_zipcode">Zipcode</string>
+    <string name="prompt_street">Street</string>
+    <string name="prompt_name">Full Name</string>
+    <string name="success_auth">You have successfully logged into your account! Welcome!</string>
+
+    <string name="cart_add_item_not_logged">To add an item to shopping cart please log in</string>
+    <string name="wishlist_add_item_not_logged">To add an item to wishlist please log in</string>
+    <string name="cart_remove_item_not_logged">To remove an item from shopping cart please log in</string>
+    <string name="account_not_logged">You are not logged in</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Sign up</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_logout">Logout</string>
+    <string name="success_register">Registration successful</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+
+    <!-- Strings related to signup -->
+    <string name="title_activity_signup">Sign up</string>
+    <string name="already_have_an_account">Already Have an Account?</string>
+
+    <!-- Strings related to catalog -->
+    <string name="catalog_price">$%1$.2f</string>
+    <string name="action_search">Search</string>
+
+    <!-- Strings related to nav drawer list -->
+    <string name="nav_catalog">Catalog</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_account">Account</string>
+    <string name="nav_title_info">Information</string>
+    <string name="nav_title_shop">Shop</string>
+    <string name="nav_delivery">Delivery</string>
+    <string name="nav_wishlist">Wishlist</string>
+    <string name="nav_categories">Categories</string>
+    <!--<string name="nav_">Account</string>-->
+
+    <!-- Strings related to shopping cart -->
+    <string name="title_activity_cart">Shopping cart</string>
+    <plurals name="cart_items_count">
+        <item quantity="one">You have %d item in your shopping cart</item>
+        <item quantity="few">You have %d items in your shopping cart</item>
+        <item quantity="other">You have %d items in your shopping cart</item>
+    </plurals>
+    <string name="cart_pay_amount">$%1$.2f</string>
+
+    <!-- Strings related to product info -->
+    <string name="title_activity_productInfo">Information</string>
+    <string name="pager_title_description">Specification</string>
+    <string name="pager_title_reviews">Reviews</string>
+    <string name="title_activity_account">Account</string>
+
+    <string name="specification_value_color">%1s</string>
+    <string name="specification_value_country">%1s</string>
+    <string name="specification_value_code">%1s</string>
+    <string name="specification_value_brand">%1s</string>
+    <string name="specification_value_sizes">%1s</string>
+
+    <string name="specification_name_color">Color: </string>
+    <string name="specification_name_country">Country: </string>
+    <string name="specification_name_code">Code: </string>
+    <string name="specification_name_brand">Brand: </string>
+    <string name="specification_name_sizes">Sizes: </string>
+
+    <string name="order_id">Order ID: %1d</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_categories">Categories</string>
+    <string name="title_activity_subcategory">Subcategory</string>
+
+    <!-- Strings related to account -->
+    <string name="personal_info">Personal info</string>
+    <string name="delivery_address">Delivery address</string>
+    <string name="account_name">Name: %1s</string>
+    <string name="account_email">E-Mail: %1s</string>
+    <string name="account_phone">Contact phone: %1s</string>
+    <string name="account_street">Street: %1s</string>
+    <string name="account_city">City: %1s</string>
+    <string name="account_country">Country: %1s</string>
+    <string name="account_zipcode">Zipcode: %1d</string>
+    <string name="account_orders">Orders</string>
+    <string name="title_activity_checkout">Checkout</string>
+    <string name="title_activity_wishlist">Wishlist</string>
+    <string name="title_activity_order_details">Order Details</string>
+
+    <!-- Order Detauls -->
+    <string name="order_details_info">Order details</string>
+    <string name="order_products">Products</string>
+    <string name="order_details_id">Order ID: %1d</string>
+    <string name="order_details_date">Order date: %1s</string>
+    <string name="order_details_status">Order status: %1s</string>
+
 </resources>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FanShop</string>
+
+    <string name="navigation_drawer_open">Открыть боковое меню</string>
+    <string name="navigation_drawer_close">Закрыть боковое меню</string>
+
+    <string name="action_settings">Настройки</string>
+    <string name="action_cart">Корзина</string>
+
+    <string name="title_activity_login">Авторизация</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_sign_in">Войти</string>
+    <string name="action_sign_up">Зарегистрироваться</string>
+    <string name="action_sign_in_short">Войти</string>
+    <string name="error_invalid_email">Email неверен</string>
+    <string name="error_invalid_password">Пароль слишком короткий</string>
+    <string name="error_incorrect_password">Пароль неверен</string>
+    <string name="error_field_required">Обязательное поле</string>
+    <string name="already_have_an_account">Уже зарегистрированы?</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="title_activity_signup">Регистрация</string>
+
+    <!-- Strings related to catalog -->
+    <string name="catalog_price">%1$.2f $</string>
+    <string name="title_activity_productInfo">Информация</string>
+    <string name="title_activity_cart">Корзина</string>
+    <string name="nav_title_info">Информация</string>
+    <string name="nav_catalog">Каталог</string>
+    <string name="nav_account">Личный кабинет</string>
+    <string name="nav_cart">Корзина</string>
+    <string name="not_implemented">Скоро :)</string>
+    <string name="nav_delivery">Доставка</string>
+    <string name="nav_title_shop">Магазин</string>
+    <string name="pager_title_description">Описание</string>
+    <string name="pager_title_reviews">Отзывы</string>
+    <string name="action_search">Поиск</string>
+    <string name="cart_pay_amount">%1$.2f $</string>
+
+    <plurals name="cart_items_count">
+        <item quantity="zero">В Вашей корзине нет товаров</item>
+        <item quantity="one">В Вашей корзине %d товар</item>
+        <item quantity="two">В Вашей корзине %d товара</item>
+        <item quantity="few">В Вашей корзине %d товара</item>
+        <item quantity="many">В Вашей корзине %d товаров</item>
+        <item quantity="other">В Вашей корзине %d товаров</item>
+    </plurals>
+    <string name="action_refresh">Обновить</string>
+    <string name="order_id">Номер заказа: %1d</string>
+    <string name="title_activity_account">Личный кабинет</string>
+    <string name="title_activity_search">Поиск</string>
+    <string name="title_activity_categories">Категории товаров</string>
+    <string name="nav_categories">Категории</string>
+    <string name="title_activity_subcategory">Подкатегория</string>
+    <string name="account_city">Город: %1s</string>
+    <string name="account_country">Страна: %1s</string>
+    <string name="account_email">E-Mail: %1s</string>
+    <string name="account_name">Имя: %1s</string>
+    <string name="account_phone">Контактный телефон: %1s</string>
+    <string name="account_street">Улица: %1s</string>
+    <string name="account_zipcode">Индекс: %1d</string>
+    <string name="delivery_address">Адрес доставки</string>
+    <string name="personal_info">Персональная информация</string>
+    <string name="account_orders">Заказы</string>
+    <string name="prompt_city">Город</string>
+    <string name="prompt_phone">Контактный телефон</string>
+    <string name="prompt_street">Улица</string>
+    <string name="prompt_zipcode">Почтовый индекс</string>
+    <string name="title_activity_checkout">Оформление заказа</string>
+    <string name="prompt_name">ФИО</string>
+    <string name="title_activity_wishlist">Список желаемого</string>
+    <string name="nav_wishlist">Список желаемого</string>
+    <string name="action_logout">Выйти</string>
+    <string name="success_register">Регистрация прошла успешно</string>
+    <string name="cart_add_item_not_logged">Для добавления товара в корзину необходимо войти в аккаунт</string>
+    <string name="wishlist_add_item_not_logged">Для добавления товара в список желаемого необходимо войти в аккаунт</string>
+    <string name="cart_remove_item_not_logged">Для удаления товара из списка желаемого необходимо войти в аккаунт</string>
+    <string name="account_not_logged">Вы не авторизованы</string>
+    <string name="success_auth">Вы успешно вошли в аккаунт! Добро пожаловать!</string>
+    <string name="specification_name_brand">Бренд: </string>
+    <string name="specification_name_code">Артикул: </string>
+    <string name="specification_name_color">Цвет: </string>
+    <string name="specification_name_country">Страна-производитель: </string>
+    <string name="specification_name_sizes">Доступные размеры: </string>
+    <string name="specification_value_brand">%1s</string>
+    <string name="specification_value_code">%1s</string>
+    <string name="specification_value_color">%1s</string>
+    <string name="specification_value_country">%1s</string>
+    <string name="specification_value_sizes">%1s</string>
+    <string name="order_details_date">Дата заказа: %1s</string>
+    <string name="order_details_id">Номер заказа: %1s</string>
+    <string name="order_details_info">Информация по заказу</string>
+    <string name="order_details_status">Статус заказа: %1s</string>
+    <string name="order_products">Товары</string>
+    <string name="title_activity_order_details">Информация по заказу</string>
+
+</resources>
