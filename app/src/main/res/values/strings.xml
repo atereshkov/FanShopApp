@@ -52,6 +52,7 @@
     <string name="nav_title_info">Information</string>
     <string name="nav_title_shop">Shop</string>
     <string name="nav_delivery">Delivery</string>
+    <string name="nav_stores">Our stores</string>
     <string name="nav_wishlist">Wishlist</string>
     <string name="nav_categories">Categories</string>
     <!--<string name="nav_">Account</string>-->
@@ -109,5 +110,15 @@
     <string name="order_details_id">Order ID: %1d</string>
     <string name="order_details_date">Order date: %1s</string>
     <string name="order_details_status">Order status: %1s</string>
+    <string name="title_activity_stores">Map</string>
+
+    <!-- Map stores -->
+    <string name="shop_minsk_1">FanShop Minsk #1 Point</string>
+    <string name="shop_minsk_2">FanShop Minsk #2 Point</string>
+    <string name="shop_minsk_3">FanShop Minsk #3 Point</string>
+    <string name="shop_minsk_1_message">23 Lenina street, 10:00 AM - 08:00 PM</string>
+    <string name="shop_minsk_2_message">112 M. Gorky street, 09:00 AM - 07:00 PM</string>
+    <string name="shop_minsk_3_message">67 Zybitskaya street, 08:00 AM - 06:30 PM</string>
+    <string name="gps_permission_denied">GPS permission was denied</string>
 
 </resources>

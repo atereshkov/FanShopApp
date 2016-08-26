@@ -34,6 +34,10 @@
                 android:id="@+id/nav_delivery"
                 android:icon="@drawable/ic_truck_delivery_black_24dp"
                 android:title="@string/nav_delivery" />
+            <item
+                android:id="@+id/nav_stores"
+                android:icon="@drawable/ic_store_black_24px"
+                android:title="@string/nav_stores" />
         </menu>
     </item>
 
