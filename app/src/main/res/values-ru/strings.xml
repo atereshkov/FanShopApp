@@ -99,5 +99,12 @@
     <string name="title_activity_order_details">Информация по заказу</string>
     <string name="nav_stores">Наши магазины</string>
     <string name="title_activity_stores">Магазины на карте</string>
+    <string name="shop_minsk_1">FanShop г. Минск Магазин 1</string>
+    <string name="shop_minsk_2">FanShop г. Минск Магазин 2</string>
+    <string name="shop_minsk_3">FanShop г. Минск Магазин 3</string>
+    <string name="shop_minsk_1_message">ул. Ленина 23, Время работы: 10:00 - 20:00</string>
+    <string name="shop_minsk_2_message">ул. М. Горького 112, Время работы: 09:00 - 19:00</string>
+    <string name="shop_minsk_3_message">ул. Зыбицкая 67, Время работы: 08:00 - 18:30</string>
+    <string name="gps_permission_denied">Нет GPS разрешения</string>
 
 </resources>
