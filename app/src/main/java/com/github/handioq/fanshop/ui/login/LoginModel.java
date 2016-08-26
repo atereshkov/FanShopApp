@@ -1,7 +1,8 @@
 package com.github.handioq.fanshop.ui.login;
 
-import com.github.handioq.fanshop.net.model.AuthResponse;
 import com.github.handioq.fanshop.net.NetworkService;
+import com.github.handioq.fanshop.net.model.LoginDTO;
+import com.github.handioq.fanshop.net.model.Token;
 
 import rx.Subscriber;
 
@@ -15,12 +16,12 @@ public class LoginModel implements LoginMvp.Model {
     }
 
     @Override
-    public void getAuthState(String mail, String password) {
+    public void getAuthState(LoginDTO loginDTO) {
 
         networkService.getApiService()
-                .login(mail, password)
-                .compose(NetworkService.<AuthResponse>applyScheduler())
-                .subscribe(new Subscriber<AuthResponse>() {
+                .login(loginDTO)
+                .compose(NetworkService.<Token>applyScheduler())
+                .subscribe(new Subscriber<Token>() {
                     @Override
                     public void onCompleted() {
                         callback.onCompleted();
@@ -32,7 +33,7 @@ public class LoginModel implements LoginMvp.Model {
                     }
 
                     @Override
-                    public void onNext(AuthResponse authResponse) {
+                    public void onNext(Token authResponse) {
                         callback.onSuccess(authResponse);
                     }
                 });

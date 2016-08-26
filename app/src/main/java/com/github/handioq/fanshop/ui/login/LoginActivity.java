@@ -13,7 +13,8 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
-import com.github.handioq.fanshop.net.model.AuthResponse;
+import com.github.handioq.fanshop.net.model.LoginDTO;
+import com.github.handioq.fanshop.net.model.Token;
 import com.github.handioq.fanshop.ui.signup.SignupActivity;
 import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.JWTUtils;
@@ -64,9 +65,10 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
     void signIn() {
         String email = emailView.getText().toString();
         String password = passwordView.getText().toString();
+        LoginDTO loginDTO = new LoginDTO(email, password);
 
         if (Validation.isEmailValid(email)) { // TODO do it in presenter
-            loginPresenter.loginValidate(email, password);
+            loginPresenter.loginValidate(loginDTO);
         } else {
             emailView.setError(getResources().getString(R.string.error_invalid_email));
         }
@@ -85,12 +87,12 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
     }
 
     @Override
-    public void loginSuccess(AuthResponse authResponse) {
+    public void loginSuccess(Token authResponse) {
         Log.i(TAG, authResponse.toString());
-        authPreferences.setUserToken(authResponse.getToken());
+        authPreferences.setUserToken(authResponse.getTokenData().getToken());
 
         try {
-            authPreferences.setUserId(JWTUtils.getUserIdByToken(authResponse.getToken()));
+            authPreferences.setUserId(JWTUtils.getUserIdByToken(authResponse.getTokenData().getToken()));
             Toast.makeText(this, getString(R.string.success_auth), Toast.LENGTH_SHORT).show();
             Timber.i("Auth success, userID: %d", authPreferences.getUserId());
         } catch (Exception e) {

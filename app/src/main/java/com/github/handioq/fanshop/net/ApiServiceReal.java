@@ -1,5 +1,8 @@
 package com.github.handioq.fanshop.net;
 
+import com.github.handioq.fanshop.model.dto.OrderDetailsDTO;
+import com.github.handioq.fanshop.model.dto.SpecificationDTO;
+import com.github.handioq.fanshop.net.model.LoginDTO;
 import com.github.handioq.fanshop.net.model.RegisterDTO;
 import com.github.handioq.fanshop.model.dto.CategoryDTO;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
@@ -8,6 +11,7 @@ import com.github.handioq.fanshop.model.dto.ReviewDTO;
 import com.github.handioq.fanshop.model.dto.UserDTO;
 import com.github.handioq.fanshop.net.model.AuthResponse;
 import com.github.handioq.fanshop.net.model.Response;
+import com.github.handioq.fanshop.net.model.Token;
 
 import java.util.List;
 
@@ -29,10 +33,8 @@ public interface ApiServiceReal {
     String CATALOG_URL = "/catalog";
     String USER_URL = "/user";
 
-    @FormUrlEncoded
     @POST(LOGIN_URL)
-    Observable<AuthResponse> login(@Field("mail") String mail,
-                                   @Field("password") String password);
+    Observable<Token> login(@Body LoginDTO loginDTO);
 
     @POST(SIGNUP_URL + "/signup")
     Observable<Response> signup(@Body RegisterDTO registerDTO);
@@ -59,13 +61,28 @@ public interface ApiServiceReal {
     @GET(USER_URL + "/{id}/cart")
     Observable<List<ProductDTO>> getCart(@Path("id") int userId);
 
-    @POST(USER_URL + "/{id}/cart")
+    @POST(USER_URL + "/{id}/cart/{product_id}")
     Observable<Response> addProductToCart(@Path("id") int userId,
-                                          @Body ProductDTO productDTO);
+                                          @Path("product_id") int productId);
+
+    @POST(USER_URL + "/{id}/wishlist/{product_id}")
+    Observable<Response> addProductToWishlist(@Path("id") int userId,
+                                              @Path("product_id") int productId);
+
+    @DELETE(USER_URL + "/{id}/wishlist/{product_id}")
+    Observable<Response> removeProductFromWishlist(@Path("id") int userId,
+                                                   @Path("product_id") int productId);
+
+    @GET(CATALOG_URL + "/{id}/specification")
+    Observable<SpecificationDTO> getSpecification(@Path("id") int id);
+
+    @GET(USER_URL + "/{id}/orders/{order_id}")
+    Observable<OrderDetailsDTO> getOrderDetails(@Path("id") int userId,
+                                                @Path("order_id") int orderId);
 
     @DELETE(USER_URL + "/{id}/cart/{product_id}")
     Observable<Response> removeProductFromCart(@Path("id") int userId,
-                                               @Path("product_id") int productId); //
+                                               @Path("product_id") int productId);
 
     @GET(USER_URL + "/{id}/orders")
     Observable<List<OrderDTO>> getOrders(@Path("id") int userId);
@@ -79,5 +96,8 @@ public interface ApiServiceReal {
 
     @GET(CATALOG_URL + "/categories/{id}")
     Observable<CategoryDTO> getCategory(@Path("id") int catId);
+
+    @GET(USER_URL + "/{id}/wishlist")
+    Observable<List<ProductDTO>> getWishlist(@Path("id") int userId);
 
 }

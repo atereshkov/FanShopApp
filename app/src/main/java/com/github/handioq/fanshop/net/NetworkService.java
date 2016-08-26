@@ -23,7 +23,7 @@ public class NetworkService {
     private static final String HEADER_USER_AGENT = "User-Agent";
     private static final String HEADER_AUTHORIZATION = "Authorization";
 
-    private ApiService apiService;
+    private ApiServiceReal apiService;
     private final static Scheduler NETWORK_SINGLE
             = Schedulers.from(Executors.newFixedThreadPool(3));
 
@@ -75,10 +75,10 @@ public class NetworkService {
                 .client(okHttpClient)
                 .build();
 
-        apiService = retrofit.create(ApiService.class);
+        apiService = retrofit.create(ApiServiceReal.class);
     }
 
-    public ApiService getApiService() {
+    public ApiServiceReal getApiService() {
         return apiService;
     }
 

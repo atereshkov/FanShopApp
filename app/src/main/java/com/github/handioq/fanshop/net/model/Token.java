@@ -4,46 +4,45 @@ import com.google.gson.annotations.SerializedName;
 
 public class Token {
 
-    @SerializedName("token")
-    String token;
+    @SerializedName("status")
+    String status;
 
-    @SerializedName("creationDate")
-    private long creationDate;
+    @SerializedName("data")
+    TokenData tokenData;
 
-    @SerializedName("expirationDate")
-    private long expirationDate;
+    @SerializedName("statusCode")
+    int statusCode;
 
-    public String getToken() {
-        return token;
+    public String getStatus() {
+        return status;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public long getCreationDate() {
-        return creationDate;
+    public TokenData getTokenData() {
+        return tokenData;
     }
 
-    public long getExpirationDate() {
-        return expirationDate;
+    public void setTokenData(TokenData tokenData) {
+        this.tokenData = tokenData;
     }
 
-    public void setCreationDate(long creationDate) {
-        this.creationDate = creationDate;
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    public void setExpirationDate(long expirationDate) {
-        this.expirationDate = expirationDate;
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
     @Override
     public String toString() {
         return "Token{" +
-                "token='" + token + '\'' +
-                ", creationDate=" + creationDate +
-                ", expirationDate=" + expirationDate +
+                "status='" + status + '\'' +
+                ", tokenData=" + tokenData +
+                ", statusCode=" + statusCode +
                 '}';
     }
-
 }
