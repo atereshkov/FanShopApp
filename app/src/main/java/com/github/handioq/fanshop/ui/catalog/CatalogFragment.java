@@ -20,14 +20,14 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.ui.cart.CartActivity;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartClickEvent;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.ui.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.ui.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.ui.catalog.search.SearchActivity;
-import com.github.handioq.fanshop.model.dvo.ProductDVO;
-import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.BadgeDrawable;
 import com.github.handioq.fanshop.util.ErrorUtils;
@@ -68,13 +68,13 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     private final String TAG = "CatalogFragment";
     private static final String CATEGORY_KEY = "category";
-    private String category;
+    private int category;
 
-    public static CatalogFragment newInstance(String category) {
+    public static CatalogFragment newInstance(int categoryId) {
         CatalogFragment fragment = new CatalogFragment();
 
         Bundle args = new Bundle();
-        args.putString(CATEGORY_KEY, category);
+        args.putInt(CATEGORY_KEY, categoryId);
         fragment.setArguments(args);
 
         return fragment;
@@ -215,7 +215,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
-            category = bundle.getString("category");
+            category = bundle.getInt(CATEGORY_KEY);
         }
     }
 

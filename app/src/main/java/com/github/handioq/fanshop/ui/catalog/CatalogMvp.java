@@ -9,7 +9,7 @@ public interface CatalogMvp {
 
     interface Model extends Mvp.Model {
 
-        void getProducts(String category, int offset, int count);
+        void getProducts(int category, int offset, int count);
 
         void setCallback(Callback callback);
 
@@ -37,7 +37,7 @@ public interface CatalogMvp {
 
     interface Presenter extends Mvp.Presenter<CatalogMvp.View> {
 
-        void getProducts(String category, int offset, int limit);
+        void getProducts(int category, int offset, int limit);
 
     }
 }

@@ -36,7 +36,7 @@ public interface ApiService {
     Observable<Response> signup(@Body RegisterDTO registerDTO);
 
     @GET(CATALOG_URL)
-    Observable<List<ProductDTO>> getProducts(@Query("category") String category,
+    Observable<List<ProductDTO>> getProducts(@Query("category") int categoryId,
                                              @Query("offset") int offset,
                                              @Query("limit") int limit);
 
@@ -83,7 +83,7 @@ public interface ApiService {
     Observable<List<CategoryDTO>> getCategories();
 
     @GET(CATALOG_URL + "/categories/{id}")
-    Observable<CategoryDTO> getCategory(@Path("id") int catId);
+    Observable<List<CategoryDTO>> getCategory(@Path("id") int catId);
 
     @GET(USER_URL + "/{id}/wishlist")
     Observable<List<ProductDTO>> getWishlist(@Path("id") int userId);

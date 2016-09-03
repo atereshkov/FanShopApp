@@ -1,20 +1,15 @@
 package com.github.handioq.fanshop.model.dvo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CategoryDVO {
 
     private int id;
     private String name;
     private String imageUrl;
-    private List<SubcategoryDVO> subcategories = new ArrayList<>();
 
-    public CategoryDVO(int id, String name, String imageUrl, List<SubcategoryDVO> subcategories) {
+    public CategoryDVO(int id, String name, String imageUrl) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
-        this.subcategories = subcategories;
     }
 
     public int getId() {
@@ -41,11 +36,4 @@ public class CategoryDVO {
         this.imageUrl = imageUrl;
     }
 
-    public List<SubcategoryDVO> getSubcategories() {
-        return subcategories;
-    }
-
-    public void setSubcategories(List<SubcategoryDVO> subcategories) {
-        this.subcategories = subcategories;
-    }
 }

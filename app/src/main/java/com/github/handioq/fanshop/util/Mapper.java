@@ -9,7 +9,6 @@ import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
 import com.github.handioq.fanshop.model.dto.SizeDTO;
 import com.github.handioq.fanshop.model.dto.SpecificationDTO;
-import com.github.handioq.fanshop.model.dto.SubcategoryDTO;
 import com.github.handioq.fanshop.model.dto.UserDTO;
 import com.github.handioq.fanshop.model.dvo.AddressDVO;
 import com.github.handioq.fanshop.model.dvo.CategoryDVO;
@@ -20,7 +19,6 @@ import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.model.dvo.ReviewDVO;
 import com.github.handioq.fanshop.model.dvo.SizeDVO;
 import com.github.handioq.fanshop.model.dvo.SpecificationDVO;
-import com.github.handioq.fanshop.model.dvo.SubcategoryDVO;
 import com.github.handioq.fanshop.model.dvo.UserDVO;
 
 import java.util.ArrayList;
@@ -89,22 +87,7 @@ public class Mapper {
     }
 
     public static CategoryDVO mapCategoryToDvo(CategoryDTO categoryDTO) {
-        List<SubcategoryDVO> subcategoriesDVO = mapSubcategories(categoryDTO);
-
-        return new CategoryDVO(categoryDTO.getId(), categoryDTO.getName(),
-                categoryDTO.getImageUrl(), subcategoriesDVO);
-    }
-
-    private static List<SubcategoryDVO> mapSubcategories(CategoryDTO categoryDTO) {
-        List<SubcategoryDVO> subcategoriesDVO = new ArrayList<>(categoryDTO.getSubcategories().size());
-        for (SubcategoryDTO subcategoryDTO : categoryDTO.getSubcategories()) {
-            subcategoriesDVO.add(mapSubcategoryToDvo(subcategoryDTO));
-        }
-        return subcategoriesDVO;
-    }
-
-    private static SubcategoryDVO mapSubcategoryToDvo(SubcategoryDTO subcategoryDTO) {
-        return new SubcategoryDVO(subcategoryDTO.getId(), subcategoryDTO.getName(), subcategoryDTO.getImageUrl());
+        return new CategoryDVO(categoryDTO.getId(), categoryDTO.getName(), categoryDTO.getImageUrl());
     }
 
     private static AddressDVO mapAddressToDvo(AddressDTO addressDTO) {

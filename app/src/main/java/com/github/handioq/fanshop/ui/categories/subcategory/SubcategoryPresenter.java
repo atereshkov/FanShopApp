@@ -5,6 +5,8 @@ import android.util.Log;
 import com.github.handioq.fanshop.model.dvo.CategoryDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 public class SubcategoryPresenter implements SubcategoryMvp.Presenter, SubcategoryMvp.Model.Callback {
@@ -36,9 +38,9 @@ public class SubcategoryPresenter implements SubcategoryMvp.Presenter, Subcatego
     }
 
     @Override
-    public void onCategoryLoaded(CategoryDVO category) {
+    public void onCategoryLoaded(List<CategoryDVO> categories) {
         subcategoryView.hideLoadCategoryProgress();
-        subcategoryView.setCategory(category);
+        subcategoryView.setCategory(categories);
     }
 
     @Override

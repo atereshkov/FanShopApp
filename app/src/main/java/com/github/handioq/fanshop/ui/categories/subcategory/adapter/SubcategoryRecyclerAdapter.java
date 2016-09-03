@@ -3,16 +3,16 @@ package com.github.handioq.fanshop.ui.categories.subcategory.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.github.handioq.fanshop.model.dvo.SubcategoryDVO;
+import com.github.handioq.fanshop.model.dvo.CategoryDVO;
 
 import java.util.List;
 
 public class SubcategoryRecyclerAdapter extends RecyclerView.Adapter<SubcategoryViewHolder> {
 
-    private List<SubcategoryDVO> subcategories;
+    private List<CategoryDVO> categories;
 
-    public SubcategoryRecyclerAdapter(List<SubcategoryDVO> subcategories) {
-        this.subcategories = subcategories;
+    public SubcategoryRecyclerAdapter(List<CategoryDVO> subcategories) {
+        this.categories = subcategories;
     }
 
     @Override
@@ -22,19 +22,19 @@ public class SubcategoryRecyclerAdapter extends RecyclerView.Adapter<Subcategory
 
     @Override
     public void onBindViewHolder(final SubcategoryViewHolder holder, int position) {
-        holder.bind(subcategories.get(position));
+        holder.bind(categories.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return subcategories.size();
+        return categories.size();
     }
 
-    public List<SubcategoryDVO> getSubcategories() {
-        return subcategories;
+    public List<CategoryDVO> getCategories() {
+        return categories;
     }
 
-    public void setSubcategories(List<SubcategoryDVO> subcategories) {
-        this.subcategories = subcategories;
+    public void setCategories(List<CategoryDVO> categories) {
+        this.categories = categories;
     }
 }

@@ -12,10 +12,11 @@ public class SubcategoryActivity extends BaseNavActivity {
 
     private static final String TAG = "SubcategoryActivity";
     private static final String SUBCATEGORY_FRAGMENT_TAG = "subcategory";
+    private static final String CATEGORY_KEY = "id";
 
     public static Intent makeIntent(Context context, int id){
         Intent intent = new Intent(context, SubcategoryActivity.class);
-        intent.putExtra("id", id);
+        intent.putExtra(CATEGORY_KEY, id);
         return intent;
     }
 
@@ -24,10 +25,10 @@ public class SubcategoryActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subcategory);
 
-        int selectedItem = getIntent().getExtras().getInt("id");
+        int selectedItem = getIntent().getExtras().getInt(CATEGORY_KEY);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("id", selectedItem);
+        bundle.putInt(CATEGORY_KEY, selectedItem);
 
         if (getSupportFragmentManager().findFragmentByTag(SUBCATEGORY_FRAGMENT_TAG) == null) {
             SubcategoryFragment subcategoryFragment = new SubcategoryFragment();
