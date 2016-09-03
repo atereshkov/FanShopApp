@@ -4,11 +4,11 @@ import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
 import com.github.handioq.fanshop.net.model.Response;
 
-public class CheckoutMvp {
+public interface CheckoutMvp {
 
     interface Model extends Mvp.Model {
 
-        void createOrder(int id, OrderDTO order);
+        void createOrder(int userId, OrderDTO order);
 
         void setCallback(Callback callback);
 
@@ -36,7 +36,7 @@ public class CheckoutMvp {
 
     interface Presenter extends Mvp.Presenter<CheckoutMvp.View> {
 
-        void createOrder(int id, OrderDTO order);
+        void createOrder(int userId, OrderDTO order);
 
     }
 

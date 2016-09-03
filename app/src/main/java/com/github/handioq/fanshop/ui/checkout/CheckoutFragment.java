@@ -11,11 +11,18 @@ import android.widget.ProgressBar;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.dto.OrderDTO;
+import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.model.Response;
+import com.github.handioq.fanshop.util.AuthPreferences;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
 public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
 
@@ -26,6 +33,19 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
 
     @Inject
     CheckoutMvp.Presenter checkoutPresenter;
+
+    @Inject
+    AuthPreferences authPreferences;
+
+    public static CheckoutFragment newInstance(List<ProductDTO> products) {
+        CheckoutFragment fragment = new CheckoutFragment();
+
+        Bundle args = new Bundle();
+        // put list
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,9 +64,10 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated");
 
-        //((FanShopApp) getContext().getApplicationContext()).getCheckoutComponent().inject(this);
+        ((FanShopApp) getContext().getApplicationContext()).getCheckoutComponent().inject(this);
 
         checkoutPresenter.setView(this);
+        checkoutPresenter.createOrder(authPreferences.getUserId(), new OrderDTO(new ArrayList<ProductDTO>())); // test
     }
 
     @Override
@@ -61,12 +82,12 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
 
     @Override
     public void setResponse(Response response) {
-
+        Timber.i("Response: %s", response.getStatusMessage());
     }
 
     @Override
     public void onError(Throwable e) {
-
+        Log.e(TAG, e.toString());
     }
 
     @Override

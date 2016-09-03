@@ -1,5 +1,6 @@
 package com.github.handioq.fanshop.ui.cart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,8 @@ import com.github.handioq.fanshop.ui.cart.adapter.CartRecyclerAdapter;
 import com.github.handioq.fanshop.ui.cart.interaction.RemoveFromCartEvent;
 import com.github.handioq.fanshop.ui.cart.interaction.RemoveFromCartMvp;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.ui.checkout.CheckoutActivity;
+import com.github.handioq.fanshop.ui.checkout.CheckoutEvent;
 import com.github.handioq.fanshop.util.AuthPreferences;
 
 import org.greenrobot.eventbus.EventBus;
@@ -99,6 +102,14 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
     public void onPause() {
         super.onPause();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onCheckoutClickEvent(CheckoutEvent event) {
+        Log.i(TAG, "CheckoutEvent");
+
+        Intent intent = new Intent(getContext(), CheckoutActivity.class);
+        startActivity(intent);
     }
 
     @Subscribe
