@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseNavActivity;
+import com.github.handioq.fanshop.model.dto.PassOrderDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 
 import java.util.List;
@@ -21,10 +22,11 @@ public class CheckoutActivity extends BaseNavActivity {
 
     private static final String TAG = "CheckoutActivity";
     private static final String FRAGMENT_TAG = "checkout";
+    private static final String ORDER_KEY = "order";
 
-    public static Intent makeIntent(Context context, List<ProductDTO> products){
+    public static Intent makeIntent(Context context, PassOrderDTO passOrder){
         Intent intent = new Intent(context, CheckoutActivity.class);
-        // put list
+        intent.putExtra(ORDER_KEY, passOrder);
         return intent;
     }
 
@@ -33,10 +35,12 @@ public class CheckoutActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+        PassOrderDTO passOrder = (PassOrderDTO) getIntent().getSerializableExtra(ORDER_KEY);
+
         if (getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG) == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content, new CheckoutFragment(),FRAGMENT_TAG)
+                    .replace(R.id.content, CheckoutFragment.newInstance(passOrder), FRAGMENT_TAG)
                     .commit();
 
             Log.i(TAG, "create new CheckoutFragment");

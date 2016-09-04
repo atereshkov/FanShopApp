@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.dto.PassOrderDTO;
 import com.github.handioq.fanshop.ui.cart.adapter.CartRecyclerAdapter;
 import com.github.handioq.fanshop.ui.cart.interaction.RemoveFromCartEvent;
 import com.github.handioq.fanshop.ui.cart.interaction.RemoveFromCartMvp;
@@ -23,6 +24,7 @@ import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.ui.checkout.CheckoutActivity;
 import com.github.handioq.fanshop.ui.checkout.CheckoutEvent;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.Mapper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -108,8 +110,8 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
     public void onCheckoutClickEvent(CheckoutEvent event) {
         Log.i(TAG, "CheckoutEvent");
 
-        Intent intent = new Intent(getContext(), CheckoutActivity.class);
-        startActivity(intent);
+        PassOrderDTO passOrder = new PassOrderDTO(Mapper.mapProductsToDto(adapter.getItems()));
+        startActivity(CheckoutActivity.makeIntent(getContext(), passOrder));
     }
 
     @Subscribe

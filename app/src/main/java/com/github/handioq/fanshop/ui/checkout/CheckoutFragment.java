@@ -12,6 +12,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
+import com.github.handioq.fanshop.model.dto.PassOrderDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.util.AuthPreferences;
@@ -27,6 +28,8 @@ import timber.log.Timber;
 public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
 
     private final static String TAG = "CheckoutFragment";
+    private static final String ORDER_KEY = "order";
+    private PassOrderDTO passOrder;
 
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
@@ -37,11 +40,11 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
     @Inject
     AuthPreferences authPreferences;
 
-    public static CheckoutFragment newInstance(List<ProductDTO> products) {
+    public static CheckoutFragment newInstance(PassOrderDTO passOrder) {
         CheckoutFragment fragment = new CheckoutFragment();
 
         Bundle args = new Bundle();
-        // put list
+        args.putSerializable(ORDER_KEY, passOrder);
         fragment.setArguments(args);
 
         return fragment;
@@ -56,6 +59,8 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        passOrder = (PassOrderDTO) this.getArguments().getSerializable(ORDER_KEY);
+
         return inflater.inflate(R.layout.fragment_checkout, container, false);
     }
 
@@ -66,8 +71,9 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
 
         ((FanShopApp) getContext().getApplicationContext()).getCheckoutComponent().inject(this);
 
+        OrderDTO order = new OrderDTO(passOrder.getProducts());
         checkoutPresenter.setView(this);
-        checkoutPresenter.createOrder(authPreferences.getUserId(), new OrderDTO(new ArrayList<ProductDTO>())); // test
+        checkoutPresenter.createOrder(authPreferences.getUserId(), order); // test
     }
 
     @Override

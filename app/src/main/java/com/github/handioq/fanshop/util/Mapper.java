@@ -136,4 +136,24 @@ public class Mapper {
                 orderDetailsDTO.getDate(), mapProductsToDvo(orderDetailsDTO.getProducts()));
     }
 
+    public static ProductDTO mapProductToDto(ProductDVO productDVO) {
+        ProductDTO productDTO = new ProductDTO();
+
+        productDTO.setId(productDVO.getId());
+        productDTO.setDescription(productDVO.getDescription());
+        productDTO.setName(productDVO.getName());
+        productDTO.setImageUrl(productDVO.getImageUrl());
+        productDTO.setUserFavorite(productDVO.isUserFavorite());
+
+        return productDTO;
+    }
+
+    public static List<ProductDTO> mapProductsToDto(List<ProductDVO> productsDVO) {
+        List<ProductDTO> productsDTO = new ArrayList<>(productsDVO.size());
+        for (ProductDVO productDVO : productsDVO) {
+            productsDTO.add(mapProductToDto(productDVO));
+        }
+        return productsDTO;
+    }
+
 }
