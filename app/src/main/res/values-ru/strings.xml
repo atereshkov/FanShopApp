@@ -106,5 +106,10 @@
     <string name="shop_minsk_2_message">ул. М. Горького 112, Время работы: 09:00 - 19:00</string>
     <string name="shop_minsk_3_message">ул. Зыбицкая 67, Время работы: 08:00 - 18:30</string>
     <string name="gps_permission_denied">Нет GPS разрешения</string>
+    <string name="checkout_pay_info">Вам необходимо оплатить ваш заказ в течение 24 часов, иначе он перейдет в статус неактивен.</string>
+    <string name="checkout_pay_for_order">Оплатить сейчас</string>
+    <string name="checkout_close_dialog">Закрыть</string>
+    <string name="checkout_remember_to_pay">Не забудьте оплатить заказ в течение 24 часов!</string>
+    <string name="checkout_dialog_title">Информация</string>
 
 </resources>

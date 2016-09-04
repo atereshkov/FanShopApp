@@ -121,4 +121,11 @@
     <string name="shop_minsk_3_message">67 Zybitskaya street, 08:00 AM - 06:30 PM</string>
     <string name="gps_permission_denied">GPS permission was denied</string>
 
+    <!-- Checkout -->
+    <string name="checkout_pay_for_order">Pay now</string>
+    <string name="checkout_close_dialog">OK, close it</string>
+    <string name="checkout_pay_info">You need to pay for your order within 24 hours, otherwise it will go into inactive status.</string>
+    <string name="checkout_remember_to_pay">Remember to pay for your order within 24 hours!</string>
+    <string name="checkout_dialog_title">Information</string>
+
 </resources>

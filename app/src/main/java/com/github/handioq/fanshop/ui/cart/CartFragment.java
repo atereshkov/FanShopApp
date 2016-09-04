@@ -110,8 +110,12 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
     public void onCheckoutClickEvent(CheckoutEvent event) {
         Log.i(TAG, "CheckoutEvent");
 
-        PassOrderDTO passOrder = new PassOrderDTO(Mapper.mapProductsToDto(adapter.getItems()));
-        startActivity(CheckoutActivity.makeIntent(getContext(), passOrder));
+        if (adapter.getItemCount() != 0) {
+            PassOrderDTO passOrder = new PassOrderDTO(Mapper.mapProductsToDto(adapter.getItems()));
+            startActivity(CheckoutActivity.makeIntent(getContext(), passOrder));
+        } else {
+            Toast.makeText(getContext(), "Your cart is empty..", Toast.LENGTH_SHORT).show(); // TODO extract resource string
+        }
     }
 
     @Subscribe
@@ -152,7 +156,7 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
 
     @Override
     public void onProductRemoveSuccess() {
-        Toast.makeText(getContext(), "Product was removed from user's cart", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Product was removed from user's cart", Toast.LENGTH_SHORT).show(); // TODO extract resource string
     }
 
     @Override
