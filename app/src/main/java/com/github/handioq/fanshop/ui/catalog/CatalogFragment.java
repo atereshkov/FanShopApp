@@ -21,6 +21,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.ui.cart.CartActivity;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartClickEvent;
@@ -37,7 +38,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -236,8 +236,8 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     }
 
     @Override
-    public void setProducts(List<ProductDVO> products) {
-        adapter.addItems(products);
+    public void setProducts(ProductListDVO products) {
+        adapter.addItems(products.getProducts());
     }
 
     @Override

@@ -1,6 +1,10 @@
 package com.github.handioq.fanshop.net;
 
+import com.github.handioq.fanshop.model.dto.CategoryListDTO;
 import com.github.handioq.fanshop.model.dto.OrderDetailsDTO;
+import com.github.handioq.fanshop.model.dto.OrderListDTO;
+import com.github.handioq.fanshop.model.dto.ProductListDTO;
+import com.github.handioq.fanshop.model.dto.ReviewListDTO;
 import com.github.handioq.fanshop.model.dto.SpecificationDTO;
 import com.github.handioq.fanshop.net.model.RegisterDTO;
 import com.github.handioq.fanshop.model.dto.CategoryDTO;
@@ -36,20 +40,20 @@ public interface ApiService {
     Observable<Response> signup(@Body RegisterDTO registerDTO);
 
     @GET(CATALOG_URL)
-    Observable<List<ProductDTO>> getProducts(@Query("category") int categoryId,
-                                             @Query("offset") int offset,
-                                             @Query("limit") int limit);
+    Observable<ProductListDTO> getProducts(@Query("category") int categoryId,
+                                           @Query("offset") int offset,
+                                           @Query("limit") int limit);
 
     @GET(CATALOG_URL + "/search")
-    Observable<List<ProductDTO>> search(@Query("query") String query,
-                                        @Query("offset") int offset,
-                                        @Query("limit") int limit);
+    Observable<ProductListDTO> search(@Query("query") String query,
+                                      @Query("offset") int offset,
+                                      @Query("limit") int limit);
 
     @GET(CATALOG_URL + "/{id}")
     Observable<ProductDTO> getProduct(@Path("id") int id);
 
     @GET(CATALOG_URL + "/{id}/reviews")
-    Observable<List<ReviewDTO>> getReviews(@Path("id") int id);
+    Observable<ReviewListDTO> getReviews(@Path("id") int id);
 
     @GET(CATALOG_URL + "/{id}/specification")
     Observable<SpecificationDTO> getSpecification(@Path("id") int id);
@@ -58,7 +62,7 @@ public interface ApiService {
     Observable<UserDTO> getUser(@Path("id") int userId);
 
     @GET(USER_URL + "/{id}/cart")
-    Observable<List<ProductDTO>> getCart(@Path("id") int userId);
+    Observable<ProductListDTO> getCart(@Path("id") int userId);
 
     @POST(USER_URL + "/{id}/cart/{product_id}")
     Observable<Response> addProductToCart(@Path("id") int userId,
@@ -69,7 +73,7 @@ public interface ApiService {
                                                @Path("product_id") int productId);
 
     @GET(USER_URL + "/{id}/orders")
-    Observable<List<OrderDTO>> getOrders(@Path("id") int userId);
+    Observable<OrderListDTO> getOrders(@Path("id") int userId);
 
     @GET(USER_URL + "/{id}/orders/{order_id}")
     Observable<OrderDetailsDTO> getOrderDetails(@Path("id") int userId,
@@ -80,13 +84,13 @@ public interface ApiService {
                                      @Body OrderDTO orderDTO);
 
     @GET(CATALOG_URL + "/categories")
-    Observable<List<CategoryDTO>> getCategories();
+    Observable<CategoryListDTO> getCategories();
 
     @GET(CATALOG_URL + "/categories/{id}")
-    Observable<List<CategoryDTO>> getCategory(@Path("id") int catId);
+    Observable<CategoryListDTO> getCategory(@Path("id") int catId);
 
     @GET(USER_URL + "/{id}/wishlist")
-    Observable<List<ProductDTO>> getWishlist(@Path("id") int userId);
+    Observable<ProductListDTO> getWishlist(@Path("id") int userId);
 
     @POST(USER_URL + "/{id}/wishlist/{product_id}")
     Observable<Response> addProductToWishlist(@Path("id") int userId,

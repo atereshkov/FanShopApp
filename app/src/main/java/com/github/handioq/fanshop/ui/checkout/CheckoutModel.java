@@ -24,7 +24,7 @@ public class CheckoutModel implements CheckoutMvp.Model {
 
         networkService.getApiService()
                 .createOrder(userId, order)
-                //.map(Mapper::mapProductsToDvo)
+                //.map(Mapper::mapProductListToDvo)
                 .compose(NetworkService.<Response>applyScheduler())
                 .subscribe(new Subscriber<Response>() {
                     @Override

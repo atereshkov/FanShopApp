@@ -1,9 +1,7 @@
 package com.github.handioq.fanshop.ui.productinfo;
 
-import com.github.handioq.fanshop.model.dvo.ReviewDVO;
+import com.github.handioq.fanshop.model.dvo.ReviewListDVO;
 import com.github.handioq.fanshop.net.NetworkService;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -23,7 +21,7 @@ public class ReviewsPresenter implements ReviewsMvp.Presenter, ReviewsMvp.Model.
     }
 
     @Override
-    public void onReviewsLoaded(List<ReviewDVO> reviews) {
+    public void onReviewsLoaded(ReviewListDVO reviews) {
         reviewsInfoView.hideProgress();
         reviewsInfoView.setReviews(reviews);
     }

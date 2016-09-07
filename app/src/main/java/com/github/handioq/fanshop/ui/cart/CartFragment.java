@@ -1,6 +1,5 @@
 package com.github.handioq.fanshop.ui.cart;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,10 +16,11 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dto.PassOrderDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.ui.cart.adapter.CartRecyclerAdapter;
 import com.github.handioq.fanshop.ui.cart.interaction.RemoveFromCartEvent;
 import com.github.handioq.fanshop.ui.cart.interaction.RemoveFromCartMvp;
-import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.ui.checkout.CheckoutActivity;
 import com.github.handioq.fanshop.ui.checkout.CheckoutEvent;
 import com.github.handioq.fanshop.util.AuthPreferences;
@@ -30,7 +30,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -144,8 +143,8 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
     }
 
     @Override
-    public void setCartItems(List<ProductDVO> products) {
-        adapter.setItems(products);
+    public void setCartItems(ProductListDVO products) {
+        adapter.setItems(products.getProducts());
         cartItemsCount.setText(getResources().getQuantityString(R.plurals.cart_items_count, adapter.getItemCount(), adapter.getItemCount()));
     }
 

@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.ui.catalog.search;
 
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface SearchMvp {
 
         interface Callback {
 
-            void onSearchSuccess(List<ProductDVO> products);
+            void onSearchSuccess(ProductListDVO products);
 
             void onSearchError(Throwable error);
 
@@ -25,7 +26,7 @@ public interface SearchMvp {
 
     interface View extends Mvp.View {
 
-        void onSearchSuccess(List<ProductDVO> products);
+        void onSearchSuccess(ProductListDVO products);
 
         void onSearchError(Throwable e);
 

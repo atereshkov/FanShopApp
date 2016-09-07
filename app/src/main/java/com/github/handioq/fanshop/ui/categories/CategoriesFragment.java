@@ -13,12 +13,12 @@ import android.widget.ProgressBar;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.dvo.CategoryListDVO;
 import com.github.handioq.fanshop.ui.categories.adapter.CategoriesRecyclerAdapter;
 import com.github.handioq.fanshop.model.dvo.CategoryDVO;
 import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -91,8 +91,8 @@ public class CategoriesFragment extends BaseFragment implements CategoriesMvp.Vi
     }
 
     @Override
-    public void setCategories(List<CategoryDVO> categories) {
-        adapter.setCategories(categories);
+    public void setCategories(CategoryListDVO categories) {
+        adapter.setCategories(categories.getCategories());
     }
 
     @Override

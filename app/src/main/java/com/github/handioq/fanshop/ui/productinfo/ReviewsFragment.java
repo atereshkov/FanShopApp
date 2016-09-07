@@ -13,6 +13,7 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dvo.ReviewDVO;
+import com.github.handioq.fanshop.model.dvo.ReviewListDVO;
 import com.github.handioq.fanshop.ui.productinfo.adapter.ReviewAdapter;
 
 import java.util.List;
@@ -75,14 +76,14 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvp.View {
         }
     }
 
-    private void initRecyclerView(List<ReviewDVO> reviews)
+    private void initRecyclerView(ReviewListDVO reviews)
     {
         Log.i(TAG, "initRecyclerView()");
 
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(layoutManager);
-        reviewAdapter = new ReviewAdapter(reviews);
+        reviewAdapter = new ReviewAdapter(reviews.getReviews());
         recyclerView.setAdapter(reviewAdapter);
     }
 
@@ -97,7 +98,7 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvp.View {
     }
 
     @Override
-    public void setReviews(List<ReviewDVO> reviews) {
+    public void setReviews(ReviewListDVO reviews) {
         initRecyclerView(reviews);
     }
 

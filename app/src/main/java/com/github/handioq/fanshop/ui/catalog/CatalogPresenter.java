@@ -2,10 +2,8 @@ package com.github.handioq.fanshop.ui.catalog;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.net.NetworkService;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -50,8 +48,8 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
     }
 
     @Override
-    public void onProductsLoaded(List<ProductDVO> products) {
-        Log.i(TAG, "get productDTOs: " + products.size());
+    public void onProductsLoaded(ProductListDVO products) {
+        Log.i(TAG, "get productDTOs: " + products.getProducts().size());
         // TODO add to database and check for duplicates
 
         //IProductRepository<ProductDBO> productRepository = new ProductRepository();

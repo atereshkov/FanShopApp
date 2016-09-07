@@ -14,11 +14,11 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dvo.OrderDVO;
+import com.github.handioq.fanshop.model.dvo.OrderListDVO;
 import com.github.handioq.fanshop.ui.account.adapter.OrderRecyclerAdapter;
 import com.github.handioq.fanshop.util.AuthPreferences;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -87,8 +87,8 @@ public class OrdersFragment extends BaseFragment implements OrderMvp.View {
     }
 
     @Override
-    public void setOrders(List<OrderDVO> orders) {
-        adapter.setOrders(orders);
+    public void setOrders(OrderListDVO orders) {
+        adapter.setOrders(orders.getOrders());
     }
 
     @Override

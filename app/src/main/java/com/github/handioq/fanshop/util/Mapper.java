@@ -2,21 +2,29 @@ package com.github.handioq.fanshop.util;
 
 import com.github.handioq.fanshop.model.dto.AddressDTO;
 import com.github.handioq.fanshop.model.dto.CategoryDTO;
+import com.github.handioq.fanshop.model.dto.CategoryListDTO;
 import com.github.handioq.fanshop.model.dto.ImageDTO;
 import com.github.handioq.fanshop.model.dto.OrderDTO;
 import com.github.handioq.fanshop.model.dto.OrderDetailsDTO;
+import com.github.handioq.fanshop.model.dto.OrderListDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dto.ProductListDTO;
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
+import com.github.handioq.fanshop.model.dto.ReviewListDTO;
 import com.github.handioq.fanshop.model.dto.SizeDTO;
 import com.github.handioq.fanshop.model.dto.SpecificationDTO;
 import com.github.handioq.fanshop.model.dto.UserDTO;
 import com.github.handioq.fanshop.model.dvo.AddressDVO;
 import com.github.handioq.fanshop.model.dvo.CategoryDVO;
+import com.github.handioq.fanshop.model.dvo.CategoryListDVO;
 import com.github.handioq.fanshop.model.dvo.ImageDVO;
 import com.github.handioq.fanshop.model.dvo.OrderDVO;
 import com.github.handioq.fanshop.model.dvo.OrderDetailsDVO;
+import com.github.handioq.fanshop.model.dvo.OrderListDVO;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.model.dvo.ReviewDVO;
+import com.github.handioq.fanshop.model.dvo.ReviewListDVO;
 import com.github.handioq.fanshop.model.dvo.SizeDVO;
 import com.github.handioq.fanshop.model.dvo.SpecificationDVO;
 import com.github.handioq.fanshop.model.dvo.UserDVO;
@@ -25,6 +33,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mapper {
+
+    public static ProductListDVO mapProductListToDvo(ProductListDTO productsDTO) {
+        ProductListDVO productsDVO = new ProductListDVO();
+        for (ProductDTO productDTO : productsDTO.getProducts()) {
+            productsDVO.getProducts().add(mapProductToDvo(productDTO));
+        }
+
+        return productsDVO;
+    }
 
     public static List<ProductDVO> mapProductsToDvo(List<ProductDTO> productsDTO) {
         List<ProductDVO> productsDVO = new ArrayList<>(productsDTO.size());
@@ -69,18 +86,18 @@ public class Mapper {
         return reviewsDVO;
     }
 
-    public static List<ReviewDVO> mapReviewsToDvo(List<ReviewDTO> reviewsDTO) {
-        List<ReviewDVO> reviewsDVO = new ArrayList<>(reviewsDTO.size());
-        for (ReviewDTO reviewDTO : reviewsDTO) {
-            reviewsDVO.add(mapReviewToDvo(reviewDTO));
+    public static ReviewListDVO mapReviewsToDvo(ReviewListDTO reviewsDTO) {
+        ReviewListDVO reviewsDVO = new ReviewListDVO();
+        for (ReviewDTO reviewDTO : reviewsDTO.getReviews()) {
+            reviewsDVO.getReviews().add(mapReviewToDvo(reviewDTO));
         }
         return reviewsDVO;
     }
 
-    public static List<CategoryDVO> mapCategoriesToDvo(List<CategoryDTO> categoriesDTO) {
-        List<CategoryDVO> categoryDVO = new ArrayList<>(categoriesDTO.size());
-        for (CategoryDTO categoryDTO : categoriesDTO) {
-            categoryDVO.add(mapCategoryToDvo(categoryDTO));
+    public static CategoryListDVO mapCategoriesToDvo(CategoryListDTO categoriesDTO) {
+        CategoryListDVO categoryDVO = new CategoryListDVO();
+        for (CategoryDTO categoryDTO : categoriesDTO.getCategories()) {
+            categoryDVO.getCategories().add(mapCategoryToDvo(categoryDTO));
         }
 
         return categoryDVO;
@@ -105,10 +122,15 @@ public class Mapper {
         return new OrderDVO(orderDTO.getId(), orderDTO.getStatus(), mapProductsToDvo(orderDTO.getProducts()));
     }
 
-    public static List<OrderDVO> mapOrdersToDvo(List<OrderDTO> ordersDTO) {
-        List<OrderDVO> ordersDVO = new ArrayList<>(ordersDTO.size());
-        for (OrderDTO orderDTO : ordersDTO) {
-            ordersDVO.add(mapOrderToDvo(orderDTO));
+    public static OrderDetailsDVO mapOrdersDetailsToDvo(OrderDetailsDTO orderDetailsDTO) {
+        return new OrderDetailsDVO(orderDetailsDTO.getId(), orderDetailsDTO.getStatus(),
+                orderDetailsDTO.getDate(), mapProductsToDvo(orderDetailsDTO.getProducts()));
+    }
+
+    public static OrderListDVO mapOrdersToDvo(OrderListDTO ordersDTO) {
+        OrderListDVO ordersDVO = new OrderListDVO();
+        for (OrderDTO orderDTO : ordersDTO.getOrders()) {
+            ordersDVO.getOrders().add(mapOrderToDvo(orderDTO));
         }
         return ordersDVO;
     }
@@ -129,11 +151,6 @@ public class Mapper {
         List<SizeDVO> sizesDVO = mapSizesToDvo(specificationDTO.getSizes());
         return new SpecificationDVO(specificationDTO.getColor(), specificationDTO.getCountry(),
                 specificationDTO.getCode(), specificationDTO.getBrand(), sizesDVO);
-    }
-
-    public static OrderDetailsDVO mapOrdersDetailsToDvo(OrderDetailsDTO orderDetailsDTO) {
-        return new OrderDetailsDVO(orderDetailsDTO.getId(), orderDetailsDTO.getStatus(),
-                orderDetailsDTO.getDate(), mapProductsToDvo(orderDetailsDTO.getProducts()));
     }
 
     public static ProductDTO mapProductToDto(ProductDVO productDVO) {

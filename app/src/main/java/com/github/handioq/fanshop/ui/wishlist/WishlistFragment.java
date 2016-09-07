@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartClickEvent;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
@@ -25,7 +26,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -104,8 +104,8 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
     }
 
     @Override
-    public void setWishlist(List<ProductDVO> products) {
-        adapter.setItems(products);
+    public void setWishlist(ProductListDVO products) {
+        adapter.setItems(products.getProducts());
     }
 
     @Override

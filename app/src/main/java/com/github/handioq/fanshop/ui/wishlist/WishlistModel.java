@@ -2,12 +2,9 @@ package com.github.handioq.fanshop.ui.wishlist;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dto.ProductDTO;
-import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.util.Mapper;
-
-import java.util.List;
 
 import rx.Subscriber;
 
@@ -27,9 +24,9 @@ public class WishlistModel implements WishlistMvp.Model {
 
         networkService.getApiService()
                 .getWishlist(userId)
-                .map(Mapper::mapProductsToDvo)
-                .compose(NetworkService.<List<ProductDVO>>applyScheduler())
-                .subscribe(new Subscriber<List<ProductDVO>>() {
+                .map(Mapper::mapProductListToDvo)
+                .compose(NetworkService.<ProductListDVO>applyScheduler())
+                .subscribe(new Subscriber<ProductListDVO>() {
                     @Override
                     public void onCompleted() {
                         callback.onLoadWishlistCompleted();
@@ -41,7 +38,7 @@ public class WishlistModel implements WishlistMvp.Model {
                     }
 
                     @Override
-                    public void onNext(List<ProductDVO> products) {
+                    public void onNext(ProductListDVO products) {
                         callback.onWishlistLoaded(products);
                     }
                 });

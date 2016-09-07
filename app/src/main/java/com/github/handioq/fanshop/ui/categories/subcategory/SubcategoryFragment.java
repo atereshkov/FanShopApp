@@ -14,10 +14,10 @@ import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dvo.CategoryDVO;
+import com.github.handioq.fanshop.model.dvo.CategoryListDVO;
 import com.github.handioq.fanshop.ui.categories.subcategory.adapter.SubcategoryRecyclerAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -91,8 +91,8 @@ public class SubcategoryFragment extends BaseFragment implements SubcategoryMvp.
     }
 
     @Override
-    public void setCategory(List<CategoryDVO> categories) {
-        adapter.setCategories(categories);
+    public void setCategory(CategoryListDVO categories) {
+        adapter.setCategories(categories.getCategories());
         //getActivity().setTitle(category.getName());
     }
 

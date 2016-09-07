@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartClickEvent;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.ui.catalog.PaginationListener;
@@ -32,7 +33,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -195,13 +195,13 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
     }
 
     @Override
-    public void onSearchSuccess(List<ProductDVO> products) {
-        Timber.i("onSearchSuccess() - products.size: %d, firstPaginationLoad: %b", products.size(), firstPaginationLoad);
+    public void onSearchSuccess(ProductListDVO products) {
+        Timber.i("onSearchSuccess() - products.size: %d, firstPaginationLoad: %b", products.getProducts().size(), firstPaginationLoad);
 
         if (firstPaginationLoad) {
-            adapter.setItems(products); // new search
+            adapter.setItems(products.getProducts()); // new search
         } else {
-            adapter.addItems(products); // add items (pagination load)
+            adapter.addItems(products.getProducts()); // add items (pagination load)
         }
     }
 
