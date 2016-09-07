@@ -1,5 +1,6 @@
 package com.github.handioq.fanshop.net.model;
 
+import com.github.handioq.fanshop.model.dto.AddressDTO;
 import com.google.gson.annotations.SerializedName;
 
 public class RegisterDTO {
@@ -16,27 +17,15 @@ public class RegisterDTO {
     @SerializedName("phone")
     private String phone;
 
-    @SerializedName("street")
-    private String street;
+    @SerializedName("address")
+    private AddressDTO address;
 
-    @SerializedName("city")
-    private String city;
-
-    @SerializedName("country")
-    private String country;
-
-    @SerializedName("zipcode")
-    private long zipcode;
-
-    public RegisterDTO(String mail, String password, String name, String phone, String street, String city, String country, long zipcode) {
+    public RegisterDTO(String mail, String password, String name, String phone, AddressDTO address) {
         this.mail = mail;
         this.password = password;
         this.name = name;
         this.phone = phone;
-        this.street = street;
-        this.city = city;
-        this.country = country;
-        this.zipcode = zipcode;
+        this.address = address;
     }
 
     public String getMail() {
@@ -71,35 +60,11 @@ public class RegisterDTO {
         this.phone = phone;
     }
 
-    public String getStreet() {
-        return street;
+    public AddressDTO getAddress() {
+        return address;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public long getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(long zipcode) {
-        this.zipcode = zipcode;
+    public void setAddress(AddressDTO address) {
+        this.address = address;
     }
 }

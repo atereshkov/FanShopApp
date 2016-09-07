@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
+import com.github.handioq.fanshop.model.dto.AddressDTO;
 import com.github.handioq.fanshop.net.model.RegisterDTO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.util.LocaleUtils;
@@ -91,8 +92,8 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
         long zipcode = Long.valueOf(zipcodeView.getText().toString());
 
         // TODO add validation
-
-        RegisterDTO registerDTO = new RegisterDTO(mail, password, name, contactPhone, street, city, country, zipcode);
+        AddressDTO address = new AddressDTO(street, city, country, zipcode);
+        RegisterDTO registerDTO = new RegisterDTO(mail, password, name, contactPhone, address);
 
         signupPresenter.signupValidate(registerDTO);
     }

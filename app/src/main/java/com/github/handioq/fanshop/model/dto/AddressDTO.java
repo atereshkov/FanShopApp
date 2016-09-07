@@ -16,6 +16,13 @@ public class AddressDTO {
     @SerializedName("zipcode")
     private long zipcode;
 
+    public AddressDTO(String street, String city, String country, long zipcode) {
+        this.street = street;
+        this.city = city;
+        this.country = country;
+        this.zipcode = zipcode;
+    }
+
     public String getStreet() {
         return street;
     }
