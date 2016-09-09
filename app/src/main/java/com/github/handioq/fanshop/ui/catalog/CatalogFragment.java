@@ -68,13 +68,13 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     private final String TAG = "CatalogFragment";
     private static final String CATEGORY_KEY = "category";
-    private int category;
+    private long category;
 
-    public static CatalogFragment newInstance(int categoryId) {
+    public static CatalogFragment newInstance(long categoryId) {
         CatalogFragment fragment = new CatalogFragment();
 
         Bundle args = new Bundle();
-        args.putInt(CATEGORY_KEY, categoryId);
+        args.putLong(CATEGORY_KEY, categoryId);
         fragment.setArguments(args);
 
         return fragment;
@@ -215,7 +215,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
-            category = bundle.getInt(CATEGORY_KEY);
+            category = bundle.getLong(CATEGORY_KEY);
         }
     }
 

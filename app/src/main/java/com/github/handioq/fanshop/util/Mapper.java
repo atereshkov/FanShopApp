@@ -8,6 +8,7 @@ import com.github.handioq.fanshop.model.dto.OrderDTO;
 import com.github.handioq.fanshop.model.dto.OrderDetailsDTO;
 import com.github.handioq.fanshop.model.dto.OrderListDTO;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
+import com.github.handioq.fanshop.model.dto.ProductInfoDTO;
 import com.github.handioq.fanshop.model.dto.ProductListDTO;
 import com.github.handioq.fanshop.model.dto.ReviewDTO;
 import com.github.handioq.fanshop.model.dto.ReviewListDTO;
@@ -67,6 +68,16 @@ public class Mapper {
         return new ProductDVO(productDTO.getId(), productDTO.getName(),
                 productDTO.getPrice(), productDTO.getDescription(),
                 productDTO.isUserFavorite(), productDTO.getImageUrl(),
+                imagesDVO, reviewsDVO);
+    }
+
+    public static ProductDVO mapProductInfoToDvo(ProductInfoDTO productInfoDTO) {
+        List<ImageDVO> imagesDVO = mapImagesList(productInfoDTO.getData());
+        List<ReviewDVO> reviewsDVO = mapReviewsList(productInfoDTO.getData());
+
+        return new ProductDVO(productInfoDTO.getData().getId(), productInfoDTO.getData().getName(),
+                productInfoDTO.getData().getPrice(), productInfoDTO.getData().getDescription(),
+                productInfoDTO.getData().isUserFavorite(), productInfoDTO.getData().getImageUrl(),
                 imagesDVO, reviewsDVO);
     }
 

@@ -3,6 +3,7 @@ package com.github.handioq.fanshop.net;
 import com.github.handioq.fanshop.model.dto.CategoryListDTO;
 import com.github.handioq.fanshop.model.dto.OrderDetailsDTO;
 import com.github.handioq.fanshop.model.dto.OrderListDTO;
+import com.github.handioq.fanshop.model.dto.ProductInfoDTO;
 import com.github.handioq.fanshop.model.dto.ProductListDTO;
 import com.github.handioq.fanshop.model.dto.ReviewListDTO;
 import com.github.handioq.fanshop.model.dto.SpecificationDTO;
@@ -27,20 +28,20 @@ import rx.Observable;
 
 public interface ApiService {
 
-    String LOGIN_URL = "/auth";
-    String SIGNUP_URL = "/auth";
-    String CATALOG_URL = "/catalog";
-    String USER_URL = "/user";
+    String LOGIN_URL = "/api/auth/signin";
+    String SIGNUP_URL = "/api/auth/signup";
+    String CATALOG_URL = "/api/catalog";
+    String USER_URL = "/api/user";
 
-    @POST(LOGIN_URL + "/signin")
+    @POST(LOGIN_URL)
     Observable<AuthResponse> login(@Query("mail") String mail,
                                    @Query("password") String password);
 
-    @POST(SIGNUP_URL + "/signup")
+    @POST(SIGNUP_URL)
     Observable<Response> signup(@Body RegisterDTO registerDTO);
 
     @GET(CATALOG_URL)
-    Observable<ProductListDTO> getProducts(@Query("category") int categoryId,
+    Observable<ProductListDTO> getProducts(@Query("category") long categoryId,
                                            @Query("offset") int offset,
                                            @Query("limit") int limit);
 
@@ -50,7 +51,7 @@ public interface ApiService {
                                       @Query("limit") int limit);
 
     @GET(CATALOG_URL + "/{id}")
-    Observable<ProductDTO> getProduct(@Path("id") int id);
+    Observable<ProductInfoDTO> getProduct(@Path("id") int id);
 
     @GET(CATALOG_URL + "/{id}/reviews")
     Observable<ReviewListDTO> getReviews(@Path("id") int id);
@@ -83,10 +84,10 @@ public interface ApiService {
     Observable<Response> createOrder(@Path("id") int userId,
                                      @Body OrderDTO orderDTO);
 
-    @GET(CATALOG_URL + "/categories")
+    @GET("/api/categories")
     Observable<CategoryListDTO> getCategories();
 
-    @GET(CATALOG_URL + "/categories/{id}")
+    @GET("/api/categories/{id}")
     Observable<CategoryListDTO> getCategory(@Path("id") int catId);
 
     @GET(USER_URL + "/{id}/wishlist")

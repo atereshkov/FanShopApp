@@ -24,7 +24,7 @@ public class ProductModel implements ProductMvp.Model {
 
         networkService.getApiService()
                 .getProduct(id)
-                .map(Mapper::mapProductToDvo)
+                .map(Mapper::mapProductInfoToDvo)
                 .compose(NetworkService.<ProductDVO>applyScheduler())
                 .subscribe(new Subscriber<ProductDVO>() {
                     @Override

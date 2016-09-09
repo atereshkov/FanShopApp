@@ -21,7 +21,7 @@ public class CatalogModel implements CatalogMvp.Model {
     }
 
     @Override
-    public void getProducts(int category, int offset, int count) {
+    public void getProducts(long category, int offset, int count) {
 
         networkService.getApiService()
                 .getProducts(category, offset, count)

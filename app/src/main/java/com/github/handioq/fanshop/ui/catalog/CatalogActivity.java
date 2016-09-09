@@ -31,9 +31,9 @@ public class CatalogActivity extends BaseNavActivity {
     FloatingActionButton fab;
 
     private Menu optionsMenu;
-    private int categoryId;
+    private long categoryId;
 
-    public static Intent makeIntent(Context context, int categoryId){
+    public static Intent makeIntent(Context context, long categoryId){
         Intent intent = new Intent(context, CatalogActivity.class);
         intent.putExtra(KEY_CATEGORY, categoryId);
         return intent;
@@ -46,7 +46,7 @@ public class CatalogActivity extends BaseNavActivity {
         Log.i(TAG, "onCreate");
 
         if (getIntent().hasExtra(KEY_CATEGORY)) {
-            categoryId = getIntent().getExtras().getInt(KEY_CATEGORY);
+            categoryId = getIntent().getExtras().getLong(KEY_CATEGORY);
             //setTitle(category);
         }
 
