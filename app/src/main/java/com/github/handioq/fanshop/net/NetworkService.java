@@ -1,5 +1,6 @@
 package com.github.handioq.fanshop.net;
 
+import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.NetworkConstants;
 
 import java.io.IOException;
@@ -58,8 +59,11 @@ public class NetworkService {
             public Response intercept(Interceptor.Chain chain) throws IOException {
                 Request original = chain.request();
 
-                Request.Builder requestBuilder = original.newBuilder()
-                        .header(HEADER_AUTHORIZATION, "auth-token"); // TODO get token
+                Request.Builder requestBuilder = original.newBuilder();
+                if (AuthPreferences.token != null) {
+                    requestBuilder = original.newBuilder()
+                            .header(HEADER_AUTHORIZATION, AuthPreferences.token);
+                }
 
                 Request request = requestBuilder.build();
                 return chain.proceed(request);

@@ -9,6 +9,7 @@ import timber.log.Timber;
 public class AuthPreferences {
 
     private static final String TAG = "AuthPreferences";
+    public static String token;
 
     private static final String AUTH_PREFERENCES = "auth";
     private static final String TOKEN = "token";
@@ -28,6 +29,7 @@ public class AuthPreferences {
         sharedPreferences.edit()
                 .putString(TOKEN, token)
                 .apply();
+        AuthPreferences.token = token;
     }
 
     public String getUserToken() {
