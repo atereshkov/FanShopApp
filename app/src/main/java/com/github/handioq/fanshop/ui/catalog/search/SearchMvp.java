@@ -5,12 +5,13 @@ import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SearchMvp {
 
     interface Model extends Mvp.Model {
 
-        void search(String query, int offset, int limit);
+        void search(Map<String, String> options, int offset, int limit);
 
         void setCallback(Callback callback);
 
@@ -38,7 +39,7 @@ public interface SearchMvp {
 
     interface Presenter extends Mvp.Presenter<SearchMvp.View> {
 
-        void search(String query, int offset, int limit);
+        void search(Map<String, String> options, int offset, int limit);
 
     }
 }

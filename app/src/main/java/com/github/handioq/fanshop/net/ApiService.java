@@ -17,6 +17,7 @@ import com.github.handioq.fanshop.net.model.AuthResponse;
 import com.github.handioq.fanshop.net.model.Response;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -24,6 +25,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 public interface ApiService {
@@ -46,7 +48,7 @@ public interface ApiService {
                                            @Query("limit") int limit);
 
     @GET(CATALOG_URL + "/search")
-    Observable<ProductListDTO> search(@Query("query") String query,
+    Observable<ProductListDTO> search(@QueryMap Map<String, String> options,
                                       @Query("offset") int offset,
                                       @Query("limit") int limit);
 

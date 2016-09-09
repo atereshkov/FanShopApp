@@ -6,6 +6,8 @@ import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.util.Mapper;
 
+import java.util.Map;
+
 import rx.Subscriber;
 
 public class SearchModel implements SearchMvp.Model {
@@ -20,9 +22,9 @@ public class SearchModel implements SearchMvp.Model {
     }
 
     @Override
-    public void search(String query, int offset, int limit) {
+    public void search(Map<String, String> options, int offset, int limit) {
         networkService.getApiService()
-                .search(query, offset, limit)
+                .search(options, offset, limit)
                 .map(Mapper::mapProductListToDvo)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<ProductListDVO>applyScheduler())
@@ -43,7 +45,7 @@ public class SearchModel implements SearchMvp.Model {
                     }
                 });
 
-        Log.i(TAG, "search() " + query);
+        Log.i(TAG, "search() " + options);
     }
 
     @Override
