@@ -87,13 +87,15 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
     @Override
     public void loginSuccess(AuthResponse authResponse) {
         Log.i(TAG, authResponse.toString());
-        authPreferences.setUserToken(authResponse.getToken());
 
         try {
-            authPreferences.setUserId(JWTUtils.getUserIdByToken(authResponse.getToken()));
+            authPreferences.setUserToken(authResponse.getResponseData().getToken());
+            //authPreferences.setUserId(JWTUtils.getUserIdByToken(authResponse.getToken()));
+            authPreferences.setUserId(authResponse.getResponseData().getUserId());
             Toast.makeText(this, getString(R.string.success_auth), Toast.LENGTH_SHORT).show();
             Timber.i("Auth success, userID: %d", authPreferences.getUserId());
         } catch (Exception e) {
+            Toast.makeText(this, authResponse.getStatus(), Toast.LENGTH_SHORT).show();
             Log.e(TAG, e.toString());
         }
         finish();
@@ -101,7 +103,7 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
     @Override
     public void loginFailure(Throwable e) {
-        Log.i(TAG, e.toString());
+        Log.e(TAG, e.toString());
     }
 
     @Override

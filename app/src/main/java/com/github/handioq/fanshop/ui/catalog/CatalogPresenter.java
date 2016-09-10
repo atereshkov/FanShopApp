@@ -49,7 +49,7 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
 
     @Override
     public void onProductsLoaded(ProductListDVO products) {
-        Log.i(TAG, "get productDTOs: " + products.getProducts().size());
+        Log.i(TAG, "get productDTOs: " + products.getProducts().size()); // check if 0 products
         // TODO add to database and check for duplicates
 
         //IProductRepository<ProductDBO> productRepository = new ProductRepository();

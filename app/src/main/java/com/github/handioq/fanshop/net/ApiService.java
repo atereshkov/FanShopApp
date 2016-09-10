@@ -21,6 +21,9 @@ import java.util.Map;
 
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -30,8 +33,8 @@ import rx.Observable;
 
 public interface ApiService {
 
-    String LOGIN_URL = "/api/auth/signin";
-    String SIGNUP_URL = "/api/auth/signup";
+    String LOGIN_URL = "/api/auth/login";
+    String SIGNUP_URL = "/api/user/signup";
     String CATALOG_URL = "/api/catalog";
     String USER_URL = "/api/user";
 
@@ -47,8 +50,9 @@ public interface ApiService {
                                            @Query("offset") int offset,
                                            @Query("limit") int limit);
 
-    @GET(CATALOG_URL + "/search")
-    Observable<ProductListDTO> search(@QueryMap Map<String, String> options,
+    @FormUrlEncoded
+    @POST("/api/search")
+    Observable<ProductListDTO> search(@FieldMap Map<String, String> options,
                                       @Query("offset") int offset,
                                       @Query("limit") int limit);
 

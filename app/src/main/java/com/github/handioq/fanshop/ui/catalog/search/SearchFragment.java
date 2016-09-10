@@ -44,6 +44,7 @@ import timber.log.Timber;
 public class SearchFragment extends BaseFragment implements SearchMvp.View, SearchView.OnQueryTextListener,
         PaginationListener {
 
+    public static final String QUERY_PRODUCT_NAME = "productName";
     @BindView(R.id.search_progress_bar)
     ProgressBar progressBar;
 
@@ -179,7 +180,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         if (query.isEmpty()) {
             adapter.clearItems();
         } else {
-            optionsMap.put("query", searchQuery);
+            optionsMap.put(QUERY_PRODUCT_NAME, searchQuery);
             adapter.clearItems();
 
             recyclerView.clearOnScrollListeners(); // fix pagination previous count
