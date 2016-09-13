@@ -248,7 +248,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     @Override
     public void onProductAddSuccess(Response response) {
-        Toast.makeText(getContext(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
         // TODO inc badge in toolbar
         setBadgeCount(optionsMenu, "5");
         Log.i(TAG, response.getStatusMessage());

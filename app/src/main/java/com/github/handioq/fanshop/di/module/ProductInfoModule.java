@@ -10,6 +10,8 @@ import com.github.handioq.fanshop.ui.productinfo.ReviewsMvp;
 import com.github.handioq.fanshop.ui.productinfo.ReviewsPresenter;
 import com.github.handioq.fanshop.ui.productinfo.SpecificationMvp;
 import com.github.handioq.fanshop.ui.productinfo.SpecificationPresenter;
+import com.github.handioq.fanshop.ui.productinfo.reviews.iteraction.AddReviewMvp;
+import com.github.handioq.fanshop.ui.productinfo.reviews.iteraction.AddReviewPresenter;
 import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistMvp;
 import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistPresenter;
 import com.github.handioq.fanshop.ui.wishlist.interaction.RemoveWishlistMvp;
@@ -55,5 +57,11 @@ public class ProductInfoModule {
     @PresenterScope
     public RemoveWishlistMvp.Presenter providesRemoveWishlistPresenter(NetworkService networkService) {
         return new RemoveWishlistPresenter(networkService);
+    }
+
+    @Provides
+    @PresenterScope
+    public AddReviewMvp.Presenter providesAddReviewPresenter(NetworkService networkService) {
+        return new AddReviewPresenter(networkService);
     }
 }

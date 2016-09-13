@@ -92,7 +92,7 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View, 
     public void setResponse(Response response) {
         Timber.i("Response: %s - %d", response.getStatusMessage(), response.getStatusCode());
 
-        if (response.getStatusCode() == 201) {
+        if (response.getStatusCode() == 200) {
             CheckoutDialog dialog = CheckoutDialog.newInstance(response.getStatusMessage());
             dialog.attachListenter(this);
             dialog.show(getFragmentManager(), CHECKOUT_DIALOG);
@@ -111,7 +111,8 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View, 
     public void onDialogPositiveClick(DialogFragment dialog) {
         dialog.getDialog().cancel();
         getActivity().finish();
-        startActivity(OrderDetailsActivity.makeIntent(getContext(), 0));
+        Toast.makeText(getContext(), "Not implemented / Navigate to account, then order and pay!", Toast.LENGTH_SHORT).show();
+        //startActivity(OrderDetailsActivity.makeIntent(getContext(), 0));
         // TODO get order id from response
     }
 

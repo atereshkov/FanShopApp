@@ -25,6 +25,7 @@
     <string name="cart_add_item_not_logged">To add an item to shopping cart please log in</string>
     <string name="wishlist_add_item_not_logged">To add an item to wishlist please log in</string>
     <string name="cart_remove_item_not_logged">To remove an item from shopping cart please log in</string>
+    <string name="add_review_not_logged">To add review please log in</string>
     <string name="account_not_logged">You are not logged in</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_up">Sign up</string>
@@ -89,6 +90,8 @@
     <string name="title_activity_categories">Categories</string>
     <string name="title_activity_subcategory">Subcategory</string>
 
+    <string name="add_review_button">Add review</string>
+
     <!-- Strings related to account -->
     <string name="personal_info">Personal info</string>
     <string name="delivery_address">Delivery address</string>
@@ -104,7 +107,7 @@
     <string name="title_activity_wishlist">Wishlist</string>
     <string name="title_activity_order_details">Order Details</string>
 
-    <!-- Order Detauls -->
+    <!-- Order Details -->
     <string name="order_details_info">Order details</string>
     <string name="order_products">Products</string>
     <string name="order_details_id">Order ID: %1d</string>
@@ -127,5 +130,9 @@
     <string name="checkout_pay_info">You need to pay for your order within 24 hours, otherwise it will go into inactive status.</string>
     <string name="checkout_remember_to_pay">Remember to pay for your order within 24 hours!</string>
     <string name="checkout_dialog_title">Information</string>
+    <string name="add_review_dialog_title">Add review</string>
+    <string name="add_review_submit">Submit</string>
+    <string name="add_review_close_dialog">Close</string>
+    <string name="your_message">Your message…</string>
 
 </resources>

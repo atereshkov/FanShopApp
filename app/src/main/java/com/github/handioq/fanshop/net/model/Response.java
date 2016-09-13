@@ -7,7 +7,7 @@ public class Response {
     @SerializedName("code")
     int statusCode;
 
-    @SerializedName("message")
+    @SerializedName("status")
     String statusMessage;
 
     public int getStatusCode() {

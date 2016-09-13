@@ -111,5 +111,10 @@
     <string name="checkout_close_dialog">Закрыть</string>
     <string name="checkout_remember_to_pay">Не забудьте оплатить заказ в течение 24 часов!</string>
     <string name="checkout_dialog_title">Информация</string>
+    <string name="add_review_button">Добавить отзыв</string>
+    <string name="add_review_close_dialog">Закрыть</string>
+    <string name="add_review_dialog_title">Добавить отзыв</string>
+    <string name="add_review_not_logged">Для добавления отзыва необходимо войти в аккаунт</string>
+    <string name="add_review_submit">Подтвердить</string>
 
 </resources>
