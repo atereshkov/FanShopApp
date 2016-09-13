@@ -1,8 +1,10 @@
 package com.github.handioq.fanshop.ui.checkout;
 
-import com.github.handioq.fanshop.model.dto.OrderDTO;
+import com.github.handioq.fanshop.model.dto.ProductIdDTO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.net.model.Response;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -38,12 +40,12 @@ public class CheckoutPresenter implements CheckoutMvp.Presenter, CheckoutMvp.Mod
     }
 
     @Override
-    public void createOrder(int userId, OrderDTO order) {
+    public void createOrder(int userId, List<ProductIdDTO> products) {
         if (view != null) {
             view.showProgress();
         }
 
-        model.createOrder(userId, order);
+        model.createOrder(userId, products);
     }
 
     @Override

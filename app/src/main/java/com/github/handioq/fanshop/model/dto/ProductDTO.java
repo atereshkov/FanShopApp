@@ -15,7 +15,7 @@ public class ProductDTO implements Serializable {
     @SerializedName("user_favorite")
     private boolean isUserFavorite;
 
-    @SerializedName("image_url")
+    @SerializedName("image")
     private String imageUrl;
 
     @SerializedName("images")

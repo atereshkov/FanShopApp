@@ -8,11 +8,21 @@ public class StringUtils {
 
     private static final String SIZES_DELIMITER = " ";
 
-    public static String getStringSizes(List<SizeDVO> sizes) {
+   /* public static String getStringSizes(List<SizeDVO> sizes) {
         StringBuilder sb = new StringBuilder();
 
         for (SizeDVO size : sizes) {
             sb.append(size.getSize()).append(SIZES_DELIMITER);
+        }
+
+        return sb.toString();
+    }*/
+
+    public static String getStringSizes(List<String> sizes) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String size : sizes) {
+            sb.append(size).append(SIZES_DELIMITER);
         }
 
         return sb.toString();

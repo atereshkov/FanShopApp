@@ -19,6 +19,7 @@ import com.github.handioq.fanshop.model.dvo.OrderDetailsDVO;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.ui.account.orders.adapter.OrderDetailsRecyclerAdapter;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,7 +123,7 @@ public class OrderDetailsFragment extends BaseFragment implements OrderDetailsMv
 
         idView.setText(getString(R.string.order_details_id, orderDetails.getId()));
         statusView.setText(getString(R.string.order_details_status, orderDetails.getStatus()));
-        dateView.setText(getString(R.string.order_details_date, orderDetails.getDate()));
+        dateView.setText(getString(R.string.order_details_date, DateUtils.getStringDateFromLong(Long.parseLong(orderDetails.getDate()))));
     }
 
     @Override

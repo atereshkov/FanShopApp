@@ -3,6 +3,7 @@ package com.github.handioq.fanshop.net;
 import com.github.handioq.fanshop.model.dto.CategoryListDTO;
 import com.github.handioq.fanshop.model.dto.OrderDetailsDTO;
 import com.github.handioq.fanshop.model.dto.OrderListDTO;
+import com.github.handioq.fanshop.model.dto.ProductIdDTO;
 import com.github.handioq.fanshop.model.dto.ProductInfoDTO;
 import com.github.handioq.fanshop.model.dto.ProductListDTO;
 import com.github.handioq.fanshop.model.dto.ReviewListDTO;
@@ -18,6 +19,7 @@ import com.github.handioq.fanshop.net.model.Response;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -26,6 +28,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
@@ -71,11 +74,11 @@ public interface ApiService {
     @GET(USER_URL + "/{id}/cart")
     Observable<ProductListDTO> getCart(@Path("id") int userId);
 
-    @POST(USER_URL + "/{id}/cart/{product_id}")
+    @PUT(USER_URL + "/{id}/cart/add/{product_id}")                   // change me on apiary!!!
     Observable<Response> addProductToCart(@Path("id") int userId,
                                           @Path("product_id") int productId);
 
-    @DELETE(USER_URL + "/{id}/cart/{product_id}")
+    @PUT(USER_URL + "/{id}/cart/delete/{product_id}")                // change me on apiary!!!
     Observable<Response> removeProductFromCart(@Path("id") int userId,
                                                @Path("product_id") int productId);
 
@@ -88,7 +91,7 @@ public interface ApiService {
 
     @POST(USER_URL + "/{id}/orders")
     Observable<Response> createOrder(@Path("id") int userId,
-                                     @Body OrderDTO orderDTO);
+                                     @Body List<ProductIdDTO> products);
 
     @GET("/api/categories")
     Observable<CategoryListDTO> getCategories();
@@ -99,11 +102,11 @@ public interface ApiService {
     @GET(USER_URL + "/{id}/wishlist")
     Observable<ProductListDTO> getWishlist(@Path("id") int userId);
 
-    @POST(USER_URL + "/{id}/wishlist/{product_id}")
+    @PUT(USER_URL + "/{id}/wishlist/add/{product_id}")                       // change me on apiary!!!
     Observable<Response> addProductToWishlist(@Path("id") int userId,
                                               @Path("product_id") int productId);
 
-    @DELETE(USER_URL + "/{id}/wishlist/{product_id}")
+    @PUT(USER_URL + "/{id}/wishlist/delete/{product_id}")                    // change me on apiary!!!
     Observable<Response> removeProductFromWishlist(@Path("id") int userId,
                                                    @Path("product_id") int productId);
 }

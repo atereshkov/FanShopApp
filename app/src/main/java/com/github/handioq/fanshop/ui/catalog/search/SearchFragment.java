@@ -44,7 +44,7 @@ import timber.log.Timber;
 public class SearchFragment extends BaseFragment implements SearchMvp.View, SearchView.OnQueryTextListener,
         PaginationListener {
 
-    public static final String QUERY_PRODUCT_NAME = "productName";
+    public static final String QUERY_PRODUCT_NAME = "name";
     @BindView(R.id.search_progress_bar)
     ProgressBar progressBar;
 

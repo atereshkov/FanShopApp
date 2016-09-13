@@ -1,23 +1,26 @@
-package com.github.handioq.fanshop.model.dvo;
+package com.github.handioq.fanshop.model.dto;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecificationDVO {
+public class SpecificationDataDTO {
 
+@SerializedName("color")
     private String color;
-    private String country;
-    private String code;
-    private String brand;
-    private List<String> sizes = new ArrayList<>();
 
-    public SpecificationDVO(String color, String country, String code, String brand, List<String> sizes) {
-        this.color = color;
-        this.country = country;
-        this.code = code;
-        this.brand = brand;
-        this.sizes = sizes;
-    }
+    @SerializedName("country")
+    private String country;
+
+    @SerializedName("code")
+    private String code;
+
+    @SerializedName("brand")
+    private String brand;
+
+    @SerializedName("sizes")
+    private List<String> sizes = new ArrayList<>();
 
     public String getColor() {
         return color;
@@ -61,7 +64,7 @@ public class SpecificationDVO {
 
     @Override
     public String toString() {
-        return "SpecificationDVO{" +
+        return "SpecificationDTO{" +
                 "color='" + color + '\'' +
                 ", country='" + country + '\'' +
                 ", code='" + code + '\'' +
@@ -69,4 +72,5 @@ public class SpecificationDVO {
                 ", sizes=" + sizes +
                 '}';
     }
+
 }

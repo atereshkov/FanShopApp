@@ -90,15 +90,15 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
         try {
             authPreferences.setUserToken(authResponse.getResponseData().getToken());
-            //authPreferences.setUserId(JWTUtils.getUserIdByToken(authResponse.getToken()));
-            authPreferences.setUserId(authResponse.getResponseData().getUserId());
+            authPreferences.setUserId(JWTUtils.getUserIdByToken(authResponse.getResponseData().getToken())); // get userId from JWT
+            //authPreferences.setUserId(authResponse.getResponseData().getUserId()); // without JWT
             Toast.makeText(this, getString(R.string.success_auth), Toast.LENGTH_SHORT).show();
             Timber.i("Auth success, userID: %d", authPreferences.getUserId());
+            finish();
         } catch (Exception e) {
             Toast.makeText(this, authResponse.getStatus(), Toast.LENGTH_SHORT).show();
             Log.e(TAG, e.toString());
         }
-        finish();
     }
 
     @Override

@@ -60,9 +60,9 @@ public class NetworkService {
                 Request original = chain.request();
 
                 Request.Builder requestBuilder = original.newBuilder();
-                if (AuthPreferences.token != null) {
+                if (AuthPreferences.getUserToken() != null) {
                     requestBuilder = original.newBuilder()
-                            .header(HEADER_AUTHORIZATION, AuthPreferences.token);
+                            .header(HEADER_AUTHORIZATION, AuthPreferences.getUserToken());
                 }
 
                 Request request = requestBuilder.build();

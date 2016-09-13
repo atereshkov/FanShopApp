@@ -251,11 +251,12 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         Toast.makeText(getContext(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
         // TODO inc badge in toolbar
         setBadgeCount(optionsMenu, "5");
-        Log.i(TAG, "onProductAddSuccess");
+        Log.i(TAG, response.getStatusMessage());
     }
 
     @Override
     public void onProductAddError(Throwable e) {
+        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         Log.e(TAG, e.toString());
     }
 

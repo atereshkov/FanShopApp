@@ -19,6 +19,7 @@ import com.github.handioq.fanshop.model.dto.PassOrderDTO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.ui.account.orders.OrderDetailsActivity;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.ErrorUtils;
 import com.github.handioq.fanshop.util.dialogs.CheckoutDialog;
 
 import javax.inject.Inject;
@@ -74,7 +75,7 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View, 
         ((FanShopApp) getContext().getApplicationContext()).getCheckoutComponent().inject(this);
 
         checkoutPresenter.setView(this);
-        checkoutPresenter.createOrder(authPreferences.getUserId(), new OrderDTO(passOrder.getProducts()));
+        checkoutPresenter.createOrder(authPreferences.getUserId(), passOrder.getProducts());
     }
 
     @Override
@@ -103,6 +104,7 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View, 
     @Override
     public void onError(Throwable e) {
         Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override

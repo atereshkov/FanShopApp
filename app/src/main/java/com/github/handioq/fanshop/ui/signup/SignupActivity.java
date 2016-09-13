@@ -106,8 +106,12 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
     @Override
     public void signupSuccess(Response response) {
         Log.i(TAG, response.toString());
-        Toast.makeText(this, getResources().getString(R.string.success_register), Toast.LENGTH_SHORT).show();
-        finish();
+        if (response.getStatusCode() == 200) {
+            Toast.makeText(this, getResources().getString(R.string.success_register), Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(this, response.getStatusMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

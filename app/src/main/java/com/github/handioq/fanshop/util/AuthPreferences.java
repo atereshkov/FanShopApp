@@ -17,8 +17,8 @@ public class AuthPreferences {
     private static final String USER_ID = "userId";
     private static final int USER_ID_NULL = -1;
 
-    SharedPreferences sharedPreferences;
-    Context context;
+    private static SharedPreferences sharedPreferences;
+    private Context context;
 
     public AuthPreferences(Context context) {
         this.context = context;
@@ -32,7 +32,7 @@ public class AuthPreferences {
         AuthPreferences.token = token;
     }
 
-    public String getUserToken() {
+    public static String getUserToken() {
         String token = TOKEN_NULL;
 
         if (sharedPreferences.contains(TOKEN)) {

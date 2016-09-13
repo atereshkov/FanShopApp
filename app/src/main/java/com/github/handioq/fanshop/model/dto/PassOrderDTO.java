@@ -6,17 +6,17 @@ import java.util.List;
 
 public class PassOrderDTO implements Serializable {
 
-    private List<ProductDTO> products = new ArrayList<>();
+    private List<ProductIdDTO> products = new ArrayList<>();
 
-    public PassOrderDTO(List<ProductDTO> products) {
+    public PassOrderDTO(List<ProductIdDTO> products) {
         this.products = products;
     }
 
-    public List<ProductDTO> getProducts() {
+    public List<ProductIdDTO> getProducts() {
         return products;
     }
 
-    public void setProducts(List<ProductDTO> products) {
+    public void setProducts(List<ProductIdDTO> products) {
         this.products = products;
     }
 }

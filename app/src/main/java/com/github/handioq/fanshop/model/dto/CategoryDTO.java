@@ -13,7 +13,7 @@ public class CategoryDTO {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("image_url")
+    @SerializedName("image")
     private String imageUrl;
 
     public int getId() {
