@@ -18,19 +18,25 @@ public class OrderDetailsPresenter implements OrderDetailsMvp.Presenter, OrderDe
 
     @Override
     public void onDetailsLoaded(OrderDetailsDVO orderDetails) {
-        view.setOrderDetails(orderDetails);
-        view.hideProgress();
+        if (view != null) {
+            view.setOrderDetails(orderDetails);
+            view.hideProgress();
+        }
     }
 
     @Override
     public void onDetailsLoadError(Throwable error) {
-        view.onError(error);
-        view.hideProgress();
+        if (view != null) {
+            view.onError(error);
+            view.hideProgress();
+        }
     }
 
     @Override
     public void onCompleted() {
-        view.hideProgress();
+        if (view != null) {
+            view.hideProgress();
+        }
     }
 
     @Override

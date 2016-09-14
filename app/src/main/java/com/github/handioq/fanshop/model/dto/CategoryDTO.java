@@ -13,11 +13,8 @@ public class CategoryDTO {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("image_url")
+    @SerializedName("image")
     private String imageUrl;
-
-    @SerializedName("subcategories")
-    private List<SubcategoryDTO> subcategories = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -27,20 +24,12 @@ public class CategoryDTO {
         return name;
     }
 
-    public List<SubcategoryDTO> getSubcategories() {
-        return subcategories;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setSubcategories(List<SubcategoryDTO> subcategories) {
-        this.subcategories = subcategories;
     }
 
     public String getImageUrl() {

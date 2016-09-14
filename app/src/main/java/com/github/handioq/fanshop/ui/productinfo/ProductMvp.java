@@ -7,7 +7,7 @@ public interface ProductMvp {
 
     interface Model extends Mvp.Model {
 
-        void getProduct(int id);
+        void getProduct(int productId, int userId);
 
         void setCallback(Callback callback);
 
@@ -33,7 +33,7 @@ public interface ProductMvp {
 
     interface Presenter extends Mvp.Presenter<ProductMvp.View> {
 
-        void getProduct(int id);
+        void getProduct(int productId, int userId);
 
     }
 }

@@ -9,45 +9,51 @@ import javax.inject.Inject;
 
 public class UserPresenter implements UserMvp.Presenter, UserMvp.Model.Callback{
 
-    private UserMvp.View userView;
-    private UserMvp.Model userModel;
+    private UserMvp.View view;
+    private UserMvp.Model model;
     private NetworkService networkService;
 
     private final static String TAG = "UserPresenter";
 
     @Inject
     public UserPresenter(NetworkService networkService) {
-        userModel = new UserModel(networkService);
-        userModel.setCallback(this);
+        model = new UserModel(networkService);
+        model.setCallback(this);
     }
 
     @Override
     public void getUser(int userId) {
-        if (userView != null) {
-            userView.showProgress();
+        if (view != null) {
+            view.showProgress();
             Log.i(TAG, "showLoadProductsProgress() on userView");
         }
 
-        userModel.gerUser(userId);
+        model.gerUser(userId);
     }
 
     @Override
     public void onUserLoaded(UserDVO user) {
-        userView.setUser(user);
+        if (view != null) {
+            view.setUser(user);
+        }
     }
 
     @Override
     public void onUserLoadError(Throwable error) {
-        userView.onError(error);
+        if (view != null) {
+            view.onError(error);
+        }
     }
 
     @Override
     public void onCompleted() {
-        userView.hideProgress();
+        if (view != null) {
+            view.hideProgress();
+        }
     }
 
     @Override
     public void setView(UserMvp.View view) {
-        this.userView = view;
+        this.view = view;
     }
 }

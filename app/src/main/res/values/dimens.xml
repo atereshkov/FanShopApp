@@ -15,7 +15,7 @@
     <dimen name="card_height">210dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="card_width_category">160dp</dimen>
+    <dimen name="card_width_category">170dp</dimen>
 
     <dimen name="card_corner_radius">4dp</dimen>
     <dimen name="card_elevation">4dp</dimen>
@@ -49,5 +49,9 @@
     <!-- Order -->
     <dimen name="order_info_bottom">6dp</dimen>
     <dimen name="order_products">6dp</dimen>
+
+    <!-- Checkout dialog -->
+    <dimen name="dialog_horizontal_margin">8dp</dimen>
+    <dimen name="dialog_vertical_margin">8dp</dimen>
 
 </resources>

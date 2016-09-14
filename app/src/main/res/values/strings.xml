@@ -25,6 +25,7 @@
     <string name="cart_add_item_not_logged">To add an item to shopping cart please log in</string>
     <string name="wishlist_add_item_not_logged">To add an item to wishlist please log in</string>
     <string name="cart_remove_item_not_logged">To remove an item from shopping cart please log in</string>
+    <string name="add_review_not_logged">To add review please log in</string>
     <string name="account_not_logged">You are not logged in</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_up">Sign up</string>
@@ -52,6 +53,7 @@
     <string name="nav_title_info">Information</string>
     <string name="nav_title_shop">Shop</string>
     <string name="nav_delivery">Delivery</string>
+    <string name="nav_stores">Our stores</string>
     <string name="nav_wishlist">Wishlist</string>
     <string name="nav_categories">Categories</string>
     <!--<string name="nav_">Account</string>-->
@@ -88,6 +90,8 @@
     <string name="title_activity_categories">Categories</string>
     <string name="title_activity_subcategory">Subcategory</string>
 
+    <string name="add_review_button">Add review</string>
+
     <!-- Strings related to account -->
     <string name="personal_info">Personal info</string>
     <string name="delivery_address">Delivery address</string>
@@ -103,11 +107,32 @@
     <string name="title_activity_wishlist">Wishlist</string>
     <string name="title_activity_order_details">Order Details</string>
 
-    <!-- Order Detauls -->
+    <!-- Order Details -->
     <string name="order_details_info">Order details</string>
     <string name="order_products">Products</string>
     <string name="order_details_id">Order ID: %1d</string>
     <string name="order_details_date">Order date: %1s</string>
     <string name="order_details_status">Order status: %1s</string>
+    <string name="title_activity_stores">Map</string>
+
+    <!-- Map stores -->
+    <string name="shop_minsk_1">FanShop Minsk #1 Point</string>
+    <string name="shop_minsk_2">FanShop Minsk #2 Point</string>
+    <string name="shop_minsk_3">FanShop Minsk #3 Point</string>
+    <string name="shop_minsk_1_message">23 Lenina street, 10:00 AM - 08:00 PM</string>
+    <string name="shop_minsk_2_message">112 M. Gorky street, 09:00 AM - 07:00 PM</string>
+    <string name="shop_minsk_3_message">67 Zybitskaya street, 08:00 AM - 06:30 PM</string>
+    <string name="gps_permission_denied">GPS permission was denied</string>
+
+    <!-- Checkout -->
+    <string name="checkout_pay_for_order">Pay now</string>
+    <string name="checkout_close_dialog">OK, close it</string>
+    <string name="checkout_pay_info">You need to pay for your order within 24 hours, otherwise it will go into inactive status.</string>
+    <string name="checkout_remember_to_pay">Remember to pay for your order within 24 hours!</string>
+    <string name="checkout_dialog_title">Information</string>
+    <string name="add_review_dialog_title">Add review</string>
+    <string name="add_review_submit">Submit</string>
+    <string name="add_review_close_dialog">Close</string>
+    <string name="your_message">Your message…</string>
 
 </resources>

@@ -13,9 +13,9 @@ import android.widget.ProgressBar;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
-import com.github.handioq.fanshop.ui.categories.subcategory.adapter.SubcategoryRecyclerAdapter;
 import com.github.handioq.fanshop.model.dvo.CategoryDVO;
-import com.github.handioq.fanshop.model.dvo.SubcategoryDVO;
+import com.github.handioq.fanshop.model.dvo.CategoryListDVO;
+import com.github.handioq.fanshop.ui.categories.subcategory.adapter.SubcategoryRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -63,7 +63,7 @@ public class SubcategoryFragment extends BaseFragment implements SubcategoryMvp.
 
         ((FanShopApp) getContext().getApplicationContext()).getCategoriesComponent().inject(this);
 
-        adapter = new SubcategoryRecyclerAdapter(new ArrayList<SubcategoryDVO>());
+        adapter = new SubcategoryRecyclerAdapter(new ArrayList<CategoryDVO>());
 
         subcategoriesPresenter.setView(this);
         subcategoriesPresenter.getCategory(selectedCategoryId);
@@ -91,9 +91,9 @@ public class SubcategoryFragment extends BaseFragment implements SubcategoryMvp.
     }
 
     @Override
-    public void setCategory(CategoryDVO category) {
-        adapter.setSubcategories(category.getSubcategories());
-        getActivity().setTitle(category.getName());
+    public void setCategory(CategoryListDVO categories) {
+        adapter.setCategories(categories.getCategories());
+        //getActivity().setTitle(category.getName());
     }
 
     @Override

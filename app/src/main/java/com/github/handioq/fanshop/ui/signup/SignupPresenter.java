@@ -9,46 +9,52 @@ import javax.inject.Inject;
 public class SignupPresenter implements SignupMvp.Presenter, SignupModel.Callback {
 
     private NetworkService networkService;
-    private SignupMvp.View signupView;
-    private SignupModel signupModel;
+    private SignupMvp.View view;
+    private SignupModel model;
 
     @Inject
     public SignupPresenter(NetworkService networkService) {
 
-        signupModel = new SignupModel(networkService);
-        signupModel.setCallback(this);
+        model = new SignupModel(networkService);
+        model.setCallback(this);
     }
 
     @Override
     public void signupValidate(RegisterDTO registerDTO) {
 
-        if (signupView != null) {
-            signupView.showProgress();
+        if (view != null) {
+            view.showProgress();
         }
 
-        signupModel.getSignupState(registerDTO);
+        model.getSignupState(registerDTO);
     }
 
     @Override
     public void onSuccess(Response response) {
-        signupView.signupSuccess(response);
-        signupView.hideProgress();
+        if (view != null) {
+            view.signupSuccess(response);
+            view.hideProgress();
+        }
     }
 
     @Override
     public void onError(Throwable error) {
-        signupView.signupFailure(error);
-        signupView.hideProgress();
+        if (view != null) {
+            view.signupFailure(error);
+            view.hideProgress();
+        }
     }
 
     @Override
     public void onCompleted() {
-        signupView.onCompleted();
+        if (view != null) {
+            view.onCompleted();
+        }
     }
 
     @Override
     public void setView(SignupMvp.View signupView) {
-        this.signupView = signupView;
+        this.view = signupView;
     }
 
 }

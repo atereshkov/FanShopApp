@@ -14,18 +14,19 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartClickEvent;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.ui.wishlist.adapter.WishlistRecyclerAdapter;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.ErrorUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -104,8 +105,8 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
     }
 
     @Override
-    public void setWishlist(List<ProductDVO> products) {
-        adapter.setItems(products);
+    public void setWishlist(ProductListDVO products) {
+        adapter.setItems(products.getProducts());
     }
 
     @Override
@@ -115,13 +116,14 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
 
     @Override
     public void onProductAddSuccess(Response response) {
-        Toast.makeText(getContext(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onProductAddSuccess");
     }
 
     @Override
     public void onProductAddError(Throwable e) {
         Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override

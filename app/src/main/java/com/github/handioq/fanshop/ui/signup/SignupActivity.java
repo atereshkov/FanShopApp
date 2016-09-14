@@ -12,8 +12,10 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseActivity;
+import com.github.handioq.fanshop.model.dto.AddressDTO;
 import com.github.handioq.fanshop.net.model.RegisterDTO;
 import com.github.handioq.fanshop.net.model.Response;
+import com.github.handioq.fanshop.util.ErrorUtils;
 import com.github.handioq.fanshop.util.LocaleUtils;
 
 import javax.inject.Inject;
@@ -91,8 +93,8 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
         long zipcode = Long.valueOf(zipcodeView.getText().toString());
 
         // TODO add validation
-
-        RegisterDTO registerDTO = new RegisterDTO(mail, password, name, contactPhone, street, city, country, zipcode);
+        AddressDTO address = new AddressDTO(street, city, country, zipcode);
+        RegisterDTO registerDTO = new RegisterDTO(mail, password, name, contactPhone, address);
 
         signupPresenter.signupValidate(registerDTO);
     }
@@ -105,14 +107,18 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
     @Override
     public void signupSuccess(Response response) {
         Log.i(TAG, response.toString());
-        Toast.makeText(this, getResources().getString(R.string.success_register), Toast.LENGTH_SHORT).show();
-        finish();
+        if (response.getStatusCode() == 200) {
+            Toast.makeText(this, getResources().getString(R.string.success_register), Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(this, response.getStatusMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void signupFailure(Throwable e) {
         Log.i(TAG, e.toString());
-
+        Toast.makeText(this, ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override

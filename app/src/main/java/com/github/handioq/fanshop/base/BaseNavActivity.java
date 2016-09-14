@@ -21,6 +21,7 @@ import com.github.handioq.fanshop.ui.cart.CartActivity;
 import com.github.handioq.fanshop.ui.catalog.CatalogActivity;
 import com.github.handioq.fanshop.ui.categories.CategoriesActivity;
 import com.github.handioq.fanshop.ui.login.LoginActivity;
+import com.github.handioq.fanshop.ui.stores.StoresActivity;
 import com.github.handioq.fanshop.ui.wishlist.WishlistActivity;
 import com.github.handioq.fanshop.util.AuthPreferences;
 
@@ -155,6 +156,10 @@ public abstract class BaseNavActivity extends AppCompatActivity
             }
         } else if (id == R.id.nav_delivery) {
             Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_stores) {
+            Intent intent = new Intent(BaseNavActivity.this, StoresActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
         }
 
         drawer.closeDrawer(GravityCompat.START);

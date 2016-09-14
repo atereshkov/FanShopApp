@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".fanshop.application.FanShopApp"
@@ -64,7 +65,15 @@
         <activity
             android:name=".fanshop.ui.account.orders.OrderDetailsActivity"
             android:label="@string/title_activity_order_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".fanshop.ui.stores.StoresActivity"
+            android:label="@string/title_activity_stores"></activity>
     </application>
 
 </manifest>

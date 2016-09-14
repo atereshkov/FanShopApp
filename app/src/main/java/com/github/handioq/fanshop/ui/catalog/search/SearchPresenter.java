@@ -2,10 +2,10 @@ package com.github.handioq.fanshop.ui.catalog.search;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -24,17 +24,17 @@ public class SearchPresenter implements SearchMvp.Presenter, SearchMvp.Model.Cal
     }
 
     @Override
-    public void search(String query, int offset, int limit) {
+    public void search(Map<String, String> options, int offset, int limit) {
         if (searchView != null) {
             searchView.showSearchProgress();
             Log.i(TAG, "showLoadProductsProgress() on catalogView");
         }
 
-        searchModel.search(query, offset, limit);
+        searchModel.search(options, offset, limit);
     }
 
     @Override
-    public void onSearchSuccess(List<ProductDVO> products) {
+    public void onSearchSuccess(ProductListDVO products) {
         searchView.onSearchSuccess(products);
     }
 

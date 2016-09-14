@@ -30,6 +30,10 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartViewHolder> {
         return items.size();
     }
 
+    public List<ProductDVO> getItems() {
+        return items;
+    }
+
     public void setItems(List<ProductDVO> newItems) {
         this.items = newItems;
         notifyDataSetChanged();

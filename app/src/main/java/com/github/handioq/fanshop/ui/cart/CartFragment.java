@@ -15,17 +15,22 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.dto.PassOrderDTO;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.ui.cart.adapter.CartRecyclerAdapter;
 import com.github.handioq.fanshop.ui.cart.interaction.RemoveFromCartEvent;
 import com.github.handioq.fanshop.ui.cart.interaction.RemoveFromCartMvp;
-import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.ui.checkout.CheckoutActivity;
+import com.github.handioq.fanshop.ui.checkout.CheckoutEvent;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.ErrorUtils;
+import com.github.handioq.fanshop.util.Mapper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -102,6 +107,18 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
     }
 
     @Subscribe
+    public void onCheckoutClickEvent(CheckoutEvent event) {
+        Log.i(TAG, "CheckoutEvent");
+
+        if (adapter.getItemCount() != 0) {
+            PassOrderDTO passOrder = new PassOrderDTO(Mapper.mapProductId(adapter.getItems()));
+            startActivity(CheckoutActivity.makeIntent(getContext(), passOrder));
+        } else {
+            Toast.makeText(getContext(), "Your cart is empty..", Toast.LENGTH_SHORT).show(); // TODO extract resource string
+        }
+    }
+
+    @Subscribe
     public void onRemoveFromCartEvent(RemoveFromCartEvent event) {
         Log.i(TAG, "onRemoveFromCartEvent");
 
@@ -127,19 +144,21 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
     }
 
     @Override
-    public void setCartItems(List<ProductDVO> products) {
-        adapter.setItems(products);
+    public void setCartItems(ProductListDVO products) {
+        adapter.setItems(products.getProducts());
         cartItemsCount.setText(getResources().getQuantityString(R.plurals.cart_items_count, adapter.getItemCount(), adapter.getItemCount()));
     }
 
     @Override
     public void onError(Throwable e) {
         Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onProductRemoveSuccess() {
-        Toast.makeText(getContext(), "Product was removed from user's cart", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Product was removed from user's cart", Toast.LENGTH_SHORT).show(); // TODO extract resource string
+        cartPresenter.getCartItems(authPreferences.getUserId());
     }
 
     @Override

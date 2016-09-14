@@ -3,6 +3,7 @@ package com.github.handioq.fanshop.ui.account;
 import android.util.Log;
 
 import com.github.handioq.fanshop.model.dvo.OrderDVO;
+import com.github.handioq.fanshop.model.dvo.OrderListDVO;
 import com.github.handioq.fanshop.net.NetworkService;
 import com.github.handioq.fanshop.util.Mapper;
 
@@ -26,8 +27,8 @@ public class OrderModel implements OrderMvp.Model {
         networkService.getApiService()
                 .getOrders(userId)
                 .map(Mapper::mapOrdersToDvo)
-                .compose(NetworkService.<List<OrderDVO>>applyScheduler())
-                .subscribe(new Subscriber<List<OrderDVO>>() {
+                .compose(NetworkService.<OrderListDVO>applyScheduler())
+                .subscribe(new Subscriber<OrderListDVO>() {
                     @Override
                     public void onCompleted() {
                         callback.onCompleted();
@@ -39,12 +40,12 @@ public class OrderModel implements OrderMvp.Model {
                     }
 
                     @Override
-                    public void onNext(List<OrderDVO> order) {
+                    public void onNext(OrderListDVO order) {
                         callback.onOrdersLoaded(order);
                     }
                 });
 
-        Log.i(TAG, "getOrders()");
+        Log.i(TAG, "getCategories()");
     }
 
     @Override

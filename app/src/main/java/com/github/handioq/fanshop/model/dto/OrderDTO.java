@@ -16,6 +16,16 @@ public class OrderDTO {
     @SerializedName("products")
     private List<ProductDTO> products = new ArrayList<>();
 
+    public OrderDTO(int id, String status, List<ProductDTO> products) {
+        this.id = id;
+        this.status = status;
+        this.products = products;
+    }
+
+    public OrderDTO(List<ProductDTO> products) {
+        this.products = products;
+    }
+
     public int getId() {
         return id;
     }

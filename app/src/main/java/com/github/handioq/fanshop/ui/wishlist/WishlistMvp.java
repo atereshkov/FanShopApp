@@ -3,6 +3,7 @@ package com.github.handioq.fanshop.ui.wishlist;
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dto.ProductDTO;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface WishlistMvp {
 
         interface Callback {
 
-            void onWishlistLoaded(List<ProductDVO> products);
+            void onWishlistLoaded(ProductListDVO products);
 
             void onWishlistLoadError(Throwable error);
 
@@ -30,7 +31,7 @@ public interface WishlistMvp {
 
         void hideLoadWishlistProgress();
 
-        void setWishlist(List<ProductDVO> products);
+        void setWishlist(ProductListDVO products);
 
         void showLoadWishlistError(Throwable e); // change to showLoadProductsError(int errorCode);
 

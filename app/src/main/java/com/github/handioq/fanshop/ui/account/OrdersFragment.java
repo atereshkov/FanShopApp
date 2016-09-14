@@ -9,16 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dvo.OrderDVO;
+import com.github.handioq.fanshop.model.dvo.OrderListDVO;
 import com.github.handioq.fanshop.ui.account.adapter.OrderRecyclerAdapter;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.ErrorUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -87,12 +89,13 @@ public class OrdersFragment extends BaseFragment implements OrderMvp.View {
     }
 
     @Override
-    public void setOrders(List<OrderDVO> orders) {
-        adapter.setOrders(orders);
+    public void setOrders(OrderListDVO orders) {
+        adapter.setOrders(orders.getOrders());
     }
 
     @Override
     public void onError(Throwable e) {
         Log.i(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 }

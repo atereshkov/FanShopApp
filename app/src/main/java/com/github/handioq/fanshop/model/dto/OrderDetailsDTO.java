@@ -7,25 +7,14 @@ import java.util.List;
 
 public class OrderDetailsDTO {
 
-    @SerializedName("id")
-    private int id;
-
     @SerializedName("status")
     private String status;
 
-    @SerializedName("date")
-    private String date;
+    @SerializedName("code")
+    private int code;
 
-    @SerializedName("products")
-    private List<ProductDTO> products = new ArrayList<>();
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    @SerializedName("data")
+    private OrderDataDTO data;
 
     public String getStatus() {
         return status;
@@ -35,29 +24,28 @@ public class OrderDetailsDTO {
         this.status = status;
     }
 
-    public String getDate() {
-        return date;
+    public int getCode() {
+        return code;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public List<ProductDTO> getProducts() {
-        return products;
+    public OrderDataDTO getData() {
+        return data;
     }
 
-    public void setProducts(List<ProductDTO> products) {
-        this.products = products;
+    public void setData(OrderDataDTO data) {
+        this.data = data;
     }
 
     @Override
     public String toString() {
-        return "OrderDetailsDTO{" +
-                "id=" + id +
-                ", status='" + status + '\'' +
-                ", date='" + date + '\'' +
-                ", products=" + products +
+        return "OrderInfoDTO{" +
+                "status='" + status + '\'' +
+                ", code=" + code +
+                ", data=" + data +
                 '}';
     }
 }

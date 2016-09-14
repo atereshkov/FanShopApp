@@ -31,11 +31,11 @@ public class CatalogActivity extends BaseNavActivity {
     FloatingActionButton fab;
 
     private Menu optionsMenu;
-    private String category;
+    private long categoryId;
 
-    public static Intent makeIntent(Context context, String category){
+    public static Intent makeIntent(Context context, long categoryId){
         Intent intent = new Intent(context, CatalogActivity.class);
-        intent.putExtra(KEY_CATEGORY, category);
+        intent.putExtra(KEY_CATEGORY, categoryId);
         return intent;
     }
 
@@ -46,14 +46,14 @@ public class CatalogActivity extends BaseNavActivity {
         Log.i(TAG, "onCreate");
 
         if (getIntent().hasExtra(KEY_CATEGORY)) {
-            category = getIntent().getExtras().getString(KEY_CATEGORY);
-            setTitle(category);
+            categoryId = getIntent().getExtras().getLong(KEY_CATEGORY);
+            //setTitle(category);
         }
 
         if (getSupportFragmentManager().findFragmentByTag(CATALOG_FRAGMENT_TAG) == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content, CatalogFragment.newInstance(category), CATALOG_FRAGMENT_TAG)
+                    .replace(R.id.content, CatalogFragment.newInstance(categoryId), CATALOG_FRAGMENT_TAG)
                     .commit();
 
             Log.i(TAG, "create new CatalogFragment");

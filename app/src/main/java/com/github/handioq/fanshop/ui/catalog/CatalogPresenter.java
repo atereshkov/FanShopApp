@@ -2,10 +2,8 @@ package com.github.handioq.fanshop.ui.catalog;
 
 import android.util.Log;
 
-import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 import com.github.handioq.fanshop.net.NetworkService;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,7 +27,7 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
     }
 
     @Override
-    public void getProducts(String category, int offset, int limit) {
+    public void getProducts(long category, int offset, int limit) {
         if (catalogView != null) {
             catalogView.showLoadProductsProgress();
             Log.i(TAG, "showLoadProductsProgress() on catalogView");
@@ -50,21 +48,25 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
     }
 
     @Override
-    public void onProductsLoaded(List<ProductDVO> products) {
-        Log.i(TAG, "get productDTOs: " + products.size());
+    public void onProductsLoaded(ProductListDVO products) {
+        Log.i(TAG, "get productDTOs: " + products.getProducts().size()); // check if 0 products
         // TODO add to database and check for duplicates
 
         //IProductRepository<ProductDBO> productRepository = new ProductRepository();
         //productRepository.addProduct(, this); productDBO? product?
 
-        catalogView.setProducts(products);
-        catalogView.hideLoadProductsProgress();
+        if (catalogView != null) {
+            catalogView.setProducts(products);
+            catalogView.hideLoadProductsProgress();
+        }
     }
 
     @Override
     public void onProductsLoadError(Throwable error) {
-        catalogView.showLoadProductsError(error);
-        catalogView.hideLoadProductsProgress();
+        if (catalogView != null) {
+            catalogView.showLoadProductsError(error);
+            catalogView.hideLoadProductsProgress();
+        }
         Log.i(TAG, "onError");
     }
 }

@@ -1,9 +1,7 @@
 package com.github.handioq.fanshop.ui.cart;
 
 import com.github.handioq.fanshop.base.Mvp;
-import com.github.handioq.fanshop.model.dvo.ProductDVO;
-
-import java.util.List;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
 
 public interface CartMvp {
 
@@ -15,7 +13,7 @@ public interface CartMvp {
 
         interface Callback {
 
-            void onProductsLoaded(List<ProductDVO> productDTOs);
+            void onProductsLoaded(ProductListDVO products);
 
             void onProductsLoadError(Throwable error);
 
@@ -29,7 +27,7 @@ public interface CartMvp {
 
         void hideProgress();
 
-        void setCartItems(List<ProductDVO> products);
+        void setCartItems(ProductListDVO products);
 
         void onError(Throwable e);
 

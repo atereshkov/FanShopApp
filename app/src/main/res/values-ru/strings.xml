@@ -97,5 +97,24 @@
     <string name="order_details_status">Статус заказа: %1s</string>
     <string name="order_products">Товары</string>
     <string name="title_activity_order_details">Информация по заказу</string>
+    <string name="nav_stores">Наши магазины</string>
+    <string name="title_activity_stores">Магазины на карте</string>
+    <string name="shop_minsk_1">FanShop г. Минск Магазин 1</string>
+    <string name="shop_minsk_2">FanShop г. Минск Магазин 2</string>
+    <string name="shop_minsk_3">FanShop г. Минск Магазин 3</string>
+    <string name="shop_minsk_1_message">ул. Ленина 23, Время работы: 10:00 - 20:00</string>
+    <string name="shop_minsk_2_message">ул. М. Горького 112, Время работы: 09:00 - 19:00</string>
+    <string name="shop_minsk_3_message">ул. Зыбицкая 67, Время работы: 08:00 - 18:30</string>
+    <string name="gps_permission_denied">Нет GPS разрешения</string>
+    <string name="checkout_pay_info">Вам необходимо оплатить ваш заказ в течение 24 часов, иначе он перейдет в статус неактивен.</string>
+    <string name="checkout_pay_for_order">Оплатить сейчас</string>
+    <string name="checkout_close_dialog">Закрыть</string>
+    <string name="checkout_remember_to_pay">Не забудьте оплатить заказ в течение 24 часов!</string>
+    <string name="checkout_dialog_title">Информация</string>
+    <string name="add_review_button">Добавить отзыв</string>
+    <string name="add_review_close_dialog">Закрыть</string>
+    <string name="add_review_dialog_title">Добавить отзыв</string>
+    <string name="add_review_not_logged">Для добавления отзыва необходимо войти в аккаунт</string>
+    <string name="add_review_submit">Подтвердить</string>
 
 </resources>

@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class Response {
 
-    @SerializedName("status_code")
+    @SerializedName("code")
     int statusCode;
 
-    @SerializedName("status_message")
+    @SerializedName("status")
     String statusMessage;
 
     public int getStatusCode() {
@@ -30,7 +30,7 @@ public class Response {
     public String toString() {
         return "Response{" +
                 "statusCode=" + statusCode +
-                ", token='" + statusMessage + '\'' +
+                ", message ='" + statusMessage + '\'' +
                 '}';
     }
 }

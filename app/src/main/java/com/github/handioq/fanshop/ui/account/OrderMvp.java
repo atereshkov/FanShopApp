@@ -2,6 +2,7 @@ package com.github.handioq.fanshop.ui.account;
 
 import com.github.handioq.fanshop.base.Mvp;
 import com.github.handioq.fanshop.model.dvo.OrderDVO;
+import com.github.handioq.fanshop.model.dvo.OrderListDVO;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface OrderMvp {
 
         interface Callback {
 
-            void onOrdersLoaded(List<OrderDVO> orders);
+            void onOrdersLoaded(OrderListDVO orders);
 
             void onOrdersLoadError(Throwable error);
 
@@ -29,7 +30,7 @@ public interface OrderMvp {
 
         void hideProgress();
 
-        void setOrders(List<OrderDVO> orders);
+        void setOrders(OrderListDVO orders);
 
         void onError(Throwable e);
 

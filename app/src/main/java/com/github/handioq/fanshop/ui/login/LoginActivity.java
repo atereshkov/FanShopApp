@@ -16,6 +16,7 @@ import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.net.model.AuthResponse;
 import com.github.handioq.fanshop.ui.signup.SignupActivity;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.ErrorUtils;
 import com.github.handioq.fanshop.util.JWTUtils;
 import com.github.handioq.fanshop.util.Validation;
 
@@ -87,21 +88,24 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
     @Override
     public void loginSuccess(AuthResponse authResponse) {
         Log.i(TAG, authResponse.toString());
-        authPreferences.setUserToken(authResponse.getToken());
 
         try {
-            authPreferences.setUserId(JWTUtils.getUserIdByToken(authResponse.getToken()));
+            authPreferences.setUserToken(authResponse.getResponseData().getToken());
+            authPreferences.setUserId(JWTUtils.getUserIdByToken(authResponse.getResponseData().getToken())); // get userId from JWT
+            //authPreferences.setUserId(authResponse.getResponseData().getUserId()); // without JWT
             Toast.makeText(this, getString(R.string.success_auth), Toast.LENGTH_SHORT).show();
             Timber.i("Auth success, userID: %d", authPreferences.getUserId());
+            finish();
         } catch (Exception e) {
+            Toast.makeText(this, authResponse.getStatus(), Toast.LENGTH_SHORT).show();
             Log.e(TAG, e.toString());
         }
-        finish();
     }
 
     @Override
     public void loginFailure(Throwable e) {
-        Log.i(TAG, e.toString());
+        Log.e(TAG, e.toString());
+        Toast.makeText(this, ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override

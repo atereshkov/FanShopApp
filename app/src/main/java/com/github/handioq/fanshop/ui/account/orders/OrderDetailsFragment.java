@@ -8,17 +8,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dvo.OrderDetailsDVO;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.ui.account.orders.adapter.OrderDetailsRecyclerAdapter;
+import com.github.handioq.fanshop.ui.account.orders.iteraction.PayMvp;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.DateUtils;
+import com.github.handioq.fanshop.util.ErrorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +32,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class OrderDetailsFragment extends BaseFragment implements OrderDetailsMvp.View {
+public class OrderDetailsFragment extends BaseFragment implements OrderDetailsMvp.View, PayMvp.View {
 
     private final static String TAG = "OrderDetailsFragment";
     private final static String ARGUMENT_ORDER_ID = "order_id";
+    private static final String AWAITING_PAYMENT_STATUS = "AWAIT";
 
     private LinearLayoutManager layoutManager;
     private OrderDetailsRecyclerAdapter adapter;
@@ -54,8 +62,14 @@ public class OrderDetailsFragment extends BaseFragment implements OrderDetailsMv
     @BindView(R.id.order_details_form)
     LinearLayout orderDetailsView;
 
+    @BindView(R.id.pay_button)
+    Button payButtonView; // TODO make icon
+
     @Inject
     OrderDetailsMvp.Presenter orderDetailsPresenter;
+
+    @Inject
+    PayMvp.Presenter payPresenter;
 
     @Inject
     AuthPreferences authPreferences;
@@ -90,17 +104,33 @@ public class OrderDetailsFragment extends BaseFragment implements OrderDetailsMv
 
         ((FanShopApp) getContext().getApplicationContext()).getAccountComponent().inject(this);
 
+        payPresenter.setView(this);
         orderDetailsPresenter.setView(this);
         orderDetailsPresenter.getOrderDetails(authPreferences.getUserId(), orderId);
     }
 
-    private void initRecyclerView(List<ProductDVO> products)
-    {
+    private void initRecyclerView(List<ProductDVO> products) {
         adapter = new OrderDetailsRecyclerAdapter(products);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onPaySuccess(Response response) {
+        Log.i(TAG, response.getStatusMessage());
+        if (response.getStatusCode() == 200) {
+            Toast.makeText(getContext(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Error: " + response.getStatusMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onPayError(Throwable e) {
+        Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -118,11 +148,25 @@ public class OrderDetailsFragment extends BaseFragment implements OrderDetailsMv
     @Override
     public void setOrderDetails(OrderDetailsDVO orderDetails) {
         initRecyclerView(orderDetails.getProducts());
+        initPayButton(orderDetails);
         getActivity().setTitle(getString(R.string.order_details_id, orderDetails.getId()));
 
         idView.setText(getString(R.string.order_details_id, orderDetails.getId()));
         statusView.setText(getString(R.string.order_details_status, orderDetails.getStatus()));
-        dateView.setText(getString(R.string.order_details_date, orderDetails.getDate()));
+        dateView.setText(getString(R.string.order_details_date, DateUtils.getStringDateFromLong(Long.parseLong(orderDetails.getDate()))));
+    }
+
+    @OnClick(R.id.pay_button)
+    public void payClick() {
+        payPresenter.paymentForOrder(authPreferences.getUserId(), orderId);
+    }
+
+    private void initPayButton(OrderDetailsDVO orderDetails) {
+        if (orderDetails.getStatus().equals(AWAITING_PAYMENT_STATUS)) {
+            payButtonView.setVisibility(View.VISIBLE);
+        } else {
+            payButtonView.setVisibility(View.GONE);
+        }
     }
 
     @Override

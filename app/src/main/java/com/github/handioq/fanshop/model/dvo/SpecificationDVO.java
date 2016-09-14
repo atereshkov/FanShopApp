@@ -9,9 +9,9 @@ public class SpecificationDVO {
     private String country;
     private String code;
     private String brand;
-    private List<SizeDVO> sizes = new ArrayList<>();
+    private List<String> sizes = new ArrayList<>();
 
-    public SpecificationDVO(String color, String country, String code, String brand, List<SizeDVO> sizes) {
+    public SpecificationDVO(String color, String country, String code, String brand, List<String> sizes) {
         this.color = color;
         this.country = country;
         this.code = code;
@@ -51,11 +51,11 @@ public class SpecificationDVO {
         this.brand = brand;
     }
 
-    public List<SizeDVO> getSizes() {
+    public List<String> getSizes() {
         return sizes;
     }
 
-    public void setSizes(List<SizeDVO> sizes) {
+    public void setSizes(List<String> sizes) {
         this.sizes = sizes;
     }
 

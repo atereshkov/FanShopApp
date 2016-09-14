@@ -8,10 +8,12 @@ import com.github.handioq.fanshop.di.component.AccountComponent;
 import com.github.handioq.fanshop.di.component.CartComponent;
 import com.github.handioq.fanshop.di.component.CatalogComponent;
 import com.github.handioq.fanshop.di.component.CategoriesComponent;
+import com.github.handioq.fanshop.di.component.CheckoutComponent;
 import com.github.handioq.fanshop.di.component.DaggerAccountComponent;
 import com.github.handioq.fanshop.di.component.DaggerCartComponent;
 import com.github.handioq.fanshop.di.component.DaggerCatalogComponent;
 import com.github.handioq.fanshop.di.component.DaggerCategoriesComponent;
+import com.github.handioq.fanshop.di.component.DaggerCheckoutComponent;
 import com.github.handioq.fanshop.di.component.DaggerDatabaseComponent;
 import com.github.handioq.fanshop.di.component.DaggerLoginComponent;
 import com.github.handioq.fanshop.di.component.DaggerNetComponent;
@@ -44,6 +46,7 @@ public class FanShopApp extends Application {
     private AccountComponent accountComponent;
     private CategoriesComponent categoriesComponent;
     private WishlistComponent wishlistComponent;
+    private CheckoutComponent checkoutComponent;
 
     @Override
     public void onCreate() {
@@ -88,6 +91,10 @@ public class FanShopApp extends Application {
                 .build();
 
         wishlistComponent = DaggerWishlistComponent.builder()
+                .netComponent(netComponent)
+                .build();
+
+        checkoutComponent = DaggerCheckoutComponent.builder()
                 .netComponent(netComponent)
                 .build();
 
@@ -139,4 +146,10 @@ public class FanShopApp extends Application {
     public WishlistComponent getWishlistComponent() {
         return wishlistComponent;
     }
+
+    public CheckoutComponent getCheckoutComponent() {
+        return checkoutComponent;
+    }
+
+
 }

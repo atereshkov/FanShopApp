@@ -20,14 +20,15 @@ import android.widget.Toast;
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
 import com.github.handioq.fanshop.base.BaseFragment;
+import com.github.handioq.fanshop.model.dvo.ProductDVO;
+import com.github.handioq.fanshop.model.dvo.ProductListDVO;
+import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.ui.cart.CartActivity;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartClickEvent;
 import com.github.handioq.fanshop.ui.cart.interaction.AddToCartMvp;
 import com.github.handioq.fanshop.ui.catalog.adapter.CatalogRecyclerAdapter;
 import com.github.handioq.fanshop.ui.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.ui.catalog.search.SearchActivity;
-import com.github.handioq.fanshop.model.dvo.ProductDVO;
-import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.BadgeDrawable;
 import com.github.handioq.fanshop.util.ErrorUtils;
@@ -37,7 +38,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -68,13 +68,13 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     private final String TAG = "CatalogFragment";
     private static final String CATEGORY_KEY = "category";
-    private String category;
+    private long category;
 
-    public static CatalogFragment newInstance(String category) {
+    public static CatalogFragment newInstance(long categoryId) {
         CatalogFragment fragment = new CatalogFragment();
 
         Bundle args = new Bundle();
-        args.putString(CATEGORY_KEY, category);
+        args.putLong(CATEGORY_KEY, categoryId);
         fragment.setArguments(args);
 
         return fragment;
@@ -215,7 +215,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
-            category = bundle.getString("category");
+            category = bundle.getLong(CATEGORY_KEY);
         }
     }
 
@@ -236,8 +236,8 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     }
 
     @Override
-    public void setProducts(List<ProductDVO> products) {
-        adapter.addItems(products);
+    public void setProducts(ProductListDVO products) {
+        adapter.addItems(products.getProducts());
     }
 
     @Override
@@ -248,14 +248,15 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     @Override
     public void onProductAddSuccess(Response response) {
-        Toast.makeText(getContext(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
         // TODO inc badge in toolbar
         setBadgeCount(optionsMenu, "5");
-        Log.i(TAG, "onProductAddSuccess");
+        Log.i(TAG, response.getStatusMessage());
     }
 
     @Override
     public void onProductAddError(Throwable e) {
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
         Log.e(TAG, e.toString());
     }
 

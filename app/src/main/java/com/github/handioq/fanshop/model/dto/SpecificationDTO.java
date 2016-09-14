@@ -7,69 +7,45 @@ import java.util.List;
 
 public class SpecificationDTO {
 
-    @SerializedName("color")
-    private String color;
-
-    @SerializedName("country")
-    private String country;
+    @SerializedName("status")
+    private String status;
 
     @SerializedName("code")
-    private String code;
+    private int code;
 
-    @SerializedName("brand")
-    private String brand;
+    @SerializedName("data")
+    private SpecificationDataDTO data;
 
-    @SerializedName("sizes")
-    private List<SizeDTO> sizes = new ArrayList<>();
-
-    public String getColor() {
-        return color;
+    public String getStatus() {
+        return status;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
-    public String getBrand() {
-        return brand;
+    public SpecificationDataDTO getData() {
+        return data;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public List<SizeDTO> getSizes() {
-        return sizes;
-    }
-
-    public void setSizes(List<SizeDTO> sizes) {
-        this.sizes = sizes;
+    public void setData(SpecificationDataDTO data) {
+        this.data = data;
     }
 
     @Override
     public String toString() {
         return "SpecificationDTO{" +
-                "color='" + color + '\'' +
-                ", country='" + country + '\'' +
-                ", code='" + code + '\'' +
-                ", brand='" + brand + '\'' +
-                ", sizes=" + sizes +
+                "status='" + status + '\'' +
+                ", code=" + code +
+                ", data=" + data +
                 '}';
     }
 }

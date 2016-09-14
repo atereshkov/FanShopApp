@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseNavActivity;
+import com.github.handioq.fanshop.ui.checkout.CheckoutEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 
@@ -39,7 +42,8 @@ public class CartActivity extends BaseNavActivity {
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(CartActivity.this, "Not implemented", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CartActivity.this, "Not implemented", Toast.LENGTH_SHORT).show();
+                EventBus.getDefault().post(new CheckoutEvent());
             }
         });
     }

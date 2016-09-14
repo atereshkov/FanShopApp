@@ -4,81 +4,45 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserDTO {
 
-    @SerializedName("id")
-    private int id;
+    @SerializedName("status")
+    private String status;
 
-    @SerializedName("name")
-    private String name;
+    @SerializedName("code")
+    private int code;
 
-    @SerializedName("amount_spent")
-    private double amountSpent;
+    @SerializedName("data")
+    private UserDataDTO data;
 
-    @SerializedName("email")
-    private String email;
-
-    @SerializedName("phone")
-    private String phone;
-
-    @SerializedName("address")
-    private AddressDTO address;
-
-    public String getEmail() {
-        return email;
+    public String getStatus() {
+        return status;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getPhone() {
-        return phone;
+    public int getCode() {
+        return code;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public int getId() {
-        return id;
+    public UserDataDTO getData() {
+        return data;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public double getAmountSpent() {
-        return amountSpent;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAmountSpent(double amountSpent) {
-        this.amountSpent = amountSpent;
-    }
-
-    public AddressDTO getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressDTO address) {
-        this.address = address;
+    public void setData(UserDataDTO data) {
+        this.data = data;
     }
 
     @Override
     public String toString() {
         return "UserDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", amountSpent=" + amountSpent +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address=" + address +
+                "status='" + status + '\'' +
+                ", code=" + code +
+                ", data=" + data +
                 '}';
     }
 }
