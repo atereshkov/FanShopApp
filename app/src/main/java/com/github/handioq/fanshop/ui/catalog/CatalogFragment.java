@@ -256,7 +256,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     @Override
     public void onProductAddError(Throwable e) {
-        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
         Log.e(TAG, e.toString());
     }
 

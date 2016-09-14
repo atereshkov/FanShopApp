@@ -33,6 +33,7 @@ import com.github.handioq.fanshop.ui.productinfo.slider.ImageSliderAdapter;
 import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistMvp;
 import com.github.handioq.fanshop.ui.wishlist.interaction.RemoveWishlistMvp;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.ErrorUtils;
 
 import java.util.List;
 import java.util.Vector;
@@ -144,7 +145,7 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
         addToCartPresenter.setView(this);
         addToWishlistPresenter.setView(this);
         productInfoPresenter.setView(this);
-        productInfoPresenter.getProduct(selectedItemId);
+        productInfoPresenter.getProduct(selectedItemId, authPreferences.getUserId());
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -264,12 +265,18 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
 
     @Override
     public void onProductAddSuccess(Response response) {
-        Toast.makeText(getContext(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
+        Log.i(TAG, response.getStatusMessage());
+        if (response.getStatusCode() == 200) {
+            Toast.makeText(getContext(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Some error: " + response.getStatusMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onProductAddError(Throwable e) {
         Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override

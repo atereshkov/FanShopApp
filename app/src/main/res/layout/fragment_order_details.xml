@@ -10,13 +10,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".fanshop.ui.account.categories.OrderDetailsActivity">
+    tools:context=".fanshop.ui.account.orders.OrderDetailsActivity">
 
     <LinearLayout
         android:id="@+id/order_details_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/order_info"
@@ -43,6 +43,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/order_details_date" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay"
+            android:id="@+id/pay_button"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/order_products"

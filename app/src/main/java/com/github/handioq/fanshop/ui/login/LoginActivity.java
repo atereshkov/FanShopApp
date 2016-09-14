@@ -16,6 +16,7 @@ import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.net.model.AuthResponse;
 import com.github.handioq.fanshop.ui.signup.SignupActivity;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.ErrorUtils;
 import com.github.handioq.fanshop.util.JWTUtils;
 import com.github.handioq.fanshop.util.Validation;
 
@@ -104,6 +105,7 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
     @Override
     public void loginFailure(Throwable e) {
         Log.e(TAG, e.toString());
+        Toast.makeText(this, ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override

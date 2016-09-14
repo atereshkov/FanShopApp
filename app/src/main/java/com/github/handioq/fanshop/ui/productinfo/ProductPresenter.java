@@ -11,43 +11,48 @@ import timber.log.Timber;
 
 public class ProductPresenter implements ProductMvp.Presenter, ProductModel.Callback {
 
-    private ProductMvp.View productInfoView;
-    private ProductMvp.Model productInfoModel;
+    private ProductMvp.View view;
+    private ProductMvp.Model model;
 
     private final static String TAG = "ProductPresenter";
 
     @Inject
     public ProductPresenter(NetworkService networkService) {
-        productInfoModel = new ProductModel(networkService);
-        productInfoModel.setCallback(this);
+        model = new ProductModel(networkService);
+        model.setCallback(this);
     }
 
     @Override
     public void setView(ProductMvp.View productInfoView) {
-        this.productInfoView = productInfoView;
+        this.view = productInfoView;
     }
 
     @Override
-    public void getProduct(int id) {
-        if (productInfoView != null) {
-            productInfoView.showProgress();
+    public void getProduct(int productId, int userId) {
+        if (view != null) {
+            view.showProgress();
             Log.i(TAG, "showLoadProductsProgress() on productInfoView");
         }
 
-        productInfoModel.getProduct(id);
+        model.getProduct(productId, userId);
     }
 
     @Override
     public void onProductLoaded(ProductDVO product) {
-        productInfoView.setProduct(product);
-        productInfoView.hideProgress();
+        if (view != null) {
+            view.setProduct(product);
+            view.hideProgress();
+        }
+
         Timber.i("onProductLoaded: %s, id: %d", product.getName(), product.getId());
     }
 
     @Override
     public void onProductLoadError(Throwable error) {
         Log.e(TAG, error.toString());
-        productInfoView.onError(error);
-        productInfoView.hideProgress();
+        if (view != null) {
+            view.onError(error);
+            view.hideProgress();
+        }
     }
 }

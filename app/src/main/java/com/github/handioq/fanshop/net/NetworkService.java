@@ -5,6 +5,7 @@ import com.github.handioq.fanshop.util.NetworkConstants;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -23,6 +24,8 @@ public class NetworkService {
     private static final String USER_AGENT_HEADER = "Retrofit-FanShop-App";
     private static final String HEADER_USER_AGENT = "User-Agent";
     private static final String HEADER_AUTHORIZATION = "Authorization";
+    public static final int READ_TIMEOUT = 60;
+    public static final int CONNECT_TIMEOUT = 60;
 
     private ApiService apiService;
     private final static Scheduler NETWORK_SINGLE
@@ -51,7 +54,10 @@ public class NetworkService {
             }
         };
 
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+                .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS);
+
         builder.interceptors().add(interceptor);
 
         builder.interceptors().add(new Interceptor() {

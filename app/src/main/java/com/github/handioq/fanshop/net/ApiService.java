@@ -59,8 +59,9 @@ public interface ApiService {
                                       @Query("offset") int offset,
                                       @Query("limit") int limit);
 
-    @GET(CATALOG_URL + "/{id}")
-    Observable<ProductInfoDTO> getProduct(@Path("id") int id);
+    @GET(CATALOG_URL + "/{id}/user/{user_id}")
+    Observable<ProductInfoDTO> getProduct(@Path("id") int productId,
+                                          @Path("user_id") int userId);
 
     @GET(CATALOG_URL + "/{id}/reviews")
     Observable<ReviewListDTO> getReviews(@Path("id") int id);

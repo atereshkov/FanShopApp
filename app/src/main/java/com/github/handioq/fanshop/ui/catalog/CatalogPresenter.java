@@ -55,14 +55,18 @@ public class CatalogPresenter implements CatalogMvp.Presenter, CatalogMvp.Model.
         //IProductRepository<ProductDBO> productRepository = new ProductRepository();
         //productRepository.addProduct(, this); productDBO? product?
 
-        catalogView.setProducts(products);
-        catalogView.hideLoadProductsProgress();
+        if (catalogView != null) {
+            catalogView.setProducts(products);
+            catalogView.hideLoadProductsProgress();
+        }
     }
 
     @Override
     public void onProductsLoadError(Throwable error) {
-        catalogView.showLoadProductsError(error);
-        catalogView.hideLoadProductsProgress();
+        if (catalogView != null) {
+            catalogView.showLoadProductsError(error);
+            catalogView.hideLoadProductsProgress();
+        }
         Log.i(TAG, "onError");
     }
 }

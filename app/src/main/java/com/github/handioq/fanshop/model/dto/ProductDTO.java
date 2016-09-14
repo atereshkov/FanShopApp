@@ -12,7 +12,7 @@ public class ProductDTO implements Serializable {
     private double price;
     private String description;
 
-    @SerializedName("user_favorite")
+    @SerializedName("favorite")
     private boolean isUserFavorite;
 
     @SerializedName("image")

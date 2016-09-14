@@ -28,12 +28,16 @@ public class CartPresenter implements CartMvp.Presenter, CartMvp.Model.Callback 
 
     @Override
     public void onProductsLoaded(ProductListDVO products) {
-        cartView.setCartItems(products);
+        if (cartView != null) {
+            cartView.setCartItems(products);
+        }
     }
 
     @Override
     public void onProductsLoadError(Throwable error) {
-        cartView.onError(error);
+        if (cartView != null) {
+            cartView.onError(error);
+        }
     }
 
     @Override

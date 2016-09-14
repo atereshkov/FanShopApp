@@ -9,47 +9,53 @@ import javax.inject.Inject;
 
 public class CategoriesPresenter implements CategoriesMvp.Presenter, CategoriesMvp.Model.Callback {
 
-    private CategoriesMvp.View categoriesView;
-    private CategoriesMvp.Model categoriesModel;
+    private CategoriesMvp.View view;
+    private CategoriesMvp.Model model;
     private NetworkService networkService;
 
     private final static String TAG = "CatalogPresenter";
 
     @Inject
     public CategoriesPresenter(NetworkService networkService) {
-        categoriesModel = new CategoriesModel(networkService);
-        categoriesModel.setCallback(this);
+        model = new CategoriesModel(networkService);
+        model.setCallback(this);
     }
 
     @Override
     public void getCategories() {
-        if (categoriesView != null) {
-            categoriesView.showLoadCategoriesProgress();
+        if (view != null) {
+            view.showLoadCategoriesProgress();
         }
 
-        categoriesModel.getCategories();
+        model.getCategories();
     }
 
     @Override
     public void setView(CategoriesMvp.View view) {
-        this.categoriesView = view;
+        this.view = view;
     }
 
     @Override
     public void onCategoriesLoaded(CategoryListDVO categories) {
-        categoriesView.hideLoadCategoriesProgress();
-        categoriesView.setCategories(categories);
+        if (view != null) {
+            view.hideLoadCategoriesProgress();
+            view.setCategories(categories);
+        }
     }
 
     @Override
     public void onCategoriesLoadError(Throwable error) {
-        categoriesView.hideLoadCategoriesProgress();
-        categoriesView.showLoadCategoriesError(error);
+        if (view != null) {
+            view.hideLoadCategoriesProgress();
+            view.showLoadCategoriesError(error);
+        }
         Log.e(TAG, "onError");
     }
 
     @Override
     public void onLoadCategoriesCompleted() {
-        categoriesView.hideLoadCategoriesProgress();
+        if (view != null) {
+            view.hideLoadCategoriesProgress();
+        }
     }
 }

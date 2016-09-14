@@ -15,6 +15,7 @@ import com.github.handioq.fanshop.base.BaseActivity;
 import com.github.handioq.fanshop.model.dto.AddressDTO;
 import com.github.handioq.fanshop.net.model.RegisterDTO;
 import com.github.handioq.fanshop.net.model.Response;
+import com.github.handioq.fanshop.util.ErrorUtils;
 import com.github.handioq.fanshop.util.LocaleUtils;
 
 import javax.inject.Inject;
@@ -117,7 +118,7 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
     @Override
     public void signupFailure(Throwable e) {
         Log.i(TAG, e.toString());
-
+        Toast.makeText(this, ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override

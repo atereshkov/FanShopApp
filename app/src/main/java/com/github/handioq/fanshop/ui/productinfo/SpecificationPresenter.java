@@ -7,46 +7,52 @@ import javax.inject.Inject;
 
 public class SpecificationPresenter implements SpecificationMvp.Presenter, SpecificationMvp.Model.Callback {
 
-    private SpecificationMvp.View specificationView;
-    private SpecificationMvp.Model specificationModel;
+    private SpecificationMvp.View view;
+    private SpecificationMvp.Model model;
     private NetworkService networkService;
 
     private final static String TAG = "SpecificationPresenter";
 
     @Inject
     public SpecificationPresenter(NetworkService networkService) {
-        specificationModel = new SpecificationModel(networkService);
-        specificationModel.setCallback(this);
+        model = new SpecificationModel(networkService);
+        model.setCallback(this);
     }
 
     @Override
     public void onSpecificationLoaded(SpecificationDVO specification) {
-        specificationView.hideProgress();
-        specificationView.setSpecification(specification);
+        if (view != null) {
+            view.hideProgress();
+            view.setSpecification(specification);
+        }
     }
 
     @Override
     public void onSpecificationLoadError(Throwable error) {
-        specificationView.hideProgress();
-        specificationView.onError(error);
+        if (view != null) {
+            view.hideProgress();
+            view.onError(error);
+        }
     }
 
     @Override
     public void onSpecificationLoadCompleted() {
-        specificationView.hideProgress();
+        if (view != null) {
+            view.hideProgress();
+        }
     }
 
     @Override
     public void getSpecification(int id) {
-        if (specificationView != null) {
-            specificationView.showProgress();
+        if (view != null) {
+            view.showProgress();
         }
 
-        specificationModel.getSpecification(id);
+        model.getSpecification(id);
     }
 
     @Override
     public void setView(SpecificationMvp.View view) {
-        this.specificationView = view;
+        this.view = view;
     }
 }

@@ -20,10 +20,10 @@ public class ProductModel implements ProductMvp.Model {
     }
 
     @Override
-    public void getProduct(int id) {
+    public void getProduct(int productId, int userId) {
 
         networkService.getApiService()
-                .getProduct(id)
+                .getProduct(productId, userId)
                 .map(Mapper::mapProductInfoToDvo)
                 .compose(NetworkService.<ProductDVO>applyScheduler())
                 .subscribe(new Subscriber<ProductDVO>() {

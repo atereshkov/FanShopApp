@@ -24,19 +24,25 @@ public class CheckoutPresenter implements CheckoutMvp.Presenter, CheckoutMvp.Mod
 
     @Override
     public void onOrderCreated(Response response) {
-        view.hideProgress();
-        view.setResponse(response);
+        if (view != null) {
+            view.hideProgress();
+            view.setResponse(response);
+        }
     }
 
     @Override
     public void onOrderCreateError(Throwable error) {
-        view.hideProgress();
-        view.onError(error);
+        if (view != null) {
+            view.hideProgress();
+            view.onError(error);
+        }
     }
 
     @Override
     public void onOrderCompleted() {
-        view.hideProgress();
+        if (view != null) {
+            view.hideProgress();
+        }
     }
 
     @Override

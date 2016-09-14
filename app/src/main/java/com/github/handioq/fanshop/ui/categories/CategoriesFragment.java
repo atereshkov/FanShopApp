@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.application.FanShopApp;
@@ -16,6 +17,7 @@ import com.github.handioq.fanshop.base.BaseFragment;
 import com.github.handioq.fanshop.model.dvo.CategoryListDVO;
 import com.github.handioq.fanshop.ui.categories.adapter.CategoriesRecyclerAdapter;
 import com.github.handioq.fanshop.model.dvo.CategoryDVO;
+import com.github.handioq.fanshop.util.ErrorUtils;
 import com.github.handioq.fanshop.util.ScreenDimensionsHelper;
 
 import java.util.ArrayList;
@@ -98,5 +100,6 @@ public class CategoriesFragment extends BaseFragment implements CategoriesMvp.Vi
     @Override
     public void showLoadCategoriesError(Throwable e) {
         Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 }

@@ -21,6 +21,7 @@ import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.ui.wishlist.adapter.WishlistRecyclerAdapter;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.ErrorUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -115,13 +116,14 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
 
     @Override
     public void onProductAddSuccess(Response response) {
-        Toast.makeText(getContext(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onProductAddSuccess");
     }
 
     @Override
     public void onProductAddError(Throwable e) {
         Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override

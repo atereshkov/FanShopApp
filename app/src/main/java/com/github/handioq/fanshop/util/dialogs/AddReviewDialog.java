@@ -43,12 +43,11 @@ public class AddReviewDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_add_review, null);
         ButterKnife.bind(this, view);
 
-        String reviewMessage = reviewMessageView.getText().toString();
-        int stars = reviewRatingBar.getProgress();
-
         builder.setView(view)
                 .setTitle(R.string.add_review_dialog_title)
                 .setPositiveButton(R.string.add_review_submit, (dialog, id) -> {
+                    String reviewMessage = reviewMessageView.getText().toString();
+                    int stars = reviewRatingBar.getProgress();
                     listener.onDialogPositiveClick(AddReviewDialog.this, reviewMessage, stars);
                 })
                 .setNegativeButton(R.string.add_review_close_dialog, (dialog, id) -> {

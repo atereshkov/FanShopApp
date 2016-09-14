@@ -102,8 +102,12 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvp.View,
     public void onDialogPositiveClick(DialogFragment dialog, String message, int stars) {
         Log.i(TAG, "onDialogPositiveClick");
 
+        ReviewDTO reviewDTO = new ReviewDTO();
+        reviewDTO.setMessage(message);
+        reviewDTO.setStars(stars);
+
         addReviewPresenter.addReview(authPreferences.getUserId(),
-                productId, new ReviewDTO(message, stars));
+                productId, reviewDTO);
     }
 
     @Override

@@ -24,6 +24,7 @@ import com.github.handioq.fanshop.ui.cart.interaction.RemoveFromCartMvp;
 import com.github.handioq.fanshop.ui.checkout.CheckoutActivity;
 import com.github.handioq.fanshop.ui.checkout.CheckoutEvent;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.ErrorUtils;
 import com.github.handioq.fanshop.util.Mapper;
 
 import org.greenrobot.eventbus.EventBus;
@@ -151,11 +152,13 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
     @Override
     public void onError(Throwable e) {
         Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onProductRemoveSuccess() {
         Toast.makeText(getContext(), "Product was removed from user's cart", Toast.LENGTH_SHORT).show(); // TODO extract resource string
+        cartPresenter.getCartItems(authPreferences.getUserId());
     }
 
     @Override
