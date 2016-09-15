@@ -66,11 +66,15 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
         String email = emailView.getText().toString();
         String password = passwordView.getText().toString();
 
-        if (Validation.isEmailValid(email)) { // TODO do it in presenter
-            loginPresenter.loginValidate(email, password);
-        } else {
+        if (!Validation.isPasswordValid(password)) { // TODO do it in presenter
+            passwordView.setError(getResources().getString(R.string.error_invalid_password));
+            return;
+        } else if (!Validation.isEmailValid(email)) {
             emailView.setError(getResources().getString(R.string.error_invalid_email));
+            return;
         }
+
+        loginPresenter.loginValidate(email, password);
     }
 
     @OnClick(R.id.sign_up)
@@ -82,7 +86,7 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
     @OnClick(R.id.forgot_password)
     void onRestoreClick() {
         // TODO make restore activity
-        Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.password_recovery_not_impl, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -130,15 +134,5 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
         loginForm.setVisibility(View.VISIBLE);
     }
 
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        // EmailView.setError(getString(R.string.error_field_required));
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
-    }
 }
 

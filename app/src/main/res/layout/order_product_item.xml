@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/product_image"
             android:layout_toRightOf="@+id/product_image"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginLeft="4dp" />
 
         <TextView
             android:id="@+id/cart_item_price"
@@ -40,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/cart_item_name"
             android:layout_toEndOf="@+id/product_image"
-            android:layout_toRightOf="@+id/product_image" />
+            android:layout_toRightOf="@+id/product_image"
+            android:layout_marginLeft="4dp" />
 
     </RelativeLayout>
 

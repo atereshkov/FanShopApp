@@ -37,7 +37,7 @@ public class SearchActivity extends BaseNavActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Not implemented", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Write your query above", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

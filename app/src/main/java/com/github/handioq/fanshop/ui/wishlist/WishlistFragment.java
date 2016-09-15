@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.handioq.R;
@@ -39,6 +40,9 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+
+    @BindView(R.id.wishlist_items_count)
+    TextView itemsCountView;
 
     private LinearLayoutManager layoutManager;
     private WishlistRecyclerAdapter adapter;
@@ -96,17 +100,20 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
     public void showLoadWishlistProgress() {
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
+        itemsCountView.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoadWishlistProgress() {
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
+        itemsCountView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void setWishlist(ProductListDVO products) {
         adapter.setItems(products.getProducts());
+        itemsCountView.setText(getResources().getQuantityString(R.plurals.wishlist_items_count, adapter.getItemCount(), adapter.getItemCount()));
     }
 
     @Override

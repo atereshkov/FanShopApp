@@ -155,7 +155,7 @@ public abstract class BaseNavActivity extends AppCompatActivity
                 startActivity(intent);
             }
         } else if (id == R.id.nav_delivery) {
-            Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.delivery_not_impl, Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_stores) {
             Intent intent = new Intent(BaseNavActivity.this, StoresActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

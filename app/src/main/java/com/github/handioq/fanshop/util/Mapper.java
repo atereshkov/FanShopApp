@@ -69,7 +69,7 @@ public class Mapper {
     }
 
     private static ReviewDVO mapReviewToDvo(ReviewDTO reviewDTO) {
-        return new ReviewDVO(reviewDTO.getMessage(), reviewDTO.getStars());
+        return new ReviewDVO(reviewDTO.getMessage(), reviewDTO.getStars(), reviewDTO.getAuthor());
     }
 
     public static ProductDVO mapProductToDvo(ProductDTO productDTO) {

@@ -17,6 +17,7 @@ import com.github.handioq.fanshop.net.model.RegisterDTO;
 import com.github.handioq.fanshop.net.model.Response;
 import com.github.handioq.fanshop.util.ErrorUtils;
 import com.github.handioq.fanshop.util.LocaleUtils;
+import com.github.handioq.fanshop.util.Validation;
 
 import javax.inject.Inject;
 
@@ -90,10 +91,22 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
         String country = countriesSpinnerView.getSelectedItem().toString();
         String city = cityView.getText().toString();
         String street = streetView.getText().toString();
-        long zipcode = Long.valueOf(zipcodeView.getText().toString());
+        long postcode = Long.valueOf(zipcodeView.getText().toString());
 
-        // TODO add validation
-        AddressDTO address = new AddressDTO(street, city, country, zipcode);
+        if (!Validation.isEmailValid(mail)) {
+            emailView.setError(getResources().getString(R.string.error_invalid_email));
+            return;
+        } else if (!Validation.isPasswordValid(password)) {
+            passwordView.setError(getResources().getString(R.string.error_invalid_password));
+            return;
+        }
+
+        if (Validation.emptyFieldFound(contactPhone, name, city, street)) {
+            Toast.makeText(this, R.string.fields_fill, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        AddressDTO address = new AddressDTO(street, city, country, postcode);
         RegisterDTO registerDTO = new RegisterDTO(mail, password, name, contactPhone, address);
 
         signupPresenter.signupValidate(registerDTO);
@@ -138,15 +151,5 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
         loginForm.setVisibility(View.VISIBLE);
     }
 
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        // mEmailView.setError(getString(R.string.error_field_required));
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
-    }
 }
 

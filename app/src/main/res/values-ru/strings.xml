@@ -49,6 +49,16 @@
         <item quantity="many">В Вашей корзине %d товаров</item>
         <item quantity="other">В Вашей корзине %d товаров</item>
     </plurals>
+
+    <plurals name="wishlist_items_count">
+        <item quantity="zero">В списке желаемого нет товаров</item>
+        <item quantity="one">В списке желаемого %d товар</item>
+        <item quantity="two">В списке желаемого %d товара</item>
+        <item quantity="few">В списке желаемого %d товара</item>
+        <item quantity="many">В списке желаемого %d товаров</item>
+        <item quantity="other">В списке желаемого %d товаров</item>
+    </plurals>
+
     <string name="action_refresh">Обновить</string>
     <string name="order_id">Номер заказа: %1d</string>
     <string name="title_activity_account">Личный кабинет</string>
@@ -116,5 +126,10 @@
     <string name="add_review_dialog_title">Добавить отзыв</string>
     <string name="add_review_not_logged">Для добавления отзыва необходимо войти в аккаунт</string>
     <string name="add_review_submit">Подтвердить</string>
+    <string name="your_message">Ваш отзыв...</string>
+    <string name="fields_fill">Все поля должны быть заполнены!</string>
+    <string name="edit_user_info_not_impl">Редактирование информации о пользователе недоступно в данный момент</string>
+    <string name="delivery_not_impl">Доставка недоступна на данный момент</string>
+    <string name="password_recovery_not_impl">Восстановление пароля недоступно на данный момент</string>
 
 </resources>

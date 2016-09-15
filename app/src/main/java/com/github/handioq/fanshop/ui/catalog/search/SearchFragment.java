@@ -27,6 +27,7 @@ import com.github.handioq.fanshop.ui.catalog.adapter.PaginationOnScrollListener;
 import com.github.handioq.fanshop.ui.catalog.search.adapter.SearchRecyclerAdapter;
 import com.github.handioq.fanshop.model.dvo.ProductDVO;
 import com.github.handioq.fanshop.util.AuthPreferences;
+import com.github.handioq.fanshop.util.ErrorUtils;
 import com.github.handioq.fanshop.util.NetworkConstants;
 
 import org.greenrobot.eventbus.EventBus;
@@ -213,6 +214,8 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
 
     @Override
     public void onSearchError(Throwable e) {
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
         Log.e(TAG, e.toString());
     }
 

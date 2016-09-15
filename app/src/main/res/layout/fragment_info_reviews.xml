@@ -10,11 +10,12 @@
         android:layout_height="wrap_content"
         android:scrollbars="vertical" />
 
-    <Button
+    <ImageButton
+        android:id="@+id/add_review"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_review_button"
-        android:id="@+id/add_review"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_add_circle_black_24px" />
 
 </LinearLayout>

@@ -4,10 +4,20 @@ public class ReviewDVO {
 
     private String message;
     private int stars;
+    private String author;
 
-    public ReviewDVO(String message, int stars) {
+    public ReviewDVO(String message, int stars, String author) {
         this.message = message;
         this.stars = stars;
+        this.author = author;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getMessage() {
@@ -31,6 +41,7 @@ public class ReviewDVO {
         return "ReviewDVO{" +
                 "message='" + message + '\'' +
                 ", stars=" + stars +
+                ", author='" + author + '\'' +
                 '}';
     }
 }

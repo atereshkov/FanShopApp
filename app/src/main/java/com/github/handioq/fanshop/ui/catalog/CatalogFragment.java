@@ -190,10 +190,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
             startActivity(intent);
             return true;
         } else if (id == R.id.refresh) {
-            Toast.makeText(getContext(), "not impl", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (id == R.id.action_settings) {
-            Toast.makeText(getContext(), "not impl", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.not_implemented, Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -250,7 +247,7 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     public void onProductAddSuccess(Response response) {
         Toast.makeText(getContext(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
         // TODO inc badge in toolbar
-        setBadgeCount(optionsMenu, "5");
+        setBadgeCount(optionsMenu, "3");
         Log.i(TAG, response.getStatusMessage());
     }
 

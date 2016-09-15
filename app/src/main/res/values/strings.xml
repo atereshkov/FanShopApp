@@ -67,6 +67,13 @@
     </plurals>
     <string name="cart_pay_amount">$%1$.2f</string>
 
+    <!-- Strings related to wishlist -->
+    <plurals name="wishlist_items_count">
+        <item quantity="one">You have %d item in your wishlist</item>
+        <item quantity="few">You have %d items in your wishlist</item>
+        <item quantity="other">You have %d items in your wishlist</item>
+    </plurals>
+
     <!-- Strings related to product info -->
     <string name="title_activity_productInfo">Information</string>
     <string name="pager_title_description">Specification</string>
@@ -134,5 +141,9 @@
     <string name="add_review_submit">Submit</string>
     <string name="add_review_close_dialog">Close</string>
     <string name="your_message">Your message…</string>
+    <string name="fields_fill">All fields must be filled!</string>
+    <string name="edit_user_info_not_impl">Editing user information is not available at this time</string>
+    <string name="delivery_not_impl">Delivery is not available at this time</string>
+    <string name="password_recovery_not_impl">Password recovery not implemented at this time</string>
 
 </resources>

@@ -23,6 +23,9 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.rating_bar_small)
     RatingBar ratingBar;
 
+    @BindView(R.id.author)
+    TextView authorView;
+
     private ReviewDVO review;
 
     static ReviewViewHolder inflate(ViewGroup parent) {
@@ -39,7 +42,7 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (review != null) {
                     Context context = itemView.getContext();
-                    Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -49,5 +52,6 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
         review = item;
         catalogItemNameView.setText(item.getMessage());
         ratingBar.setRating(item.getStars());
+        authorView.setText(item.getAuthor());
     }
 }
