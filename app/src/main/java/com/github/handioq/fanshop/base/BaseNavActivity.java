@@ -91,6 +91,7 @@ public abstract class BaseNavActivity extends AppCompatActivity
                     Timber.i("AuthState -> %s, userID: %d ", authPreferences.isUserLoggedIn(), authPreferences.getUserId());
                     drawer.closeDrawer(GravityCompat.START);
                     ActivityCompat.invalidateOptionsMenu(BaseNavActivity.this);
+                    Toast.makeText(BaseNavActivity.this, getString(R.string.success_logged_out), Toast.LENGTH_SHORT).show();
                 }
             });
         } else {

@@ -253,13 +253,14 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
 
     @Override
     public void onProductAddedToWishlist(Response response) {
-        Toast.makeText(getActivity(), response.getStatusMessage() + " - " + response.getStatusCode(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
         favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp);
     }
 
     @Override
     public void onWishlistAddError(Throwable e) {
         Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override

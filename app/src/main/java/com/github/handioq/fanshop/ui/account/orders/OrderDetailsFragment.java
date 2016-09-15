@@ -122,6 +122,7 @@ public class OrderDetailsFragment extends BaseFragment implements OrderDetailsMv
         Log.i(TAG, response.getStatusMessage());
         if (response.getStatusCode() == 200) {
             Toast.makeText(getContext(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
+            orderDetailsPresenter.getOrderDetails(authPreferences.getUserId(), orderId);
         } else {
             Toast.makeText(getContext(), "Error: " + response.getStatusMessage(), Toast.LENGTH_SHORT).show();
         }

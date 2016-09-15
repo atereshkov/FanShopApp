@@ -164,6 +164,7 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
     @Override
     public void onProductRemoveError(Throwable e) {
         Log.e(TAG, e.toString());
+        Toast.makeText(getContext(), ErrorUtils.getMessage(e), Toast.LENGTH_SHORT).show();
     }
 
     @Override

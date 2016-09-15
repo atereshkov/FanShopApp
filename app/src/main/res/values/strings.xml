@@ -145,5 +145,6 @@
     <string name="edit_user_info_not_impl">Editing user information is not available at this time</string>
     <string name="delivery_not_impl">Delivery is not available at this time</string>
     <string name="password_recovery_not_impl">Password recovery not implemented at this time</string>
+    <string name="success_logged_out">You have successfully logged out</string>
 
 </resources>
