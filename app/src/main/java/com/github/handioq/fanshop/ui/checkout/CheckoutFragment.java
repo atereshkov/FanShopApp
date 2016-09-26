@@ -97,7 +97,7 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View, 
             dialog.attachListenter(this);
             dialog.show(getFragmentManager(), CHECKOUT_DIALOG);
         } else {
-            Toast.makeText(getContext(), response.getStatusMessage(), Toast.LENGTH_SHORT).show(); // error
+            Toast.makeText(getContext(), response.getStatusCode() + " " + response.getStatusMessage(), Toast.LENGTH_SHORT).show(); // TODO rework
         }
     }
 
