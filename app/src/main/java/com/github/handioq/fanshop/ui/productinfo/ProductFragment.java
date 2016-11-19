@@ -35,6 +35,7 @@ import com.github.handioq.fanshop.ui.wishlist.interaction.AddToWishlistMvp;
 import com.github.handioq.fanshop.ui.wishlist.interaction.RemoveWishlistMvp;
 import com.github.handioq.fanshop.util.AuthPreferences;
 import com.github.handioq.fanshop.util.ErrorUtils;
+import com.github.handioq.fanshop.util.dialogs.AddToCartDialog;
 
 import java.util.List;
 import java.util.Vector;
@@ -183,13 +184,25 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
         productInfoPresenter.setView(this);
         productInfoPresenter.getProduct(selectedItemId, authPreferences.getUserId());
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (authPreferences.isUserLoggedIn()) {
-                    addToCartPresenter.addProductToCart(authPreferences.getUserId(), selectedProduct.getId());
-                } else {
-                    Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
-                }
+        fab.setOnClickListener(v -> {
+            if (authPreferences.isUserLoggedIn()) {
+
+                AddToCartDialog mSpinnerDialog = new AddToCartDialog(getActivity(), SpecificationFragment.specification.getSizes(),
+                        new AddToCartDialog.DialogListener() {
+                            public void onCancelled() {
+                                //Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                            }
+
+                            public void onReady(int n) {
+                                addToCartPresenter.addProductToCart(authPreferences.getUserId(), selectedProduct.getId());
+                            }
+                        });
+
+                mSpinnerDialog.show();
+
+                //addToCartPresenter.addProductToCart(authPreferences.getUserId(), selectedProduct.getId());
+            } else {
+                Toast.makeText(getContext(), getResources().getString(R.string.cart_add_item_not_logged), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -303,7 +316,7 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
     @Override
     public void onProductAddSuccess(Response response) {
         Log.i(TAG, response.getStatusMessage());
-        if (response.getStatusCode() == 200) {
+        if (response.getStatusCode() == 201) {
             Toast.makeText(getContext(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getContext(), "Some error: " + response.getStatusMessage(), Toast.LENGTH_SHORT).show();

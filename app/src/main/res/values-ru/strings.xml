@@ -132,5 +132,6 @@
     <string name="delivery_not_impl">Доставка недоступна на данный момент</string>
     <string name="password_recovery_not_impl">Восстановление пароля недоступно на данный момент</string>
     <string name="success_logged_out">Вы успешно вышли из аккаунта</string>
+    <string name="dialog_select_size">Пожалуйста, выберите размер</string>
 
 </resources>

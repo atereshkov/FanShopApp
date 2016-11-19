@@ -28,6 +28,8 @@ public class SpecificationFragment extends BaseFragment implements Specification
     private final static String TAG = "SpecificationFragment";
     private final static String ARGUMENT_ID = "id";
 
+    public static SpecificationDVO specification; // never do it, i'm stupid and have not enough time for create it normal
+
     @BindView(R.id.color_text)
     TextView colorTextView;
 
@@ -124,6 +126,8 @@ public class SpecificationFragment extends BaseFragment implements Specification
         brandTextView.setText(getString(R.string.specification_value_brand, specification.getBrand()));
         codeTextView.setText(getString(R.string.specification_value_code, specification.getCode()));
         sizesTextView.setText(StringUtils.getStringSizes(specification.getSizes()));
+
+        this.specification = specification;
     }
 
     @Override
