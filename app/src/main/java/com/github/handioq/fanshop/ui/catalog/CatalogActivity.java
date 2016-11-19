@@ -3,6 +3,7 @@ package com.github.handioq.fanshop.ui.catalog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.github.handioq.R;
 import com.github.handioq.fanshop.base.BaseNavActivity;
@@ -26,6 +28,8 @@ public class CatalogActivity extends BaseNavActivity {
     private static final String TAG = "CatalogActivity";
     private static final String CATALOG_FRAGMENT_TAG = "catalog";
     private static final String KEY_CATEGORY = "category";
+
+    //private boolean doubleBackToExitPressedOnce = false;
 
     @BindView(R.id.fab_catalog)
     FloatingActionButton fab;
@@ -95,6 +99,22 @@ public class CatalogActivity extends BaseNavActivity {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
                 super.onBackPressed();
+
+                /*if (doubleBackToExitPressedOnce) {
+                    super.onBackPressed();
+                    return;
+                }
+
+                this.doubleBackToExitPressedOnce = true;
+                Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        doubleBackToExitPressedOnce = false;
+                    }
+                }, 2000);*/
             }
         }
     }
