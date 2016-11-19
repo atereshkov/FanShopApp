@@ -22,9 +22,9 @@ public class SearchModel implements SearchMvp.Model {
     }
 
     @Override
-    public void search(Map<String, String> options, int offset, int limit) {
+    public void search(String query, int offset, int limit) {
         networkService.getApiService()
-                .search(options, offset, limit)
+                .search(query, offset, limit)
                 .map(Mapper::mapProductListToDvo)
                 //.delay(3, TimeUnit.SECONDS)
                 .compose(NetworkService.<ProductListDVO>applyScheduler())
@@ -45,7 +45,7 @@ public class SearchModel implements SearchMvp.Model {
                     }
                 });
 
-        Log.i(TAG, "search() " + options);
+        Log.i(TAG, "search() " + query);
     }
 
     @Override

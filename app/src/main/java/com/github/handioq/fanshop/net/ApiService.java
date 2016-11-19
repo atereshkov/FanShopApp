@@ -53,9 +53,9 @@ public interface ApiService {
                                            @Query("offset") int offset,
                                            @Query("limit") int limit);
 
-    @FormUrlEncoded
-    @POST("/api/search")
-    Observable<ProductListDTO> search(@FieldMap Map<String, String> options,
+    //@FormUrlEncoded
+    @GET("/api/search")
+    Observable<ProductListDTO> search(@Query("query") String query,    // from real server @FieldMap Map<String, String> options,
                                       @Query("offset") int offset,
                                       @Query("limit") int limit);
 
@@ -75,11 +75,11 @@ public interface ApiService {
     @GET(USER_URL + "/{id}/cart")
     Observable<ProductListDTO> getCart(@Path("id") int userId);
 
-    @PUT(USER_URL + "/{id}/cart/add/{product_id}")                   // change me on apiary!!!
+    @POST(USER_URL + "/{id}/cart/{product_id}")
     Observable<Response> addProductToCart(@Path("id") int userId,
                                           @Path("product_id") int productId);
 
-    @PUT(USER_URL + "/{id}/cart/delete/{product_id}")                // change me on apiary!
+    @DELETE(USER_URL + "/{id}/cart/{product_id}")
     Observable<Response> removeProductFromCart(@Path("id") int userId,
                                                @Path("product_id") int productId);
 
@@ -92,7 +92,7 @@ public interface ApiService {
 
     @POST(USER_URL + "/{id}/orders")
     Observable<Response> createOrder(@Path("id") int userId,
-                                     @Body List<ProductIdDTO> products); // change me on apiary!
+                                     @Body List<ProductIdDTO> products); // todo change list on apiary
 
     @PUT(USER_URL + "/{user_id}/orders/{order_id}")
     Observable<Response> paymentForOrder(@Path("user_id") int userId,
@@ -112,11 +112,11 @@ public interface ApiService {
     @GET(USER_URL + "/{id}/wishlist")
     Observable<ProductListDTO> getWishlist(@Path("id") int userId);
 
-    @PUT(USER_URL + "/{id}/wishlist/add/{product_id}")                       // change me on apiary!
+    @POST(USER_URL + "/{id}/wishlist/{product_id}")
     Observable<Response> addProductToWishlist(@Path("id") int userId,
                                               @Path("product_id") int productId);
 
-    @PUT(USER_URL + "/{id}/wishlist/delete/{product_id}")                    // change me on apiary!
+    @DELETE(USER_URL + "/{id}/wishlist/{product_id}")
     Observable<Response> removeProductFromWishlist(@Path("id") int userId,
                                                    @Path("product_id") int productId);
 }

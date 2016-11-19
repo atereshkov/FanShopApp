@@ -157,7 +157,7 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
 
     @Override
     public void onProductRemoveSuccess() {
-        Toast.makeText(getContext(), "Product was removed from user's cart", Toast.LENGTH_SHORT).show(); // TODO extract resource string
+        Toast.makeText(getContext(),  "Product was removed from user's cart", Toast.LENGTH_SHORT).show(); // TODO extract resource string
         cartPresenter.getCartItems(authPreferences.getUserId());
     }
 

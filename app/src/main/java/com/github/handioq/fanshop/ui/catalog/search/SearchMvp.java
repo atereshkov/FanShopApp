@@ -11,7 +11,7 @@ public interface SearchMvp {
 
     interface Model extends Mvp.Model {
 
-        void search(Map<String, String> options, int offset, int limit);
+        void search(String query, int offset, int limit);
 
         void setCallback(Callback callback);
 
@@ -39,7 +39,7 @@ public interface SearchMvp {
 
     interface Presenter extends Mvp.Presenter<SearchMvp.View> {
 
-        void search(Map<String, String> options, int offset, int limit);
-
+        //void search(Map<String, String> options, int offset, int limit);
+        void search(String query, int offset, int limit);
     }
 }

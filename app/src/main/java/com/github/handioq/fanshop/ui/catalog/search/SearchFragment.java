@@ -56,7 +56,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
     private SearchRecyclerAdapter adapter;
 
     private String searchQuery;
-    private Map<String, String> optionsMap;
+    //private Map<String, String> optionsMap;
     private boolean firstPaginationLoad = true;
 
     private final String TAG = "SearchFragment";
@@ -95,7 +95,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         adapter = new SearchRecyclerAdapter(new ArrayList<ProductDVO>());
         initRecycler();
 
-        optionsMap = new HashMap<>();
+        //optionsMap = new HashMap<>();
     }
 
     private void initRecycler() {
@@ -181,13 +181,13 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         if (query.isEmpty()) {
             adapter.clearItems();
         } else {
-            optionsMap.put(QUERY_PRODUCT_NAME, searchQuery);
+            //optionsMap.put(QUERY_PRODUCT_NAME, searchQuery);
             adapter.clearItems();
 
             recyclerView.clearOnScrollListeners(); // fix pagination previous count
             recyclerView.addOnScrollListener(new PaginationOnScrollListener(this, layoutManager));
 
-            searchPresenter.search(optionsMap, 0, NetworkConstants.PRODUCTS_LOAD_COUNT);
+            searchPresenter.search(searchQuery, 0, NetworkConstants.PRODUCTS_LOAD_COUNT);
         }
 
         return true;
@@ -198,7 +198,7 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
         Timber.i("onPaginationLoad() - state: %b, totalItemCount: %d, limit: %d", state, totalItemCount, limit);
 
         firstPaginationLoad = state;
-        searchPresenter.search(optionsMap, totalItemCount, limit);
+        searchPresenter.search(searchQuery, totalItemCount, limit);
     }
 
     @Override
