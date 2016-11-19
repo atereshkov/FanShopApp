@@ -15,7 +15,8 @@
         android:layout_height="match_parent"
         android:paddingTop="@dimen/recycler_view_top"
         android:clipToPadding="false"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:layout_above="@+id/progress_bar_pagination" />
 
     <ProgressBar
         android:id="@+id/catalog_progress_bar"
@@ -23,5 +24,13 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_pagination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

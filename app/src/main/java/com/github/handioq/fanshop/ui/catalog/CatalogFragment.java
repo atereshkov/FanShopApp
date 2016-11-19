@@ -51,6 +51,9 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
+    @BindView(R.id.progress_bar_pagination)
+    ProgressBar progressBarPagination;
+
     private LinearLayoutManager layoutManager;
     private CatalogRecyclerAdapter adapter;
 
@@ -223,12 +226,14 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
             recyclerView.setVisibility(View.GONE);
         }
         setRefreshActionButtonState(true);
+        progressBarPagination.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoadProductsProgress() {
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
+        progressBarPagination.setVisibility(View.GONE);
         setRefreshActionButtonState(false);
     }
 
