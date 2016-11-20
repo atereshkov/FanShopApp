@@ -45,6 +45,21 @@ public class SpecificationFragment extends BaseFragment implements Specification
     @BindView(R.id.code_text)
     TextView codeTextView;
 
+/*    @BindView(R.id.color_name)
+    TextView colorNameTextView;
+
+    @BindView(R.id.code_name)
+    TextView codeNameTextView;
+
+    @BindView(R.id.brand_name)
+    TextView brandNameTextView;
+
+    @BindView(R.id.country_name)
+    TextView countryNameTextView;
+
+    @BindView(R.id.sizes_name)
+    TextView sizesNameTextView;*/
+
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
@@ -99,23 +114,25 @@ public class SpecificationFragment extends BaseFragment implements Specification
             countryTextView.setVisibility(View.GONE);
             brandTextView.setVisibility(View.GONE);
             codeTextView.setVisibility(View.GONE);
+            sizesTextView.setVisibility(View.GONE);
         } else {
             colorTextView.setVisibility(View.VISIBLE);
             countryTextView.setVisibility(View.VISIBLE);
             brandTextView.setVisibility(View.VISIBLE);
             codeTextView.setVisibility(View.VISIBLE);
+            sizesTextView.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void showProgress() {
-        //hideInfoView(true);
+        hideInfoView(true);
         progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        //hideInfoView(false);
+        hideInfoView(false);
         progressBar.setVisibility(View.GONE);
     }
 
