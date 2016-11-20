@@ -94,7 +94,7 @@ public interface ApiService {
     Observable<Response> createOrder(@Path("id") int userId,
                                      @Body List<ProductIdDTO> products); // todo change list on apiary
 
-    @PUT(USER_URL + "/{user_id}/orders/{order_id}")
+    @POST(USER_URL + "/{user_id}/orders/{order_id}")
     Observable<Response> paymentForOrder(@Path("user_id") int userId,
                                          @Path("order_id") int orderId);
 

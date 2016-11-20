@@ -154,7 +154,8 @@ public class OrderDetailsFragment extends BaseFragment implements OrderDetailsMv
 
         idView.setText(getString(R.string.order_details_id, orderDetails.getId()));
         statusView.setText(getString(R.string.order_details_status, orderDetails.getStatus()));
-        dateView.setText(getString(R.string.order_details_date, DateUtils.getStringDateFromLong(Long.parseLong(orderDetails.getDate()))));
+        //dateView.setText(getString(R.string.order_details_date, DateUtils.getStringDateFromLong(Long.parseLong(orderDetails.getDate()))));
+        dateView.setText(getString(R.string.order_details_date, orderDetails.getDate()));
     }
 
     @OnClick(R.id.pay_button)
