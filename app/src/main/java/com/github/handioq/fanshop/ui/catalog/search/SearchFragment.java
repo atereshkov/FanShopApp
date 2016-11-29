@@ -203,12 +203,14 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
 
     @Override
     public void onSearchSuccess(ProductListDVO products) {
-        Timber.i("onSearchSuccess() - products.size: %d, firstPaginationLoad: %b", products.getProducts().size(), firstPaginationLoad);
+        if (getActivity() != null) { // check for attaching to activity
+            Timber.i("onSearchSuccess() - products.size: %d, firstPaginationLoad: %b", products.getProducts().size(), firstPaginationLoad);
 
-        if (firstPaginationLoad) {
-            adapter.setItems(products.getProducts()); // new search
-        } else {
-            adapter.addItems(products.getProducts()); // add items (pagination load)
+            if (firstPaginationLoad) {
+                adapter.setItems(products.getProducts()); // new search
+            } else {
+                adapter.addItems(products.getProducts()); // add items (pagination load)
+            }
         }
     }
 
@@ -229,7 +231,9 @@ public class SearchFragment extends BaseFragment implements SearchMvp.View, Sear
 
     @Override
     public void hideSearchProgress() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 }

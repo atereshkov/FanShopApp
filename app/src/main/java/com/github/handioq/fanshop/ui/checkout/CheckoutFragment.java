@@ -85,19 +85,23 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View, 
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void setResponse(Response response) {
-        Timber.i("Response: %s - %d", response.getStatusMessage(), response.getStatusCode());
+        if (getActivity() != null) { // check for attaching to activity
+            Timber.i("Response: %s - %d", response.getStatusMessage(), response.getStatusCode());
 
-        if (response.getStatusCode() == 200) {
-            CheckoutDialog dialog = CheckoutDialog.newInstance(response.getStatusMessage());
-            dialog.attachListenter(this);
-            dialog.show(getFragmentManager(), CHECKOUT_DIALOG);
-        } else {
-            Toast.makeText(getContext(), response.getStatusCode() + " " + response.getStatusMessage(), Toast.LENGTH_SHORT).show(); // TODO rework
+            if (response.getStatusCode() == 200) {
+                CheckoutDialog dialog = CheckoutDialog.newInstance(response.getStatusMessage());
+                dialog.attachListenter(this);
+                dialog.show(getFragmentManager(), CHECKOUT_DIALOG);
+            } else {
+                Toast.makeText(getContext(), response.getStatusCode() + " " + response.getStatusMessage(), Toast.LENGTH_SHORT).show(); // TODO rework
+            }
         }
     }
 

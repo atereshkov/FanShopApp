@@ -132,19 +132,23 @@ public class SpecificationFragment extends BaseFragment implements Specification
 
     @Override
     public void hideProgress() {
-        hideInfoView(false);
-        progressBar.setVisibility(View.GONE);
+        if (getActivity() != null) { // check for attaching to activity
+            hideInfoView(false);
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void setSpecification(SpecificationDVO specification) {
-        colorTextView.setText(getString(R.string.specification_value_color, specification.getColor()));
-        countryTextView.setText(getString(R.string.specification_value_country, specification.getCountry()));
-        brandTextView.setText(getString(R.string.specification_value_brand, specification.getBrand()));
-        codeTextView.setText(getString(R.string.specification_value_code, specification.getCode()));
-        sizesTextView.setText(StringUtils.getStringSizes(specification.getSizes()));
+        if (getActivity() != null) { // check for attaching to activity
+            colorTextView.setText(getString(R.string.specification_value_color, specification.getColor()));
+            countryTextView.setText(getString(R.string.specification_value_country, specification.getCountry()));
+            brandTextView.setText(getString(R.string.specification_value_brand, specification.getBrand()));
+            codeTextView.setText(getString(R.string.specification_value_code, specification.getCode()));
+            sizesTextView.setText(StringUtils.getStringSizes(specification.getSizes()));
 
-        this.specification = specification;
+            this.specification = specification;
+        }
     }
 
     @Override

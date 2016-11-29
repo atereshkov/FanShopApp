@@ -106,8 +106,7 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvp.View,
         reviewDTO.setMessage(message);
         reviewDTO.setStars(stars);
 
-        addReviewPresenter.addReview(authPreferences.getUserId(),
-                productId, reviewDTO);
+        addReviewPresenter.addReview(authPreferences.getUserId(), productId, reviewDTO);
     }
 
     @Override
@@ -160,7 +159,9 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvp.View,
 
     @Override
     public void setReviews(ReviewListDVO reviews) {
-        initRecyclerView(reviews);
+        if (getActivity() != null) { // check for attaching to activity
+            initRecyclerView(reviews);
+        }
     }
 
     @Override

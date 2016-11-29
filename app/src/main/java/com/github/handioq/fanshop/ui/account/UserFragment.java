@@ -84,19 +84,23 @@ public class UserFragment extends BaseFragment implements UserMvp.View {
     }
 
     private void bindUserInfo(UserDVO user) {
-        nameTextView.setText(getString(R.string.account_name, user.getName()));
-        emailTextView.setText(getString(R.string.account_email, user.getEmail()));
-        phoneTextView.setText(getString(R.string.account_phone, user.getPhone()));
-        streetTextView.setText(getString(R.string.account_street, user.getAddress().getStreet()));
-        cityTextView.setText(getString(R.string.account_city, user.getAddress().getCity()));
-        countryTextView.setText(getString(R.string.account_country, user.getAddress().getCountry()));
-        zipcodeTextView.setText(getString(R.string.account_zipcode, user.getAddress().getZipcode()));
+        if (getActivity() != null) { // check for attaching to activity
+            nameTextView.setText(getString(R.string.account_name, user.getName()));
+            emailTextView.setText(getString(R.string.account_email, user.getEmail()));
+            phoneTextView.setText(getString(R.string.account_phone, user.getPhone()));
+            streetTextView.setText(getString(R.string.account_street, user.getAddress().getStreet()));
+            cityTextView.setText(getString(R.string.account_city, user.getAddress().getCity()));
+            countryTextView.setText(getString(R.string.account_country, user.getAddress().getCountry()));
+            zipcodeTextView.setText(getString(R.string.account_zipcode, user.getAddress().getZipcode()));
+        }
     }
 
     @Override
     public void setUser(UserDVO user) {
-        bindUserInfo(user);
-        Log.i(TAG, user.toString());
+        if (getActivity() != null) { // check for attaching to activity
+            bindUserInfo(user);
+            Log.i(TAG, user.toString());
+        }
     }
 
     @Override
@@ -107,8 +111,10 @@ public class UserFragment extends BaseFragment implements UserMvp.View {
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
-        userInfoLayout.setVisibility(View.VISIBLE);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+            userInfoLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

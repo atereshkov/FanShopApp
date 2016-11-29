@@ -120,8 +120,10 @@ public class LoginActivity extends BaseActivity implements LoginMvp.View {
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
-        loginForm.setVisibility(View.VISIBLE);
+        if (progressBar != null && loginForm != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+            loginForm.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

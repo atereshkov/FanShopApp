@@ -231,15 +231,19 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
 
     @Override
     public void hideLoadProductsProgress() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
-        progressBarPagination.setVisibility(View.GONE);
-        setRefreshActionButtonState(false);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            progressBarPagination.setVisibility(View.GONE);
+            setRefreshActionButtonState(false);
+        }
     }
 
     @Override
     public void setProducts(ProductListDVO products) {
-        adapter.addItems(products.getProducts());
+        if (getActivity() != null) { // check for attaching to activity
+            adapter.addItems(products.getProducts());
+        }
     }
 
     @Override

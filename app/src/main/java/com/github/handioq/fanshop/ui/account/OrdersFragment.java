@@ -84,13 +84,17 @@ public class OrdersFragment extends BaseFragment implements OrderMvp.View {
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void setOrders(OrderListDVO orders) {
-        adapter.setOrders(orders.getOrders());
+        if (getActivity() != null) { // check for attaching to activity
+            adapter.setOrders(orders.getOrders());
+        }
     }
 
     @Override

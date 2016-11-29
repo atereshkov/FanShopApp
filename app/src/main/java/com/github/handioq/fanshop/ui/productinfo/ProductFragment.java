@@ -267,7 +267,9 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
     @Override
     public void onProductAddedToWishlist(Response response) {
         Toast.makeText(getActivity(), response.getStatusMessage(), Toast.LENGTH_SHORT).show();
-        favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp);
+        if (getActivity() != null) { // check for attaching to activity
+            favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp);
+        }
     }
 
     @Override
@@ -285,26 +287,30 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
 
     @Override
     public void hideProgress() {
-        progressBarView.setVisibility(View.GONE);
-        scrollView.setVisibility(View.VISIBLE);
-        fab.setVisibility(View.VISIBLE);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBarView.setVisibility(View.GONE);
+            scrollView.setVisibility(View.VISIBLE);
+            fab.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void setProduct(ProductDVO product) {
-        selectedProduct = product;
+        if (getActivity() != null) { // check for attaching to activity
+            selectedProduct = product;
 
-        getActivity().setTitle(product.getName());
-        initSlider(product.getImages());
+            getActivity().setTitle(product.getName());
+            initSlider(product.getImages());
 
-        infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, product.getPrice()));
-        infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
-        descriptionView.setText(product.getDescription());
+            infoItemPriceView.setText(getActivity().getString(R.string.catalog_price, product.getPrice()));
+            infoItemPriceView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryTextBlack));
+            descriptionView.setText(product.getDescription());
 
-        if (selectedProduct.isUserFavorite()) {
-            favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp);
-        } else {
-            favoriteButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+            if (selectedProduct.isUserFavorite()) {
+                favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp);
+            } else {
+                favoriteButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+            }
         }
     }
 
@@ -332,7 +338,9 @@ public class ProductFragment extends BaseFragment implements ProductMvp.View, Vi
     @Override
     public void onProductRemovedFromWishlist() {
         Toast.makeText(getContext(), "Product removed from wishlist", Toast.LENGTH_SHORT).show();
-        favoriteButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+        if (getActivity() != null) { // check for attaching to activity
+            favoriteButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+        }
     }
 
     @Override

@@ -138,15 +138,19 @@ public class CartFragment extends BaseFragment implements CartMvp.View, RemoveFr
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
-        cartItemsCount.setVisibility(View.VISIBLE);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            cartItemsCount.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void setCartItems(ProductListDVO products) {
-        adapter.setItems(products.getProducts());
-        cartItemsCount.setText(getResources().getQuantityString(R.plurals.cart_items_count, adapter.getItemCount(), adapter.getItemCount()));
+        if (getActivity() != null) { // check for attaching to activity
+            adapter.setItems(products.getProducts());
+            cartItemsCount.setText(getResources().getQuantityString(R.plurals.cart_items_count, adapter.getItemCount(), adapter.getItemCount()));
+        }
     }
 
     @Override

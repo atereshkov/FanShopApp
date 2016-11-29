@@ -105,15 +105,22 @@ public class WishlistFragment extends BaseFragment implements WishlistMvp.View, 
 
     @Override
     public void hideLoadWishlistProgress() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
-        itemsCountView.setVisibility(View.VISIBLE);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            itemsCountView.setVisibility(View.VISIBLE);
+        }
+        else {
+            Log.e(TAG, "getActivity == null");
+        }
     }
 
     @Override
     public void setWishlist(ProductListDVO products) {
-        adapter.setItems(products.getProducts());
-        itemsCountView.setText(getResources().getQuantityString(R.plurals.wishlist_items_count, adapter.getItemCount(), adapter.getItemCount()));
+        if (getActivity() != null) { // check for attaching to activity
+            adapter.setItems(products.getProducts());
+            itemsCountView.setText(getResources().getQuantityString(R.plurals.wishlist_items_count, adapter.getItemCount(), adapter.getItemCount()));
+        }
     }
 
     @Override

@@ -88,13 +88,17 @@ public class CategoriesFragment extends BaseFragment implements CategoriesMvp.Vi
 
     @Override
     public void hideLoadCategoriesProgress() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void setCategories(CategoryListDVO categories) {
-        adapter.setCategories(categories.getCategories());
+        if (getActivity() != null) { // check for attaching to activity
+            adapter.setCategories(categories.getCategories());
+        }
     }
 
     @Override

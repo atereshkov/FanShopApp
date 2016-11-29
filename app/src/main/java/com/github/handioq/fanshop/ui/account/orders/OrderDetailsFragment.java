@@ -142,20 +142,24 @@ public class OrderDetailsFragment extends BaseFragment implements OrderDetailsMv
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
-        orderDetailsView.setVisibility(View.VISIBLE);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+            orderDetailsView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void setOrderDetails(OrderDetailsDVO orderDetails) {
-        initRecyclerView(orderDetails.getProducts());
-        initPayButton(orderDetails);
-        getActivity().setTitle(getString(R.string.order_details_id, orderDetails.getId()));
+        if (getActivity() != null) { // check for attaching to activity
+            initRecyclerView(orderDetails.getProducts());
+            initPayButton(orderDetails);
+            getActivity().setTitle(getString(R.string.order_details_id, orderDetails.getId()));
 
-        idView.setText(getString(R.string.order_details_id, orderDetails.getId()));
-        statusView.setText(getString(R.string.order_details_status, orderDetails.getStatus()));
-        //dateView.setText(getString(R.string.order_details_date, DateUtils.getStringDateFromLong(Long.parseLong(orderDetails.getDate()))));
-        dateView.setText(getString(R.string.order_details_date, orderDetails.getDate()));
+            idView.setText(getString(R.string.order_details_id, orderDetails.getId()));
+            statusView.setText(getString(R.string.order_details_status, orderDetails.getStatus()));
+            //dateView.setText(getString(R.string.order_details_date, DateUtils.getStringDateFromLong(Long.parseLong(orderDetails.getDate()))));
+            dateView.setText(getString(R.string.order_details_date, orderDetails.getDate()));
+        }
     }
 
     @OnClick(R.id.pay_button)

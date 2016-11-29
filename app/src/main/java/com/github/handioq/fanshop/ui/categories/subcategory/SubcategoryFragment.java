@@ -86,14 +86,18 @@ public class SubcategoryFragment extends BaseFragment implements SubcategoryMvp.
 
     @Override
     public void hideLoadCategoryProgress() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
+        if (getActivity() != null) { // check for attaching to activity
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void setCategory(CategoryListDVO categories) {
-        adapter.setCategories(categories.getCategories());
-        //getActivity().setTitle(category.getName());
+        if (getActivity() != null) { // check for attaching to activity
+            adapter.setCategories(categories.getCategories());
+            //getActivity().setTitle(category.getName());
+        }
     }
 
     @Override
