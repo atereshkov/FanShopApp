@@ -11,7 +11,7 @@ android {
         applicationId "com.github.handioq"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 4
+        versionCode 5
         versionName "1.0"
         multiDexEnabled true
     }

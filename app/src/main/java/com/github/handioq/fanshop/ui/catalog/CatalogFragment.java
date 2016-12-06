@@ -224,9 +224,10 @@ public class CatalogFragment extends BaseFragment implements CatalogMvp.View, Pa
         if (firstPaginationLoad) {
             progressBar.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
+        } else {
+            progressBarPagination.setVisibility(View.VISIBLE);
         }
         setRefreshActionButtonState(true);
-        progressBarPagination.setVisibility(View.VISIBLE);
     }
 
     @Override
