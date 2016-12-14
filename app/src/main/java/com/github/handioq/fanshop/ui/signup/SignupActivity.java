@@ -91,7 +91,11 @@ public class SignupActivity extends BaseActivity implements SignupMvp.View {
         String country = countriesSpinnerView.getSelectedItem().toString();
         String city = cityView.getText().toString();
         String street = streetView.getText().toString();
-        long postcode = Long.valueOf(zipcodeView.getText().toString());
+        long postcode = 0;
+        if (!zipcodeView.getText().toString().equals(""))
+        {
+             postcode = Long.valueOf(zipcodeView.getText().toString());
+        }
 
         if (!Validation.isEmailValid(mail)) {
             emailView.setError(getResources().getString(R.string.error_invalid_email));
